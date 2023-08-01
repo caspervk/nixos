@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
@@ -14,7 +15,7 @@
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];  # mode=755 so only root can write to those files
+    options = [ "defaults" "size=2G" "mode=755" ]; # mode=755 so only root can write to those files
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
@@ -26,10 +27,10 @@
   };
 
   swapDevices = [
-  {
-    device = "/nix/persist/swapfile";
-    size = 8*1024;  # 8 GiB
-  }
+    {
+      device = "/nix/persist/swapfile";
+      size = 8 * 1024; # 8 GiB
+    }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

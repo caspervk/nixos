@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
@@ -14,7 +15,7 @@
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];  # mode=755 so only root can write to those files
+    options = [ "defaults" "size=2G" "mode=755" ]; # mode=755 so only root can write to those files
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
@@ -26,10 +27,10 @@
   };
 
   swapDevices = [
-  {
-    device = "/nix/persist/swapfile";
-    size = 16*1024;  # 16 GiB
-  }
+    {
+      device = "/nix/persist/swapfile";
+      size = 16 * 1024; # 16 GiB
+    }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

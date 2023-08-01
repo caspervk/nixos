@@ -18,10 +18,10 @@
             # Trackpad
             tap = "enabled";
             natural_scroll = "enable";
-            dwt = "disabled";  # don't disable-while-typing
+            dwt = "disabled"; # don't disable-while-typing
           };
         };
-        modifier = "Mod4";  # super
+        modifier = "Mod4"; # super
         terminal = "alacritty";
         workspaceAutoBackAndForth = true;
       };
@@ -44,7 +44,7 @@
   };
 
   # Video
-  programs.light.enable = true;  # allows controlling screen brightness
+  programs.light.enable = true; # allows controlling screen brightness
 
   # Allow sharing screen
   #xdg.portal.wlr.enable = true;
@@ -53,6 +53,6 @@
 
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [intel-media-driver ];
+    extraPackages = with pkgs; [ intel-media-driver ];
   };
 }
