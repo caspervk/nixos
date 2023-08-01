@@ -48,4 +48,11 @@
 
   # Allow sharing screen
   #xdg.portal.wlr.enable = true;
+
+  security.polkit.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [intel-media-driver ];
+  };
 }
