@@ -8,9 +8,14 @@
 
       delta = {
         enable = true;
+        options = {
+          line-numbers = true;
+          side-by-side = true;
+        };
       };
 
       extraConfig = {
+        diff.colorMoved = "default";
         init.defaultBranch = "master";
         pull.rebase = true;
         rebase.autoSquash = true;
