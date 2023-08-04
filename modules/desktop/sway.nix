@@ -62,6 +62,12 @@
             defaultConfig
             {
               modules-right = lib.mkForce [ "tray" "idle_inhibitor" "pulseaudio" "cpu" "memory" "backlight" "network" "battery" "clock" ];
+              battery = {
+                states = lib.mkForce {
+                  warning = 15;
+                  critical = 5;
+                };
+              };
               clock = {
                 interval = 5;
                 locale = "da_DK.UTF-8";
