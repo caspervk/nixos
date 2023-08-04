@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -6,4 +6,12 @@
     ./ssh.nix
     ./sway.nix
   ];
+
+  environment.systemPackages = with pkgs; [
+    keepassxc
+  ];
+
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
 }

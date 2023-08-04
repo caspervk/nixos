@@ -1,4 +1,4 @@
-{ pkgs, nix-index-database, ... }: {
+{ nix-index-database, lib, pkgs, ... }: {
   imports = [
     nix-index-database.nixosModules.nix-index
   ];
@@ -63,6 +63,9 @@
       LC_TELEPHONE = "en_DK.UTF-8";
       LC_TIME = "en_DK.UTF-8";
     };
+    supportedLocales = lib.mkOptionDefault [
+      "da_DK.UTF-8/UTF-8"
+    ];
   };
 
   time = {

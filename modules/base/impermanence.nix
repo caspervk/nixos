@@ -1,4 +1,4 @@
-{ pkgs, impermanence, ... }: {
+{ impermanence, pkgs, ... }: {
   # The impermanence module bind-mounts persistent files and directories, stored in /nix/persist, into the tmpfs root
   # partition on startup. For example: /nix/persist/etc/machine-id is mounted to /etc/machine-id.
   # https://github.com/nix-community/impermanence
