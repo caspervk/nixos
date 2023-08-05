@@ -75,6 +75,7 @@ git clone https://git.caspervk.net/caspervk/nixos.git tmp
 cd tmp/
 nixos-generate-config --root /mnt --show-hardware-config
 vim hosts/omega/hardware.nix
+git add .  # nix sometimes ignores files outside version control
 nixos-install --no-root-passwd --flake .#omega
 
 # Make sure to set a password
