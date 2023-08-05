@@ -17,6 +17,10 @@
           hostname = "sigma.caspervk.net";
           port = 222;
         };
+        "tor" = {
+          hostname = "tor.caspervk.net";
+          port = 222;
+        };
         "git.caspervk.net" = {
           port = 2222;
         };
