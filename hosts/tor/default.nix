@@ -1,8 +1,7 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./hardware.nix
+    ./tor.nix
     ../../modules/base
     ../../modules/tor
   ];
