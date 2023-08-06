@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
     fishPlugins.colored-man-pages
     fishPlugins.fzf-fish
-    fishPlugins.puffer
     fishPlugins.pure
   ];
 
