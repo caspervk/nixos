@@ -1,7 +1,7 @@
 { ... }: {
   services.tor = {
     settings = {
-      Nickname = "caspervk";
+      Nickname = "DXV7520";
     };
   };
 }
