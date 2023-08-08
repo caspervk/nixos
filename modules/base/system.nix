@@ -1,4 +1,4 @@
-{ nix-index-database, lib, pkgs, ... }: {
+{ config, nix-index-database, lib, pkgs, ... }: {
   imports = [
     nix-index-database.nixosModules.nix-index
   ];
@@ -16,6 +16,12 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "${config.users.users.caspervk.home}/nixos";
+    flags = [ "--update-input" "nixpkgs" ];
+  };
 
   environment.systemPackages = with pkgs; [
     bat
