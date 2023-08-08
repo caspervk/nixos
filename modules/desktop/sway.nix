@@ -26,7 +26,7 @@
         };
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
-          "Mod4+z" = "focus child";
+          "Mod4+x" = "focus child";
           "Mod4+Escape" = "exec loginctl lock-session";
 
           # Brightness
