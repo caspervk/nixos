@@ -8,6 +8,8 @@
   environment.systemPackages = with pkgs; [
     discord
     keepassxc
+    mpv
+    vlc
   ];
 
   services.logind.extraConfig = ''
