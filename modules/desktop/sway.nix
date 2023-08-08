@@ -105,8 +105,9 @@
   environment.systemPackages = with pkgs; [
     alacritty
     clipman
-    pulseaudio # pactl
+    gnome3.adwaita-icon-theme  # cursor
     pavucontrol # PulseAudio Volume Control
+    pulseaudio # pactl
     swaylock
     wl-clipboard
   ];
