@@ -38,8 +38,9 @@
     jq
     magic-wormhole
     ntp
-    python3
+    progress
     pwgen
+    python3
     ripgrep
     rsync
     sqlite
