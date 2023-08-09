@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./fish.nix
     ./git.nix
@@ -10,6 +8,6 @@
     ./ssh.nix
     ./system.nix
     ./users.nix
-    ./vim.nix
+    ./vim
   ];
 }
