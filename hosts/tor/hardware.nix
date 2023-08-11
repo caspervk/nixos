@@ -9,24 +9,20 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-    };
+  # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
+  fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "size=2G" "mode=755" ]; # mode=755 so only root can write to those files
+  };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/BOOT";
+    fsType = "vfat";
+  };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
+    fsType = "ext4";
+  };
 
   swapDevices = [
     {
