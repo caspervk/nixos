@@ -4,7 +4,7 @@
       allowedTCPPorts = [ 1234 1337 8000 8080 ];
       allowedUDPPorts = [ 1234 1337 8000 8080 ];
     };
-    nameservers = [ "127.0.0.53" ];  # resolved stub resolver
+    nameservers = [ "127.0.0.53" ]; # resolved stub resolver
     networkmanager = {
       enable = true;
       dns = lib.mkForce "none";
