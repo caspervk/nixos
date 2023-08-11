@@ -9,6 +9,7 @@
     discord
     keepassxc
     mpv
+    spotify
     vlc
   ];
 
