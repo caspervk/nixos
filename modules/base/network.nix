@@ -11,6 +11,14 @@
     };
   };
 
+  # TODO: these systemd networkd settings will be the default once
+  # https://github.com/NixOS/nixpkgs/pull/202488 is merged.
+  networking.useNetworkd = true;
+  systemd.network = {
+    enable = true;
+    wait-online.anyInterface = true;
+  };
+
   services.resolved = {
     enable = true;
     dnssec = "true";
