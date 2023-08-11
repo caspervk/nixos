@@ -17,8 +17,7 @@
     directories = [
       { directory = "/etc/NetworkManager/system-connections"; user = "root"; group = "root"; mode = "0700"; }
       { directory = "/tmp"; user = "root"; group = "root"; mode = "1777"; } # see comment above
-      # With great power comes great responsibility, we get it
-      { directory = "/var/db/sudo/lectured"; user = "root"; group = "root"; mode = "0700"; }
+      { directory = "/var/db/sudo/lectured"; user = "root"; group = "root"; mode = "0700"; } # with great power comes great responsibility, we get it
       { directory = "/var/log"; user = "root"; group = "root"; mode = "0755"; }
     ];
     files = [
