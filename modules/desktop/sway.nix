@@ -19,11 +19,19 @@
             natural_scroll = "enable";
             dwt = "disabled"; # don't disable-while-typing
           };
+          "type:pointer" = {
+            # pointer_accel = "0.8"; # pointer SPEED, not acceleration
+            # accel_profile = "flat";
+          };
         };
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
           "Mod4+x" = "focus child";
           "Mod4+Escape" = "exec loginctl lock-session";
+
+          # Move workspace between outputs
+          "Mod4+Control+Shift+h" = "move workspace to output left";
+          "Mod4+Control+Shift+l" = "move workspace to output right";
 
           # Brightness
           "XF86MonBrightnessUp" = "exec light -A 5";
@@ -105,6 +113,7 @@
     pavucontrol # PulseAudio Volume Control
     pulseaudio # pactl
     swaylock
+    wdisplays
     wl-clipboard
   ];
 
