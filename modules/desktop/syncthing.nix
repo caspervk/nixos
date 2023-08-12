@@ -4,6 +4,7 @@
   services.syncthing = {
     enable = true;
     user = "caspervk";
+    group = "users";
     dataDir = "/home/caspervk";
     devices = {
       "lambda" = {
