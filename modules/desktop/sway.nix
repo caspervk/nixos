@@ -9,13 +9,12 @@
       enable = true;
       config = {
         input = {
-          "*" = {
-            # Keyboard
+          "type:keyboard" = {
             xkb_layout = "us";
             xkb_variant = "altgr-intl";
             repeat_delay = "250";
-
-            # Trackpad
+          };
+          "type:touchpad" = {
             tap = "enabled";
             natural_scroll = "enable";
             dwt = "disabled"; # don't disable-while-typing
