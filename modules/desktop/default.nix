@@ -4,6 +4,7 @@
     ./network.nix
     ./ssh.nix
     ./sway.nix
+    ./syncthing.nix
   ];
 
   environment.systemPackages = with pkgs; [
