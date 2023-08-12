@@ -8,6 +8,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
   fileSystems."/" = {
@@ -30,6 +31,18 @@
       size = 16 * 1024; # 16 GiB
     }
   ];
+
+  # Windows
+  fileSystems."/mnt/C" = {
+    device = "/dev/disk/by-label/C";
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000"];
+  };
+  fileSystems."/mnt/Backup" = {
+    device = "/dev/disk/by-label/Backup";
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000"];
+  };
 
   # Enables DHCP on all ethernet and wireless LAN interfaces.
   networking.useDHCP = lib.mkDefault true;
