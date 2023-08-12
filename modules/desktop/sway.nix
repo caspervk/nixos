@@ -20,9 +20,6 @@
             dwt = "disabled"; # don't disable-while-typing
           };
         };
-        assigns = {
-          "1: web" = [{ class = "^Firefox$"; }];
-        };
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
           "Mod4+x" = "focus child";
