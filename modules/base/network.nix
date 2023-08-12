@@ -1,14 +1,10 @@
-{ lib, pkgs, ... }: {
+{ ... }: {
   networking = {
     firewall = {
       allowedTCPPorts = [ 1234 1337 8000 8080 ];
       allowedUDPPorts = [ 1234 1337 8000 8080 ];
     };
     nameservers = [ "127.0.0.53" ]; # resolved stub resolver
-    networkmanager = {
-      enable = true;
-      dns = lib.mkForce "none";
-    };
   };
 
   # TODO: these systemd networkd settings will be the default once
