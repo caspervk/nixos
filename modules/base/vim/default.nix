@@ -32,6 +32,4 @@
       extraLuaConfig = builtins.readFile ./config.lua;
     };
   };
-
-  environment.variables.EDITOR = "vim";
 }
