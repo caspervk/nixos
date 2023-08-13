@@ -95,5 +95,5 @@ To find out which of our darlings will be erased on reboot do `tree -x /`.
 
 ## Upgrading
 ```bash
-sudo nixos-rebuild switch --flake .#omega
+sudo nixos-rebuild switch --flake .
 ```

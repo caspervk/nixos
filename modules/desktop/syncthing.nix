@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   # https://nixos.wiki/wiki/Syncthing
 
   services.syncthing = {
