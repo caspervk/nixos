@@ -4,6 +4,7 @@
   home-manager.users.caspervk = {
     programs.ssh = {
       enable = true;
+      controlMaster = "yes";
       matchBlocks = {
         "delta" = {
           hostname = "delta.caspervk.net";
@@ -25,6 +26,13 @@
           port = 2222;
         };
       };
+      extraConfig = ''
+        AddKeysToAgent yes
+      '';
     };
+  };
+
+  programs.ssh = {
+    startAgent = true;
   };
 }
