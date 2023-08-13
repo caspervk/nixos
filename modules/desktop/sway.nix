@@ -41,6 +41,11 @@
           "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +2%'";
           "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -2%'";
           "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+
+          # Media
+          "XF86AudioPlay" = "exec 'playerctl play-pause'";
+          "XF86AudioNext" = "exec 'playerctl next'";
+          "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         terminal = "alacritty";
         workspaceAutoBackAndForth = true;
@@ -110,11 +115,14 @@
     alacritty
     clipman
     gnome3.adwaita-icon-theme # cursor
+    grim # screenshot
     pavucontrol # PulseAudio Volume Control
+    playerctl # media control
     pulseaudio # pactl
+    slurp # wayland region selector; for grim(shot)
     swaylock
     wdisplays
-    wl-clipboard
+    wl-clipboard # wl-copy/wl-paste commands
   ];
 
   # Audio
