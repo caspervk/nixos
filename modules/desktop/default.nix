@@ -1,7 +1,5 @@
 { pkgs, ... }: {
   imports = [
-    ./firefox.nix
-    ./kanshi.nix
     ./network.nix
     ./ssh.nix
     ./sway.nix
@@ -10,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     discord
+    firefox-wayland
     keepassxc
     mpv
     spotify
