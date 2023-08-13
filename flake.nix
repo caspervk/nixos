@@ -5,6 +5,9 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-23.05";
     };
+    nixpkgs-unstable = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -14,6 +17,10 @@
     };
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+    };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
   };
@@ -27,25 +34,19 @@
       omega = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [
-          ./hosts/omega
-        ];
+        modules = [ ./hosts/omega ];
       };
       # Laptop
       zeta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [
-          ./hosts/zeta
-        ];
+        modules = [ ./hosts/zeta ];
       };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [
-          ./hosts/tor
-        ];
+        modules = [ ./hosts/tor ];
       };
     };
   };

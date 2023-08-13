@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./hardware.nix
+    ../../overlays
     ../../modules/base
     ../../modules/desktop
   ];

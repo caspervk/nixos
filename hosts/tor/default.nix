@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./tor.nix
+    ../../overlays
     ../../modules/base
     ../../modules/tor
   ];

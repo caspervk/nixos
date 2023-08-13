@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./firefox.nix
+    ./kanshi.nix
     ./network.nix
     ./ssh.nix
     ./sway.nix

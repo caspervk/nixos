@@ -36,12 +36,12 @@
   fileSystems."/mnt/C" = {
     device = "/dev/disk/by-label/C";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000"];
+    options = [ "rw" "uid=1000" ];
   };
   fileSystems."/mnt/Backup" = {
     device = "/dev/disk/by-label/Backup";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000"];
+    options = [ "rw" "uid=1000" ];
   };
 
   # Enables DHCP on all ethernet and wireless LAN interfaces.
