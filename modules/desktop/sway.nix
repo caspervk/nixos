@@ -20,8 +20,12 @@
             dwt = "disabled"; # don't disable-while-typing
           };
           "type:pointer" = {
-            # pointer_accel = "0.8"; # pointer SPEED, not acceleration
-            # accel_profile = "flat";
+            pointer_accel = "0.1"; # pointer SPEED, not acceleration
+          };
+        };
+        output = {
+          "*" = {
+            bg = "${./img/background.png} fill";
           };
         };
         modifier = "Mod4"; # super
@@ -46,6 +50,9 @@
           "XF86AudioPlay" = "exec 'playerctl play-pause'";
           "XF86AudioNext" = "exec 'playerctl next'";
           "XF86AudioPrev" = "exec 'playerctl previous'";
+        };
+        focus = {
+          followMouse = "no";
         };
         terminal = "alacritty";
         workspaceAutoBackAndForth = true;
@@ -95,9 +102,16 @@
         };
       };
 
+    programs.swaylock = {
+      enable = true;
+      settings = {
+        image = "${./img/lockscreen.png}";
+      };
+    };
+
     services.swayidle =
       let
-        lock = "${pkgs.swaylock}/bin/swaylock --daemonize --color=333333";
+        lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
       in
       {
         enable = true;
