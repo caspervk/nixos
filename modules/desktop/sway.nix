@@ -128,7 +128,7 @@
       enable = true;
       profiles = {
         # Output names ("criteria") from `swaymsg -t get_outputs`.
-        home.outputs = [
+        omega.outputs = [
           {
             criteria = "ASUSTek COMPUTER INC ROG XG27AQ M3LMQS370969";
             mode = "2560x1440@144Hz";
@@ -139,6 +139,12 @@
             criteria = "BNQ BenQ XL2411Z SCD06385SL0";
             mode = "1920x1080@144Hz";
             position = "2560,0";
+          }
+        ];
+        zeta.outputs = [
+          {
+            criteria = "Chimei Innolux Corporation 0x14D2 Unknown";
+            mode = "1920x1080@60Hz";
           }
         ];
       };
@@ -156,6 +162,7 @@
     slurp # wayland region selector; for grim(shot)
     swaylock
     wdisplays
+    wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
     wl-clipboard # wl-copy/wl-paste commands
   ];
 
