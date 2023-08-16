@@ -10,6 +10,7 @@
     discord
     firefox-wayland
     keepassxc
+    libqalculate
     mpv
     spotify
     tor-browser-bundle-bin
