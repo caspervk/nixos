@@ -160,6 +160,12 @@
         ];
       };
     };
+
+    home.sessionVariables = {
+      # The firefox-wayland package works with wayland without any further
+      # configuration, but tor-browser doesn't.
+      MOZ_ENABLE_WAYLAND = 1;
+    };
   };
 
   # Connect swaylock to PAM. If this isn't done, swaylock needs the suid flag

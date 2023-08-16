@@ -12,6 +12,7 @@
     keepassxc
     mpv
     spotify
+    tor-browser-bundle-bin
     vlc
   ];
 
