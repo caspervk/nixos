@@ -1,12 +1,16 @@
 { home-manager, lib, pkgs, ... }: {
   # https://nixos.wiki/wiki/Sway
-  # https://nix-community.github.io/home-manager/options.html
 
+  # Polkit is required to configure sway with home-manager
   security.polkit.enable = true;
 
   home-manager.users.caspervk = {
     wayland.windowManager.sway = {
       enable = true;
+      # Execute sway with required environment variables for GTK applications
+      wrapperFeatures = {
+        gtk = true;
+      };
       config = {
         input = {
           "type:keyboard" = {
@@ -20,7 +24,8 @@
             dwt = "disabled"; # don't disable-while-typing
           };
           "type:pointer" = {
-            pointer_accel = "0.1"; # pointer SPEED, not acceleration
+            accel_profile = "flat";
+            pointer_accel = "0.5"; # pointer SPEED, not acceleration
           };
         };
         output = {
@@ -60,12 +65,15 @@
       };
     };
 
+    # https://github.com/Alexays/Waybar/wiki/Configuration
+    # https://github.com/Alexays/Waybar/blob/master/resources/config
     programs.waybar =
       let
         mkDefaultConfig = pkgs.stdenv.mkDerivation {
           name = "waybarDefaultConfig";
           src = "${pkgs.waybar}/etc/xdg/waybar";
           installPhase = ''
+            # JSON isn't valid if it contains comments
             sed 's#//.*##' config | ${pkgs.jq}/bin/jq > $out
           '';
         };
@@ -102,6 +110,7 @@
         };
       };
 
+    # https://github.com/swaywm/swaylock
     programs.swaylock = {
       enable = true;
       settings = {
@@ -109,6 +118,7 @@
       };
     };
 
+    # https://github.com/swaywm/swayidle
     services.swayidle =
       let
         lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
@@ -124,6 +134,7 @@
         ];
       };
 
+    # https://sr.ht/~emersion/kanshi/
     services.kanshi = {
       enable = true;
       profiles = {
@@ -133,7 +144,7 @@
             criteria = "ASUSTek COMPUTER INC ROG XG27AQ M3LMQS370969";
             mode = "2560x1440@144Hz";
             position = "0,0";
-            adaptiveSync = true;
+            adaptiveSync = false; # seems to flicker
           }
           {
             criteria = "BNQ BenQ XL2411Z SCD06385SL0";
@@ -151,22 +162,27 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    alacritty
-    clipman
-    gnome3.adwaita-icon-theme # cursor
-    grim # screenshot
-    pavucontrol # PulseAudio Volume Control
-    playerctl # media control
-    pulseaudio # pactl
-    slurp # wayland region selector; for grim(shot)
-    swaylock
-    wdisplays
-    wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
-    wl-clipboard # wl-copy/wl-paste commands
-  ];
+  # Connect swaylock to PAM. If this isn't done, swaylock needs the suid flag
+  security.pam.services.swaylock.text = ''
+    auth include login
+  '';
+
+  # https://nixos.wiki/wiki/Fonts
+  fonts = {
+    fonts = with pkgs; [
+      # Nerd Fonts patches glyph icons, such as from Font Awesome, into existing fonts
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      font-awesome # waybar uses Font Awesome icons directly
+    ];
+    fontDir.enable = true; # TODO?
+    enableDefaultFonts = true;
+    fontconfig.defaultFonts = {
+      monospace = [ "JetBrainsMonoNL Nerd Font" ]; # NL = NoLigatures
+    };
+  };
 
   # Audio
+  # https://nixos.wiki/wiki/PipeWire
   services.pipewire = {
     enable = true;
     alsa = {
@@ -177,33 +193,28 @@
     pulse.enable = true;
   };
 
-  # Video
-  programs.light.enable = true; # allows controlling screen brightness
+  # `light` command for screen brightness
+  programs.light.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    alacritty # terminal
+    clipman # TODO
+    gnome3.adwaita-icon-theme # cursor TODO
+    grim # screenshot TODO
+    pavucontrol # PulseAudio Volume Control gui
+    playerctl # media control cli for keybinds
+    pulseaudio # volume control (pactl) for keybinds
+    slurp # wayland region selector; for grim(shot)
+    wdisplays # gui for ad-hoc display configuration
+    wl-clipboard # wl-copy/wl-paste commands
+    wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
+  ];
 
   # Allow sharing screen
   #xdg.portal.wlr.enable = true;
-
-  security.pam.services.swaylock.text = ''
-    # PAM configuration file for the swaylock screen locker. By default, it includes
-    # the 'login' configuration file (see /etc/pam.d/login)
-    auth include login
-  '';
 
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [ intel-media-driver ];
   };
-
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    font-awesome # for waybar
-  ];
 }
