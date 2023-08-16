@@ -97,3 +97,15 @@ To find out which of our darlings will be erased on reboot do `tree -x /`.
 ```bash
 sudo nixos-rebuild switch --flake .
 ```
+
+
+## Debugging
+```bash
+nix repl
+:lf .
+:p nixosConfigurations.omega.config.services.openssh.ports
+:p nixosConfigurations.omega.config.home-manager.users.caspervk.programs.ssh.matchBlocks
+:p inputs.nixpkgs.outputs.legacyPackages.x86_64-linux.openssh.version
+```
+
+
