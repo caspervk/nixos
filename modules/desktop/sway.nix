@@ -35,8 +35,14 @@
         };
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
-          "Mod4+x" = "focus child";
+          # Menu
+          "Mod4+backspace" = "exec rofi -show combi";
+
+          # Lock
           "Mod4+Escape" = "exec loginctl lock-session";
+
+          # Mod+a focuses parent, but there is no way (by default) to focus child
+          "Mod4+x" = "focus child";
 
           # Move workspace between outputs
           "Mod4+Control+Shift+h" = "move workspace to output left";
@@ -134,6 +140,21 @@
         ];
       };
 
+    # https://github.com/davatorium/rofi
+    # https://wiki.archlinux.org/title/rofi
+    programs.rofi = {
+      enable = true;
+      plugins = with pkgs; [
+        rofi-emoji
+      ];
+      theme = "glue_pro_blue";
+      extraConfig = {
+        modi = "combi";
+        combi-modi = "window,drun,emoji";
+        show-icons = true;
+      };
+    };
+
     # https://sr.ht/~emersion/kanshi/
     services.kanshi = {
       enable = true;
@@ -214,6 +235,7 @@
     wdisplays # gui for ad-hoc display configuration
     wl-clipboard # wl-copy/wl-paste commands
     wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
+    wtype # xdotool for wayland
   ];
 
   # Allow sharing screen
