@@ -41,7 +41,6 @@
     progress
     pwgen
     python3
-    ripgrep
     rsync
     sqlite
     tmux
