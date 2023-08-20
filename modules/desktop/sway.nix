@@ -49,8 +49,8 @@
           "Mod4+Control+Shift+l" = "move workspace to output right";
 
           # Brightness
-          "XF86MonBrightnessUp" = "exec light -A 5";
-          "XF86MonBrightnessDown" = "exec light -U 5";
+          "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+          "XF86MonBrightnessDown" = "exec brightnessctl set -5%";
 
           # Volume
           "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +2%'";
@@ -220,11 +220,9 @@
     pulse.enable = true;
   };
 
-  # `light` command for screen brightness
-  programs.light.enable = true;
-
   environment.systemPackages = with pkgs; [
     alacritty # terminal
+    brightnessctl
     clipman # TODO
     gnome3.adwaita-icon-theme # cursor TODO
     grim # screenshot TODO
