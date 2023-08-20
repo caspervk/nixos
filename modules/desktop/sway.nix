@@ -25,7 +25,7 @@
           };
           "type:pointer" = {
             accel_profile = "flat";
-            pointer_accel = "0.5"; # pointer SPEED, not acceleration
+            pointer_accel = "0.4"; # pointer SPEED, not acceleration
           };
         };
         output = {
@@ -91,7 +91,7 @@
           bar = lib.mkMerge [
             defaultConfig
             {
-              modules-right = lib.mkForce [ "tray" "idle_inhibitor" "pulseaudio" "cpu" "memory" "backlight" "network" "battery" "clock" ];
+              modules-right = lib.mkForce [ "tray" "idle_inhibitor" "pulseaudio" "backlight" "network" "battery" "clock" ];
               battery = {
                 states = lib.mkForce {
                   warning = 15;
@@ -114,6 +114,39 @@
             }
           ];
         };
+        # https://github.com/Alexays/Waybar/wiki/Styling
+        # https://github.com/Alexays/Waybar/blob/master/resources/style.css
+        style = ''
+          window#waybar {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            transition-duration: 0s;
+          }
+          #workspaces button {
+            color: white;
+            box-shadow: inset 0 3px transparent;
+            border: none;
+            border-radius: 0;
+          }
+          #workspaces button.focused {
+            box-shadow: inset 0 3px #f88a25;
+            background-color: transparent;
+          }
+          #workspaces button:hover {
+            /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+            background: rgba(0, 0, 0, 0.25);  
+            text-shadow: inherit;
+          }
+          #mode {
+              background-color: rgba(255, 255, 255, 0.4);
+              border: none;
+          }
+          #tray, #idle_inhibitor, #pulseaudio, #backlight, #network, #battery, #clock {
+            background-color: transparent;
+            padding: 0 10px;
+          }
+        '';
       };
 
     # https://github.com/swaywm/swaylock
