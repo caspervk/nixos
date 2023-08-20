@@ -53,9 +53,9 @@
           "XF86MonBrightnessDown" = "exec brightnessctl set -5%";
 
           # Volume
-          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +2%'";
-          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -2%'";
-          "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+          "XF86AudioRaiseVolume" = "exec 'wpctl set-volume --limit=1.5 @DEFAULT_AUDIO_SINK@ 2%+'";
+          "XF86AudioLowerVolume" = "exec 'wpctl set-volume --limit=1.5 @DEFAULT_AUDIO_SINK@ 2%-'";
+          "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
 
           # Media
           "XF86AudioPlay" = "exec 'playerctl play-pause'";
@@ -228,7 +228,6 @@
     grim # screenshot TODO
     pavucontrol # PulseAudio Volume Control gui
     playerctl # media control cli for keybinds
-    pulseaudio # volume control (pactl) for keybinds
     slurp # wayland region selector; for grim(shot)
     wdisplays # gui for ad-hoc display configuration
     wl-clipboard # wl-copy/wl-paste commands
