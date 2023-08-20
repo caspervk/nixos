@@ -65,8 +65,22 @@
         focus = {
           followMouse = "no";
         };
+        gaps = {
+          smartBorders = "no_gaps";
+        };
+        window = {
+          titlebar = false;
+        };
+        colors = {
+          focused = {
+            background = "#31447f";
+            border = "#31447f";
+            childBorder = "#31447f";
+            indicator = "#3bacf0";
+            text = "#ffffff";
+          };
+        };
         terminal = "alacritty";
-        workspaceAutoBackAndForth = true;
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       };
     };
@@ -130,7 +144,7 @@
             border-radius: 0;
           }
           #workspaces button.focused {
-            box-shadow: inset 0 3px #f88a25;
+            box-shadow: inset 0 3px #FF9E3B;
             background-color: transparent;
           }
           #workspaces button:hover {
