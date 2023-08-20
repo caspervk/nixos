@@ -10,6 +10,9 @@
     discord
     firefox-wayland
     keepassxc
+    (kodi-wayland.withPackages (kodiPackages: with kodiPackages; [
+      jellyfin
+    ]))
     libqalculate
     mpv
     spotify
