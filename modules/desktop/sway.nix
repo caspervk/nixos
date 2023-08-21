@@ -188,9 +188,11 @@
       };
 
     # https://github.com/davatorium/rofi
+    # https://github.com/lbonn/rofi (wayland fork)
     # https://wiki.archlinux.org/title/rofi
     programs.rofi = {
       enable = true;
+      package = pkgs.rofi-wayland;
       plugins = with pkgs; [
         rofi-emoji
       ];
