@@ -285,8 +285,14 @@
     wtype # xdotool for wayland
   ];
 
-  # Allow sharing screen
-  #xdg.portal.wlr.enable = true;
+  # xdg portal allows applications secury access to resources outside their sandbox.
+  # In particular, this allows screen sharing on Wayland via PipeWire and file open/save dialogues in Firefox.
+  # https://wiki.archlinux.org/title/XDG_Desktop_Portal
+  # https://mozilla.github.io/webrtc-landing/gum_test.html
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
   hardware.opengl = {
     enable = true;
