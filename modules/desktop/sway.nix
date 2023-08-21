@@ -267,6 +267,9 @@
     pulse.enable = true;
   };
 
+  # The RealtimeKit system services allows user processes to gain realtime scheduling priority
+  security.rtkit.enable = true;
+
   environment.systemPackages = with pkgs; [
     alacritty # terminal
     brightnessctl
