@@ -7,7 +7,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    discord
     firefox-wayland
     keepassxc
     (kodi-wayland.withPackages (kodiPackages: with kodiPackages; [
@@ -18,6 +17,7 @@
     spotify
     tor-browser-bundle-bin
     vlc
+    webcord # discord
   ];
 
   services.logind.extraConfig = ''
