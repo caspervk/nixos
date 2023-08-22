@@ -228,6 +228,20 @@
       };
     };
 
+    # Gammestep automatically adjusts the screen's colour temperature. It's
+    # basically redshift for wayland.
+    # https://gitlab.com/chinstrap/gammastep
+    # https://nixos.wiki/wiki/Gammastep
+    services.gammastep = {
+      enable = true;
+      dawnTime = "07:00";
+      duskTime = "23:00";
+      temperature = {
+        day = 6500; # neutral
+        night = 4500;
+      };
+    };
+
     home.sessionVariables = {
       # The firefox-wayland package works with wayland without any further
       # configuration, but tor-browser doesn't.
