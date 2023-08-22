@@ -122,9 +122,6 @@
                   weeks-pos = "left";
                 };
               };
-              backlight = {
-                format-icons = lib.mkForce [ "" ];
-              };
             }
           ];
         };
