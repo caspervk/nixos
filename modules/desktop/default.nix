@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./alacritty.nix
+    ./clipman.nix
     ./network.nix
     ./ssh.nix
     ./sway.nix

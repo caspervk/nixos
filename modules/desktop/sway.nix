@@ -36,7 +36,8 @@
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
           # Menu
-          "Mod4+backspace" = "exec rofi -show combi";
+          "Mod4+backspace" = "exec wofi";
+          "Mod4+p" = "exec clipman pick -t wofi";
 
           # Lock
           "Mod4+Escape" = "exec loginctl lock-session";
@@ -184,20 +185,15 @@
         ];
       };
 
-    # https://github.com/davatorium/rofi
-    # https://github.com/lbonn/rofi (wayland fork)
-    # https://wiki.archlinux.org/title/rofi
-    programs.rofi = {
+    # https://hg.sr.ht/~scoopta/wofi
+    programs.wofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
-      plugins = with pkgs; [
-        rofi-emoji
-      ];
-      theme = "glue_pro_blue";
-      extraConfig = {
-        modi = "combi";
-        combi-modi = "window,drun,emoji";
-        show-icons = true;
+      settings = {
+        show = "drun";
+        allow_images = true;
+        gtk_dark = true;
+        insensitive = true;
+        prompt = ""; # hides 'drun' from the search bar
       };
     };
 
