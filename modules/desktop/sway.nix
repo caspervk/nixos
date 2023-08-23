@@ -284,7 +284,6 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
-    alacritty # terminal
     brightnessctl
     clipman # TODO
     gnome3.adwaita-icon-theme # cursor TODO
