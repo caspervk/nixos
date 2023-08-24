@@ -1,28 +1,15 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
     ./alacritty.nix
     ./clipman.nix
+    ./gammastep.nix
+    ./kanshi.nix
     ./network.nix
+    ./pipewire.nix
+    ./programs.nix
     ./ssh.nix
     ./sway.nix
     ./syncthing.nix
+    ./wofi.nix
   ];
-
-  environment.systemPackages = with pkgs; [
-    firefox-wayland
-    keepassxc
-    (kodi-wayland.withPackages (kodiPackages: with kodiPackages; [
-      jellyfin
-    ]))
-    libqalculate
-    mpv
-    spotify
-    tor-browser-bundle-bin
-    vlc
-    webcord # discord
-  ];
-
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
 }

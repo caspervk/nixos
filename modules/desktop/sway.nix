@@ -7,10 +7,6 @@
   home-manager.users.caspervk = {
     wayland.windowManager.sway = {
       enable = true;
-      # Execute sway with required environment variables for GTK applications
-      wrapperFeatures = {
-        gtk = true;
-      };
       config = {
         input = {
           "type:keyboard" = {
@@ -64,12 +60,16 @@
           "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         focus = {
+          # Don't automatically focus hovered windows
           followMouse = "no";
         };
         gaps = {
           smartBorders = "no_gaps";
         };
         window = {
+          # Don't show unnecessary window titlebars, e.g. when there is only
+          # one window on screen. The titlebars will still be shown if tabbing
+          # or stacking windows.
           titlebar = false;
         };
         colors = {
@@ -84,12 +84,21 @@
         terminal = "alacritty";
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       };
+
+      # Execute sway with required environment variables for GTK applications
+      wrapperFeatures = {
+        gtk = true;
+      };
     };
 
     # https://github.com/Alexays/Waybar/wiki/Configuration
     # https://github.com/Alexays/Waybar/blob/master/resources/config
     programs.waybar =
       let
+        # It isn't possible to extend the default Waybar config in Home
+        # Manager; as soon as any setting is defined it overwrites the entire
+        # default configuration. To combat  this, we parse the default config
+        # into Nix and merge it with our changes.
         mkDefaultConfig = pkgs.stdenv.mkDerivation {
           name = "waybarDefaultConfig";
           src = "${pkgs.waybar}/etc/xdg/waybar";
@@ -184,66 +193,12 @@
           { timeout = 600; command = lock; }
         ];
       };
-
-    # https://hg.sr.ht/~scoopta/wofi
-    programs.wofi = {
-      enable = true;
-      settings = {
-        show = "drun";
-        allow_images = true;
-        gtk_dark = true;
-        insensitive = true;
-        prompt = ""; # hides 'drun' from the search bar
-      };
-    };
-
-    # https://sr.ht/~emersion/kanshi/
-    services.kanshi = {
-      enable = true;
-      profiles = {
-        # Output names ("criteria") from `swaymsg -t get_outputs`.
-        omega.outputs = [
-          {
-            criteria = "ASUSTek COMPUTER INC ROG XG27AQ M3LMQS370969";
-            mode = "2560x1440@144Hz";
-            position = "0,0";
-            adaptiveSync = false; # seems to flicker
-          }
-          {
-            criteria = "BNQ BenQ XL2411Z SCD06385SL0";
-            mode = "1920x1080@144Hz";
-            position = "2560,0";
-          }
-        ];
-        zeta.outputs = [
-          {
-            criteria = "Chimei Innolux Corporation 0x14D2 Unknown";
-            mode = "1920x1080@60Hz";
-          }
-        ];
-      };
-    };
-
-    # Gammestep automatically adjusts the screen's colour temperature. It's
-    # basically redshift for wayland.
-    # https://gitlab.com/chinstrap/gammastep
-    # https://nixos.wiki/wiki/Gammastep
-    services.gammastep = {
-      enable = true;
-      dawnTime = "07:00";
-      duskTime = "23:00";
-      temperature = {
-        day = 6500; # neutral
-        night = 4500;
-      };
-    };
-
-    home.sessionVariables = {
-      # The firefox-wayland package works with wayland without any further
-      # configuration, but tor-browser doesn't.
-      MOZ_ENABLE_WAYLAND = 1;
-    };
   };
+
+  # Don't shut down the system when the power key is pressed
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
 
   # Connect swaylock to PAM. If this isn't done, swaylock needs the suid flag
   security.pam.services.swaylock.text = ''
@@ -264,24 +219,8 @@
     };
   };
 
-  # Audio
-  # https://nixos.wiki/wiki/PipeWire
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    jack.enable = true;
-    pulse.enable = true;
-  };
-
-  # The RealtimeKit system services allows user processes to gain realtime scheduling priority
-  security.rtkit.enable = true;
-
   environment.systemPackages = with pkgs; [
     brightnessctl
-    clipman # TODO
     gnome3.adwaita-icon-theme # cursor TODO
     grim # screenshot TODO
     pavucontrol # PulseAudio Volume Control gui
@@ -293,8 +232,9 @@
     wtype # xdotool for wayland
   ];
 
-  # xdg portal allows applications secury access to resources outside their sandbox.
-  # In particular, this allows screen sharing on Wayland via PipeWire and file open/save dialogues in Firefox.
+  # xdg portal allows applications secure access to resources outside their
+  # sandbox. In particular, this allows screen sharing on Wayland via PipeWire
+  # and file open/save dialogues in Firefox.
   # https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # https://mozilla.github.io/webrtc-landing/gum_test.html
   xdg.portal = {
@@ -302,6 +242,7 @@
     wlr.enable = true;
   };
 
+  # TODO
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [ intel-media-driver ];
