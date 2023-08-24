@@ -14,7 +14,7 @@
           "networkmanager"
           "wheel" # allows sudo
           "video" # allows controlling brightness
-          # todo: docker, systemd-journal, audio, input, power, nix ?
+          # todo: systemd-journal, audio, input, power, nix ?
         ];
         uid = 1000;
         openssh.authorizedKeys.keys = [

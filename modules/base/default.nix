@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./docker.nix
     ./fish.nix
     ./git.nix
     ./home-manager.nix
