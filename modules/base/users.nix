@@ -18,7 +18,6 @@
         # with a proper secret management scheme, such as agenix.
         passwordFile = "/nix/persist/passwordfile";
         extraGroups = [
-          "networkmanager"
           "wheel" # allows sudo
           "video" # allows controlling brightness
           # todo: systemd-journal, audio, input, power, nix ?
