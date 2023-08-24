@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+  # Fish is a Unix shell with a focus on interactivity and usability. Fish is
+  # designed to give the user features by default, rather than by
+  # configuration.
   # https://nixos.wiki/wiki/Fish
   # https://nixos.wiki/wiki/Command_Shell
 
@@ -23,16 +26,15 @@
   # Add fish to the list of permissible login shells for user accounts
   environment.shells = with pkgs; [ fish ];
 
-  # Enabling fish in both NixOS and home manager is required to pick
-  # up completions and environment variables set by NixOS nixpkgs _and_
-  # home manager modules at the same time.
-  # As a test, the environment variables from
+  # Enabling fish in both NixOS and home manager is required to pick up
+  # completions and environment variables set by NixOS nixpkgs _and_ home
+  # manager modules at the same time. As a test, the environment variables from
   # $ nix repl
   # > :lf .
   # > :p nixosConfigurations.omega.config.home-manager.users.caspervk.home.sessionVariables
   # > :p nixosConfigurations.omega.config.home-manager.users.caspervk.home.sessionVariablesExtra
-  # should be available in the desktop environment's shell.
-  # See https://nix-community.github.io/home-manager/index.html#_why_are_the_session_variables_not_set.
+  # should be available in the desktop environment's shell. See
+  # https://nix-community.github.io/home-manager/index.html#_why_are_the_session_variables_not_set.
   home-manager.users.caspervk = {
     programs.fish.enable = true;
   };

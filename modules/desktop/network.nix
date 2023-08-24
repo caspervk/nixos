@@ -1,5 +1,7 @@
 { lib, ... }: {
   networking = {
+    # It's a little too much to define every WiFi network declaratively.
+    # Instead, we enable NetworkManager and the nmtui interface.
     networkmanager = {
       enable = true;
       dns = lib.mkForce "none";

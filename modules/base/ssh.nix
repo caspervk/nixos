@@ -1,6 +1,8 @@
 { ... }: {
   services.openssh = {
     enable = true;
+    # Security by obscurity? Nah, but it certainly reduces the logs volume.
+    # Also, port 222 still requires root to bind.
     ports = [ 222 ];
     settings = {
       PasswordAuthentication = false;
