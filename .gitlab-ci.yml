@@ -8,4 +8,4 @@ Update Flake.nix:
     - git config user.email "snowflake@caspervk.net"
     - git config user.name "snowflake"
     - nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file
-    - git push https://oauth2:$ACCESS_TOKEN@gitlab.com/$CI_PROJECT_PATH_SLUG
+    - git push https://oauth2:$ACCESS_TOKEN@gitlab.com/$CI_PROJECT_PATH_SLUG HEAD:$CI_COMMIT_BRANCH
