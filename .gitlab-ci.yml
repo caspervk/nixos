@@ -1,0 +1,10 @@
+Update Flake.nix:
+  image: nixos/nix:latest
+  script:
+    - git config user.email "snowflake@caspervk.net"
+    - git config user.name "snowflake"
+    - nix flake update --commit-lock-file
+    - git remote add origin https://oauth2:$ACCESS_TOKEN@gitlab.com/$CI_PROJECT_PATH_SLUG
+    - git push origin HEAD:$CI_COMMIT_BRANCH
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
