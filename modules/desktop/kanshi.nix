@@ -20,7 +20,7 @@
           {
             criteria = "BNQ BenQ XL2411Z SCD06385SL0";
             mode = "1920x1080@144Hz";
-            position = "2560,400";
+            position = "2560,200";
           }
         ];
         zeta.outputs = [
