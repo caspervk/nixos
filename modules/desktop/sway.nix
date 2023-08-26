@@ -38,6 +38,12 @@
           # Lock
           "Mod4+Escape" = "exec loginctl lock-session";
 
+          # Screenshot
+          "Print" = "exec grimshot copy output";
+          "Print+Shift" = "exec grimshot copy area";
+          "Print+Control" = "exec grimshot copy window";
+          "Print+Alt" = "exec grimshot copy active";
+
           # Mod+a focuses parent, but there is no way (by default) to focus child
           "Mod4+x" = "focus child";
 
@@ -222,10 +228,10 @@
   environment.systemPackages = with pkgs; [
     brightnessctl
     gnome3.adwaita-icon-theme # cursor TODO
-    grim # screenshot TODO
     pavucontrol # PulseAudio Volume Control gui
     playerctl # media control cli for keybinds
-    slurp # wayland region selector; for grim(shot)
+    slurp # wayland region selector
+    sway-contrib.grimshot # screenshot
     wdisplays # gui for ad-hoc display configuration
     wl-clipboard # wl-copy/wl-paste commands
     wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
