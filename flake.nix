@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... } @ inputs: {
     # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-fmt.html
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
