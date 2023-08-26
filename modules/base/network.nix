@@ -40,4 +40,9 @@
 
   # vnStat keeps a log of hourly, daily and monthly network traffic
   services.vnstat.enable = true;
+  environment.persistence."/nix/persist" = {
+    directories = [
+      { directory = "/var/lib/vnstat"; user = "root"; group = "root"; mode = "0755"; }
+    ];
+  };
 }
