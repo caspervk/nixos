@@ -16,7 +16,7 @@
   # Persist docker volumes
   environment.persistence."/nix/persist" = {
     directories = [
-      # { directory = "/etc/NetworkManager/system-connections"; user = "root"; group = "root"; mode = "0700"; }
+      { directory = "/var/lib/docker"; user = "root"; group = "root"; mode = "0700"; }
     ];
   };
 }
