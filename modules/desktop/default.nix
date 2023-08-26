@@ -3,7 +3,6 @@
     ./alacritty.nix
     ./clipman.nix
     ./gammastep.nix
-    ./kanshi.nix
     ./network.nix
     ./pipewire.nix
     ./programs.nix

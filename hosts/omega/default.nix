@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./hardware.nix
+    ./sway.nix
     ../../overlays
     ../../modules/base
     ../../modules/desktop

@@ -26,7 +26,7 @@
         };
         output = {
           "*" = {
-            bg = "${./img/background.png} fill";
+            background = "${./img/background.png} fill";
           };
         };
         modifier = "Mod4"; # super
@@ -64,6 +64,9 @@
           "XF86AudioPlay" = "exec 'playerctl play-pause'";
           "XF86AudioNext" = "exec 'playerctl next'";
           "XF86AudioPrev" = "exec 'playerctl previous'";
+        };
+        assigns = {
+          "9" = [{ class = "Spotify"; }];
         };
         focus = {
           # Don't automatically focus hovered windows
