@@ -199,6 +199,9 @@
     services.swayidle =
       let
         lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
+        outputOff = "${pkgs.sway}/bin/swaymsg 'output * power off'";
+        outputOn = "${pkgs.sway}/bin/swaymsg 'output * power on'";
+        suspend = "${pkgs.systemd}/bin/systemctl suspend";
       in
       {
         enable = true;
@@ -208,6 +211,8 @@
         ];
         timeouts = [
           { timeout = 600; command = lock; }
+          { timeout = 900; command = outputOff; resumeCommand = outputOn; }
+          { timeout = 3600; command = suspend; }
         ];
       };
   };
