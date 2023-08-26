@@ -4,6 +4,7 @@
     ./tor.nix
     ../../overlays
     ../../modules/base
+    ../../modules/server
     ../../modules/tor
   ];
 

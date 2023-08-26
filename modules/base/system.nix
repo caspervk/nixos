@@ -17,12 +17,6 @@
   };
   nixpkgs.config.allowUnfree = true;
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = "${config.users.users.caspervk.home}/nixos";
-    flags = [ "--update-input" "nixpkgs" ];
-  };
-
   environment.systemPackages = with pkgs; [
     bat
     clang
