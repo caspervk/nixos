@@ -66,7 +66,15 @@
           "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         assigns = {
+          "8" = [{ class = "WebCord"; }];
           "9" = [{ class = "Spotify"; }];
+        };
+        floating = {
+          criteria = [
+            { app_id = "org.keepassxc.KeePassXC"; }
+            { title = "Volume Control"; }
+            { title = "wdisplays"; }
+          ];
         };
         focus = {
           # Don't automatically focus hovered windows
