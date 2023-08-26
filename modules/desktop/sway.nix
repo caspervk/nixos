@@ -132,7 +132,7 @@
           bar = lib.mkMerge [
             defaultConfig
             {
-              modules-right = lib.mkForce [ "tray" "idle_inhibitor" "pulseaudio" "backlight" "network" "battery" "clock" ];
+              modules-right = lib.mkForce [ "tray" "pulseaudio" "backlight" "network" "battery" "clock" ];
               battery = {
                 states = lib.mkForce {
                   warning = 15;
@@ -168,7 +168,7 @@
             border-radius: 0;
           }
           #workspaces button.focused {
-            box-shadow: inset 0 3px #FF9E3B;
+            box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
             background-color: transparent;
           }
           #workspaces button:hover {
@@ -180,9 +180,18 @@
               background-color: rgba(255, 255, 255, 0.4);
               border: none;
           }
-          #tray, #idle_inhibitor, #pulseaudio, #backlight, #network, #battery, #clock {
+          #tray, #pulseaudio, #backlight, #network, #battery, #clock {
             background-color: transparent;
             padding: 0 10px;
+          }
+          #battery.warning:not(.charging) {
+            color: #FF9E3B;  /* kanagawa roninYellow */
+          }
+          #battery.critical:not(.charging) {
+            color: #E82424;  /* kanagawa samuraiRed */
+          }
+          #network.disconnected {
+            color: #E82424;  /* kanagawa samuraiRed */
           }
         '';
       };
