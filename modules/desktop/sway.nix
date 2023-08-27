@@ -52,8 +52,8 @@
           "Mod4+Control+Shift+l" = "move workspace to output right";
 
           # Brightness
-          "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
-          "XF86MonBrightnessDown" = "exec brightnessctl set -5%";
+          "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
 
           # Volume
           "XF86AudioRaiseVolume" = "exec 'wpctl set-volume --limit=1.5 @DEFAULT_AUDIO_SINK@ 2%+'";
