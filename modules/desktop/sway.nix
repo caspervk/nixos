@@ -72,8 +72,8 @@
         floating = {
           criteria = [
             { app_id = "org.keepassxc.KeePassXC"; }
-            { title = "Volume Control"; }
-            { title = "wdisplays"; }
+            { app_id = "pavucontrol"; }
+            { app_id = "wdisplays"; }
           ];
         };
         focus = {
@@ -81,6 +81,7 @@
           followMouse = "no";
         };
         gaps = {
+          # Disable borders on workspaces with a single container
           smartBorders = "no_gaps";
         };
         window = {
