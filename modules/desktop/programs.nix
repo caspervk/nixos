@@ -11,6 +11,7 @@
     mpv
     spotify
     tor-browser-bundle-bin
+    ungoogled-chromium
     vlc
     webcord # discord
   ];
