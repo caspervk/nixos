@@ -220,7 +220,6 @@
           { event = "before-sleep"; command = lock; }
         ];
         timeouts = [
-          { timeout = 600; command = lock; }
           { timeout = 900; command = outputOff; resumeCommand = outputOn; }
           { timeout = 3600; command = suspend; }
         ];
