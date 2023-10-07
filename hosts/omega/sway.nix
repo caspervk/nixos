@@ -2,6 +2,7 @@
   home-manager.users.caspervk = {
     wayland.windowManager.sway = {
       config = {
+        # swaymsg -t get_outputs
         output = {
           "ASUSTek COMPUTER INC ROG XG27AQ M3LMQS370969" = {
             mode = "2560x1440@144.006Hz";
