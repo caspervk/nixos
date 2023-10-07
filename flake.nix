@@ -42,6 +42,12 @@
         specialArgs = inputs; # pass flake inputs to modules
         modules = [ ./hosts/zeta ];
       };
+      # Work laptop
+      mu = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs; # pass flake inputs to modules
+        modules = [ ./hosts/mu ];
+      };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
