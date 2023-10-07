@@ -8,7 +8,6 @@
     ./programs.nix
     ./ssh.nix
     ./sway.nix
-    ./syncthing.nix
     ./wofi.nix
   ];
 }

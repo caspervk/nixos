@@ -5,6 +5,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ../../modules/syncthing.nix
   ];
 
   networking.hostName = "zeta";
