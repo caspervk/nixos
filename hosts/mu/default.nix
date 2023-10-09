@@ -3,7 +3,6 @@
     ./hardware.nix
     ./fish.nix
     ./hosts.nix
-    ./k9s.nix
     ./packages.nix
     ./sway.nix
     ../../overlays
