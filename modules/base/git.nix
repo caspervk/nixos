@@ -22,6 +22,7 @@
         diff.colorMoved = "default";
         init.defaultBranch = "master";
         pull.rebase = true;
+        push.autoSetupRemote = true;
         rebase.autoSquash = true;
         rebase.autoStash = true;
       };
