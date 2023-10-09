@@ -18,7 +18,7 @@
           };
         };
         workspaceOutputAssign = [
-          { workspace = "8"; output = "eDP-1"; }
+          { workspace = "9"; output = "eDP-1"; }
         ];
       };
     };
