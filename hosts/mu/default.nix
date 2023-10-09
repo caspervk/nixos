@@ -1,13 +1,14 @@
 { ... }: {
   imports = [
     ./hardware.nix
-    ./fish.nix
-    ./hosts.nix
-    ./packages.nix
-    ./sway.nix
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ./fish.nix
+    ./git.nix
+    ./hosts.nix
+    ./packages.nix
+    ./sway.nix
   ];
 
   networking.hostName = "mu";
