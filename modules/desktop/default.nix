@@ -8,6 +8,7 @@
     ./programs.nix
     ./ssh.nix
     ./sway.nix
+    ./virtd.nix
     ./wofi.nix
   ];
 }
