@@ -10,11 +10,11 @@
           };
           "AOC Q27T1G5 0x000007C8" = {
             mode = "2560x1440@74.968Hz";
-            position = "1920,200";
+            position = "1920,0";
           };
           "AOC Q27T1G5 0x0000080B" = {
             mode = "2560x1440@74.968Hz";
-            position = "4480,200";
+            position = "4480,0";
           };
         };
         workspaceOutputAssign = [
