@@ -78,7 +78,9 @@
         };
         focus = {
           # Don't automatically focus hovered windows
-          followMouse = "no";
+          followMouse = false;
+          # Don't automatically move the mouse cursor when switching outputs
+          mouseWarping = false;
         };
         gaps = {
           # Disable borders on workspaces with a single container
