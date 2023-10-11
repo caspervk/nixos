@@ -2,8 +2,10 @@
   # https://nixos.wiki/wiki/Virt-manager
 
   virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true; # virt-manager requires dconf to remember settings
   environment.systemPackages = with pkgs; [ virt-manager ];
+
+  # Virt-manager requires dconf to remember settings
+  programs.dconf.enable = true;
 
   # Make virt-manager use QEMU/KVM by default
   home-manager.users.caspervk = {
@@ -14,6 +16,9 @@
       };
     };
   };
+
+  # Allow our user to use libvird
+  users.extraGroups.libvirtd.members = [ "caspervk" ];
 
   # Persist libvirt data
   environment.persistence."/nix/persist" = {
