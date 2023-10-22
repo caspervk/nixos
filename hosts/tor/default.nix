@@ -1,11 +1,11 @@
 { ... }: {
   imports = [
-    ./hardware.nix
-    ./tor.nix
     ../../overlays
     ../../modules/base
     ../../modules/server
     ../../modules/tor
+    ./hardware.nix
+    ./tor.nix
   ];
 
   networking.hostName = "tor";

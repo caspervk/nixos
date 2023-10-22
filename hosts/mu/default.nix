@@ -1,9 +1,9 @@
 { ... }: {
   imports = [
-    ./hardware.nix
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ./hardware.nix
     ./fan.nix
     ./fish.nix
     ./git.nix

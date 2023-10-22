@@ -1,11 +1,11 @@
 { ... }: {
   imports = [
-    ./hardware.nix
-    ./sway.nix
     ../../overlays
     ../../modules/base
     ../../modules/desktop
     ../../modules/syncthing.nix
+    ./hardware.nix
+    ./sway.nix
   ];
 
   networking.hostName = "zeta";
