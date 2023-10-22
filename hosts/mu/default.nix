@@ -4,6 +4,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ./fan.nix
     ./fish.nix
     ./git.nix
     ./hosts.nix
