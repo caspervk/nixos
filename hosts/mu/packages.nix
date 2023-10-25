@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     azure-cli
+    bitwarden-cli
     fluxcd
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
