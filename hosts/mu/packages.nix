@@ -13,6 +13,7 @@
     kustomize
     poetry
     pre-commit
+    remmina
     sops
     terraform
   ];
