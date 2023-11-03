@@ -82,6 +82,7 @@
           # Don't automatically move the mouse cursor when switching outputs
           mouseWarping = false;
         };
+        workspaceAutoBackAndForth = true;
         gaps = {
           # Disable borders on workspaces with a single container
           smartBorders = "no_gaps";
