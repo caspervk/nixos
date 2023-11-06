@@ -2,7 +2,7 @@
   # Clipboard manager. It can help persist clipboard contents after closing an
   # application - which otherwise isn't supported in Wayland - but that breaks
   # rich content copying in general. Therefore, we only use it for clipboard
-  # history with wofi as a frontend.
+  # history with rofi as a frontend.
   # https://github.com/yory8/clipman
 
   home-manager.users.caspervk = {

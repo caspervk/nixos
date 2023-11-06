@@ -32,8 +32,9 @@
         modifier = "Mod4"; # super
         keybindings = lib.mkOptionDefault {
           # Menu
-          "Mod4+backspace" = "exec wofi";
-          "Mod4+p" = "exec clipman pick -t wofi";
+          "Mod4+backspace" = "exec rofi -show drun";
+          "Mod4+p" = "exec clipman pick -t rofi";
+          "Mod4+o" = "exec rofi -show emoji";
 
           # Lock
           "Mod4+Escape" = "exec loginctl lock-session";
