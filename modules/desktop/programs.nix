@@ -9,6 +9,7 @@
       jellyfin
     ]))
     libqalculate
+    libreoffice
     mpv
     spotify
     tor-browser-bundle-bin
