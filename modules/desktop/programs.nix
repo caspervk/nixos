@@ -1,4 +1,4 @@
-{ home-manager, pkgs, ... }: {
+{ home-manager, nixpkgs, pkgs, ... }: {
   # Packages useful on a desktop computer which don't require their own module
 
   environment.systemPackages = with pkgs; [
@@ -17,6 +17,11 @@
     vlc
     webcord # discord
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6" # for webcord
+  ];
+
 
   home-manager.users.caspervk = {
     home.sessionVariables = {
