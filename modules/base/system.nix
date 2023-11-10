@@ -1,4 +1,4 @@
-{ config, nix-index-database, lib, pkgs, ... }: {
+{ config, nix-index-database, nixpkgs-unstable, nixpkgs, lib, pkgs, ... }: {
   imports = [
     nix-index-database.nixosModules.nix-index
   ];
@@ -13,6 +13,18 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+    };
+
+    # The nix registry is used to refer to flakes using symbolic identifiers
+    # when running commands such as `nix run nixpkgs#hello`. By default,
+    # the global registry from [1] is used, which aliases `nixpkgs` to the
+    # nixpkgs-unstable branch. We overwrite the default global `nixpkgs`
+    # registry with one which refers to the same nixpkgs as the rest of
+    # the system, aligning it with flake.lock.
+    # [1] https://github.com/NixOS/flake-registry/blob/master/flake-registry.json
+    registry = {
+      nixpkgs.flake = nixpkgs;
+      nixpkgs-unstable.flake = nixpkgs-unstable;
     };
   };
   nixpkgs.config.allowUnfree = true;
