@@ -1,4 +1,4 @@
-{ home-manager, nixpkgs, pkgs, ... }: {
+{ home-manager, lib, nixpkgs, pkgs, ... }: {
   # Packages useful on a desktop computer which don't require their own module
 
   environment.systemPackages = with pkgs; [
@@ -16,6 +16,11 @@
     ungoogled-chromium
     vlc
     webcord # discord
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "pycharm-professional"
+    "spotify"
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

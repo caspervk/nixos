@@ -27,7 +27,6 @@
       nixpkgs-unstable.flake = nixpkgs-unstable;
     };
   };
-  nixpkgs.config.allowUnfree = true;
 
   # Enable all firmware with a license allowing redistribution
   hardware.enableRedistributableFirmware = true;
