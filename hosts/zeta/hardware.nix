@@ -1,8 +1,13 @@
-{ config, lib, pkgs, modulesPath, ... }: {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+{ config, lib, pkgs, modulesPath, nixos-hardware, ... }: {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-gpu-intel
+    nixos-hardware.nixosModules.common-pc
+    nixos-hardware.nixosModules.common-pc-laptop
+    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    nixos-hardware.nixosModules.common-pc-ssd
+  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
@@ -36,5 +41,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
