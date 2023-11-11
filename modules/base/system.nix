@@ -29,6 +29,9 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  # Enable all firmware with a license allowing redistribution
+  hardware.enableRedistributableFirmware = true;
+
   environment.systemPackages = with pkgs; [
     bat
     clang

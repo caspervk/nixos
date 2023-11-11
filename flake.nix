@@ -8,6 +8,13 @@
     nixpkgs-unstable = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    nixos-hardware = {
+      # nixos-hardware is a collection of NixOS modules covering hardware
+      # quirks. The modules are imported in each hosts' hardware.nix. See
+      # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix for
+      # a list of available modules.
+      url = "github:NixOS/nixos-hardware/master";
+    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
