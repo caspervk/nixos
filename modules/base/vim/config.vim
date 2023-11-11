@@ -9,7 +9,7 @@ set cursorline
 set cursorlineopt=number
 
 " Keep some context above and below the cursor
-set scrolloff=5
+set scrolloff=3
 set sidescrolloff=3
 
 " Tabs are spaces
