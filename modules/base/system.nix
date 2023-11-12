@@ -6,11 +6,18 @@
   nix = {
     # https://nixos.wiki/wiki/Storage_optimization
     gc = {
+      # Automatically run the nix garbage collector, removing files from
+      # the store that are not referenced by any generation.
+      # https://nixos.org/manual/nix/stable/package-management/garbage-collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than=90d";
+      options = "--delete-older-than=7d";
     };
     settings = {
+      # Automatically optimise the store after each build. Store optimisation
+      # reduces nix store space by 25-35% by finding identical files and
+      # hard-linking them to each other.
+      # https://nixos.org/manual/nix/unstable/command-ref/nix-store/optimise.html
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
     };
