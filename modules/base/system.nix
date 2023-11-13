@@ -40,6 +40,7 @@
 
   environment.systemPackages = with pkgs; [
     bat
+    black
     clang
     curl
     dig
