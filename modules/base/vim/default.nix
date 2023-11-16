@@ -25,6 +25,7 @@
         project-nvim # project management; mostly for nvim-tree
         nvim-dap # debug adapter protocol
         nvim-dap-virtual-text # show variable values in-line
+        salt-vim # salt syntax-highlighting
       ];
       extraPackages = with pkgs; [ ];
 
