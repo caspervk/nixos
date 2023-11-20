@@ -3,6 +3,7 @@
 
   environment.systemPackages = with pkgs; [
     firefox-wayland
+    gimp
     jetbrains.pycharm-professional
     keepassxc
     (kodi-wayland.withPackages (kodiPackages: with kodiPackages; [
