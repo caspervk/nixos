@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    android-studio
     azure-cli
     bitwarden-cli
     fluxcd
