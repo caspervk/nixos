@@ -56,7 +56,7 @@
     ntp
     progress
     pwgen
-    python312
+    python311
     rsync
     sqlite
     tmux
