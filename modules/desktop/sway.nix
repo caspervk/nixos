@@ -1,6 +1,11 @@
 { home-manager, lib, pkgs, ... }: {
   # https://nixos.wiki/wiki/Sway
 
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   # Polkit is required to configure sway with home-manager
   security.polkit.enable = true;
 
@@ -268,14 +273,16 @@
   ];
 
   # xdg portal allows applications secure access to resources outside their
-  # sandbox. In particular, this allows screen sharing on Wayland via PipeWire
-  # and file open/save dialogues in Firefox.
+  # sandbox through a D-Bus interface. In particular, this allows screen
+  # sharing on Wayland via PipeWire and file open/save dialogues in Firefox.
   # https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # https://mozilla.github.io/webrtc-landing/gum_test.html
+  services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
   };
