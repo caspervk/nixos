@@ -242,13 +242,13 @@
 
   # https://nixos.wiki/wiki/Fonts
   fonts = {
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       # Nerd Fonts patches glyph icons, such as from Font Awesome, into existing fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       font-awesome # waybar uses Font Awesome icons directly
     ];
     fontDir.enable = true; # TODO?
-    enableDefaultFonts = true;
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMonoNL Nerd Font" ]; # NL = NoLigatures
     };
