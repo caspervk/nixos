@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     home-manager-unstable = {
