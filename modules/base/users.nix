@@ -8,15 +8,15 @@
         # TODO: The passwordfile is manually generated during the initial setup
         # to avoid (hashed) secrets in the public git repo. It should replaced
         # with a proper secret management scheme, such as agenix.
-        passwordFile = "/nix/persist/passwordfile";
+        hashedPasswordFile = "/nix/persist/passwordfile";
       };
       caspervk = {
         isNormalUser = true;
         description = "Casper V. Kristensen";
-        # TODO: The passwordfile is manually generated during the initial setup
-        # to avoid (hashed) secrets in the public git repo. It should replaced
-        # with a proper secret management scheme, such as agenix.
-        passwordFile = "/nix/persist/passwordfile";
+        # TODO: The hashedPasswordFile is manually generated during the initial
+        # setup to avoid (hashed) secrets in the public git repo. It should
+        # replaced with a proper secret management scheme, such as agenix.
+        hashedPasswordFile = "/nix/persist/passwordfile";
         extraGroups = [
           "wheel" # allows sudo
           "video" # allows controlling brightness
