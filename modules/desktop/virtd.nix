@@ -1,11 +1,8 @@
-{ home-manager, pkgs, ... }: {
+{ home-manager, ... }: {
   # https://nixos.wiki/wiki/Virt-manager
 
   virtualisation.libvirtd.enable = true;
-  environment.systemPackages = with pkgs; [ virt-manager ];
-
-  # Virt-manager requires dconf to remember settings
-  programs.dconf.enable = true;
+  programs.virt-manager.enable = true;
 
   # Make virt-manager use QEMU/KVM by default
   home-manager.users.caspervk = {
