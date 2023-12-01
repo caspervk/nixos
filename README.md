@@ -99,6 +99,12 @@ sudo nixos-rebuild switch --flake .
 ```
 
 
+## State Version
+Nixpkgs uses `stateVersion` so sparingly that
+auditing the entire nixpkgs repo is [easy
+enough](https://sourcegraph.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.com%3FNixOS%2Fnixpkgs%24++lang%3ANix+stateVersion+AND+23.11).
+
+
 ## Debugging
 ```bash
 nix repl
