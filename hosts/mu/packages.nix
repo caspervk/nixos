@@ -12,11 +12,11 @@
     kubectl
     kubernetes-helm
     kustomize
+    opentofu
     poetry
     pre-commit
     remmina
     sops
-    terraform
   ];
 
   # Allow port-forward to 443
