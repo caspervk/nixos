@@ -45,6 +45,7 @@
     curl
     dig
     fd
+    file
     fzf
     gcc
     git
