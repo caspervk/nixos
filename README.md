@@ -109,8 +109,13 @@ enough](https://sourcegraph.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.co
 ```bash
 nix repl
 :lf .
+# print the value of a configuration settings
 :p nixosConfigurations.omega.config.services.openssh.ports
+# print _why_ the value is as it is (source of defaults, overwrites)
+:p nixosConfigurations.omega.options.services.openssh.ports
+# print value of home-manager setting
 :p nixosConfigurations.omega.config.home-manager.users.caspervk.programs.ssh.matchBlocks
+# print version of package in nixpkgs
 :p inputs.nixpkgs.outputs.legacyPackages.x86_64-linux.openssh.version
 ```
 
