@@ -17,4 +17,12 @@
       { directory = "/etc/NetworkManager/system-connections"; user = "root"; group = "root"; mode = "0700"; }
     ];
   };
+
+  # systemd-networkd-wait-online can timeout and fail if there are no network
+  # interfaces available for it to manage. When systemd-networkd is enabled but
+  # a different service is responsible for managing the system's internet
+  # connection (for example, NetworkManager), this service is unnecessary and
+  # can be disabled.
+  # https://search.nixos.org/options?channel=23.11&show=systemd.network.wait-online.enable
+  systemd.network.wait-online.enable = false;
 }
