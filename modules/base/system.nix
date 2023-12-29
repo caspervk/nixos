@@ -11,7 +11,7 @@
       # https://nixos.org/manual/nix/stable/package-management/garbage-collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than=7d";
+      options = "--delete-older-than 7d";
     };
     settings = {
       # Automatically optimise the store after each build. Store optimisation
