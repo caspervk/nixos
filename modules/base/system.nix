@@ -57,6 +57,8 @@
     ntp
     progress
     pwgen
+    python310
+    python311
     python312
     rsync
     sqlite
