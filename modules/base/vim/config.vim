@@ -28,7 +28,7 @@ set splitright
 
 " Visualise trailing whitespace
 set list
-set listchars=trail:·,nbsp:␣
+set listchars=tab:▸\ ,trail:·,nbsp:␣
 
 " Spelling
 set spell
