@@ -23,6 +23,7 @@
     "android-studio-stable"
     "pycharm-professional"
     "spotify"
+    "terraform"
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
