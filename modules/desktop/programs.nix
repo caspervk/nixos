@@ -26,11 +26,6 @@
     "terraform"
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-24.8.6" # for webcord
-  ];
-
-
   home-manager.users.caspervk = {
     home.sessionVariables = {
       # The firefox-wayland package works with wayland without any further
