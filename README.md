@@ -104,25 +104,24 @@ nix develop --command $SHELL
 # nix shell with python packages
 # https://discourse.nixos.org/t/nix-shell-for-python-packages/16575
 # https://github.com/NixOS/nix/issues/5567
-nix shell --impure --expr 'with builtins.getFlake "nixpkgs"; with legacyPackages.x86_64-linux; python3.withPackages (ps: with ps; [ numpy ])'
+nix shell --impure --expr 'with builtins.getFlake "nixpkgs"; with legacyPackages.${builtins.currentSystem}; python3.withPackages (ps: with ps; [ numpy ])'
 ```
 
 ### Debugging
-```bash
+```nix
 # load flake into repl
 nix repl
 :lf .
 
-# print the value of a configuration settings
-:p nixosConfigurations.omega.config.services.openssh.ports
-
-# print _why_ the value is as it is (source of defaults, overwrites)
-:p nixosConfigurations.omega.options.services.openssh.ports
-
-# print value of home-manager setting
-:p nixosConfigurations.omega.config.home-manager.users.caspervk.programs.ssh.matchBlocks
+# print a configuration option
+:p nixosConfigurations.omega.options.services.openssh.ports.declarationPositions  # declaration
+:p nixosConfigurations.omega.options.services.openssh.ports.default  # declaration default
+:p nixosConfigurations.omega.options.services.openssh.ports.definitionsWithLocations  # overwrites
+:p nixosConfigurations.omega.options.services.openssh.ports.value  # current value
+# print derivation package names
+:p builtins.map (d: d.name) outputs.nixosConfigurations.omega.options.environment.systemPackages.value
 
 # print version of package in nixpkgs
-:p inputs.nixpkgs.outputs.legacyPackages.x86_64-linux.openssh.version
+:p inputs.nixpkgs.outputs.legacyPackages.${builtins.currentSystem}.openssh.version
 ```
 
