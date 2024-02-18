@@ -288,6 +288,7 @@
   # xdg portal allows applications secure access to resources outside their
   # sandbox through a D-Bus interface. In particular, this allows screen
   # sharing on Wayland via PipeWire and file open/save dialogues in Firefox.
+  # https://nixos.org/manual/nixos/stable/index.html#sec-wayland
   # https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # https://mozilla.github.io/webrtc-landing/gum_test.html
   services.dbus.enable = true;
@@ -298,11 +299,5 @@
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
-  };
-
-  # TODO
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [ intel-media-driver ];
   };
 }
