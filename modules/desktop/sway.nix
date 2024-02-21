@@ -26,7 +26,7 @@
           };
           "type:pointer" = {
             accel_profile = "flat";
-            pointer_accel = "0.4"; # pointer SPEED, not acceleration
+            pointer_accel = "0.1"; # pointer SPEED, not acceleration
           };
         };
         output = {
@@ -242,8 +242,8 @@
           { event = "before-sleep"; command = lock; }
         ];
         timeouts = [
-          { timeout = 900; command = outputOff; resumeCommand = outputOn; }
-          { timeout = 3600; command = suspend; }
+          { timeout = 60 * 20; command = outputOff; resumeCommand = outputOn; }
+          { timeout = 60 * 60 * 3; command = suspend; }
         ];
       };
   };
