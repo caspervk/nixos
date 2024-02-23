@@ -26,6 +26,7 @@
   };
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nix";
+    neededForBoot = true;
     fsType = "ext4";
   };
 
