@@ -10,14 +10,14 @@ let
   alpha = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0OmbNKuMGIOEUxqNDgUN9lz1LSw7xvZ6Tu/BkQyRoy root@alpha";
   mu = "todo";
   omega = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvFN4vnqPX31+4/ZJxOJ7/bSUEu2xB6ovezPQjLm13H root@omega";
-  tor = "todo";
+  tor = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVPxvqwS2NMqqCGBkMmExzdBY5hGLegiOuqPJAOfdKk root@zeta";
   zeta = "todo";
   # Recovery and management key from Keepass. Used like so:
   # > set AGE_KEY_FILE (mktemp); read -s > $AGE_KEY_FILE
   # > agenix -i $AGE_KEY_FILE -e foo.age
   recovery = "age1rd6hhd724s3r9xe4gfuy38rl0xfu8c7pkuefsrdwqfcknujzecyqz7ldyj";
 
-  all = [ alpha omega recovery ];
+  all = [ alpha omega tor recovery ];
 in
 {
   "users-hashed-password-file.age".publicKeys = all;
