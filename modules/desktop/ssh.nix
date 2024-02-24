@@ -9,6 +9,10 @@
       # will reuse the master session's connection rather than initiating a new
       # one. This is especially useful when using SCP.
       controlMaster = "yes";
+      # ISPs in Denmark prefer the simplicity of CG-NAT and stateful firewalls
+      # to the mess that is IPv6. Force keepalive packets to avoid sessions
+      # dying. See https://news.ycombinator.com/item?id=25737611.
+      serverAliveInterval = 25;
       matchBlocks = {
         "git.caspervk.net" = {
           port = 2222;
