@@ -1,22 +1,16 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   users = {
     # Don't allow imperative modifications to users (incompatible with impermanence)
     mutableUsers = false;
 
     users = {
       root = {
-        # TODO: The passwordfile is manually generated during the initial setup
-        # to avoid (hashed) secrets in the public git repo. It should replaced
-        # with a proper secret management scheme, such as agenix.
-        hashedPasswordFile = "/nix/persist/passwordfile";
+        hashedPasswordFile = config.age.secrets.users-hashed-password-file.path;
       };
       caspervk = {
         isNormalUser = true;
         description = "Casper V. Kristensen";
-        # TODO: The hashedPasswordFile is manually generated during the initial
-        # setup to avoid (hashed) secrets in the public git repo. It should
-        # replaced with a proper secret management scheme, such as agenix.
-        hashedPasswordFile = "/nix/persist/passwordfile";
+        hashedPasswordFile = config.age.secrets.users-hashed-password-file.path;
         extraGroups = [
           "wheel" # allows sudo
           "video" # allows controlling brightness
@@ -26,5 +20,12 @@
         packages = with pkgs; [ ];
       };
     };
+  };
+
+  age.secrets.users-hashed-password-file = {
+    file = ../../secrets/users-hashed-password-file.age;
+    mode = "400";
+    owner = "root";
+    group = "root";
   };
 }

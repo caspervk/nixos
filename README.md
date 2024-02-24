@@ -21,7 +21,7 @@ the unofficial NixOS wiki [Full Disk Encryption](https://nixos.wiki/wiki/Full_Di
 gist](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134).
 
 We create a 1GiB EFI boot partition (`/dev/sda1`) and the rest will be our LUKS-encrypted volume:
-```bash
+```fish
 # Create partition table
 parted /dev/sda -- mklabel gpt
 
@@ -58,19 +58,35 @@ sda
     └─vg-root ext4        1.0              nix
 ```
 
-### Installation
 Whereas the [NixOS manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation-manual-installing) mounts
 the newly-created `nixos` partition to `/mnt`, we will follow the _tmpfs as root_ blogpost and mount `/mnt` as `tmpfs`:
-```bash
+```fish
 mount -t tmpfs none /mnt
 mount --mkdir /dev/disk/by-label/BOOT /mnt/boot
 mount --mkdir /dev/disk/by-label/nix /mnt/nix
 mkdir -p /mnt/nix/persist/
 ```
 
+### Secrets
+All files in the Nix store are world-readable, so it is not a suitable place for including cleartext secrets,
+even if we had a scheme to securely transfer them to each system. [Agenix](https://github.com/ryantm/agenix)
+solves this issue by encrypting the secrets using [age](https://github.com/FiloSottile/age), and then decrypting
+and symlinking them using the system's SSH host key during system activation.
+
+To bootstrap a new system, we must first generate a host key manually using `ssh-keygen -A -f /mnt/nix/persist`
+during installation. Then, on an existing system, add the new host's public key to `secrets.nix` and rekey all
+secrets using `agenix --rekey`. Commit and push the changes and proceed below.
+
+When managing secrets, the Keepass recovery key is used like so:
+```fish
+set AGE_KEY_FILE (mktemp); read -s > $AGE_KEY_FILE
+agenix -i $AGE_KEY_FILE -e foo.age
+```
+
+### Installation
 The remaining installation can be done (more or less) according to the [NixOS
 manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation-manual-installing).
-```bash
+```fish
 cd /mnt/nix
 git clone https://git.caspervk.net/caspervk/nixos.git tmp
 cd tmp/
@@ -78,10 +94,6 @@ nixos-generate-config --root /mnt --show-hardware-config
 vim hosts/omega/hardware.nix
 git add .  # nix sometimes ignores files outside version control
 nixos-install --no-root-passwd --flake .#omega
-
-# Make sure to set a password
-mkpasswd > /mnt/nix/persist/passwordfile
-chmod 400 /mnt/nix/persist/passwordfile
 ```
 
 ### Hardware Configuration
@@ -94,7 +106,7 @@ enough](https://sourcegraph.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.co
 
 
 ## Useful Commands
-```bash
+```fish
 # upgrade system
 sudo nixos-rebuild switch --flake .
 

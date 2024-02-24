@@ -18,6 +18,12 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.home-manager.follows = "home-manager"; # use the same home-manager as the system
+      inputs.darwin.follows = ""; # don't download dawrin dependencies
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
