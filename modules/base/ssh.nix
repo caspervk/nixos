@@ -15,7 +15,7 @@
 
   # ssh-keyscan -t ed25519 alpha
   programs.ssh.knownHosts = {
-    "alpha".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0OmbNKuMGIOEUxqNDgUN9lz1LSw7xvZ6Tu/BkQyRoy";
+    "alpha".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOpQNEmmEe6jr7Mv37ozokvtTSd1I3SmUU1tpCSNTkc";
     "delta".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0x9oImZjIhoPEwLlHVixIh7y1Kwn+SX17xffrdRzvv";
     "lambda".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEEd354UBnQi4xhjtJtKs4yVXuOkKY0svk+YHCm/pG46";
     "sigma".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Qrh0tpR5YawiYvcPGC4OSnu4//ge1eVdiBDLrTbCx";
