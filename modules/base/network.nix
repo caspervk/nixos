@@ -9,6 +9,7 @@
       allowedUDPPorts = [ 1234 1337 8000 8080 ];
     };
     nameservers = [ "127.0.0.53" ]; # resolved stub resolver
+    search = [ "caspervk.net" ];
   };
 
   # TODO: these systemd networkd settings will be the default once

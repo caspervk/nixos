@@ -1,9 +1,6 @@
 { ... }: {
   services.openssh = {
     enable = true;
-    # Security by obscurity? Nah, but it certainly reduces the logs volume.
-    # Also, port 222 still requires root to bind.
-    ports = [ 222 ];
     settings = {
       PasswordAuthentication = false;
     };
@@ -16,14 +13,14 @@
     ];
   };
 
-  # ssh-keyscan -t ed25519 -p 222 alpha.caspervk.net
+  # ssh-keyscan -t ed25519 alpha
   programs.ssh.knownHosts = {
-    "alpha.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0OmbNKuMGIOEUxqNDgUN9lz1LSw7xvZ6Tu/BkQyRoy";
-    "delta.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0x9oImZjIhoPEwLlHVixIh7y1Kwn+SX17xffrdRzvv";
+    "alpha".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0OmbNKuMGIOEUxqNDgUN9lz1LSw7xvZ6Tu/BkQyRoy";
+    "delta".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0x9oImZjIhoPEwLlHVixIh7y1Kwn+SX17xffrdRzvv";
+    "lambda".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEEd354UBnQi4xhjtJtKs4yVXuOkKY0svk+YHCm/pG46";
+    "sigma".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Qrh0tpR5YawiYvcPGC4OSnu4//ge1eVdiBDLrTbCx";
+    "tor".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVPxvqwS2NMqqCGBkMmExzdBY5hGLegiOuqPJAOfdKk";
     "git.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPxSg6XN6znT1T4H0U1lzJBsGY7Uann+TBisWD3Drd";
-    "lambda.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPxSg6XN6znT1T4H0U1lzJBsGY7Uann+TBisWD3Drd";
-    "sigma.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Qrh0tpR5YawiYvcPGC4OSnu4//ge1eVdiBDLrTbCx";
-    "tor.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVPxvqwS2NMqqCGBkMmExzdBY5hGLegiOuqPJAOfdKk";
   };
 
   environment.persistence."/nix/persist" = {
