@@ -61,6 +61,12 @@
         specialArgs = inputs; # pass flake inputs to modules
         modules = [ ./hosts/mu ];
       };
+      # Hetzner VPS
+      alpha = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = inputs; # pass flake inputs to modules
+        modules = [ ./hosts/alpha ];
+      };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

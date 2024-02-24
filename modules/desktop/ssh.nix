@@ -10,6 +10,10 @@
       # one. This is especially useful when using SCP.
       controlMaster = "yes";
       matchBlocks = {
+        "alpha" = {
+          hostname = "alpha.caspervk.net";
+          port = 222;
+        };
         "delta" = {
           hostname = "delta.caspervk.net";
           port = 222;
