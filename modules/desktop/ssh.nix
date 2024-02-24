@@ -30,6 +30,9 @@
           hostname = "tor.caspervk.net";
           port = 222;
         };
+        "git.caspervk.net" = {
+          port = 2222;
+        };
       };
       extraConfig = ''
         # Add ssh keys to the agent the first time we unlock them so we don't
