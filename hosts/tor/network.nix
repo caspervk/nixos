@@ -1,6 +1,6 @@
 { ... }: {
-  systemd.network.networks = {
-    "10-lan" = {
+  systemd.network = {
+    networks."10-lan" = {
       # IPv4 settings are from `sudo dhcpcd --test`.
       # IPv6 settings are from https://www.ssdvps.dk/knowledgebase/18/IPv6-Gateway.html.
       name = "ens3";
