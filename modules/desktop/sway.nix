@@ -246,6 +246,14 @@
           { timeout = 60 * 60 * 3; command = suspend; }
         ];
       };
+
+    # https://github.com/emersion/mako
+    services.mako = {
+      enable = true;
+      backgroundColor = "#31447f";
+      borderColor = "#31447f";
+      progressColor = "#3bacf0";
+    };
   };
 
   # Don't shut down the system when the power key is pressed
