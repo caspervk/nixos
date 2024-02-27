@@ -22,6 +22,10 @@ in
 {
   "users-hashed-password-file.age".publicKeys = all;
 
+  # Secret network addresses
+  "netdev-51-wg-sigma-p2p-address.age".publicKeys = [ alpha ];
+  "network-wg-sigma-p2p-address.age".publicKeys = [ omega ];
+
   ## Wireguard
   # The preshared key adds an additional layer of symmetric-key crypto to be
   # mixed into the already existing public-key crypto, for post-quantum

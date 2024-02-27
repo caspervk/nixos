@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ../../overlays
     ../../modules/base
@@ -8,6 +8,23 @@
     ./network.nix
     ./sway.nix
   ];
+
+  systemd.services.qbittorrent = {
+    description = "qBittorrent service";
+    documentation = [ "man:qbittorrent-nox(1)" ];
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "multi-user.target" ];
+    after = [ "network-online.target" "nss-lookup.target" ];
+    serviceConfig = {
+      Type = "exec";
+      User = "caspervk";
+      Group = "users";
+      ExecStart = pkgs.writers.writeBash "asd" ''
+        while true; do ${pkgs.curl}/bin/curl ip.caspervk.net; echo; sleep 1; done
+      '';
+      RestrictNetworkInterfaces = "wg-sigma-public";
+    };
+  };
 
   networking.hostName = "omega";
 
