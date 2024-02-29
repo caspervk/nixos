@@ -67,6 +67,7 @@
     tree
     unzip
     wget
+    wireguard-tools
     xkcdpass
     yq
   ];
