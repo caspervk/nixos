@@ -19,18 +19,18 @@ let
 
   all = [ alpha omega tor recovery ];
 in
-{
-  "users-hashed-password-file.age".publicKeys = all;
+builtins.mapAttrs (name: value: { publicKeys = value ++ [ recovery ]; }) {
+  "users-hashed-password-file.age" = all;
 
   # Secret network addresses
-  "netdev-51-wg-sigma-p2p-address.age".publicKeys = [ alpha ];
-  "network-wg-sigma-p2p-address.age".publicKeys = [ omega ];
+  "netdev-51-wg-sigma-p2p-address.age" = [ alpha ];
+  "network-wg-sigma-p2p-address.age" = [ omega ];
 
   ## Wireguard
   # The preshared key adds an additional layer of symmetric-key crypto to be
   # mixed into the already existing public-key crypto, for post-quantum
   # resistance. Public-keys are generated using `wireguard-vanity-address`.
-  "wireguard-preshared-key-file.age".publicKeys = [ alpha omega ];
-  "wireguard-private-key-file-alpha.age".publicKeys = [ alpha ];
-  "wireguard-private-key-file-omega.age".publicKeys = [ omega ];
+  "wireguard-preshared-key-file.age" = [ alpha omega ];
+  "wireguard-private-key-file-alpha.age" = [ alpha ];
+  "wireguard-private-key-file-omega.age" = [ omega ];
 }
