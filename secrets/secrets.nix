@@ -22,10 +22,6 @@ in
 builtins.mapAttrs (name: value: { publicKeys = value ++ [ recovery ]; }) {
   "users-hashed-password-file.age" = all;
 
-  # Secret network addresses
-  "netdev-51-wg-sigma-p2p-address.age" = [ alpha ];
-  "network-wg-sigma-p2p-address.age" = [ omega ];
-
   ## Wireguard
   # The preshared key adds an additional layer of symmetric-key crypto to be
   # mixed into the already existing public-key crypto, for post-quantum
