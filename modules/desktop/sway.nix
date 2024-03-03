@@ -223,6 +223,7 @@
     programs.swaylock = {
       enable = true;
       settings = {
+        # convert background.png -colorspace gray lockscreen.png
         image = "${./img/lockscreen.png}";
       };
     };
