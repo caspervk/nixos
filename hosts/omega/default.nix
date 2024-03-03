@@ -5,6 +5,7 @@
     ../../modules/desktop
     ../../modules/syncthing.nix
     ./hardware.nix
+    ./borg.nix
     ./network.nix
     ./sway.nix
   ];
