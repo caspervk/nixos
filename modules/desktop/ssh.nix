@@ -18,6 +18,8 @@
           port = 2222;
         };
       };
+      # TODO: use addKeysToAgent attribute in Home Manager 24.04 instead of
+      # extraConfig.
       extraConfig = ''
         # Add ssh keys to the agent the first time we unlock them so we don't
         # have to type the password all the time.

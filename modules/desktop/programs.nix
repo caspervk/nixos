@@ -30,6 +30,8 @@
     home.sessionVariables = {
       # The firefox-wayland package works with wayland without any further
       # configuration, but tor-browser doesn't.
+      # TODO: remove when tor browser is based on firefox v121.
+      # https://www.mozilla.org/en-US/firefox/121.0/releasenotes/
       MOZ_ENABLE_WAYLAND = 1;
     };
   };
