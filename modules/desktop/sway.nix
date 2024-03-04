@@ -25,9 +25,9 @@
             natural_scroll = "enable";
             dwt = "disabled"; # don't disable-while-typing
           };
-          "TODO" = {
+          "1133:50509:Logitech_USB_Receiver" = {
             accel_profile = "flat";
-            pointer_accel = "0.4"; # pointer SPEED, not acceleration
+            pointer_accel = "0.35"; # pointer SPEED, not acceleration
           };
           "1133:16489:Logitech_MX_Master_2S" = {
             accel_profile = "flat";
