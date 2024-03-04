@@ -24,6 +24,7 @@ builtins.mapAttrs (name: value: { publicKeys = value ++ [ recovery ]; }) {
 
   ## Borg backup
   "borg-passphrase-file-omega.age" = [ omega ];
+  "borg-passphrase-file-zeta.age" = [ zeta ];
 
   ## Wireguard
   # The preshared key adds an additional layer of symmetric-key crypto to be
