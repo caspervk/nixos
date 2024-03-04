@@ -13,6 +13,7 @@
     wayland.windowManager.sway = {
       enable = true;
       config = {
+        # swaymsg -t get_inputs
         input = {
           "type:keyboard" = {
             xkb_layout = "us";
@@ -24,9 +25,13 @@
             natural_scroll = "enable";
             dwt = "disabled"; # don't disable-while-typing
           };
-          "type:pointer" = {
+          "TODO" = {
             accel_profile = "flat";
-            pointer_accel = "0.1"; # pointer SPEED, not acceleration
+            pointer_accel = "0.4"; # pointer SPEED, not acceleration
+          };
+          "1133:16489:Logitech_MX_Master_2S" = {
+            accel_profile = "flat";
+            pointer_accel = "0.1";
           };
         };
         output = {
