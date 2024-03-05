@@ -41,6 +41,12 @@
     '';
   };
 
+  # TCP BBR has significantly increased throughput and reduced latency. Note
+  # that the IPv4 setting controls both IPv4 and IPv6.
+  boot.kernel.sysctl = {
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+
   # vnStat keeps a log of hourly, daily and monthly network traffic
   services.vnstat.enable = true;
   environment.persistence."/nix/persist" = {
