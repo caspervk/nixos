@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.tor = {
     enable = true;
     openFirewall = true;
@@ -26,7 +30,12 @@
 
   environment.persistence."/nix/persist" = {
     directories = [
-      { directory = "/var/lib/tor"; user = "tor"; group = "tor"; mode = "0700"; }
+      {
+        directory = "/var/lib/tor";
+        user = "tor";
+        group = "tor";
+        mode = "0700";
+      }
     ];
   };
 }

@@ -38,40 +38,44 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs: {
-    # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-fmt.html
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
+    # https://kamadorueda.com/alejandra/
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     nixosConfigurations = {
       # Home desktop
       omega = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [ ./hosts/omega ];
+        modules = [./hosts/omega];
       };
       # Laptop
       zeta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [ ./hosts/zeta ];
+        modules = [./hosts/zeta];
       };
       # Work laptop
       mu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [ ./hosts/mu ];
+        modules = [./hosts/mu];
       };
       # Hetzner VPS
       alpha = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [ ./hosts/alpha ];
+        modules = [./hosts/alpha];
       };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [ ./hosts/tor ];
+        modules = [./hosts/tor];
       };
     };
   };

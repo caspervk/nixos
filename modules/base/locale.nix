@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   i18n = {
     defaultLocale = "en_DK.UTF-8";
     extraLocaleSettings = {

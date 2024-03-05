@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # https://flatpak.org/setup/NixOS
   # https://nixos.wiki/wiki/Flatpak
 
@@ -14,7 +14,12 @@
   # Persist flatpaks
   environment.persistence."/nix/persist" = {
     directories = [
-      { directory = "/var/lib/flatpak"; user = "root"; group = "root"; mode = "0755"; }
+      {
+        directory = "/var/lib/flatpak";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
     ];
   };
 }

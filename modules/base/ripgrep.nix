@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # ripgrep is a line-oriented search tool that recursively searches the
   # current directory for a regex pattern.
   # https://github.com/BurntSushi/ripgrep

@@ -1,4 +1,8 @@
-{ config, home-manager, ... }: {
+{
+  config,
+  home-manager,
+  ...
+}: {
   # Like NixOS manages the system configuration, Home Manager manages the user
   # environment.
   #

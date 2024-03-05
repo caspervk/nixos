@@ -1,18 +1,24 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
+  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
 
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ]; # mode=755 so only root can write to those files
+    options = ["defaults" "size=2G" "mode=755"]; # mode=755 so only root can write to those files
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
@@ -36,4 +42,3 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
-

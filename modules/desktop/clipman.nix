@@ -1,4 +1,9 @@
-{ home-manager, lib, pkgs, ... }: {
+{
+  home-manager,
+  lib,
+  pkgs,
+  ...
+}: {
   # Clipboard manager. It can help persist clipboard contents after closing an
   # application - which otherwise isn't supported in Wayland - but that breaks
   # rich content copying in general. Therefore, we only use it for clipboard

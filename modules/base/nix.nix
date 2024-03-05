@@ -1,4 +1,9 @@
-{ nix-index-database, nixpkgs-unstable, nixpkgs, ... }: {
+{
+  nix-index-database,
+  nixpkgs-unstable,
+  nixpkgs,
+  ...
+}: {
   imports = [
     nix-index-database.nixosModules.nix-index
   ];
@@ -22,7 +27,7 @@
       auto-optimise-store = true;
 
       # Enable flakes
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
 
       # Timeout connections to the binary cache instead of waiting forever
       connect-timeout = 5;

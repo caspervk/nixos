@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   # Automatically `nixos-rebuild switch` daily with the latest configuration
   # from git. This overwrites any uncommitted changes in ~/nixos/, which is why
   # it is only enabled on servers. Note that this requires updating flake.lock

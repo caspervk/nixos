@@ -1,4 +1,11 @@
-{ config, lib, pkgs, modulesPath, nixos-hardware, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  nixos-hardware,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -9,17 +16,16 @@
     nixos-hardware.nixosModules.common-pc-ssd
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "sdhci_pci"];
+  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ]; # mode=755 so only root can write to those files
+    options = ["defaults" "size=2G" "mode=755"]; # mode=755 so only root can write to those files
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";

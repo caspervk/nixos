@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # Git version control system.
   # https://nixos.wiki/wiki/Git
 

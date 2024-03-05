@@ -1,17 +1,17 @@
-{ ... }: {
+{...}: {
   # https://nixos.wiki/wiki/Networking
   # https://nixos.wiki/wiki/Systemd-networkd
 
   networking = {
     firewall = {
       # Allow some ports for ad-hoc use
-      allowedTCPPorts = [ 1234 1337 8000 8080 ];
-      allowedUDPPorts = [ 1234 1337 8000 8080 ];
+      allowedTCPPorts = [1234 1337 8000 8080];
+      allowedUDPPorts = [1234 1337 8000 8080];
       # Do not spam dmesg/journalctl with refused connections
       logRefusedConnections = false;
     };
-    nameservers = [ "127.0.0.53" ]; # resolved stub resolver
-    search = [ "caspervk.net" ];
+    nameservers = ["127.0.0.53"]; # resolved stub resolver
+    search = ["caspervk.net"];
   };
 
   # TODO: these systemd networkd settings will be the default once
@@ -34,7 +34,7 @@
     # Resolved falls back to DNS servers operated by American internet
     # surveillance and adtech companies by default. No thanks, I'd rather have
     # no DNS at all.
-    fallbackDns = [ "159.69.4.2#dns.caspervk.net" "2a01:4f8:1c0c:70d1::1#dns.caspervk.net" ];
+    fallbackDns = ["159.69.4.2#dns.caspervk.net" "2a01:4f8:1c0c:70d1::1#dns.caspervk.net"];
     extraConfig = ''
       DNS=159.69.4.2#dns.caspervk.net 2a01:4f8:1c0c:70d1::1#dns.caspervk.net
       DNSOverTLS=yes
@@ -51,7 +51,12 @@
   services.vnstat.enable = true;
   environment.persistence."/nix/persist" = {
     directories = [
-      { directory = "/var/lib/vnstat"; user = "root"; group = "root"; mode = "0755"; }
+      {
+        directory = "/var/lib/vnstat";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
     ];
   };
 }

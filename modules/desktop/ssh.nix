@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # https://nix-community.github.io/home-manager/options.html
 
   home-manager.users.caspervk = {

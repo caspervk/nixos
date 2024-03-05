@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   systemd.network = {
     config = {
       routeTables = {
@@ -35,7 +35,7 @@
             # we add these routes to a specific routing table and configure a
             # routing policy rule to only use it for packets being sent as the
             # public IP.
-            AllowedIPs = [ "0.0.0.0/0" ];
+            AllowedIPs = ["0.0.0.0/0"];
             RouteTable = "wg-sigma-public";
           };
         }
@@ -43,7 +43,7 @@
     };
     networks."wg-sigma-public" = {
       name = "wg-sigma-public";
-      address = [ "49.13.33.75/32" ];
+      address = ["49.13.33.75/32"];
       routingPolicyRules = [
         {
           routingPolicyRuleConfig = {
@@ -73,7 +73,7 @@
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
             Endpoint = "alpha.caspervk.net:51821";
             PersistentKeepalive = 25;
-            AllowedIPs = [ "0.0.0.0/0" ];
+            AllowedIPs = ["0.0.0.0/0"];
             RouteTable = "wg-sigma-p2p";
           };
         }
@@ -81,7 +81,7 @@
     };
     networks."wg-sigma-p2p" = {
       name = "wg-sigma-p2p";
-      address = [ "116.203.6.156/32" ];
+      address = ["116.203.6.156/32"];
       routingPolicyRules = [
         {
           routingPolicyRuleConfig = {

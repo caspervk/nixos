@@ -1,4 +1,8 @@
-{ home-manager, pkgs, ... }: {
+{
+  home-manager,
+  pkgs,
+  ...
+}: {
   # A window switcher, application launcher and dmenu replacement. Used to open
   # programs, view the clipboard history, and select emojis.
   # https://github.com/davatorium/rofi

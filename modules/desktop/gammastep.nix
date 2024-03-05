@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # Gammestep automatically adjusts the screen's colour temperature. It's
   # basically redshift for Wayland.
   # https://gitlab.com/chinstrap/gammastep

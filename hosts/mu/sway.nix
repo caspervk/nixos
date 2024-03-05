@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   home-manager.users.caspervk = {
     wayland.windowManager.sway = {
       config = {
@@ -18,7 +18,10 @@
           };
         };
         workspaceOutputAssign = [
-          { workspace = "9"; output = "eDP-1"; }
+          {
+            workspace = "9";
+            output = "eDP-1";
+          }
         ];
       };
     };

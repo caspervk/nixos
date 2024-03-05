@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   # Docker is a utility to pack, ship and run any application as a lightweight
   # container.
   # https://nixos.wiki/wiki/Docker
@@ -14,12 +14,17 @@
 
   # Being a member of the docker group is effectively equivalent to being root,
   # but without the annoyance of having to type your sudo password all the time.
-  users.extraGroups.docker.members = [ "caspervk" ];
+  users.extraGroups.docker.members = ["caspervk"];
 
   # Persist docker volumes
   environment.persistence."/nix/persist" = {
     directories = [
-      { directory = "/var/lib/docker"; user = "root"; group = "root"; mode = "0700"; }
+      {
+        directory = "/var/lib/docker";
+        user = "root";
+        group = "root";
+        mode = "0700";
+      }
     ];
   };
 }

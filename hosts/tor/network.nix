@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   systemd.network = {
     networks."10-lan" = {
       # IPv4 settings are from `sudo dhcpcd --test`.
@@ -9,8 +9,13 @@
         "2a0d:3e83:1:b284::1/64"
       ];
       routes = [
-        { routeConfig = { Gateway = "91.210.59.1"; }; }
-        { routeConfig = { Gateway = "2a0d:3e83:1::1"; GatewayOnLink = true; }; }
+        {routeConfig = {Gateway = "91.210.59.1";};}
+        {
+          routeConfig = {
+            Gateway = "2a0d:3e83:1::1";
+            GatewayOnLink = true;
+          };
+        }
       ];
     };
   };

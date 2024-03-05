@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   systemd.network = {
     # Main interface
     networks."10-lan" = {
@@ -8,7 +8,7 @@
         "2a01:4f8:c2c:71c0::/64"
       ];
       routes = [
-        { routeConfig = { Gateway = "fe80::1"; }; }
+        {routeConfig = {Gateway = "fe80::1";};}
       ];
     };
 
@@ -31,7 +31,7 @@
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
             # Add to the main routing table that traffic for the address should
             # be sent to sigma.
-            AllowedIPs = [ "49.13.33.75/32" ];
+            AllowedIPs = ["49.13.33.75/32"];
             RouteTable = "main";
           };
         }
@@ -58,7 +58,7 @@
           wireguardPeerConfig = {
             PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            AllowedIPs = [ "116.203.6.156/32" ];
+            AllowedIPs = ["116.203.6.156/32"];
             RouteTable = "main";
           };
         }
@@ -76,7 +76,7 @@
   };
 
   networking = {
-    firewall.allowedUDPPorts = [ 51820 51821 ];
+    firewall.allowedUDPPorts = [51820 51821];
   };
 
   age.secrets.wireguard-preshared-key-file = {

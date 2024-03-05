@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Fish is a Unix shell with a focus on interactivity and usability. Fish is
   # designed to give the user features by default, rather than by
   # configuration.
@@ -24,7 +24,7 @@
   users.defaultUserShell = pkgs.fish;
 
   # Add fish to the list of permissible login shells for user accounts
-  environment.shells = with pkgs; [ fish ];
+  environment.shells = with pkgs; [fish];
 
   # Enabling fish in both NixOS and home manager is required to pick up
   # completions and environment variables set by NixOS nixpkgs _and_ home

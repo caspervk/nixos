@@ -1,4 +1,8 @@
-{ home-manager, pkgs, ... }: {
+{
+  home-manager,
+  pkgs,
+  ...
+}: {
   home-manager.users.caspervk = {
     programs.neovim = {
       enable = true;
@@ -27,7 +31,7 @@
         nvim-dap-virtual-text # show variable values in-line
         salt-vim # salt syntax-highlighting
       ];
-      extraPackages = with pkgs; [ ];
+      extraPackages = with pkgs; [];
 
       extraConfig = builtins.readFile ./config.vim;
       extraLuaConfig = builtins.readFile ./config.lua;

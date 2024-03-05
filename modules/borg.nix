@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # BorgBackup (short: Borg) is a deduplicating backup program.
   # https://nixos.wiki/wiki/Borg_backup
   # https://nixos.org/manual/nixos/stable/#module-borgbase
@@ -69,7 +74,7 @@
     # patterns is used, so if an include pattern (prefix `+`) matches before an
     # exclude pattern (prefix `-`), the file is backed up. Prefix `!` is
     # exclude-norecurse. See `borg help patterns` for pattern syntax.
-    paths = [ "/" ];
+    paths = ["/"];
     patterns = [
       "! /dev"
       "! /lost+found"

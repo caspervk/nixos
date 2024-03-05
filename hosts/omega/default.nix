@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ../../overlays
     ../../modules/base
@@ -12,10 +12,10 @@
 
   systemd.services.qbittorrent = {
     description = "qBittorrent service";
-    documentation = [ "man:qbittorrent-nox(1)" ];
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "multi-user.target" ];
-    after = [ "network-online.target" "nss-lookup.target" ];
+    documentation = ["man:qbittorrent-nox(1)"];
+    wantedBy = ["multi-user.target"];
+    wants = ["multi-user.target"];
+    after = ["network-online.target" "nss-lookup.target"];
     serviceConfig = {
       Type = "exec";
       User = "caspervk";

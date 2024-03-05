@@ -1,4 +1,10 @@
-{ home-manager, lib, nixpkgs, pkgs, ... }: {
+{
+  home-manager,
+  lib,
+  nixpkgs,
+  pkgs,
+  ...
+}: {
   # Packages useful on a desktop computer which don't require their own module
 
   environment.systemPackages = with pkgs; [
@@ -6,9 +12,10 @@
     gimp
     jetbrains.pycharm-professional
     keepassxc
-    (kodi-wayland.withPackages (kodiPackages: with kodiPackages; [
-      jellyfin
-    ]))
+    (kodi-wayland.withPackages (kodiPackages:
+      with kodiPackages; [
+        jellyfin
+      ]))
     libqalculate
     libreoffice
     mpv
@@ -19,12 +26,13 @@
     webcord # discord
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "android-studio-stable"
-    "pycharm-professional"
-    "spotify"
-    "terraform"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "android-studio-stable"
+      "pycharm-professional"
+      "spotify"
+      "terraform"
+    ];
 
   home-manager.users.caspervk = {
     home.sessionVariables = {

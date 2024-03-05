@@ -1,4 +1,4 @@
-{ impermanence, ... }: {
+{impermanence, ...}: {
   # Impermanence in NixOS is where the root directory isn't permanent, but gets
   # wiped every reboot (such as by mounting it as tmpfs). Such a setup is
   # possible because NixOS only needs /boot and /nix in order to boot, all
@@ -28,10 +28,25 @@
     hideMounts = true;
     directories = [
       # See comment above for /tmp
-      { directory = "/tmp"; user = "root"; group = "root"; mode = "1777"; }
+      {
+        directory = "/tmp";
+        user = "root";
+        group = "root";
+        mode = "1777";
+      }
       # Save the last run time of persistent timers so systemd knows if they were missed
-      { directory = "/var/lib/systemd/timers"; user = "root"; group = "root"; mode = "0755"; }
-      { directory = "/var/log"; user = "root"; group = "root"; mode = "0755"; }
+      {
+        directory = "/var/lib/systemd/timers";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
+      {
+        directory = "/var/log";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
     ];
     files = [
       "/etc/machine-id" # needed for /var/log

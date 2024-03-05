@@ -1,4 +1,9 @@
-{ home-manager, lib, pkgs, ... }: {
+{
+  home-manager,
+  lib,
+  pkgs,
+  ...
+}: {
   # https://nixos.wiki/wiki/Sway
 
   programs.sway = {
@@ -77,14 +82,14 @@
           "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         assigns = {
-          "8" = [{ class = "WebCord"; }];
-          "9" = [{ class = "Spotify"; }];
+          "8" = [{class = "WebCord";}];
+          "9" = [{class = "Spotify";}];
         };
         floating = {
           criteria = [
-            { app_id = "org.keepassxc.KeePassXC"; }
-            { app_id = "pavucontrol"; }
-            { app_id = "wdisplays"; }
+            {app_id = "org.keepassxc.KeePassXC";}
+            {app_id = "pavucontrol";}
+            {app_id = "wdisplays";}
           ];
         };
         focus = {
@@ -114,7 +119,7 @@
           };
         };
         terminal = "alacritty";
-        bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+        bars = [{command = "${pkgs.waybar}/bin/waybar";}];
       };
 
       # Execute sway with required environment variables for GTK applications
@@ -125,104 +130,102 @@
 
     # https://github.com/Alexays/Waybar/wiki/Configuration
     # https://github.com/Alexays/Waybar/blob/master/resources/config
-    programs.waybar =
-      let
-        # It isn't possible to extend the default Waybar config in Home
-        # Manager; as soon as any setting is defined it overwrites the entire
-        # default configuration. To combat  this, we parse the default config
-        # into Nix and merge it with our changes.
-        mkDefaultConfig = pkgs.stdenv.mkDerivation {
-          name = "waybarDefaultConfig";
-          src = "${pkgs.waybar}/etc/xdg/waybar";
-          installPhase = ''
-            # JSON isn't valid if it contains comments
-            sed 's#//.*##' config | ${pkgs.jq}/bin/jq > $out
-          '';
-        };
-        defaultConfig = builtins.fromJSON (lib.readFile "${mkDefaultConfig}");
-      in
-      {
-        enable = true;
-        settings = {
-          bar = lib.mkMerge [
-            defaultConfig
-            {
-              modules-right = lib.mkForce [ "tray" "pulseaudio" "backlight" "network" "battery" "clock" ];
-              battery = {
-                states = lib.mkForce {
-                  warning = 15;
-                  critical = 5;
-                };
-              };
-              clock = {
-                interval = 5;
-                locale = "da_DK.UTF-8";
-                format = "{:%a %e. %b  %H:%M}";
-                calendar = {
-                  mode = "year";
-                  mode-mon-col = 3;
-                  weeks-pos = "left";
-                  on-scroll = 1;
-                  format = {
-                    months = "<span color='#ffead3'><b>{}</b></span>";
-                    days = "<span color='#ecc6d9'><b>{}</b></span>";
-                    weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                    weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                    today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-                  };
-                };
-                actions = {
-                  on-click-right = "mode";
-                  on-scroll-up = "shift_down";
-                  on-scroll-down = "shift_up";
-                };
-              };
-            }
-          ];
-        };
-        # https://github.com/Alexays/Waybar/wiki/Styling
-        # https://github.com/Alexays/Waybar/blob/master/resources/style.css
-        style = ''
-          window#waybar {
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-            transition-duration: 0s;
-          }
-          #workspaces button {
-            color: white;
-            box-shadow: inset 0 3px transparent;
-            border: none;
-            border-radius: 0;
-          }
-          #workspaces button.focused {
-            box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
-            background-color: transparent;
-          }
-          #workspaces button:hover {
-            /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-            background: rgba(0, 0, 0, 0.25);  
-            text-shadow: inherit;
-          }
-          #mode {
-              background-color: rgba(255, 255, 255, 0.4);
-              border: none;
-          }
-          #tray, #pulseaudio, #backlight, #network, #battery, #clock {
-            background-color: transparent;
-            padding: 0 10px;
-          }
-          #battery.warning:not(.charging) {
-            color: #FF9E3B;  /* kanagawa roninYellow */
-          }
-          #battery.critical:not(.charging) {
-            color: #E82424;  /* kanagawa samuraiRed */
-          }
-          #network.disconnected {
-            color: #E82424;  /* kanagawa samuraiRed */
-          }
+    programs.waybar = let
+      # It isn't possible to extend the default Waybar config in Home
+      # Manager; as soon as any setting is defined it overwrites the entire
+      # default configuration. To combat  this, we parse the default config
+      # into Nix and merge it with our changes.
+      mkDefaultConfig = pkgs.stdenv.mkDerivation {
+        name = "waybarDefaultConfig";
+        src = "${pkgs.waybar}/etc/xdg/waybar";
+        installPhase = ''
+          # JSON isn't valid if it contains comments
+          sed 's#//.*##' config | ${pkgs.jq}/bin/jq > $out
         '';
       };
+      defaultConfig = builtins.fromJSON (lib.readFile "${mkDefaultConfig}");
+    in {
+      enable = true;
+      settings = {
+        bar = lib.mkMerge [
+          defaultConfig
+          {
+            modules-right = lib.mkForce ["tray" "pulseaudio" "backlight" "network" "battery" "clock"];
+            battery = {
+              states = lib.mkForce {
+                warning = 15;
+                critical = 5;
+              };
+            };
+            clock = {
+              interval = 5;
+              locale = "da_DK.UTF-8";
+              format = "{:%a %e. %b  %H:%M}";
+              calendar = {
+                mode = "year";
+                mode-mon-col = 3;
+                weeks-pos = "left";
+                on-scroll = 1;
+                format = {
+                  months = "<span color='#ffead3'><b>{}</b></span>";
+                  days = "<span color='#ecc6d9'><b>{}</b></span>";
+                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                };
+              };
+              actions = {
+                on-click-right = "mode";
+                on-scroll-up = "shift_down";
+                on-scroll-down = "shift_up";
+              };
+            };
+          }
+        ];
+      };
+      # https://github.com/Alexays/Waybar/wiki/Styling
+      # https://github.com/Alexays/Waybar/blob/master/resources/style.css
+      style = ''
+        window#waybar {
+          color: white;
+          background-color: rgba(0, 0, 0, 0.5);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+          transition-duration: 0s;
+        }
+        #workspaces button {
+          color: white;
+          box-shadow: inset 0 3px transparent;
+          border: none;
+          border-radius: 0;
+        }
+        #workspaces button.focused {
+          box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
+          background-color: transparent;
+        }
+        #workspaces button:hover {
+          /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+          background: rgba(0, 0, 0, 0.25);
+          text-shadow: inherit;
+        }
+        #mode {
+            background-color: rgba(255, 255, 255, 0.4);
+            border: none;
+        }
+        #tray, #pulseaudio, #backlight, #network, #battery, #clock {
+          background-color: transparent;
+          padding: 0 10px;
+        }
+        #battery.warning:not(.charging) {
+          color: #FF9E3B;  /* kanagawa roninYellow */
+        }
+        #battery.critical:not(.charging) {
+          color: #E82424;  /* kanagawa samuraiRed */
+        }
+        #network.disconnected {
+          color: #E82424;  /* kanagawa samuraiRed */
+        }
+      '';
+    };
 
     # https://github.com/swaywm/swaylock
     programs.swaylock = {
@@ -234,24 +237,35 @@
     };
 
     # https://github.com/swaywm/swayidle
-    services.swayidle =
-      let
-        lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
-        outputOff = "${pkgs.sway}/bin/swaymsg 'output * power off'";
-        outputOn = "${pkgs.sway}/bin/swaymsg 'output * power on'";
-        suspend = "${pkgs.systemd}/bin/systemctl suspend";
-      in
-      {
-        enable = true;
-        events = [
-          { event = "lock"; command = lock; }
-          { event = "before-sleep"; command = lock; }
-        ];
-        timeouts = [
-          { timeout = 60 * 20; command = outputOff; resumeCommand = outputOn; }
-          { timeout = 60 * 60 * 3; command = suspend; }
-        ];
-      };
+    services.swayidle = let
+      lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
+      outputOff = "${pkgs.sway}/bin/swaymsg 'output * power off'";
+      outputOn = "${pkgs.sway}/bin/swaymsg 'output * power on'";
+      suspend = "${pkgs.systemd}/bin/systemctl suspend";
+    in {
+      enable = true;
+      events = [
+        {
+          event = "lock";
+          command = lock;
+        }
+        {
+          event = "before-sleep";
+          command = lock;
+        }
+      ];
+      timeouts = [
+        {
+          timeout = 60 * 20;
+          command = outputOff;
+          resumeCommand = outputOn;
+        }
+        {
+          timeout = 60 * 60 * 3;
+          command = suspend;
+        }
+      ];
+    };
 
     # https://github.com/emersion/mako
     services.mako = {
@@ -277,12 +291,12 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       # Nerd Fonts patches glyph icons, such as from Font Awesome, into existing fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
       font-awesome # waybar uses Font Awesome icons directly
     ];
     fontDir.enable = true; # TODO?
     fontconfig.defaultFonts = {
-      monospace = [ "JetBrainsMonoNL Nerd Font" ]; # NL = NoLigatures
+      monospace = ["JetBrainsMonoNL Nerd Font"]; # NL = NoLigatures
     };
   };
 

@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{home-manager, ...}: {
   # https://nixos.wiki/wiki/Virt-manager
 
   virtualisation.libvirtd.enable = true;
@@ -8,19 +8,24 @@
   home-manager.users.caspervk = {
     dconf.settings = {
       "org/virt-manager/virt-manager/connections" = {
-        autoconnect = [ "qemu:///system" ];
-        uris = [ "qemu:///system" ];
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
       };
     };
   };
 
   # Allow our user to use libvird
-  users.extraGroups.libvirtd.members = [ "caspervk" ];
+  users.extraGroups.libvirtd.members = ["caspervk"];
 
   # Persist libvirt data
   environment.persistence."/nix/persist" = {
     directories = [
-      { directory = "/var/lib/libvirt"; user = "root"; group = "root"; mode = "0755"; }
+      {
+        directory = "/var/lib/libvirt";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
     ];
   };
 }

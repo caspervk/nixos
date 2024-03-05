@@ -2,7 +2,6 @@
 # the agenix CLI tool to know which public keys to use for encryption. See the
 # README for more information.
 # https://github.com/ryantm/agenix
-
 let
   # Get a system's public key using:
   # > cat /etc/ssh/ssh_host_ed25519_key.pub
@@ -18,21 +17,21 @@ let
   # > agenix -i $AGE_KEY_FILE -e foo.age
   recovery = "age1rd6hhd724s3r9xe4gfuy38rl0xfu8c7pkuefsrdwqfcknujzecyqz7ldyj";
 
-  all = [ alpha mu omega tor zeta ];
+  all = [alpha mu omega tor zeta];
 in
-builtins.mapAttrs (name: value: { publicKeys = value ++ [ recovery ]; }) {
-  # Borg backup
-  "borg-passphrase-file-omega.age" = [ omega ];
-  "borg-passphrase-file-zeta.age" = [ zeta ];
+  builtins.mapAttrs (name: value: {publicKeys = value ++ [recovery];}) {
+    # Borg backup
+    "borg-passphrase-file-omega.age" = [omega];
+    "borg-passphrase-file-zeta.age" = [zeta];
 
-  # User passwords
-  "users-hashed-password-file.age" = all;
+    # User passwords
+    "users-hashed-password-file.age" = all;
 
-  # Wireguard
-  # The preshared key adds an additional layer of symmetric-key crypto to be
-  # mixed into the already existing public-key crypto, for post-quantum
-  # resistance. Public-keys are generated using `wireguard-vanity-address`.
-  "wireguard-preshared-key-file.age" = [ alpha omega ];
-  "wireguard-private-key-file-alpha.age" = [ alpha ];
-  "wireguard-private-key-file-omega.age" = [ omega ];
-}
+    # Wireguard
+    # The preshared key adds an additional layer of symmetric-key crypto to be
+    # mixed into the already existing public-key crypto, for post-quantum
+    # resistance. Public-keys are generated using `wireguard-vanity-address`.
+    "wireguard-preshared-key-file.age" = [alpha omega];
+    "wireguard-private-key-file-alpha.age" = [alpha];
+    "wireguard-private-key-file-omega.age" = [omega];
+  }

@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   users = {
     # Don't allow imperative modifications to users (incompatible with impermanence)
     mutableUsers = false;
@@ -17,7 +21,7 @@
           # todo: systemd-journal, audio, input, power, nix ?
         ];
         uid = 1000;
-        packages = with pkgs; [ ];
+        packages = with pkgs; [];
       };
     };
   };
