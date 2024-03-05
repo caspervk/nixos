@@ -137,3 +137,6 @@ nix repl
 :p inputs.nixpkgs.outputs.legacyPackages.${builtins.currentSystem}.openssh.version
 ```
 
+
+## References
+  - https://github.com/nix-community/srvos/tree/29a48ae201fbd69b6b71acdae5e19fa2ceaa8181

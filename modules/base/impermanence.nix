@@ -29,9 +29,7 @@
     directories = [
       # See comment above for /tmp
       { directory = "/tmp"; user = "root"; group = "root"; mode = "1777"; }
-      # With great power comes great responsibility, we get it
-      { directory = "/var/db/sudo/lectured"; user = "root"; group = "root"; mode = "0700"; }
-      # Save the last run time of persistent timers so systemd knows if they was missed
+      # Save the last run time of persistent timers so systemd knows if they were missed
       { directory = "/var/lib/systemd/timers"; user = "root"; group = "root"; mode = "0755"; }
       { directory = "/var/log"; user = "root"; group = "root"; mode = "0755"; }
     ];
@@ -40,7 +38,7 @@
     ];
     users.caspervk = {
       directories = [
-        "/" # entire home directory (TODO)
+        "/" # entire home directory (TODO?)
       ];
     };
   };

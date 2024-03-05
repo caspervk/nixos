@@ -1,4 +1,4 @@
-{ config, nix-index-database, nixpkgs-unstable, nixpkgs, lib, pkgs, ... }: {
+{ nix-index-database, nixpkgs-unstable, nixpkgs, ... }: {
   imports = [
     nix-index-database.nixosModules.nix-index
   ];
@@ -13,13 +13,19 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
     settings = {
       # Automatically optimise the store after each build. Store optimisation
       # reduces nix store space by 25-35% by finding identical files and
       # hard-linking them to each other.
       # https://nixos.org/manual/nix/unstable/command-ref/nix-store/optimise.html
       auto-optimise-store = true;
+
+      # Enable flakes
       experimental-features = [ "nix-command" "flakes" ];
+
+      # Timeout connections to the binary cache instead of waiting forever
+      connect-timeout = 5;
     };
 
     # The nix registry is used to refer to flakes using symbolic identifiers
@@ -35,66 +41,7 @@
     };
   };
 
-  # Enable all firmware with a license allowing redistribution
-  hardware.enableRedistributableFirmware = true;
-
-  environment.systemPackages = with pkgs; [
-    bat
-    black
-    clang
-    curl
-    dig
-    fd
-    file
-    fzf
-    gcc
-    git
-    gnumake
-    htop
-    inetutils
-    jq
-    magic-wormhole
-    ntp
-    progress
-    pwgen
-    python310
-    python311
-    python312
-    rsync
-    sqlite
-    tmux
-    traceroute
-    tree
-    unzip
-    wget
-    wireguard-tools
-    xkcdpass
-    yq
-  ];
-
   # https://github.com/nix-community/comma
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
-
-  i18n = {
-    defaultLocale = "en_DK.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "en_DK.UTF-8";
-      LC_IDENTIFICATION = "en_DK.UTF-8";
-      LC_MEASUREMENT = "en_DK.UTF-8";
-      LC_MONETARY = "en_DK.UTF-8";
-      LC_NAME = "en_DK.UTF-8";
-      LC_NUMERIC = "en_DK.UTF-8";
-      LC_PAPER = "en_DK.UTF-8";
-      LC_TELEPHONE = "en_DK.UTF-8";
-      LC_TIME = "en_DK.UTF-8";
-    };
-    supportedLocales = lib.mkOptionDefault [
-      "da_DK.UTF-8/UTF-8"
-    ];
-  };
-
-  time = {
-    timeZone = "Europe/Copenhagen";
-  };
 }

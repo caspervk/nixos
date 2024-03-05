@@ -7,6 +7,8 @@
       # Allow some ports for ad-hoc use
       allowedTCPPorts = [ 1234 1337 8000 8080 ];
       allowedUDPPorts = [ 1234 1337 8000 8080 ];
+      # Do not spam dmesg/journalctl with refused connections
+      logRefusedConnections = false;
     };
     nameservers = [ "127.0.0.53" ]; # resolved stub resolver
     search = [ "caspervk.net" ];
