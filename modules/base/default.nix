@@ -13,6 +13,7 @@
     ./packages.nix
     ./ripgrep.nix
     ./ssh.nix
+    ./sudo.nix
     ./users.nix
     ./vim
   ];
