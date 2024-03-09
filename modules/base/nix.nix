@@ -46,6 +46,10 @@
     };
   };
 
+  # The system-wide garbage collection service configured above does not know
+  # about our user profile. TODO: 24.04
+  # home-manager.users.caspervk.nix.gc = config.nix.gc;
+
   # https://github.com/nix-community/comma
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
