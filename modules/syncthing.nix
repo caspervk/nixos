@@ -17,18 +17,18 @@
       # other ones. When we get a proper secret management scheme, such as
       # agenix, the private keys should be managed declaratively as well.
       devices = {
+        "android" = {id = "IBP6YKY-KGWYPCH-J3CHAQ5-GKCIQ3U-X2L7S7V-BH635EE-ZEDQHN2-ZB4CBAP";};
         "lambda" = {
           id = "WES3JH4-S34HTC5-42YZHUJ-MX3Z6PA-PFO72KA-YIJMDOB-GQWZXZ3-I7BBTAS";
           addresses = ["tcp://lambda.caspervk.net"];
         };
         "omega" = {id = "EZIQ7SI-Y6BBLUY-QI4EEYU-UNIXPSG-R6X5E77-AA2UC7S-VRV2LKQ-RNBOGQT";};
-        "S10e" = {id = "DWC6YHB-FRYKFHD-FPOUITV-7GL2WZH-RSFOJXR-PHYXDO7-74NLBUZ-TZENVAC";};
         "zeta" = {id = "GQRNHAQ-MMRQYMD-P4RCA6I-5DJ3HXO-J2N2GVP-UGI55YR-HD3EYSO-ERU5QQV";};
       };
       folders = {
         "keepass" = {
           path = "~/keepass";
-          devices = ["lambda" "omega" "S10e" "zeta"];
+          devices = ["android" "lambda" "omega" "zeta"];
         };
         "sync" = {
           path = "~/sync";
