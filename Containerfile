@@ -8,7 +8,7 @@
 # SSH. The token should be passed as the GIT_PASSWORD environment variable.
 # [1] https://git.caspervk.net/user/settings/applications
 
-FROM nixos/nix:2.21.0
+FROM nixos/nix:latest
 
 CMD git clone https://caspervk:$GIT_PASSWORD@git.caspervk.net/caspervk/nixos.git && \
     cd nixos/ && \
