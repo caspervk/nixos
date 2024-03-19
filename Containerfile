@@ -14,7 +14,8 @@ CMD git clone https://caspervk:$GIT_PASSWORD@git.caspervk.net/caspervk/nixos.git
     cd nixos/ && \
     git config user.email "snowflake@caspervk.net" && \
     git config user.name "snowflake" && \
-    nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file && \
+    # store in /dev/shm tmpfs to avoid an ever-growing nix store in the container
+    nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file --store /dev/shm && \
     git push && \
     cd .. && \
     rm -rf nixos/ && \
