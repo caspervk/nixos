@@ -31,6 +31,9 @@
       "android-studio-stable"
       "pycharm-professional"
       "spotify"
+      "steam"
+      "steam-original"
+      "steam-run"
       "terraform"
     ];
 
