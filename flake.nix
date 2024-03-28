@@ -74,6 +74,12 @@
         specialArgs = inputs; # pass flake inputs to modules
         modules = [./hosts/alpha];
       };
+      # Home Server
+      sigma = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = inputs; # pass flake inputs to modules
+        modules = [./hosts/sigma];
+      };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
