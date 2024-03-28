@@ -14,8 +14,9 @@
       # dying. See https://news.ycombinator.com/item?id=25737611.
       serverAliveInterval = 25;
       matchBlocks = {
-        "git.caspervk.net" = {
-          port = 2222;
+        # Lambda exposes ssh on port 222 to allow git ssh on 22.
+        "lambda" = {
+          port = 222;
         };
       };
       # TODO: use addKeysToAgent attribute in Home Manager 24.04 instead of
