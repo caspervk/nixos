@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  secrets,
+  ...
+}: {
   systemd.network = {
     config = {
       routeTables = {
@@ -94,14 +98,14 @@
   };
 
   age.secrets.wireguard-preshared-key-file = {
-    file = ../../secrets/wireguard-preshared-key-file.age;
+    file = "${secrets}/secrets/wireguard-preshared-key-file.age";
     mode = "640";
     owner = "root";
     group = "systemd-network";
   };
 
   age.secrets.wireguard-private-key-file-omega = {
-    file = ../../secrets/wireguard-private-key-file-omega.age;
+    file = "${secrets}/secrets/wireguard-private-key-file-omega.age";
     mode = "640";
     owner = "root";
     group = "systemd-network";

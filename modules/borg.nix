@@ -117,11 +117,4 @@
   programs.ssh.knownHosts = {
     "[u394155.your-storagebox.de]:23".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
   };
-
-  age.secrets.borg-passphrase-file = {
-    # file set on each host
-    mode = "400";
-    owner = "root";
-    group = "root";
-  };
 }

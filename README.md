@@ -73,9 +73,13 @@ even if we had a scheme to securely transfer them to each system. [Agenix](https
 solves this issue by encrypting the secrets using [age](https://github.com/FiloSottile/age), and then decrypting
 and symlinking them using the system's SSH host key during system activation.
 
-To bootstrap a new system, we must first generate a host key manually using `ssh-keygen -A -f /mnt/nix/persist`
-during installation. Then, on an existing system, add the new host's public key to `secrets.nix` and rekey all
-secrets using `agenix --rekey`. Commit and push the changes and proceed below.
+All secrets, and other private configuration such as DNS zonefiles, are stored
+in a separate, private [repo](https://git.caspervk.net/caspervk/nixos-secrets).
+To bootstrap a new system, we must first generate a host key manually using
+`ssh-keygen -A -f /mnt/nix/persist` during installation. Then, on an existing
+system, add the new host's public key to `secrets.nix` in the `nixos-secrets`
+repo and rekey all secrets using `agenix --rekey`. Commit and transfer the
+repository to the new system.
 
 When managing secrets, the Keepass recovery key is used like so:
 ```fish
@@ -93,7 +97,7 @@ cd tmp/
 nixos-generate-config --root /mnt --show-hardware-config
 vim hosts/omega/hardware.nix
 git add .  # nix sometimes ignores files outside version control
-nixos-install --no-root-passwd --flake .#omega
+nixos-install --no-root-passwd --flake .#omega --override-input secrets ./../nixos-secrets/
 ```
 
 ### Hardware Configuration
@@ -107,8 +111,8 @@ enough](https://sourcegraph.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.co
 
 ## Useful Commands
 ```fish
-# upgrade system
-sudo nixos-rebuild switch --flake .
+# development
+sudo nixos-rebuild switch --flake . --override-input secrets ./../nixos-secrets/
 
 # start build environment with user's default shell instead of bash
 nix develop --command $SHELL
@@ -122,8 +126,7 @@ nix shell --impure --expr 'with builtins.getFlake "nixpkgs"; with legacyPackages
 ### Debugging
 ```nix
 # load flake into repl
-nix repl
-:lf .
+nix repl . --override-input secrets ./../nixos-secrets/
 
 # print a configuration option
 :p nixosConfigurations.omega.options.services.openssh.ports.declarationPositions  # declaration

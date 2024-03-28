@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  secrets,
+  ...
+}: {
   systemd.network = {
     # Main interface
     networks."10-lan" = {
@@ -80,14 +84,14 @@
   };
 
   age.secrets.wireguard-preshared-key-file = {
-    file = ../../secrets/wireguard-preshared-key-file.age;
+    file = "${secrets}/secrets/wireguard-preshared-key-file.age";
     mode = "640";
     owner = "root";
     group = "systemd-network";
   };
 
   age.secrets.wireguard-private-key-file-alpha = {
-    file = ../../secrets/wireguard-private-key-file-alpha.age;
+    file = "${secrets}/secrets/wireguard-private-key-file-alpha.age";
     mode = "640";
     owner = "root";
     group = "systemd-network";

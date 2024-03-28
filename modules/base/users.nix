@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  secrets,
   ...
 }: {
   users = {
@@ -27,7 +28,7 @@
   };
 
   age.secrets.users-hashed-password-file = {
-    file = ../../secrets/users-hashed-password-file.age;
+    file = "${secrets}/secrets/users-hashed-password-file.age";
     mode = "400";
     owner = "root";
     group = "root";
