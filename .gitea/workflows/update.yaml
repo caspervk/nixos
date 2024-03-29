@@ -1,0 +1,36 @@
+name: Update flake.lock
+
+# PREREQUISITES:
+#  - Generate ssh key: `ssh-keygen -t ed25519 -f snowflake`.
+#  - Add private key to https://git.caspervk.net/caspervk/nixos/settings/actions/secrets as SNOWFLAKE_SSH_PRIVATE_KEY.
+#  - Add public key to https://git.caspervk.net/caspervk/nixos/settings/keys with WRITE access.
+#  - Add public key to https://git.caspervk.net/caspervk/nixos-secrets/settings/keys with READ access.
+
+on:
+  # https://forgejo.org/docs/latest/user/actions/#onschedule
+  schedule:
+    - cron: "23 17 * * 1"
+
+jobs:
+  update:
+    runs-on: debian-latest
+    container:
+      image: docker.io/nixos/nix:2.21.0
+    steps:
+      - run: |
+          # Configure SSH
+          mkdir ~/.ssh/
+          echo "git.caspervk.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPxSg6XN6znT1T4H0U1lzJBsGY7Uann+TBisWD3Drd" > ~/.ssh/known_hosts
+          echo "${{ secrets.SNOWFLAKE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 0600 ~/.ssh/id_ed25519
+
+          # Checkout repository
+          git clone git@git.caspervk.net:caspervk/nixos.git
+          cd nixos/
+
+          # Update flake.lock
+          git config user.email "snowflake@caspervk.net"
+          git config user.name "snowflake"
+          nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file
+          git push
+
