@@ -1,3 +1,3 @@
 {...}: {
-  imports = [];
+  imports = [./forgejo-actions-runner.nix];
 }

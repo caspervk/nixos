@@ -5,6 +5,7 @@
     ../../modules/server
     ./hardware.nix
     #./borg.nix
+    ./gitea.nix
     ./network.nix
   ];
 
