@@ -165,10 +165,10 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1711740735,
-        "narHash": "sha256-/NmklXfLak65luQoMsUl539faoabD+lo7P9fNDaXkic=",
+        "lastModified": 1711743434,
+        "narHash": "sha256-fqeuUwSNBeWL4pSDsqIehH6Mgl3J8ZmEGPhmdD1gufo=",
         "ref": "refs/heads/master",
-        "rev": "42e5e76765daf6dd36fa195a5a424d8d69c15dfa",
+        "rev": "c79b0434590226446576f6b19d474cb9e41dc6b2",
         "revCount": 6,
         "type": "git",
         "url": "ssh://git@git.caspervk.net/caspervk/nixos-secrets.git"
