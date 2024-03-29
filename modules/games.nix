@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # https://nixos.wiki/wiki/Lutris
   # https://nixos.wiki/wiki/Steam
   programs.steam.enable = true;
