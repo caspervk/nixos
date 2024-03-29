@@ -6,8 +6,8 @@
   systemd.network = {
     config = {
       routeTables = {
-        "wg-sigma-public" = 822944075;
-        "wg-sigma-p2p" = 2553;
+        "wg-sigma-public" = 42;
+        "wg-sigma-p2p" = 6881;
       };
     };
 
@@ -59,9 +59,9 @@
     };
 
     # The following establishes a wireguard tunnel to alpha and configures
-    # receiving traffic destined for 116.203.6.156. This allows the server to
-    # have a public address and help others sail the high seas even though it
-    # is behind NAT.
+    # receiving traffic destined for the sigma-p2p address. This allows the
+    # server to have a public address and help others sail the high seas even
+    # though it is behind NAT.
     netdevs."51-wg-sigma-p2p" = {
       netdevConfig = {
         Name = "wg-sigma-p2p";
@@ -85,11 +85,11 @@
     };
     networks."wg-sigma-p2p" = {
       name = "wg-sigma-p2p";
-      address = ["116.203.6.156/32"];
+      address = ["${secrets.sigma.sigma-p2p-ip-address}/32"];
       routingPolicyRules = [
         {
           routingPolicyRuleConfig = {
-            From = "116.203.6.156/32";
+            From = "${secrets.sigma.sigma-p2p-ip-address}/32";
             Table = "wg-sigma-p2p";
           };
         }

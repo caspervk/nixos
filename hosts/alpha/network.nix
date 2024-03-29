@@ -45,9 +45,9 @@
       name = "wg-sigma-public";
     };
 
-    # The following routes traffic destined for 116.203.6.156 (floating IP) to
-    # sigma through wireguard. This allows the server to have a public address
-    # and help others sail the high seas even though it is behind NAT.
+    # The following routes traffic destined for the sigma-p2p address (floating
+    # IP) to sigma through wireguard. This allows the server to have a public
+    # address and help others sail the high seas even though it is behind NAT.
     netdevs."51-wg-sigma-p2p" = {
       netdevConfig = {
         Name = "wg-sigma-p2p";
@@ -62,7 +62,7 @@
           wireguardPeerConfig = {
             PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            AllowedIPs = ["116.203.6.156/32"];
+            AllowedIPs = ["${secrets.alpha.sigma-p2p-ip-address}/32"];
             RouteTable = "main";
           };
         }
