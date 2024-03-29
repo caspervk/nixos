@@ -1,8 +1,26 @@
 {
   config,
+  lib,
   secrets,
   ...
 }: {
+  # systemd.services.qbittorrent = {
+  #   description = "qBittorrent service";
+  #   documentation = ["man:qbittorrent-nox(1)"];
+  #   wantedBy = ["multi-user.target"];
+  #   wants = ["multi-user.target"];
+  #   after = ["network-online.target" "nss-lookup.target"];
+  #   serviceConfig = {
+  #     Type = "exec";
+  #     User = "flatpak";
+  #     Group = "users";
+  #     ExecStart = pkgs.writers.writeBash "asd" ''
+  #       while true; do ${pkgs.curl}/bin/curl --connect-timeout 1 ip.caspervk.net; echo; sleep 1; done
+  #     '';
+  #     RestrictNetworkInterfaces = "wg-sigma-p2p";
+  #   };
+  # };
+
   systemd.network = {
     config = {
       routeTables = {
@@ -20,7 +38,7 @@
         Kind = "wireguard";
       };
       wireguardConfig = {
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-omega.path;
+        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-sigma.path;
       };
       wireguardPeers = [
         {
@@ -50,6 +68,7 @@
       address = ["49.13.33.75/32"];
       routingPolicyRules = [
         {
+          # See the AllowedIPs comment above for why this is necessary
           routingPolicyRuleConfig = {
             From = "49.13.33.75/32";
             Table = "wg-sigma-public";
@@ -68,7 +87,7 @@
         Kind = "wireguard";
       };
       wireguardConfig = {
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-omega.path;
+        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-sigma.path;
       };
       wireguardPeers = [
         {
@@ -93,7 +112,37 @@
             Table = "wg-sigma-p2p";
           };
         }
+        {
+          # The deluge systemd service has
+          # RestrictNetworkInterfaces=wg-sigma-p2p, but that does not tell it
+          # to use the correct routing table.
+          routingPolicyRuleConfig = {
+            User = config.services.deluge.user;
+            Table = "wg-sigma-p2p";
+          };
+        }
       ];
+    };
+  };
+
+  # Force explicit firewall configuration to ensure we allow the right services
+  # on the right interfaces.
+  networking.firewall = {
+    allowedTCPPorts = lib.mkForce [];
+    allowedUDPPorts = lib.mkForce [];
+    allowedTCPPortRanges = lib.mkForce [];
+    allowedUDPPortRanges = lib.mkForce [];
+
+    interfaces = {
+      "enp5s0" = {
+        allowedTCPPorts = [22];
+      };
+      "wg-sigma-public" = {
+        allowedTCPPorts = [22];
+      };
+      "wg-sigma-p2p" = {
+        allowedTCPPorts = [1337];
+      };
     };
   };
 
@@ -104,8 +153,8 @@
     group = "systemd-network";
   };
 
-  age.secrets.wireguard-private-key-file-omega = {
-    file = "${secrets}/secrets/wireguard-private-key-file-omega.age";
+  age.secrets.wireguard-private-key-file-sigma = {
+    file = "${secrets}/secrets/wireguard-private-key-file-sigma.age";
     mode = "640";
     owner = "root";
     group = "systemd-network";

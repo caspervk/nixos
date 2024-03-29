@@ -5,7 +5,7 @@
     ../../modules/server
     ./hardware.nix
     #./borg.nix
-    #./network.nix
+    ./network.nix
   ];
 
   networking.hostName = "sigma";
