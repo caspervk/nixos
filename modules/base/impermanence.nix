@@ -34,6 +34,14 @@
         group = "root";
         mode = "1777";
       }
+      # The uid and gid maps for entities without a static id is saved in
+      # /var/lib/nixos. Persist to ensure they aren't changed between reboots.
+      {
+        directory = "/var/lib/nixos";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
       # Save the last run time of persistent timers so systemd knows if they were missed
       {
         directory = "/var/lib/systemd/timers";
