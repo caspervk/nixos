@@ -39,8 +39,5 @@
     }
   ];
 
-  # Enables DHCP on all ethernet and wireless LAN interfaces.
-  networking.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

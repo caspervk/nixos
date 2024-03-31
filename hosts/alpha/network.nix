@@ -5,13 +5,21 @@
 }: {
   systemd.network = {
     # Main interface
+    # https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Cloud
     networks."10-lan" = {
       name = "enp1s0";
-      networkConfig.DHCP = "ipv4";
       address = [
+        "116.203.179.206/32"
         "2a01:4f8:c2c:71c0::/64"
       ];
       routes = [
+        {routeConfig = {Destination = "172.31.1.1";};}
+        {
+          routeConfig = {
+            Gateway = "172.31.1.1";
+            GatewayOnLink = true;
+          };
+        }
         {routeConfig = {Gateway = "fe80::1";};}
       ];
     };
