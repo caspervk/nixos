@@ -4,6 +4,7 @@
     ../../modules/base
     ../../modules/server
     ./hardware.nix
+    ./knot-dns.nix
     ./network.nix
   ];
 
