@@ -15,25 +15,11 @@
     impermanence.nixosModules.impermanence
   ];
 
-  # We *don't* want to use tmpfs for /tmp in case we have to put big files
-  # there. Instead, we mount it to the disk and instruct systemd to clean it on
-  # boot.
-  # TODO: There might be a way to configure /tmp to be in-memory storage until
-  # it gets too big.
-  boot.tmp.cleanOnBoot = true;
-
   # Each module will configure the paths they need persisted. Here we define
   # some general system paths that don't really fit anywhere else.
   environment.persistence."/nix/persist" = {
     hideMounts = true;
     directories = [
-      # See comment above for /tmp
-      {
-        directory = "/tmp";
-        user = "root";
-        group = "root";
-        mode = "1777";
-      }
       # The uid and gid maps for entities without a static id is saved in
       # /var/lib/nixos. Persist to ensure they aren't changed between reboots.
       {
@@ -54,6 +40,15 @@
         user = "root";
         group = "root";
         mode = "0755";
+      }
+      # /var/tmp is meant for temporary files that are preserved across
+      # reboots. Some programs might store files too big for in-memory /tmp
+      # there. Files older than 10 days are cleaned by systemd.
+      {
+        directory = "/var/tmp";
+        user = "root";
+        group = "root";
+        mode = "1777";
       }
     ];
     files = [
