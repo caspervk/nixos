@@ -15,10 +15,6 @@
         };
         workspaceOutputAssign = [
           {
-            workspace = "8";
-            output = "DP-2";
-          }
-          {
             workspace = "9";
             output = "DP-2";
           }

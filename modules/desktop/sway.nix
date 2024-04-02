@@ -82,7 +82,6 @@
           "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         assigns = {
-          "8" = [{class = "WebCord";}];
           "9" = [{class = "Spotify";}];
         };
         floating = {

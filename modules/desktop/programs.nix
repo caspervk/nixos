@@ -23,7 +23,6 @@
     tor-browser-bundle-bin
     ungoogled-chromium
     vlc
-    webcord # discord
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
