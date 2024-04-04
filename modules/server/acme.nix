@@ -1,8 +1,12 @@
 {
   config,
+  lib,
   secrets,
   ...
-}: {
+}:
+# Only enable module if certificates are configured so we don't try to decrypt
+# acme-lego-environment-file.age on servers that aren't allowed to.
+lib.mkIf (config.security.acme.certs != {}) {
   # Instead of managing certificates in each individual service, NixOS supports
   # automatic certificate retrieval and renewal using
   # `security.acme.certs.<name>` through the ACME protocol.
