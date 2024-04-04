@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # https://nixos.wiki/wiki/Networking
   # https://nixos.wiki/wiki/Systemd-networkd
 
@@ -10,7 +10,7 @@
       # Do not spam dmesg/journalctl with refused connections
       logRefusedConnections = false;
     };
-    nameservers = ["127.0.0.53"]; # resolved stub resolver
+    nameservers = ["159.69.4.2#dns.caspervk.net" "2a01:4f8:1c0c:70d1::1#dns.caspervk.net"];
     search = ["caspervk.net"];
   };
 
@@ -22,23 +22,35 @@
   # systemd-resolved provides DNS resolution to local applications through
   # D-Bus, NSS, and a local stub resolver on 127.0.0.53. It implements caching
   # and DNSSEC validation. We configure it to only, and always, use
-  # dns.caspervk.net over TLS. By the way, it's surprisingly hard to get the
-  # system to always follow the custom DNS servers rather than the
-  # DHCP-provided ones. Check the traffic with:
-  # sudo tcpdump -n --interface=any '(udp port 53) or (tcp port 853)'
+  # dns.caspervk.net over TLS.
+  # NOTE: It's surprisingly hard to get the system to always follow the custom
+  # DNS servers rather than the DHCP-provided ones. Check the traffic with:
+  # > sudo tcpdump -n --interface=any '(udp port 53) or (tcp port 853)'
+  # or
+  # > sudo resolvectl log-level debug
+  # > sudo journalctl -fu systemd-resolved.service
   # https://nixos.wiki/wiki/Encrypted_DNS
   # https://nixos.wiki/wiki/Systemd-resolved
   services.resolved = {
     enable = true;
-    dnssec = "true";
+    dnsovertls = "true";
+    # TODO: DNSSEC support in systemd-resolved is considered experimental and
+    # incomplete. Upstream will validate for us anyway, and we trust it.
+    # https://wiki.archlinux.org/title/systemd-resolved#DNSSEC
+    dnssec = "false";
+    # 'Domains' is used for two distinct purposes; first, any domains *not*
+    # prefixed with '~' are used as search suffixes when resolving single-label
+    # hostnames into FQDNs. The NixOS default is to set this to
+    # `config.networking.search`, which we maintain. Second, domains prefixed
+    # with '~' ("route-only domains") define a search path that preferably
+    # directs DNS queries to this interface. The '~.' construct use the DNS
+    # servers defined here preferably for the root (all) domain(s).
+    # https://man.archlinux.org/man/resolved.conf.5
+    domains = config.networking.search ++ ["~."];
     # Resolved falls back to DNS servers operated by American internet
     # surveillance and adtech companies by default. No thanks, I'd rather have
     # no DNS at all.
-    fallbackDns = ["159.69.4.2#dns.caspervk.net" "2a01:4f8:1c0c:70d1::1#dns.caspervk.net"];
-    extraConfig = ''
-      DNS=159.69.4.2#dns.caspervk.net 2a01:4f8:1c0c:70d1::1#dns.caspervk.net
-      DNSOverTLS=yes
-    '';
+    fallbackDns = config.networking.nameservers;
   };
 
   # TCP BBR has significantly increased throughput and reduced latency. Note

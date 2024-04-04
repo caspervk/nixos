@@ -4,7 +4,7 @@
     # Instead, we enable NetworkManager and the nmtui interface.
     networkmanager = {
       enable = true;
-      dns = lib.mkForce "none";
+      dns = lib.mkForce "none"; # see modules/base/network.nix
     };
   };
 
