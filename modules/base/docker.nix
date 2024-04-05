@@ -14,7 +14,7 @@
 
   # Being a member of the docker group is effectively equivalent to being root,
   # but without the annoyance of having to type your sudo password all the time.
-  users.extraGroups.docker.members = ["caspervk"];
+  users.groups.docker.members = ["caspervk"];
 
   # Persist docker volumes
   environment.persistence."/nix/persist" = {

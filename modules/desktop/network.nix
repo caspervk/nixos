@@ -9,7 +9,7 @@
   };
 
   # Allow our user to configure the network
-  users.extraGroups.networkmanager.members = ["caspervk"];
+  users.groups.networkmanager.members = ["caspervk"];
 
   # Persist WiFi passwords and other network configuration
   environment.persistence."/nix/persist" = {

@@ -15,7 +15,7 @@
   };
 
   # Allow our user to use libvird
-  users.extraGroups.libvirtd.members = ["caspervk"];
+  users.groups.libvirtd.members = ["caspervk"];
 
   # Persist libvirt data
   environment.persistence."/nix/persist" = {
