@@ -48,6 +48,7 @@
   } @ inputs: {
     # https://kamadorueda.com/alejandra/
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
 
     nixosConfigurations = {
       # Hetzner VPS
