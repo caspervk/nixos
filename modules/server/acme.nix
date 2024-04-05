@@ -15,6 +15,9 @@ lib.mkIf (config.security.acme.certs != {}) {
   security.acme = {
     acceptTerms = true;
     defaults = {
+      # For testing, Let's Encrypt's staging server should be used to avoid
+      # the strict rate limit on production. Default to production.
+      # server = "https://acme-staging-v02.api.letsencrypt.org/directory";
       email = "admin@caspervk.net";
       # The DNS challenge is passed by updating DNS records directly in the
       # zone on the authoritative DNS server (Knot).
@@ -42,12 +45,4 @@ lib.mkIf (config.security.acme.certs != {}) {
     owner = "root";
     group = "root";
   };
-
-  # TODO
-  # https://search.nixos.org/options?channel=23.11&show=services.caddy.virtualHosts.%3Cname%3E.useACMEHost&from=0&size=50&sort=relevance&type=packages&query=services.caddy
-  # security.acme.certs."caspervk.net" = {
-  #   domain = "*.caspervk.net";
-  #   group = "users";
-  #   reloadServices = [];
-  # };
 }

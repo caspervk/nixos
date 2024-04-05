@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
+    ./acme.nix
     ./hardware.nix
     ./network.nix
   ];
