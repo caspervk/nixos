@@ -50,17 +50,17 @@
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     nixosConfigurations = {
-      # Home desktop
-      omega = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      # Hetzner VPS
+      alpha = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [./hosts/omega];
+        modules = [./hosts/alpha];
       };
-      # Laptop
-      zeta = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      # Hetzner VPS
+      delta = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [./hosts/zeta];
+        modules = [./hosts/delta];
       };
       # Work laptop
       mu = nixpkgs.lib.nixosSystem {
@@ -68,11 +68,11 @@
         specialArgs = inputs; # pass flake inputs to modules
         modules = [./hosts/mu];
       };
-      # Hetzner VPS
-      alpha = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      # Home desktop
+      omega = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
-        modules = [./hosts/alpha];
+        modules = [./hosts/omega];
       };
       # Home Server
       sigma = nixpkgs.lib.nixosSystem {
@@ -85,6 +85,12 @@
         system = "x86_64-linux";
         specialArgs = inputs; # pass flake inputs to modules
         modules = [./hosts/tor];
+      };
+      # Laptop
+      zeta = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs; # pass flake inputs to modules
+        modules = [./hosts/zeta];
       };
     };
   };
