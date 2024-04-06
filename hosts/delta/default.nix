@@ -6,6 +6,7 @@
     ./acme.nix
     ./hardware.nix
     ./network.nix
+    ./unbound.nix
   ];
 
   networking.hostName = "delta";

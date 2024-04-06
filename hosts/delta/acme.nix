@@ -1,7 +1,11 @@
 {...}: {
   security.acme.certs."caspervk.net" = {
     domain = "*.caspervk.net";
-    reloadServices = [];  # unbound.service
+    reloadServices = [
+      "unbound.service"
+    ];
   };
-  users.groups.acme.members = [];  # unbound
+  users.groups.acme.members = [
+    "unbound"
+  ];
 }
