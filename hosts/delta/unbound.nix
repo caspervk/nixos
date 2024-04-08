@@ -22,12 +22,12 @@
         # allows systemd-resolved to listen on localhost as on every other
         # system. Default is to listen to DNS on localhost only.
         interface = [
-          "116.203.20.97@53"
-          "116.203.20.97@443"
-          "116.203.20.97@853"
-          "2a01:4f8:c2c:6005::@53"
-          "2a01:4f8:c2c:6005::@443"
-          "2a01:4f8:c2c:6005::@853"
+          "159.69.4.2@53"
+          "159.69.4.2@443"
+          "159.69.4.2@853"
+          "2a01:4f8:1c0c:70d1::1@53"
+          "2a01:4f8:1c0c:70d1::1@443"
+          "2a01:4f8:1c0c:70d1::1@853"
         ];
         # Allow access from all netblocks. Default is to allow localhost only.
         access-control = [
