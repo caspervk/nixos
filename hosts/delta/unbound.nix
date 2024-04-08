@@ -12,6 +12,8 @@
   # > kdig -d +tls @dns.caspervk.net example.com
   services.unbound = {
     enable = true;
+    # Enable `unbound-control` to view stats stats etc.
+    localControlSocketPath = "/run/unbound/unbound.ctl";
     # Don't mess with resolvconf
     resolveLocalQueries = false;
     settings = {
@@ -40,13 +42,46 @@
         # +https, or +tls to the following (run it twice to warm up cache):
         # > seq 100 | xargs -n1 -I% dig @dns.caspervk.net %.example.net
         ip-ratelimit = 25;
+        # Use 0x20-encoded random bits in the query to foil spoof attempts.
+        # This perturbs the lowercase and uppercase of query names sent to
+        # authority servers and checks if the reply still has the correct
+        # casing.
+        use-caps-for-id = true;
+        # Increase cache-hit ratio by serving old responses from the cache:
+        # Before trying to resolve, Unbound will also consider expired cached
+        # records as possible answers. If such a record is found it is
+        # immediately returned to the client, Unbound then continues resolving
+        # and hopefully updating the cached record. Used together with
+        # prefetch, Unbound tries to update a cached record (after first
+        # replying to the client) when the current TTL is within 10% of the
+        # original TTL value. Although prefetching comes with a small penalty
+        # of ~10% in traffic and load from the extra upstream queries, the
+        # cache is kept up-to-date, at least for popular queries.
+        #
+        # Using serve-expired with prefetch is "highly recommended in order to
+        # try and keep an updated cache". The following allows Unbound to:
+        #  - prioritize (expired) cached replies,
+        #  - keep the cache fairly up-to-date, and
+        #  - in the likelihood that an expired record needs to be served (e.g.,
+        #    rare query, issue with upstream resolving), make sure that the
+        #    record is not older than the specified limit.
+        # https://unbound.docs.nlnetlabs.nl/en/latest/topics/core/serve-stale.html
+        prefetch = true;
+        serve-expired = true;
+        serve-expired-ttl = 14400; # 4 hours
+        # Fetch the DNSKEYs earlier in the validation process, when a
+        # DS record is encountered. This lowers the latency of requests.
+        prefetch-key = true;
+        # Increase the memory size of the cache. Use roughly twice as much
+        # rrset cache memory as you use msg cache memory. Due to malloc
+        # overhead, the total memory usage is likely to rise to double (or
+        # 2.5x) the total cache memory that is entered into the configuration.
+        # https://unbound.docs.nlnetlabs.nl/en/latest/topics/core/performance.html
+        rrset-cache-size = "512m";
+        msg-cache-size = "256m";
         # Testing domain
-        local-zone = [
-          "\"test.dns.caspervk.net.\" redirect"
-        ];
-        local-data = [
-          "\"test.dns.caspervk.net. A 192.0.2.0\""
-        ];
+        local-zone = ["\"test.dns.caspervk.net.\" redirect"];
+        local-data = ["\"test.dns.caspervk.net. A 192.0.2.0\""];
         include = [
           (
             # The awk magic is from
