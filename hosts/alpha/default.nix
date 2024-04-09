@@ -3,8 +3,10 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
+    ./acme.nix
     ./hardware.nix
     ./knot-dns.nix
+    ./mumble.nix
     ./network.nix
   ];
 
