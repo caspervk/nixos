@@ -2,10 +2,11 @@
   security.acme.certs."caspervk.net" = {
     domain = "*.caspervk.net";
     reloadServices = [
-      "unbound.service"
+      "kresd@1.service"
+      "kresd@2.service"
     ];
   };
   users.groups.acme.members = [
-    "unbound"
+    "knot-resolver"
   ];
 }

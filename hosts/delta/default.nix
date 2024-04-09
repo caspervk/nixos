@@ -5,8 +5,8 @@
     ../../modules/server
     ./acme.nix
     ./hardware.nix
+    ./knot-resolver.nix
     ./network.nix
-    ./unbound.nix
   ];
 
   networking.hostName = "delta";
