@@ -4,6 +4,7 @@
     ../../modules/base
     ../../modules/server
     ./acme.nix
+    ./caddy.nix
     ./hardware.nix
     ./knot-dns.nix
     ./mumble.nix
