@@ -132,16 +132,23 @@
     allowedUDPPorts = lib.mkForce [];
     allowedTCPPortRanges = lib.mkForce [];
     allowedUDPPortRanges = lib.mkForce [];
-
     interfaces = {
       "enp5s0" = {
-        allowedTCPPorts = [22];
+        allowedTCPPorts = [
+          22 # SSH
+        ];
       };
       "wg-sigma-public" = {
-        allowedTCPPorts = [22];
+        allowedTCPPorts = [
+          22 # SSH
+          80 # Caddy
+          443 # Caddy
+        ];
       };
       "wg-sigma-p2p" = {
-        allowedTCPPorts = [1337];
+        allowedTCPPorts = [
+          1337 # random testing (TODO)
+        ];
       };
     };
   };

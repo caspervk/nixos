@@ -3,9 +3,11 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
-    ./hardware.nix
-    #./borg.nix
+    ./acme.nix
+    #./borg.nix TODO!
+    ./caddy.nix
     ./gitea.nix
+    ./hardware.nix
     ./network.nix
   ];
 
