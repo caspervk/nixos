@@ -25,6 +25,7 @@
         push.autoSetupRemote = true;
         rebase.autoSquash = true;
         rebase.autoStash = true;
+        rebase.updateRefs = true;
       };
     };
   };
