@@ -6,7 +6,7 @@
       name = "enp1s0";
       address = [
         "159.69.4.2/32"
-        "2a01:4f8:1c0c:70d1::/64/64"
+        "2a01:4f8:1c0c:70d1::1/64"
       ];
       routes = [
         {routeConfig = {Destination = "172.31.1.1";};}
