@@ -46,9 +46,9 @@
         "${config.security.acme.certs."caspervk.net".directory}/key.pem"
       )
       -- Cache is stored in /var/cache/knot-resolver, which is mounted as
-      -- tmpfs. Allow using 90% of the partition for caching.
+      -- tmpfs. Allow using 75% of the partition for caching.
       -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-cache.html
-      cache.size = math.floor(cache.fssize() * 0.9)
+      cache.size = math.floor(cache.fssize() * 0.75)
       -- The predict module helps to keep the cache hot by prefetching
       -- records. Any time the resolver answers with records that are about to
       -- expire, they get refreshed.
