@@ -4,22 +4,31 @@
   secrets,
   ...
 }: {
-  # systemd.services.qbittorrent = {
-  #   description = "qBittorrent service";
-  #   documentation = ["man:qbittorrent-nox(1)"];
-  #   wantedBy = ["multi-user.target"];
-  #   wants = ["multi-user.target"];
-  #   after = ["network-online.target" "nss-lookup.target"];
-  #   serviceConfig = {
-  #     Type = "exec";
-  #     User = "flatpak";
-  #     Group = "users";
-  #     ExecStart = pkgs.writers.writeBash "asd" ''
-  #       while true; do ${pkgs.curl}/bin/curl --connect-timeout 1 ip.caspervk.net; echo; sleep 1; done
-  #     '';
-  #     RestrictNetworkInterfaces = "wg-sigma-p2p";
-  #   };
-  # };
+  # TODO
+  virtualisation.oci-containers.containers = {
+    qbittorrent = {
+      # https://docs.linuxserver.io/images/docker-qbittorrent
+      image = "lscr.io/linuxserver/qbittorrent:4.5.2";
+      # outbound_addr ensures we use the sigma-p2p IP address for outbound
+      # connections. port_handler allows the application access to the real
+      # source IP addresses.
+      # TODO: use systemd service with `RestrictNetworkInterfaces = "wg-sigma-p2p"` instead
+      # https://github.com/NixOS/nixpkgs/pull/287923
+      extraOptions = ["--network=slirp4netns:outbound_addr=wg-sigma-p2p,port_handler=slirp4netns"];
+      environment = {
+        TZ = "Europe/Copenhagen";
+      };
+      ports = [
+        # WebUI (localhost for Caddy reverse proxy) TODO
+        # "127.0.0.1:80:80"
+        "${secrets.sigma.sigma-p2p-ip-address}:1337:1337/tcp"
+        "${secrets.sigma.sigma-p2p-ip-address}:1337:1337/udp"
+      ];
+      volumes = [
+        "/mnt/lol/:/data/downloads/"
+      ];
+    };
+  };
 
   systemd.network = {
     config = {
