@@ -25,7 +25,7 @@
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = ["defaults" "size=2G" "mode=755"]; # mode=755 so only root can write to those files
+    options = ["defaults" "size=4G" "mode=755"]; # mode=755 so only root can write to those files
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
