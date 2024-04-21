@@ -4,7 +4,7 @@
     ../../modules/base
     ../../modules/server
     ./acme.nix
-    #./borg.nix TODO!
+    ./borg.nix
     ./caddy.nix
     ./gitea.nix
     ./hardware.nix
