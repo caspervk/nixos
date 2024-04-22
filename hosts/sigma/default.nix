@@ -6,6 +6,7 @@
     ./acme.nix
     ./borg.nix
     ./caddy.nix
+    ./deluge.nix
     ./gitea.nix
     ./hardware.nix
     ./network.nix

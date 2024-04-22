@@ -4,32 +4,6 @@
   secrets,
   ...
 }: {
-  # TODO
-  virtualisation.oci-containers.containers = {
-    qbittorrent = {
-      # https://docs.linuxserver.io/images/docker-qbittorrent
-      image = "lscr.io/linuxserver/qbittorrent:4.5.2";
-      # outbound_addr ensures we use the sigma-p2p IP address for outbound
-      # connections. port_handler allows the application access to the real
-      # source IP addresses.
-      # TODO: use systemd service with `RestrictNetworkInterfaces = "wg-sigma-p2p"` instead
-      # https://github.com/NixOS/nixpkgs/pull/287923
-      extraOptions = ["--network=slirp4netns:outbound_addr=wg-sigma-p2p,port_handler=slirp4netns"];
-      environment = {
-        TZ = "Europe/Copenhagen";
-      };
-      ports = [
-        # WebUI (localhost for Caddy reverse proxy) TODO
-        # "127.0.0.1:80:80"
-        "${secrets.sigma.sigma-p2p-ip-address}:1337:1337/tcp"
-        "${secrets.sigma.sigma-p2p-ip-address}:1337:1337/udp"
-      ];
-      volumes = [
-        "/mnt/lol/:/data/downloads/"
-      ];
-    };
-  };
-
   systemd.network = {
     config = {
       routeTables = {
@@ -145,6 +119,8 @@
       "enp5s0" = {
         allowedTCPPorts = [
           22 # SSH
+          80 # Caddy
+          443 # Caddy
         ];
       };
       "wg-sigma-public" = {
@@ -156,7 +132,10 @@
       };
       "wg-sigma-p2p" = {
         allowedTCPPorts = [
-          1337 # random testing (TODO)
+          60881 # Deluge
+        ];
+        allowedUDPPorts = [
+          60881 # Deluge
         ];
       };
     };
