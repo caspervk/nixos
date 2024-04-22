@@ -17,6 +17,7 @@
   # Connect to control socket:
   # > nix shell nixpkgs#socat -c sudo socat readline UNIX-CONNECT:/run/knot-resolver/control/1
   # >> help()
+  # >> cache.clear("example.com")
   # https://knot-resolver.readthedocs.io/en/stable/daemon-scripting.html
   services.kresd = {
     enable = true;
