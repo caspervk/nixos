@@ -9,7 +9,9 @@
     ./deluge.nix
     ./gitea.nix
     ./hardware.nix
+    ./jellyfin.nix
     ./network.nix
+    ./sonarr.nix
   ];
 
   networking.hostName = "sigma";

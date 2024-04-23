@@ -92,6 +92,7 @@
       "! /**/.cache"
       "! /**/Cache"
       "! /**/cache"
+      "! /srv/torrents"
       "! /var/lib/docker/overlay2"
       "- *.tmp"
 
