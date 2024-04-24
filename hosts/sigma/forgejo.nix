@@ -12,7 +12,7 @@
       name = "default";
       url = "https://git.caspervk.net";
       # From https://git.caspervk.net/admin/actions/runners/
-      tokenFile = config.age.secrets.gitea-actions-runner-token-file.path;
+      tokenFile = config.age.secrets.forgejo-actions-runner-token-file.path;
       # The Forgejo runner relies on application containers (Docker, Podman,
       # etc) to execute a workflow in an isolated environment. Labels are used
       # to map jobs' `runs-on` to their runtime environment. Many common
@@ -31,8 +31,8 @@
     };
   };
 
-  age.secrets.gitea-actions-runner-token-file = {
-    file = "${secrets}/secrets/gitea-actions-runner-token-file.age";
+  age.secrets.forgejo-actions-runner-token-file = {
+    file = "${secrets}/secrets/forgejo-actions-runner-token-file.age";
     mode = "400";
     owner = "root";
     group = "root";

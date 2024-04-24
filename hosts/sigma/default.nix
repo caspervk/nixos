@@ -7,7 +7,7 @@
     ./borg.nix
     ./caddy.nix
     ./deluge.nix
-    ./gitea.nix
+    ./forgejo.nix
     ./hardware.nix
     ./jellyfin.nix
     ./network.nix
