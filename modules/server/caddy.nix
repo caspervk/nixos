@@ -20,7 +20,7 @@ lib.mkIf (config.services.caddy.virtualHosts != {}) {
   environment.persistence."/nix/persist" = {
     directories = [
       {
-        directory = "/var/lib/caddy";
+        directory = "/var/www/html";
         user = "caddy";
         group = "caddy";
         mode = "0755";
