@@ -20,6 +20,7 @@
     libreoffice
     mpv
     spotify
+    thunderbird
     tor-browser-bundle-bin
     ungoogled-chromium
     vlc
