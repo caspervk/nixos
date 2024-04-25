@@ -57,6 +57,15 @@
             Table = "wg-sigma-public";
           };
         }
+        {
+          # The postfix systemd service has
+          # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
+          # it to use the correct routing table.
+          routingPolicyRuleConfig = {
+            User = config.services.postfix.user;
+            Table = "wg-sigma-public";
+          };
+        }
       ];
     };
 
@@ -119,15 +128,21 @@
       "enp5s0" = {
         allowedTCPPorts = [
           22 # SSH
-          80 # Caddy
+          25 # Mail SMTP
           443 # Caddy
+          465 # Mail ESMTP
+          80 # Caddy
+          993 # Mail IMAPS
         ];
       };
       "wg-sigma-public" = {
         allowedTCPPorts = [
           22 # SSH
-          80 # Caddy
+          25 # Mail SMTP
           443 # Caddy
+          465 # Mail ESMTP
+          80 # Caddy
+          993 # Mail IMAPS
         ];
       };
       "wg-sigma-p2p" = {

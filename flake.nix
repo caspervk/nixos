@@ -39,6 +39,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+    };
   };
 
   outputs = {

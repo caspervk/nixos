@@ -10,6 +10,7 @@
     ./forgejo.nix
     ./hardware.nix
     ./jellyfin.nix
+    ./mail.nix
     ./network.nix
     ./sonarr.nix
   ];
