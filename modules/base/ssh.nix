@@ -24,7 +24,7 @@
     "sigma".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c";
     "sigma-old".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Qrh0tpR5YawiYvcPGC4OSnu4//ge1eVdiBDLrTbCx";
     "tor".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVPxvqwS2NMqqCGBkMmExzdBY5hGLegiOuqPJAOfdKk";
-    "git.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPxSg6XN6znT1T4H0U1lzJBsGY7Uann+TBisWD3Drd";
+    "git.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c";
   };
 
   environment.persistence."/nix/persist" = {
