@@ -1,9 +1,83 @@
 {
   config,
+  nixpkgs-unstable,
   pkgs,
   secrets,
   ...
 }: {
+  # Forgejo is a lightweight software forge (Git host), with a highlight on
+  # being completely free software. It's a fork of Gitea.
+  # https://wiki.nixos.org/wiki/Forgejo
+  services.forgejo = {
+    enable = true;
+    # TODO: remove package override in NixOS 24.04
+    package = nixpkgs-unstable.legacyPackages.x86_64-linux.forgejo;
+    # Run Forgejo under git:git for better ssh clone urls.
+    user = "git";
+    group = "git";
+    # https://forgejo.org/docs/latest/admin/config-cheat-sheet/
+    settings = {
+      DEFAULT = {
+        # Application name, used in the page title.
+        APP_NAME = "Git";
+      };
+      repository = {
+        # Default branch name of all repositories.
+        DEFAULT_BRANCH = "master";
+        # Comma separated list of globally disabled repo units.
+        DISABLED_REPO_UNITS = "repo.issues,repo.ext_issues,repo.pulls,repo.wiki,repo.ext_wiki,repo.projects,repo.packages";
+      };
+      ui = {
+        # Default theme.
+        DEFAULT_THEME = "gitea-light";
+      };
+      server = {
+        # Listen address. Defaults to '0.0.0.0'.
+        HTTP_ADDR = "localhost";
+        # Domain name of the server.
+        DOMAIN = "git.caspervk.net";
+        # Full public URL of Forgejo server.
+        ROOT_URL = "https://git.caspervk.net/";
+        # Landing page for unauthenticated users.
+        LANDING_PAGE = "/caspervk";
+      };
+      security = {
+        # Cookie lifetime, in days.
+        LOGIN_REMEMBER_DAYS = 365;
+      };
+      service = {
+        # Disable registration, after which only admin can create accounts for
+        # users.
+        DISABLE_REGISTRATION = true;
+      };
+      session = {
+        # Marks session cookies as “secure” as a hint for browsers to only send
+        # them via HTTPS. This option is recommend, if Forgejo is being served
+        # over HTTPS.
+        COOKIE_SECURE = true;
+        # Session engine provider.
+        PROVIDER = "db";
+      };
+    };
+  };
+
+  # The configured Forgejo user and group is only created automatically if it
+  # is left at the default "forgejo". The following is copied from
+  # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/misc/forgejo.nix
+  # but with the mkIf removed and "forgejo" substituted for "git".
+  users.users = {
+    git = {
+      home = config.services.forgejo.stateDir;
+      useDefaultShell = true;
+      group = "git";
+      isSystemUser = true;
+    };
+  };
+  users.groups = {
+    git = {};
+  };
+
+  # https://wiki.nixos.org/wiki/Forgejo
   # https://forgejo.org/docs/latest/admin/actions/
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
@@ -29,6 +103,17 @@
         };
       };
     };
+  };
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      {
+        directory = "/var/lib/forgejo";
+        user = "git";
+        group = "git";
+        mode = "0750";
+      }
+    ];
   };
 
   age.secrets.forgejo-actions-runner-token-file = {

@@ -20,7 +20,7 @@ jobs:
       - run: |
           # Configure SSH
           mkdir ~/.ssh/
-          echo "git.caspervk.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPxSg6XN6znT1T4H0U1lzJBsGY7Uann+TBisWD3Drd" > ~/.ssh/known_hosts
+          echo "git.caspervk.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c" > ~/.ssh/known_hosts
           echo "${{ secrets.SNOWFLAKE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 0600 ~/.ssh/id_ed25519
 
