@@ -37,7 +37,7 @@
   environment.persistence."/nix/persist" = {
     directories = [
       {
-        directory = "/var/lib/murmur/";
+        directory = "/var/lib/murmur";
         user = "murmur";
         group = "murmur";
         mode = "0700";
