@@ -11,6 +11,7 @@
     ./network.nix
     ./nix.nix
     ./packages.nix
+    ./podman.nix
     ./ripgrep.nix
     ./ssh.nix
     ./sudo.nix

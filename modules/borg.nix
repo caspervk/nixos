@@ -90,15 +90,17 @@
       "! /**/found.000/*"
 
       "! /**/.cache"
-      "! /**/Cache"
       "! /**/cache"
+      "! /**/Cache"
       "! /srv/torrents"
+      "! /var/lib/containers/overlay*"
       "! /var/lib/docker/overlay2"
       "- *.tmp"
 
       "! /home/*/Android/Sdk"
       "! /home/*/Downloads"
       "! /home/*/GOG Games"
+      "! /home/*/.local/share/containers/storage/overlay*"
       "! /home/*/.steam"
     ];
 
