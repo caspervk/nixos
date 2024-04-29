@@ -11,6 +11,7 @@
     ./hardware.nix
     ./jellyfin.nix
     ./mail.nix
+    ./memos.nix
     ./network.nix
     ./sonarr.nix
   ];
