@@ -54,6 +54,10 @@
     };
   };
 
+  # Add caspervk user to the 'torrent' group to allow viewing downloads
+  users.groups.torrent.members = ["caspervk"];
+
+
   environment.persistence."/nix/persist" = {
     directories = [
       # Deluge data directory. This is *NOT* where the downloads are saved
@@ -70,7 +74,7 @@
       # /srv/torrents/downloads/movies/ and /srv/torrents/tv/.
       {
         directory = "/srv/torrents";
-        user = "caspervk";
+        user = "deluge";
         group = "torrent";
         mode = "0770";
       }
