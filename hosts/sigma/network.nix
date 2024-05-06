@@ -58,6 +58,16 @@
           };
         }
         {
+          # Allow hosts on the local network to contact us directly on the
+          # public address instead of routing the packet through Wireguard and
+          # back again.
+          routingPolicyRuleConfig = {
+            From = "49.13.33.75/32";
+            To = "192.168.0.0/24";
+            Table = "main";
+          };
+        }
+        {
           # The postfix systemd service has
           # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
           # it to use the correct routing table.
