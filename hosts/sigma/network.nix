@@ -136,10 +136,16 @@
     allowedUDPPortRanges = lib.mkForce [];
     interfaces = {
       "enp5s0" = {
+        allowedUDPPorts = [
+          139 # Samba
+          445 # Samba
+        ];
         allowedTCPPorts = [
+          139 # Samba
           22 # SSH
           25 # Mail SMTP
           443 # Caddy
+          445 # Samba
           465 # Mail ESMTP
           80 # Caddy
           993 # Mail IMAPS

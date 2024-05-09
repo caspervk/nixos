@@ -13,6 +13,7 @@
     ./mail.nix
     ./memos.nix
     ./network.nix
+    ./samba.nix
     ./sonarr.nix
   ];
 

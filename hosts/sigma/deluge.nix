@@ -57,7 +57,6 @@
   # Add caspervk user to the 'torrent' group to allow viewing downloads
   users.groups.torrent.members = ["caspervk"];
 
-
   environment.persistence."/nix/persist" = {
     directories = [
       # Deluge data directory. This is *NOT* where the downloads are saved
