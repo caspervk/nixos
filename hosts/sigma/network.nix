@@ -174,14 +174,14 @@
 
   age.secrets.wireguard-preshared-key-file = {
     file = "${secrets}/secrets/wireguard-preshared-key-file.age";
-    mode = "640";
+    mode = "440";
     owner = "root";
     group = "systemd-network";
   };
 
   age.secrets.wireguard-private-key-file-sigma = {
     file = "${secrets}/secrets/wireguard-private-key-file-sigma.age";
-    mode = "640";
+    mode = "440";
     owner = "root";
     group = "systemd-network";
   };

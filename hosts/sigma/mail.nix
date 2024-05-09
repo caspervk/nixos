@@ -123,7 +123,7 @@
 
   age.secrets.mail-hashed-password-file = {
     file = "${secrets}/secrets/mail-hashed-password-file.age";
-    mode = "600";
+    mode = "400";
     owner = "root";
     group = "root";
   };

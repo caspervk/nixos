@@ -6,7 +6,7 @@
 
   age.secrets.caddy-auth-sigma = {
     file = "${secrets}/secrets/caddy-auth-sigma.age";
-    mode = "600";
+    mode = "400";
     owner = "caddy";
     group = "caddy";
   };
