@@ -13,12 +13,6 @@
       # to the mess that is IPv6. Force keepalive packets to avoid sessions
       # dying. See https://news.ycombinator.com/item?id=25737611.
       serverAliveInterval = 25;
-      matchBlocks = {
-        # Lambda exposes ssh on port 222 to allow git ssh on 22.
-        "lambda" = {
-          port = 222;
-        };
-      };
       # TODO: use addKeysToAgent attribute in Home Manager 24.04 instead of
       # extraConfig.
       extraConfig = ''

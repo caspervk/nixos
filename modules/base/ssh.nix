@@ -20,7 +20,6 @@
     "alpha".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOpQNEmmEe6jr7Mv37ozokvtTSd1I3SmUU1tpCSNTkc";
     "delta".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFe9RpnO1/QRU81kjtEsWN66xfP5Y/qf5EQZ6wdM/XCT";
     "delta-old".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0x9oImZjIhoPEwLlHVixIh7y1Kwn+SX17xffrdRzvv";
-    "lambda".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEEd354UBnQi4xhjtJtKs4yVXuOkKY0svk+YHCm/pG46";
     "sigma".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c";
     "sigma-old".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Qrh0tpR5YawiYvcPGC4OSnu4//ge1eVdiBDLrTbCx";
     "tor".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVPxvqwS2NMqqCGBkMmExzdBY5hGLegiOuqPJAOfdKk";
