@@ -3,10 +3,10 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
-    ../../modules/syncthing.nix
-    ./hardware.nix
     ./borg.nix
+    ./hardware.nix
     ./sway.nix
+    ./syncthing.nix
   ];
 
   networking.hostName = "zeta";

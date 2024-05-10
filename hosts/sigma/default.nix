@@ -15,6 +15,7 @@
     ./network.nix
     ./samba.nix
     ./sonarr.nix
+    ./syncthing.nix
   ];
 
   networking.hostName = "sigma";

@@ -145,6 +145,7 @@
           1234 # ad hoc
           1337 # ad hoc
           139 # Samba
+          22000 # syncthing
           22 # SSH
           25 # Mail SMTP
           443 # Caddy
@@ -157,6 +158,8 @@
         ];
         allowedUDPPorts = [
           139 # Samba
+          21027 # syncthing
+          22000 # syncthing
           445 # Samba
         ];
       };
@@ -164,6 +167,7 @@
         allowedTCPPorts = [
           1234 # ad hoc
           1337 # ad hoc
+          22000 # syncthing
           22 # SSH
           25 # Mail SMTP
           443 # Caddy
@@ -172,6 +176,10 @@
           8080 # ad hoc
           80 # Caddy
           993 # Mail IMAPS
+        ];
+        allowedUDPPorts = [
+          21027 # syncthing
+          22000 # syncthing
         ];
       };
       "wg-sigma-p2p" = {

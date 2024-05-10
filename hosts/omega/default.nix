@@ -4,10 +4,10 @@
     ../../modules/base
     ../../modules/desktop
     ../../modules/games.nix
-    ../../modules/syncthing.nix
-    ./hardware.nix
     ./borg.nix
+    ./hardware.nix
     ./sway.nix
+    ./syncthing.nix
   ];
 
   networking.hostName = "omega";

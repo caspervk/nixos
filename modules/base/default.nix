@@ -15,6 +15,7 @@
     ./ripgrep.nix
     ./ssh.nix
     ./sudo.nix
+    ./syncthing.nix
     ./users.nix
     ./vim
   ];
