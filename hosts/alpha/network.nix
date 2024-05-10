@@ -70,7 +70,7 @@
           wireguardPeerConfig = {
             PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            AllowedIPs = ["${secrets.alpha.sigma-p2p-ip-address}/32"];
+            AllowedIPs = ["${secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
             RouteTable = "main";
           };
         }

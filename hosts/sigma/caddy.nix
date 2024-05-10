@@ -1,5 +1,5 @@
 {secrets, ...}: {
-  services.caddy.virtualHosts = secrets.sigma.caddy.virtualHosts;
+  services.caddy.virtualHosts = secrets.hosts.sigma.caddy.virtualHosts;
 
   # Add caddy to the 'torrent' group to allow viewing downloads
   users.groups.torrent.members = ["caddy"];

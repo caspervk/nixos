@@ -75,7 +75,7 @@
     loginAccounts = {
       "casper@vkristensen.dk" = {
         hashedPasswordFile = config.age.secrets.mail-hashed-password-file.path;
-        aliases = secrets.sigma.mail.aliases;
+        aliases = secrets.hosts.sigma.mail.aliases;
       };
     };
   };

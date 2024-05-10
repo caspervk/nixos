@@ -109,7 +109,7 @@
     };
     networks."wg-sigma-p2p" = {
       name = "wg-sigma-p2p";
-      address = ["${secrets.sigma.sigma-p2p-ip-address}/32"];
+      address = ["${secrets.hosts.sigma.sigma-p2p-ip-address}/32"];
       routingPolicyRules = [
         {
           # The deluge systemd service has
@@ -124,7 +124,7 @@
         {
           routingPolicyRuleConfig = {
             Priority = 1000;
-            From = "${secrets.sigma.sigma-p2p-ip-address}/32";
+            From = "${secrets.hosts.sigma.sigma-p2p-ip-address}/32";
             Table = "wg-sigma-p2p";
           };
         }

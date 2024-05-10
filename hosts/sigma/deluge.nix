@@ -18,7 +18,7 @@
     config = {
       download_location = "/srv/torrents/downloads/";
       # use the dedicated network interface and port
-      listen_interface = secrets.sigma.sigma-p2p-ip-address;
+      listen_interface = secrets.hosts.sigma.sigma-p2p-ip-address;
       outgoing_interface = "wg-sigma-p2p";
       random_port = false;
       listen_ports = [60881];
