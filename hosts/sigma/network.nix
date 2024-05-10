@@ -136,27 +136,35 @@
     allowedUDPPortRanges = lib.mkForce [];
     interfaces = {
       "enp5s0" = {
+        allowedTCPPorts = [
+          1234 # ad hoc
+          1337 # ad hoc
+          139 # Samba
+          22 # SSH
+          25 # Mail SMTP
+          443 # Caddy
+          445 # Samba
+          465 # Mail ESMTP
+          8000 # ad hoc
+          8080 # ad hoc
+          80 # Caddy
+          993 # Mail IMAPS
+        ];
         allowedUDPPorts = [
           139 # Samba
           445 # Samba
         ];
-        allowedTCPPorts = [
-          139 # Samba
-          22 # SSH
-          25 # Mail SMTP
-          443 # Caddy
-          445 # Samba
-          465 # Mail ESMTP
-          80 # Caddy
-          993 # Mail IMAPS
-        ];
       };
       "wg-sigma-public" = {
         allowedTCPPorts = [
+          1234 # ad hoc
+          1337 # ad hoc
           22 # SSH
           25 # Mail SMTP
           443 # Caddy
           465 # Mail ESMTP
+          8000 # ad hoc
+          8080 # ad hoc
           80 # Caddy
           993 # Mail IMAPS
         ];
