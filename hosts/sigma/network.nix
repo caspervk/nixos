@@ -51,9 +51,12 @@
       address = ["49.13.33.75/32"];
       routingPolicyRules = [
         {
-          # See the AllowedIPs comment above for why this is necessary
+          # The postfix systemd service has
+          # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
+          # it to use the correct routing table.
           routingPolicyRuleConfig = {
-            From = "49.13.33.75/32";
+            Priority = 10;
+            User = config.services.postfix.user;
             Table = "wg-sigma-public";
           };
         }
@@ -62,17 +65,17 @@
           # public address instead of routing the packet through Wireguard and
           # back again.
           routingPolicyRuleConfig = {
+            Priority = 500;
             From = "49.13.33.75/32";
             To = "192.168.0.0/24";
             Table = "main";
           };
         }
         {
-          # The postfix systemd service has
-          # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
-          # it to use the correct routing table.
+          # See the AllowedIPs comment above for why this is necessary
           routingPolicyRuleConfig = {
-            User = config.services.postfix.user;
+            Priority = 1000;
+            From = "49.13.33.75/32";
             Table = "wg-sigma-public";
           };
         }
@@ -109,17 +112,19 @@
       address = ["${secrets.sigma.sigma-p2p-ip-address}/32"];
       routingPolicyRules = [
         {
-          routingPolicyRuleConfig = {
-            From = "${secrets.sigma.sigma-p2p-ip-address}/32";
-            Table = "wg-sigma-p2p";
-          };
-        }
-        {
           # The deluge systemd service has
           # RestrictNetworkInterfaces=wg-sigma-p2p, but that does not tell it
           # to use the correct routing table.
           routingPolicyRuleConfig = {
+            Priority = 10;
             User = config.services.deluge.user;
+            Table = "wg-sigma-p2p";
+          };
+        }
+        {
+          routingPolicyRuleConfig = {
+            Priority = 1000;
+            From = "${secrets.sigma.sigma-p2p-ip-address}/32";
             Table = "wg-sigma-p2p";
           };
         }
