@@ -99,7 +99,7 @@
       settings = {
         runner = {
           # Default fetch interval is 2s -- no need to spam the server
-          fetch_interval = "5m";
+          fetch_interval = "1m";
         };
       };
     };
