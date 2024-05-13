@@ -93,13 +93,24 @@
       # actions require bash, git and nodejs, as well as a filesystem that
       # follows the filesystem hierarchy standard.
       labels = [
-        "debian-latest:docker://node:20-bullseye"
+        "debian-latest:docker://docker.io/library/node:20-bullseye"
       ];
       # https://forgejo.org/docs/latest/admin/actions/#configuration
       settings = {
         runner = {
           # Default fetch interval is 2s -- no need to spam the server
           fetch_interval = "1m";
+        };
+        container = {
+          # TODO: host networking is required to allow contacting services
+          # running on the sigma-public address, such as git.caspervk.net.
+          # We don't need this if we replace Docker with Podman, since that has
+          # actual sane networking. Note, however, that the forgejo runner
+          # requires a Docker socket. Podman can emulate this, and the runner
+          # be configured to use it through
+          # `container.docker_host = "unix://podman.sock"`, but we need to figure
+          # out how to run a non-root Podman user socket easily in NixOS.
+          network = "host";
         };
       };
     };
