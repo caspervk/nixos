@@ -50,6 +50,14 @@
   # about our user profile. TODO: 24.04
   # home-manager.users.caspervk.nix.gc = config.nix.gc;
 
+  # Run unpatched dynamic binaries on NixOS.
+  # https://github.com/Mic92/nix-ld
+  programs.nix-ld.enable = true;
+
+  # Comma runs software without installing it. Basically it just wraps together
+  # `nix shell -c` and `nix-index`. You stick a `,` in front of a command to
+  # run it from whatever location it happens to occupy in nixpkgs without
+  # really thinking about it.
   # https://github.com/nix-community/comma
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
