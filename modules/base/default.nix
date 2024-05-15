@@ -10,8 +10,8 @@
     ./locale.nix
     ./network.nix
     ./nix.nix
-    ./packages.nix
     ./podman.nix
+    ./programs.nix
     ./ripgrep.nix
     ./ssh.nix
     ./sudo.nix

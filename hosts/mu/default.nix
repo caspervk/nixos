@@ -8,7 +8,7 @@
     ./fish.nix
     ./git.nix
     ./hosts.nix
-    ./packages.nix
+    ./programs.nix
     ./sway.nix
   ];
 
