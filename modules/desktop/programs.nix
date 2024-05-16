@@ -44,6 +44,8 @@
       # TODO: remove when tor browser is based on firefox v121.
       # https://www.mozilla.org/en-US/firefox/121.0/releasenotes/
       MOZ_ENABLE_WAYLAND = 1;
+      # https://wiki.archlinux.org/title/Sway#Java_applications
+      _JAVA_AWT_WM_NONREPARENTING = 1;
     };
   };
 }
