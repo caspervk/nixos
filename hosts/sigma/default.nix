@@ -4,6 +4,7 @@
     ../../modules/base
     ../../modules/server
     ./acme.nix
+    ./archiveteam-warrior.nix
     ./borg.nix
     ./caddy.nix
     ./deluge.nix
