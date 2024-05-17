@@ -8,12 +8,19 @@
     enable = true;
     # Automatically `podman system prune` weekly
     autoPrune.enable = true;
-    # Required for containers under podman-compose to be able to talk to each
-    # other.
     defaultNetwork.settings = {
+      # DNS is required for containers under podman-compose to be able to talk
+      # to each other.
       dns_enabled = true;
       ipv6_enabled = true;
     };
+  };
+
+  # Auto-update containers
+  # https://docs.podman.io/en/latest/markdown/podman-auto-update.1.html
+  systemd = {
+    timers.podman-auto-update.enable = true;
+    units."podman-auto-update.timer".wantedBy = ["timers.target"];
   };
 
   # Persist docker volumes
