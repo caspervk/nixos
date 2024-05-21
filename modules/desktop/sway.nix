@@ -255,12 +255,12 @@
       ];
       timeouts = [
         {
-          timeout = 60 * 20;
+          timeout = 60 * 60 * 1;
           command = outputOff;
           resumeCommand = outputOn;
         }
         {
-          timeout = 60 * 60 * 3;
+          timeout = 60 * 60 * 4;
           command = suspend;
         }
       ];
