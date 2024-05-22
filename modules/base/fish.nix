@@ -10,6 +10,11 @@
     interactiveShellInit = ''
       # fzf: use ctrl+f to list files and ctrl+g to show the git log
       fzf_configure_bindings --directory=\cf --git_log=\cg
+
+      # allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
+      function s --wraps 'nix shell'
+        nix shell nixpkgs#$argv
+      end
     '';
   };
 
