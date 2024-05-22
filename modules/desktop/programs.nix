@@ -24,6 +24,7 @@
     tor-browser-bundle-bin
     ungoogled-chromium
     vlc
+    xdg-utils
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
