@@ -8,8 +8,17 @@
   # Packages useful on a desktop computer which don't require their own module
 
   environment.systemPackages = with pkgs; [
+    aspell
+    aspellDicts.da
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
     firefox-wayland
     gimp
+    hunspell
+    hunspellDicts.da-dk
+    hunspellDicts.en-gb-ise
+    hunspellDicts.en-us
     jetbrains.pycharm-professional
     keepassxc
     (kodi-wayland.withPackages (kodiPackages:
