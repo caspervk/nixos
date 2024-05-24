@@ -164,13 +164,13 @@
                 mode = "year";
                 mode-mon-col = 3;
                 weeks-pos = "left";
-                on-scroll = 1;
                 format = {
-                  months = "<span color='#ffead3'><b>{}</b></span>";
-                  days = "<span color='#ecc6d9'><b>{}</b></span>";
-                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                  months = "<span color='#35b9ab'><b>{}</b></span>";
+                  weekdays = "<span color='#21a4df'><b>{}</b></span>";
+                  # https://github.com/Alexays/Waybar/issues/2827
+                  weeks = "<span color='#73ba25'><b>{:%W}</b></span>";
+                  days = "<span color='#35b9ab'>{}</span>";
+                  today = "<span color='#35b9ab' background='#173f4f'><b>{}</b></span>";
                 };
               };
               actions = {
