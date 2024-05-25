@@ -117,7 +117,7 @@
             text = "#ffffff";
           };
         };
-        terminal = "alacritty";
+        terminal = "foot";
         bars = [{command = "${pkgs.waybar}/bin/waybar";}];
       };
 
