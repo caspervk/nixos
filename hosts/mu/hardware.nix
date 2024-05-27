@@ -9,7 +9,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-gpu-intel
     nixos-hardware.nixosModules.common-pc
     nixos-hardware.nixosModules.common-pc-laptop
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
