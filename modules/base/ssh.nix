@@ -12,6 +12,8 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPB/qr63FB0ZqOe/iZGwIKNHD8a1Ud/mXVjQPmpIG7pM caspervk@omega"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII71DKQziktCkyMAmL25QKRK6nG2uJDkQXioIZp5JkMZ caspervk@zeta"
+      # TODO: remove
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICA1+3EYBguNE+6uJgWZixTKBGr6CpstlU6Drtf8w0As caspervk@mu"
     ];
   };
 
