@@ -16,6 +16,9 @@
           font = "monospace:size=10.25";
           letter-spacing = "1";
         };
+        scrollback = {
+          lines = 10000;
+        };
         colors = {
           # https://alacritty.org/config-alacritty.html
           foreground = "d8d8d8";
