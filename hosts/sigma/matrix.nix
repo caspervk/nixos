@@ -1,4 +1,8 @@
-{...}: {
+{
+  config,
+  secrets,
+  ...
+}: {
   # https://element-hq.github.io/synapse/latest/
   # https://nixos.org/manual/nixos/stable/#module-services-matrix
   # https://wiki.nixos.org/wiki/Matrix
@@ -44,6 +48,36 @@
     };
   };
 
+  # https://github.com/matrix-org/sliding-sync
+  services.matrix-synapse.sliding-sync = {
+    # Unlike matrix-synapse, sliding-sync has createDatabase=true by default,
+    # which means we don't have to configure the database in the postgres
+    # service manually.
+    enable = true;
+    settings.SYNCV3_SERVER = config.services.matrix-synapse.settings.public_baseurl;
+    environmentFile = config.age.secrets.matrix-sliding-sync-environment-file.path;
+  };
+
+  services.postgresql = {
+    ensureDatabases = [
+      # matrix-synapse expects the database to have the options `LC_COLLATE`
+      # and `LC_CTYPE` set to `C`, which basically instructs postgres to
+      # ignore any locale-based preferences. Do this manually.
+      # https://github.com/NixOS/nixpkgs/commit/8be61f7a36f403c15e1a242e129be7375aafaa85
+      "matrix-synapse"
+    ];
+    ensureUsers = [
+      # If the database user name equals the connecting system user name,
+      # postgres by default will accept a passwordless connection via unix
+      # domain socket. This makes it possible to run many postgres-backed
+      # services without creating any database secrets at all.
+      {
+        name = "matrix-synapse";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
+
   environment.persistence."/nix/persist" = {
     directories = [
       {
@@ -53,5 +87,12 @@
         mode = "0700";
       }
     ];
+  };
+
+  age.secrets.matrix-sliding-sync-environment-file = {
+    file = "${secrets}/secrets/matrix-sliding-sync-environment-file.age";
+    mode = "400";
+    owner = "root";
+    group = "root";
   };
 }
