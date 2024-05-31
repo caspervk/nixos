@@ -1,7 +1,7 @@
 {lib, ...}: {
   security.acme.certs = {
     "caspervk.net" = {
-      domain = "*.caspervk.net";
+      extraDomainNames = ["*.caspervk.net"];
       reloadServices = [
         "caddy.service"
         "murmur.service"
