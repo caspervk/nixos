@@ -12,8 +12,10 @@
     ./hardware.nix
     ./jellyfin.nix
     ./mail.nix
+    ./matrix.nix
     ./memos.nix
     ./network.nix
+    ./postgresql.nix
     ./samba.nix
     ./sonarr.nix
     ./syncthing.nix

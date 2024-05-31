@@ -95,6 +95,8 @@
       "! /srv/torrents"
       "! /var/lib/containers/overlay*"
       "! /var/lib/docker/overlay2"
+      # postgres databases are dumped to /var/backup/postgresql by services.postgresqlBackup
+      "! /var/lib/postgresql"
       "- *.tmp"
 
       "! /home/*/Android/Sdk"
