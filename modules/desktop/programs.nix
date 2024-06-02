@@ -13,6 +13,7 @@
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+    element-desktop
     firefox-wayland
     gimp
     hunspell
@@ -56,6 +57,8 @@
       MOZ_ENABLE_WAYLAND = 1;
       # https://wiki.archlinux.org/title/Sway#Java_applications
       _JAVA_AWT_WM_NONREPARENTING = 1;
+      # https://wiki.nixos.org/wiki/Wayland
+      NIXOS_OZONE_WL = 1;
     };
   };
 }
