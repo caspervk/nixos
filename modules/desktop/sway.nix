@@ -45,6 +45,7 @@
           };
         };
         modifier = "Mod4"; # super
+        defaultWorkspace = "workspace number 1";
         keybindings = lib.mkOptionDefault {
           # Menu
           "Mod4+backspace" = "exec rofi -show drun";
@@ -139,7 +140,7 @@
         src = "${pkgs.waybar}/etc/xdg/waybar";
         installPhase = ''
           # JSON isn't valid if it contains comments
-          sed 's#//.*##' config | ${pkgs.jq}/bin/jq > $out
+          sed 's#//.*##' config.jsonc | ${pkgs.jq}/bin/jq > $out
         '';
       };
       defaultConfig = builtins.fromJSON (lib.readFile "${mkDefaultConfig}");

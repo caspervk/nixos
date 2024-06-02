@@ -49,7 +49,7 @@
   };
 
   # https://github.com/matrix-org/sliding-sync
-  services.matrix-synapse.sliding-sync = {
+  services.matrix-sliding-sync = {
     # Unlike matrix-synapse, sliding-sync has createDatabase=true by default,
     # which means we don't have to configure the database in the postgres
     # service manually.

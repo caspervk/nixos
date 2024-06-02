@@ -15,12 +15,13 @@
       package = pkgs.rofi-wayland;
       theme = "android_notification";
       extraConfig = {
-        modes = "drun,emoji";
+        modes = "drun"; # TODO: drun,emoji
         show-icons = true;
       };
-      plugins = with pkgs; [
-        rofi-emoji
-      ];
+      # TODO
+      # plugins = with pkgs; [
+      #   rofi-emoji
+      # ];
     };
   };
 }

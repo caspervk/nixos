@@ -1,15 +1,9 @@
-{
-  home-manager,
-  nixpkgs-unstable,
-  ...
-}: {
+{home-manager, ...}: {
   # Terminal emulator
   # https://codeberg.org/dnkl/foot
   home-manager.users.caspervk = {
     programs.foot = {
       enable = true;
-      # TODO: remove version override in NixOS v24.04
-      package = nixpkgs-unstable.legacyPackages.x86_64-linux.foot;
       # https://man.archlinux.org/man/foot.ini.5.en
       settings = {
         main = {

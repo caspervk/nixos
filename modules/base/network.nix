@@ -15,7 +15,7 @@
   };
 
   # TODO: these systemd networkd settings will be the default once
-  # https://github.com/NixOS/nixpkgs/pull/202488 is merged.
+  # https://github.com/NixOS/nixpkgs/pull/264967 is merged.
   networking.useNetworkd = true;
   systemd.network.enable = true;
 
@@ -50,7 +50,7 @@
     # Resolved falls back to DNS servers operated by American internet
     # surveillance and adtech companies by default. No thanks, I'd rather have
     # no DNS at all.
-    fallbackDns = config.networking.nameservers;
+    fallbackDns = [];
   };
 
   # TCP BBR has significantly increased throughput and reduced latency. Note

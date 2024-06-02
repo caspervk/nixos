@@ -18,7 +18,7 @@
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.supportedFilesystems = [];
+  boot.supportedFilesystems = {};
 
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
   fileSystems."/" = {

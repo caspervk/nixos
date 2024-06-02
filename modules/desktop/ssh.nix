@@ -13,13 +13,9 @@
       # to the mess that is IPv6. Force keepalive packets to avoid sessions
       # dying. See https://news.ycombinator.com/item?id=25737611.
       serverAliveInterval = 25;
-      # TODO: use addKeysToAgent attribute in Home Manager 24.04 instead of
-      # extraConfig.
-      extraConfig = ''
-        # Add ssh keys to the agent the first time we unlock them so we don't
-        # have to type the password all the time.
-        AddKeysToAgent yes
-      '';
+      # Add ssh keys to the agent the first time we unlock them so we don't
+      # have to type the password all the time.
+      addKeysToAgent = "yes";
     };
   };
 

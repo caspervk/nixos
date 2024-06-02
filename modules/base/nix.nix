@@ -1,4 +1,5 @@
 {
+  config,
   nix-index-database,
   nixpkgs-unstable,
   nixpkgs,
@@ -35,20 +36,19 @@
 
     # The nix registry is used to refer to flakes using symbolic identifiers
     # when running commands such as `nix run nixpkgs#hello`. By default,
-    # the global registry from [1] is used, which aliases `nixpkgs` to the
-    # nixpkgs-unstable branch. We overwrite the default global `nixpkgs`
-    # registry with one which refers to the same nixpkgs as the rest of
-    # the system, aligning it with flake.lock.
-    # [1] https://github.com/NixOS/flake-registry/blob/master/flake-registry.json
+    # `nixpkgs` is an alias of the system's nixpkgs, but no such alias is made
+    # for unstable.
     registry = {
-      nixpkgs.flake = nixpkgs;
       nixpkgs-unstable.flake = nixpkgs-unstable;
     };
   };
 
   # The system-wide garbage collection service configured above does not know
-  # about our user profile. TODO: 24.04
-  # home-manager.users.caspervk.nix.gc = config.nix.gc;
+  # about our user profile.
+  home-manager.users.caspervk.nix.gc = {
+    inherit (config.nix.gc) automatic options;
+    frequency = config.nix.gc.dates;
+  };
 
   # Run unpatched dynamic binaries on NixOS.
   # https://github.com/Mic92/nix-ld

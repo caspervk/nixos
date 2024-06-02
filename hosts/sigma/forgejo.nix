@@ -1,6 +1,5 @@
 {
   config,
-  nixpkgs-unstable,
   pkgs,
   secrets,
   ...
@@ -10,8 +9,6 @@
   # https://wiki.nixos.org/wiki/Forgejo
   services.forgejo = {
     enable = true;
-    # TODO: remove package override in NixOS 24.04
-    package = nixpkgs-unstable.legacyPackages.x86_64-linux.forgejo;
     # Run Forgejo under git:git for better ssh clone urls.
     user = "git";
     group = "git";
@@ -80,13 +77,13 @@
   # https://wiki.nixos.org/wiki/Forgejo
   # https://forgejo.org/docs/latest/admin/actions/
   services.gitea-actions-runner = {
-    package = pkgs.forgejo-actions-runner;
+    package = pkgs.forgejo-runner;
     instances."default" = {
       enable = true;
       name = "default";
       url = "https://git.caspervk.net";
       # From https://git.caspervk.net/admin/actions/runners/
-      tokenFile = config.age.secrets.forgejo-actions-runner-token-file.path;
+      tokenFile = config.age.secrets.forgejo-runner-token-file.path;
       # The Forgejo runner relies on application containers (Docker, Podman,
       # etc) to execute a workflow in an isolated environment. Labels are used
       # to map jobs' `runs-on` to their runtime environment. Many common
@@ -127,8 +124,8 @@
     ];
   };
 
-  age.secrets.forgejo-actions-runner-token-file = {
-    file = "${secrets}/secrets/forgejo-actions-runner-token-file.age";
+  age.secrets.forgejo-runner-token-file = {
+    file = "${secrets}/secrets/forgejo-runner-token-file.age";
     mode = "400";
     owner = "root";
     group = "root";

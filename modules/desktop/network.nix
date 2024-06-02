@@ -28,6 +28,6 @@
   # a different service is responsible for managing the system's internet
   # connection (for example, NetworkManager), this service is unnecessary and
   # can be disabled.
-  # https://search.nixos.org/options?channel=23.11&show=systemd.network.wait-online.enable
+  # https://search.nixos.org/options?channel=24.05&show=systemd.network.wait-online.enable
   systemd.network.wait-online.enable = false;
 }

@@ -1,4 +1,4 @@
-{nixpkgs-unstable, ...}: {
+{...}: {
   # Sonarr is an internet PVR for Usenet and Torrents.
   # https://sonarr.tv/
   #
@@ -14,8 +14,6 @@
   # * UI: Fix retarded date formats.
   services.sonarr = {
     enable = true;
-    # Unstable for sonarr v4. TODO: remove in NixOS 24.04
-    package = nixpkgs-unstable.legacyPackages.x86_64-linux.sonarr;
     # Use the 'torrent' group to share files amongst downloaders, indexers etc.
     group = "torrent";
   };
