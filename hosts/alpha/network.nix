@@ -22,6 +22,10 @@
         }
         {routeConfig = {Gateway = "fe80::1";};}
       ];
+      # Enable proxy ARP to answer ARP requests for the floating IP addresses,
+      # intended for the wireguard peers, from Hetzner's router. Without this,
+      # the router will not send traffic to us.
+      networkConfig.IPv4ProxyARP = true;
     };
 
     # The following routes traffic destined for 49.13.33.75 (floating IP) to
