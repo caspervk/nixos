@@ -16,7 +16,11 @@
     inetutils
     jq
     magic-wormhole
+    mtr
+    ncdu
     ntp
+    openssl
+    pciutils
     progress
     pwgen
     python310
@@ -24,10 +28,12 @@
     python312
     rsync
     sqlite
+    tcpdump
     tmux
     traceroute
     tree
     unzip
+    usbutils
     wget
     wireguard-tools
     xkcdpass
