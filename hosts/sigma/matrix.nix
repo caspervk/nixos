@@ -40,7 +40,10 @@
       # Disable trusting signing keys from matrix.org (the default). If set to
       # the empty array, then Synapse will request the keys directly from the
       # server that owns the keys.
-      trusted_key_servers = [];
+      # TODO: This is disabled (so we implicitly trust matrix.org) since,
+      # apparently, the matrix protocol isn't distributed at all and nothing
+      # works if you don't do this.
+      # trusted_key_servers = [];
       # The public URIs of the TURN server to give to clients.
       # https://element-hq.github.io/synapse/latest/turn-howto.html
       turn_uris = ["turn:turn.matrix.org?transport=udp" "turn:turn.matrix.org?transport=tcp"];
