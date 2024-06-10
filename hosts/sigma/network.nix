@@ -142,40 +142,40 @@
     interfaces = {
       "enp5s0" = {
         allowedTCPPorts = [
-          1234 # ad hoc
-          1337 # ad hoc
-          139 # Samba
-          22000 # syncthing
           22 # SSH
           25 # Mail SMTP
+          80 # Caddy
+          139 # Samba
           443 # Caddy
           445 # Samba
           465 # Mail ESMTP
+          993 # Mail IMAPS
+          1234 # ad hoc
+          1337 # ad hoc
           8000 # ad hoc
           8080 # ad hoc
-          80 # Caddy
-          993 # Mail IMAPS
+          22000 # syncthing
         ];
         allowedUDPPorts = [
           139 # Samba
+          445 # Samba
           21027 # syncthing
           22000 # syncthing
-          445 # Samba
         ];
       };
       "wg-sigma-public" = {
         allowedTCPPorts = [
-          1234 # ad hoc
-          1337 # ad hoc
-          22000 # syncthing
           22 # SSH
           25 # Mail SMTP
+          80 # Caddy
           443 # Caddy
           465 # Mail ESMTP
+          993 # Mail IMAPS
+          1234 # ad hoc
+          1337 # ad hoc
           8000 # ad hoc
           8080 # ad hoc
-          80 # Caddy
-          993 # Mail IMAPS
+          22000 # syncthing
         ];
         allowedUDPPorts = [
           21027 # syncthing
