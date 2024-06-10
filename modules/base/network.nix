@@ -19,6 +19,11 @@
   networking.useNetworkd = true;
   systemd.network.enable = true;
 
+  # The notion of "online" is a broken concept
+  # https://github.com/nix-community/srvos/blob/main/nixos/common/networking.nix
+  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
+
   # systemd-resolved provides DNS resolution to local applications through
   # D-Bus, NSS, and a local stub resolver on 127.0.0.53. It implements caching
   # and DNSSEC validation. We configure it to only, and always, use
