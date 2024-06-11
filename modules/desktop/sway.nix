@@ -50,7 +50,7 @@
           # Menu
           "Mod4+backspace" = "exec rofi -show drun";
           "Mod4+p" = "exec clipman pick -t rofi";
-          "Mod4+o" = "exec rofi -show emoji";
+          "Mod4+o" = "exec rofimoji";
 
           # Lock
           "Mod4+Escape" = "exec loginctl lock-session";

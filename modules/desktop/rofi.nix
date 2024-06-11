@@ -15,13 +15,14 @@
       package = pkgs.rofi-wayland;
       theme = "android_notification";
       extraConfig = {
-        modes = "drun"; # TODO: drun,emoji
+        modes = "drun";
         show-icons = true;
       };
-      # TODO
-      # plugins = with pkgs; [
-      #   rofi-emoji
-      # ];
     };
   };
+
+  # rofimoji is keybound in sway.nix
+  environment.systemPackages = with pkgs; [
+    rofimoji
+  ];
 }
