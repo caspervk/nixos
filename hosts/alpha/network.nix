@@ -7,7 +7,7 @@
     # Main interface
     # https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Cloud
     networks."10-lan" = {
-      name = "enp1s0";
+      matchConfig.Name = "enp1s0";
       address = [
         "116.203.179.206/32"
         "2a01:4f8:c2c:71c0::/64"
@@ -53,14 +53,14 @@
         }
       ];
     };
-    networks."wg-sigma-public" = {
-      name = "wg-sigma-public";
+    networks."50-wg-sigma-public" = {
+      matchConfig.Name = "wg-sigma-public";
     };
 
     # The following routes traffic destined for the sigma-p2p address (floating
     # IP) to sigma through wireguard. This allows the server to have a public
     # address and help others sail the high seas even though it is behind NAT.
-    netdevs."51-wg-sigma-p2p" = {
+    netdevs."50-wg-sigma-p2p" = {
       netdevConfig = {
         Name = "wg-sigma-p2p";
         Kind = "wireguard";
@@ -80,8 +80,8 @@
         }
       ];
     };
-    networks."wg-sigma-p2p" = {
-      name = "wg-sigma-p2p";
+    networks."50-wg-sigma-p2p" = {
+      matchConfig.Name = "wg-sigma-p2p";
     };
   };
 

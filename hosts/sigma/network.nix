@@ -46,8 +46,8 @@
         }
       ];
     };
-    networks."wg-sigma-public" = {
-      name = "wg-sigma-public";
+    networks."50-wg-sigma-public" = {
+      matchConfig.Name = "wg-sigma-public";
       address = ["49.13.33.75/32"];
       routingPolicyRules = [
         {
@@ -86,7 +86,7 @@
     # receiving traffic destined for the sigma-p2p address. This allows the
     # server to have a public address and help others sail the high seas even
     # though it is behind NAT.
-    netdevs."51-wg-sigma-p2p" = {
+    netdevs."50-wg-sigma-p2p" = {
       netdevConfig = {
         Name = "wg-sigma-p2p";
         Kind = "wireguard";
@@ -107,8 +107,8 @@
         }
       ];
     };
-    networks."wg-sigma-p2p" = {
-      name = "wg-sigma-p2p";
+    networks."50-wg-sigma-p2p" = {
+      matchConfig.Name = "wg-sigma-p2p";
       address = ["${secrets.hosts.sigma.sigma-p2p-ip-address}/32"];
       routingPolicyRules = [
         {

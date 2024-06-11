@@ -3,7 +3,7 @@
     # Main interface
     # https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Cloud
     networks."10-lan" = {
-      name = "enp1s0";
+      matchConfig.Name = "enp1s0";
       address = [
         "159.69.4.2/32"
         "2a01:4f8:1c0c:70d1::1/64"
