@@ -274,6 +274,15 @@
       borderColor = "#31447f";
       progressColor = "#3bacf0";
     };
+
+    # https://wiki.nixos.org/wiki/Cursor_Themes
+    home.pointerCursor = {
+      package = pkgs.catppuccin-cursors.latteLight;
+      name = "Catppuccin-Latte-Light-Cursors";
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
 
   # Don't shut down the system when the power key is pressed
@@ -302,7 +311,6 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    gnome3.adwaita-icon-theme # cursor TODO
     pavucontrol # PulseAudio Volume Control gui
     playerctl # media control cli for keybinds
     slurp # wayland region selector
