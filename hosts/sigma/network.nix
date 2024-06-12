@@ -12,6 +12,48 @@
       };
     };
 
+    # The following configures the server as a typical "home router" with a
+    # DHCP server to hand out client addresses and NATing. The server's own
+    # address is requested from the ISP through DHCP.
+    networks."10-wan" = {
+      # Realtek motherboard port
+      matchConfig.Name = "enp5s0";
+      networkConfig = {
+        # Enable DHCP *client* to request an IP address from the ISP. Denmark
+        # does not use IPv6.
+        DHCP = "ipv4";
+      };
+    };
+    networks."20-lan" = {
+      # Intel pci port (right)
+      matchConfig.Name = "enp4s0f0";
+      address = [
+        "192.168.0.1/24"
+      ];
+      networkConfig = {
+        # Enable DHCP *server*. By default, the DHCP leases handed out to
+        # clients contain DNS information from our own uplink interface and
+        # specify our own address as the router.
+        # See offered DHCP leases with `networkctl status enp4s0f0`.
+        DHCPServer = true;
+        # Enable IP masquerading (NAT) to rewrite the address on packets
+        # forwarded from this interface so as to appear as coming from this
+        # host. Required to share a single external IP address and act as a
+        # "router" since each lan host does not get its own public IP address.
+        IPMasquerade = "ipv4";
+      };
+      dhcpServerConfig = {
+        # TODO
+        # networks."00-ignore-dhcp-dns" = {
+        #   matchConfig.Name = "*";
+        #   dhcpV4Config.UseDNS = false;
+        #   dhcpV6Config.UseDNS = false;
+        # };
+        # Explicitly override the propagated DNS servers
+        DNS = config.networking.nameservers;
+      };
+    };
+
     # The following establishes a wireguard tunnel to alpha and configures
     # receiving traffic destined for 49.13.33.75. This allows us to have a
     # public address even though we are behind NAT.
@@ -140,7 +182,7 @@
     allowedTCPPortRanges = lib.mkForce [];
     allowedUDPPortRanges = lib.mkForce [];
     interfaces = {
-      "enp5s0" = {
+      "enp4s0f0" = {
         allowedTCPPorts = [
           22 # SSH
           25 # Mail SMTP
@@ -157,7 +199,7 @@
           22000 # syncthing
         ];
         allowedUDPPorts = [
-          139 # Samba
+          67 # DHCP server
           445 # Samba
           21027 # syncthing
           22000 # syncthing
@@ -191,6 +233,11 @@
         ];
       };
     };
+  };
+
+  # Enable forwarding of packets
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = true;
   };
 
   age.secrets.wireguard-preshared-key-file = {
