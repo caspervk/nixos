@@ -23,6 +23,9 @@
         # does not use IPv6.
         DHCP = "ipv4";
       };
+      # Ignore ISP DNS server(s) received from the DHCP server
+      dhcpV4Config.UseDNS = false;
+      dhcpV6Config.UseDNS = false;
     };
     networks."20-lan" = {
       # Intel pci port (right)
@@ -33,24 +36,14 @@
       networkConfig = {
         # Enable DHCP *server*. By default, the DHCP leases handed out to
         # clients contain DNS information from our own uplink interface and
-        # specify our own address as the router.
-        # See offered DHCP leases with `networkctl status enp4s0f0`.
+        # specify our own address as the router. See DHCP leases with
+        # `networkctl status enp4s0f0` and `dhcpdump -i enp4s0f0`.
         DHCPServer = true;
         # Enable IP masquerading (NAT) to rewrite the address on packets
         # forwarded from this interface so as to appear as coming from this
         # host. Required to share a single external IP address and act as a
         # "router" since each lan host does not get its own public IP address.
         IPMasquerade = "ipv4";
-      };
-      dhcpServerConfig = {
-        # TODO
-        # networks."00-ignore-dhcp-dns" = {
-        #   matchConfig.Name = "*";
-        #   dhcpV4Config.UseDNS = false;
-        #   dhcpV6Config.UseDNS = false;
-        # };
-        # Explicitly override the propagated DNS servers
-        DNS = config.networking.nameservers;
       };
     };
 
