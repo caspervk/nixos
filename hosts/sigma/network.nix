@@ -12,12 +12,24 @@
       };
     };
 
+    # Rename network interfaces. The PermanentMACAddress is found using
+    # `ethtool -P enp5s0`.
+    links."10-wan0" = {
+      # Realtek motherboard port
+      matchConfig.PermanentMACAddress = "9c:6b:00:27:00:89";
+      linkConfig.Name = "wan0";
+    };
+    links."11-lan0" = {
+      # Intel pci port (right)
+      matchConfig.PermanentMACAddress = "00:15:17:a6:ee:a0";
+      linkConfig.Name = "lan0";
+    };
+
     # The following configures the server as a typical "home router" with a
     # DHCP server to hand out client addresses and NATing. The server's own
     # address is requested from the ISP through DHCP.
-    networks."10-wan" = {
-      # Realtek motherboard port
-      matchConfig.Name = "enp5s0";
+    networks."20-wan" = {
+      matchConfig.Name = "wan0";
       networkConfig = {
         # Enable DHCP *client* to request an IP address from the ISP. Denmark
         # does not use IPv6.
@@ -27,9 +39,8 @@
       dhcpV4Config.UseDNS = false;
       dhcpV6Config.UseDNS = false;
     };
-    networks."20-lan" = {
-      # Intel pci port (right)
-      matchConfig.Name = "enp4s0f0";
+    networks."21-lan" = {
+      matchConfig.Name = "lan0";
       address = [
         "192.168.0.1/24"
       ];
@@ -37,7 +48,7 @@
         # Enable DHCP *server*. By default, the DHCP leases handed out to
         # clients contain DNS information from our own uplink interface and
         # specify our own address as the router. See DHCP leases with
-        # `networkctl status enp4s0f0` and `dhcpdump -i enp4s0f0`.
+        # `networkctl status lan0` and `dhcpdump -i lan0`.
         DHCPServer = true;
         # Enable IP masquerading (NAT) to rewrite the address on packets
         # forwarded from this interface so as to appear as coming from this
@@ -98,7 +109,8 @@
         {
           # The postfix systemd service has
           # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
-          # it to use the correct routing table.
+          # it to use the correct routing table. You can check that this works
+          # as expected using `sudo -u postfix curl ip.caspervk.net`.
           routingPolicyRuleConfig = {
             Priority = 100;
             User = config.services.postfix.user;
@@ -148,7 +160,8 @@
         {
           # The deluge systemd service has
           # RestrictNetworkInterfaces=wg-sigma-p2p, but that does not tell it
-          # to use the correct routing table.
+          # to use the correct routing table. You can check that this works as
+          # expected using `sudo -u deluge curl ip.caspervk.net`.
           routingPolicyRuleConfig = {
             Priority = 100;
             User = config.services.deluge.user;
@@ -174,7 +187,7 @@
     allowedTCPPortRanges = lib.mkForce [];
     allowedUDPPortRanges = lib.mkForce [];
     interfaces = {
-      "enp4s0f0" = {
+      "lan0" = {
         allowedTCPPorts = [
           22 # SSH
           25 # Mail SMTP
