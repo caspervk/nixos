@@ -80,13 +80,14 @@
     };
   };
 
-  # Only allow mail delivery through through wg-sigma-public. Note that this
-  # does not tell it to use the correct routing table. For proper internet
-  # access, the correct routing table is also configured by
-  # routingPolicyRuleConfig in networking.nix.
+  # Only allow mail delivery through wg-sigma-public. Note that this does not
+  # tell it to use the correct routing table. For proper internet access, the
+  # correct routing table is also configured by routingPolicyRuleConfig in
+  # networking.nix. enp4s0f0 (lan) is additionally allowed to enable sending
+  # mails from lan hosts.
   systemd.services.postfix = {
     serviceConfig = {
-      RestrictNetworkInterfaces = "lo wg-sigma-public";
+      RestrictNetworkInterfaces = "lo enp4s0f0 wg-sigma-public";
     };
   };
 
