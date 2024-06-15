@@ -27,6 +27,7 @@
     python311
     python312
     rsync
+    socat
     sqlite
     tcpdump
     tmux
@@ -36,7 +37,6 @@
     usbutils
     wget
     wireguard-tools
-    xkcdpass
     yq
   ];
 }
