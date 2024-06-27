@@ -2,8 +2,8 @@
   # Fish is a Unix shell with a focus on interactivity and usability. Fish is
   # designed to give the user features by default, rather than by
   # configuration.
-  # https://nixos.wiki/wiki/Fish
-  # https://nixos.wiki/wiki/Command_Shell
+  # https://wiki.nixos.org/wiki/Fish
+  # https://wiki.nixos.org/wiki/Command_Shell
 
   programs.fish = {
     enable = true;

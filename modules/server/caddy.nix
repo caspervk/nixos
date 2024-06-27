@@ -8,7 +8,7 @@
 lib.mkIf (config.services.caddy.virtualHosts != {}) {
   # Caddy is a powerful, enterprise-ready, open source web server with
   # automatic HTTPS written in Go.
-  # https://nixos.wiki/wiki/Caddy
+  # https://wiki.nixos.org/wiki/Caddy
   services.caddy = {
     enable = true;
   };

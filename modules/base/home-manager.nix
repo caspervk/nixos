@@ -11,7 +11,7 @@
   # in a structure based on the program or service rather than the
   # implementation-specific details of where the output is saved to disk.
   # https://nix-community.github.io/home-manager/
-  # https://nixos.wiki/wiki/Home_Manager
+  # https://wiki.nixos.org/wiki/Home_Manager
   # https://nix-community.github.io/home-manager/options.html
 
   # Import Home Manager to make it part of the NixOS configuration

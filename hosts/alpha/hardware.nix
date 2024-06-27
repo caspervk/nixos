@@ -5,7 +5,7 @@
   modulesPath,
   ...
 }: {
-  # https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Cloud
+  # https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];

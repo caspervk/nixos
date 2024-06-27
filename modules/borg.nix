@@ -5,7 +5,7 @@
   ...
 }: {
   # BorgBackup (short: Borg) is a deduplicating backup program.
-  # https://nixos.wiki/wiki/Borg_backup
+  # https://wiki.nixos.org/wiki/Borg_backup
   # https://nixos.org/manual/nixos/stable/#module-borgbase
   # https://nixos.org/manual/nixos/stable/options#opt-services.borgbackup.jobs
   # https://borgbackup.readthedocs.io/en/stable/

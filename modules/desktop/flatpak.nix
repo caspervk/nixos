@@ -1,6 +1,6 @@
 {home-manager, ...}: {
   # https://flatpak.org/setup/NixOS
-  # https://nixos.wiki/wiki/Flatpak
+  # https://wiki.nixos.org/wiki/Flatpak
 
   services.flatpak.enable = true;
 

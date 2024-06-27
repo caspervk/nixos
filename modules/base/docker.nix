@@ -1,7 +1,7 @@
 {...}: {
   # Docker is a utility to pack, ship and run any application as a lightweight
   # container.
-  # https://nixos.wiki/wiki/Docker
+  # https://wiki.nixos.org/wiki/Docker
 
   virtualisation.docker = {
     enable = true;

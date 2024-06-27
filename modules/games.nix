@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  # https://nixos.wiki/wiki/Lutris
-  # https://nixos.wiki/wiki/Steam
+  # https://wiki.nixos.org/wiki/Lutris
+  # https://wiki.nixos.org/wiki/Steam
   programs.steam.enable = true;
 
   environment.systemPackages = with pkgs; [

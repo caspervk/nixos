@@ -2,7 +2,7 @@
   # Gammestep automatically adjusts the screen's colour temperature. It's
   # basically redshift for Wayland.
   # https://gitlab.com/chinstrap/gammastep
-  # https://nixos.wiki/wiki/Gammastep
+  # https://wiki.nixos.org/wiki/Gammastep
 
   home-manager.users.caspervk = {
     services.gammastep = {

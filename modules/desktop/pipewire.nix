@@ -2,7 +2,7 @@
   # PipeWire is a new low-level multimedia framework. It aims to offer capture
   # and playback for both audio and video with minimal latency and support for
   # PulseAudio-, JACK-, ALSA- and GStreamer-based applications.
-  # https://nixos.wiki/wiki/PipeWire
+  # https://wiki.nixos.org/wiki/PipeWire
 
   services.pipewire = {
     enable = true;

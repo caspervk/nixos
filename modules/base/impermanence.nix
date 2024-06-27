@@ -8,7 +8,7 @@
   # stored in /nix/persist, into the tmpfs root partition on startup. For
   # example: /nix/persist/etc/machine-id is mounted to /etc/machine-id.
   # https://github.com/nix-community/impermanence
-  # https://nixos.wiki/wiki/Impermanence
+  # https://wiki.nixos.org/wiki/Impermanence
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
 
   imports = [
