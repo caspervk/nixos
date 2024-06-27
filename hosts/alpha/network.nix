@@ -5,7 +5,7 @@
 }: {
   systemd.network = {
     # Main interface
-    # https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Cloud
+    # https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud
     networks."10-lan" = {
       matchConfig.Name = "enp1s0";
       address = [

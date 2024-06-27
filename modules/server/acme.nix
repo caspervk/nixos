@@ -10,7 +10,7 @@ lib.mkIf (config.security.acme.certs != {}) {
   # Instead of managing certificates in each individual service, NixOS supports
   # automatic certificate retrieval and renewal using
   # `security.acme.certs.<name>` through the ACME protocol.
-  # https://nixos.wiki/wiki/ACME
+  # https://wiki.nixos.org/wiki/ACME
   # https://nixos.org/manual/nixos/stable/index.html#module-security-acme
   security.acme = {
     acceptTerms = true;

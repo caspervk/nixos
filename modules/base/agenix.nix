@@ -6,7 +6,7 @@
   # Agenix manages the deployment of secrets by public-key encrypting them to
   # each system's ssh host key. See the README for more information.
   # https://github.com/ryantm/agenix
-  # https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes
+  # https://wiki.nixos.org/wiki/Comparison_of_secret_managing_schemes
 
   imports = [
     agenix.nixosModules.default

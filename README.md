@@ -8,7 +8,7 @@ ships with useful programs such as `nmtui`; the installation can still be done
 through the terminal.
 
 ### Disk Partitioning
-For [impermanence](https://nixos.wiki/wiki/Impermanence), partitioning should
+For [impermanence](https://wiki.nixos.org/wiki/Impermanence), partitioning should
 be done as outlined in the [tmpfs as
 root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) blogpost, but with
 `/nix` as a [LUKS-encrypted file
@@ -27,7 +27,7 @@ Systems](https://nixos.org/manual/nixos/stable/index.html#sec-luks-file-systems)
 sections, ArchWiki's [LVM on
 LUKS](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS),
 the unofficial NixOS wiki [Full Disk
-Encryption](https://nixos.wiki/wiki/Full_Disk_Encryption), and [this GitHub
+Encryption](https://wiki.nixos.org/wiki/Full_Disk_Encryption), and [this GitHub
 gist](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134).
 
 We create a 1GiB EFI boot partition (`/dev/sda1`) and the rest will be our

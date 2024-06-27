@@ -1,6 +1,6 @@
 {config, ...}: {
-  # https://nixos.wiki/wiki/Networking
-  # https://nixos.wiki/wiki/Systemd-networkd
+  # https://wiki.nixos.org/wiki/Networking
+  # https://wiki.nixos.org/wiki/Systemd-networkd
 
   networking = {
     firewall = {
@@ -34,8 +34,8 @@
   # or
   # > sudo resolvectl log-level debug
   # > sudo journalctl -fu systemd-resolved.service
-  # https://nixos.wiki/wiki/Encrypted_DNS
-  # https://nixos.wiki/wiki/Systemd-resolved
+  # https://wiki.nixos.org/wiki/Encrypted_DNS
+  # https://wiki.nixos.org/wiki/Systemd-resolved
   services.resolved = {
     enable = true;
     dnsovertls = "true";

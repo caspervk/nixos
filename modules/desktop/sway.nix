@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  # https://nixos.wiki/wiki/Sway
+  # https://wiki.nixos.org/wiki/Sway
 
   programs.sway = {
     enable = true;
@@ -295,7 +295,7 @@
     auth include login
   '';
 
-  # https://nixos.wiki/wiki/Fonts
+  # https://wiki.nixos.org/wiki/Fonts
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [

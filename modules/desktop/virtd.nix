@@ -1,5 +1,5 @@
 {home-manager, ...}: {
-  # https://nixos.wiki/wiki/Virt-manager
+  # https://wiki.nixos.org/wiki/Virt-manager
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;

@@ -10,7 +10,7 @@
   ];
 
   nix = {
-    # https://nixos.wiki/wiki/Storage_optimization
+    # https://wiki.nixos.org/wiki/Storage_optimization
     gc = {
       # Automatically run the nix garbage collector, removing files from
       # the store that are not referenced by any generation.

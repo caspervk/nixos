@@ -10,7 +10,7 @@
 
   # Simple NixOS Mailserver.
   # https://nixos-mailserver.readthedocs.io
-  # https://nixos.wiki/wiki/Imapsync
+  # https://wiki.nixos.org/wiki/Imapsync
   #
   # DNS
   # Each domain delegates mail-handling to mail.caspervk.net using an MX

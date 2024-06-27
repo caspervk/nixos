@@ -1,6 +1,6 @@
 {home-manager, ...}: {
   # Git version control system.
-  # https://nixos.wiki/wiki/Git
+  # https://wiki.nixos.org/wiki/Git
 
   home-manager.users.caspervk = {
     programs.git = {
