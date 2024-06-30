@@ -53,6 +53,9 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  # nixos-hardware
-  hardware.amdgpu.amdvlk = true;
+  # GPU
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
+  };
 }
