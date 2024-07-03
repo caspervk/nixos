@@ -1,13 +1,4 @@
-{
-  nixpkgs-small,
-  pkgs,
-  ...
-}: {
-  # Use OpenSSH from nixpkgs-small while waiting for
-  # https://nixpk.gs/pr-tracker.html?pr=323761.
-  # See https://github.com/NixOS/nixpkgs/pull/323761.
-  programs.ssh.package = nixpkgs-small.legacyPackages."${pkgs.system}".openssh;
-
+{...}: {
   services.openssh = {
     enable = true;
     settings = {
