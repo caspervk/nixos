@@ -278,7 +278,7 @@
     # https://wiki.nixos.org/wiki/Cursor_Themes
     home.pointerCursor = {
       package = pkgs.catppuccin-cursors.latteLight;
-      name = "Catppuccin-Latte-Light-Cursors";
+      name = "catppuccin-latte-light-cursors";
       size = 24;
       gtk.enable = true;
       x11.enable = true;
