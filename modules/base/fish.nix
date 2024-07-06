@@ -28,8 +28,8 @@
         nix shell nixpkgs#$argv
       end
 
-      # fzf: use ctrl+f to list files and ctrl+g to show the git log
-      fzf_configure_bindings --directory=\cf --git_log=\cg
+      # fzf: use ctrl+f to list files
+      fzf_configure_bindings --directory=\cf
     '';
   };
 
