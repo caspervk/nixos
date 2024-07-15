@@ -17,6 +17,6 @@
     ./sudo.nix
     ./syncthing.nix
     ./users.nix
-    ./vim
+    ./vim.nix
   ];
 }
