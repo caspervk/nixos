@@ -73,6 +73,10 @@
           vim.opt.list = true
           vim.opt.listchars = { tab="▸ ", trail="·", nbsp="␣" }
 
+          -- Better diffs
+          vim.opt.diffopt:append({"linematch:60", "algorithm:patience"})
+          vim.opt.fillchars:append({ diff = " " })
+
           -- Show search-replace preview live
           vim.opt.inccommand = "split"
 
