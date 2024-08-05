@@ -5,6 +5,7 @@
     ../../modules/server
     ./acme.nix
     ./archiveteam-warrior.nix
+    ./autosurfer.nix
     ./borg.nix
     ./caddy.nix
     ./deluge.nix
