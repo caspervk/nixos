@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  nixpkgs-unstable,
+  pkgs,
+  ...
+}: {
   # NixOS
   # https://wiki.nixos.org/wiki/Neovim
   # https://wiki.nixos.org/wiki/Vim
@@ -417,39 +421,18 @@
                 },
               })
 
-              -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.txt#pylsp
-              lspconfig.pylsp.setup({
+              -- https://docs.basedpyright.com
+              lspconfig.basedpyright.setup({
                 capabilities = capabilities,
-                -- https://github.com/NixOS/nixpkgs/issues/229337
-                cmd = {"${pkgs.python3.withPackages (ps: [ps.python-lsp-server ps.pyls-isort ps.pylsp-mypy ps.pylsp-rope ps.python-lsp-ruff])}/bin/python", "-m", "pylsp"},
                 settings = {
-                  pylsp = {
-                    plugins = {
-                      rope = {
-                        ropeFolder = {".ropefolder/"},
-                      },
-                      -- TODO
-                      rope_autoimport = {
-                        enabled = true,
-                        memory = true,
-                      },
+                  basedpyright = {
+                    analysis = {
+                      -- https://docs.basedpyright.com/#/configuration?id=diagnostic-settings-defaults
+                      typeCheckingMode = "standard",
                     },
                   },
                 },
               })
-
-              -- https://docs.basedpyright.com
-              -- lspconfig.basedpyright.setup({
-              --   capabilities = capabilities,
-              --   settings = {
-              --     basedpyright = {
-              --       analysis = {
-              --         -- https://docs.basedpyright.com/#/configuration?id=diagnostic-settings-defaults
-              --         typeCheckingMode = "standard",
-              --       },
-              --     },
-              --   },
-              -- })
             '';
         }
 
@@ -707,7 +690,7 @@
         # https://github.com/JoosepAlviste/nvim-ts-context-commentstring
       ];
       extraPackages = [
-        # nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
+        nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
         pkgs.nixd
       ];
       extraLuaPackages = ps: [];
