@@ -1,11 +1,14 @@
 {pkgs, ...}: {
+  # NixOS default packages:
+  # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/config/system-path.nix
   environment.systemPackages = with pkgs; [
     ascii
+    bandwhich
     bat
+    binutils
     black
     clang
-    curl
-    dig
+    dnsutils
     fd
     file
     fzf
@@ -13,22 +16,24 @@
     git
     gnumake
     htop
-    inetutils
+    iputils
     jq
-    magic-wormhole
+    lsof
+    magic-wormhole-rs
     mtr
     ncdu
     ntp
     openssl
     pciutils
+    postgresql
     progress
     pwgen
+    python3
     python310
     python311
     python312
-    rsync
     socat
-    sqlite
+    sqlite-interactive
     tcpdump
     tmux
     traceroute
@@ -36,6 +41,7 @@
     unzip
     usbutils
     wget
+    whois
     wireguard-tools
     yq
   ];
