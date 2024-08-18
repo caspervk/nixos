@@ -19,6 +19,7 @@
       };
 
       extraConfig = {
+        diff.algorithm = "histogram";
         diff.colorMoved = "default";
         init.defaultBranch = "master";
         pull.rebase = true;
