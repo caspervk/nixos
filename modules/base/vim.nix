@@ -121,6 +121,10 @@
           vim.keymap.set("n", "<C-k>",  "<C-w><C-k>")
           vim.keymap.set("n", "<C-l>",  "<C-w><C-l>")
 
+          -- Use ALT-{HL} to navigate tabs
+          vim.keymap.set("n", "<A-h>", "gT");
+          vim.keymap.set("n", "<A-l>", "gt");
+
           -- Use <Escape> to clear search highlight. This is normally bound to
           -- CTRL-L, but we use that to navigate windows instead.
           vim.keymap.set("n", "<Esc>", vim.cmd.noh)
