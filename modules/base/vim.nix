@@ -651,6 +651,22 @@
             '';
         }
 
+        # An interactive and powerful Git interface for Neovim, inspired by
+        # Magit.
+        # https://github.com/NeogitOrg/neogit
+        {
+          plugin = neogit;
+          type = "lua";
+          config =
+            /*
+            lua
+            */
+            ''
+              require("neogit").setup({})
+              vim.keymap.set("n", "<Leader>gg", vim.cmd.Neogit)
+            '';
+        }
+
         # Single tabpage interface for easily cycling through diffs for all
         # modified files for any git rev.
         # https://github.com/sindrets/diffview.nvim
@@ -686,13 +702,8 @@
             '';
         }
 
-        # TODO!
-        vim-fugitive
-
         # mini-nvim
-
-        # TODO: popup file-tree/viewer??
-
+        # popup file-tree/viewer??
         # nvim-colorizer-lua # show colours in colours
         # vim-matchup # better %
         # nvim-dap # debug adapter protocol
