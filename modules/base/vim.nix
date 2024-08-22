@@ -60,7 +60,7 @@
           -- gitsigns or LSP diagnostics.
           vim.opt.signcolumn = "yes"
 
-          -- Send CursorHold autocommend event after 100ms (instead of 4000ms
+          -- Send CursorHold autocommand event after 100ms (instead of 4000ms
           -- by default). Used, among other things, to highlight definitions
           -- with treesitter faster.
           vim.opt.updatetime = 100
@@ -321,12 +321,8 @@
             ''
               local cmp = require("cmp")
               cmp.setup({
-                snippet = {
-                  -- Configuring a snippet engine is required. Configure
-                  -- neovom's native one.
-                  expand = function(args)
-                    vim.snippet.expand(args.body)
-                  end,
+                experimental = {
+                  ghost_text = true,
                 },
                 mapping = cmp.mapping.preset.insert({
                   -- Use CTRL-{JK} to navigate and CTRL-L to confirm like
@@ -334,7 +330,9 @@
                   ["<C-j>"] = cmp.mapping.select_next_item(),
                   ["<C-k>"] = cmp.mapping.select_prev_item(),
                   ["<C-l>"] = cmp.mapping.confirm({ select = true }),
-                  -- Scroll documentatiion
+                  -- Also confirm with <Tab>
+                  ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                  -- Scroll documentation
                   ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                   ["<C-d>"] = cmp.mapping.scroll_docs(4),
                   -- Close completion menu
@@ -346,7 +344,11 @@
                 }),
                 sources = cmp.config.sources({
                   { name = "nvim_lsp" },
-                })
+                }),
+                window = {
+                  completion = cmp.config.window.bordered(),
+                  documentation = cmp.config.window.bordered(),
+                },
               })
 
               -- Add parentheses after selecting function or method item (nvim-autopairs).
