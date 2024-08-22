@@ -395,6 +395,20 @@
                 end,
               })
 
+              -- Overwrite signature help defaults
+              vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+                vim.lsp.handlers.signature_help, {
+                  -- Show window above cursor to avoid clipping completions menu
+                  anchor_bias = "above",
+                  -- Keep open until leaving insert mode.
+                  -- Default: { CursorMoved, CursorMovedI, InsertCharPre }.
+                  close_events = { "CursorMoved", },
+                  -- Make floating window unfocusable. Allows updating parameter
+                  -- highlight with another <C-s> rather than focusing the window.
+                  focusable = false,
+                }
+              )
+
               -- The following keymaps are defined irregardless of the LSP
               -- server's capabilities since we would rather receive an error
               -- that the action is unsupported by the LSP server instead of doing
