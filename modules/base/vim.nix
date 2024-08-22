@@ -180,6 +180,10 @@
                 overrides = function(colors)
                   local theme = colors.theme
                   return {
+                    -- Transparent Floating Windows
+                    NormalFloat = { bg = "none" },
+                    FloatBorder = { bg = "none" },
+                    FloatTitle = { bg = "none" },
                     -- Less pronounced cursorline
                     CursorLine = { bg = theme.ui.bg_p1 },
                     -- More pronounced window borders
