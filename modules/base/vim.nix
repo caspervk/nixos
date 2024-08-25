@@ -842,6 +842,25 @@
               require("lualine").setup({})
             '';
         }
+
+        # A File Explorer For Neovim Written In Lua.
+        # https://github.com/nvim-tree/nvim-tree.lua
+        {
+          plugin = nvim-tree-lua;
+          type = "lua";
+          config =
+            # lua
+            ''
+              require("nvim-tree").setup({
+                filters = {
+                  custom = {
+                    "^\\.git",
+                  },
+                },
+              })
+              vim.keymap.set("n", "<Leader>e", vim.cmd.NvimTreeToggle)
+            '';
+        }
       ];
       extraPackages = [
         nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
