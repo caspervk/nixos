@@ -213,9 +213,7 @@
 
         # Adds file type icons to Vim plugins.
         # https://github.com/nvim-tree/nvim-web-devicons
-        {
-          plugin = nvim-web-devicons;
-        }
+        {plugin = nvim-web-devicons;}
 
         # Rearrange window layout using sway-like <Ctrl-Shift-{hjkl}> bindings.
         # https://github.com/sindrets/winshift.nvim
@@ -313,9 +311,7 @@
         # A completion engine plugin for neovim written in Lua. Completion
         # sources are installed from external repositories and "sourced".
         # https://github.com/hrsh7th/nvim-cmp
-        {
-          plugin = cmp-nvim-lsp;
-        }
+        {plugin = cmp-nvim-lsp;}
         {
           plugin = nvim-cmp;
           type = "lua";
@@ -767,15 +763,6 @@
               require("lualine").setup({})
             '';
         }
-
-        # mini-nvim
-        # popup file-tree/viewer??
-        # nvim-colorizer-lua # show colours in colours
-        # vim-matchup # better %
-        # nvim-dap # debug adapter protocol
-        # nvim-dap-virtual-text # show variable values in-line
-        # salt-vim # salt syntax-highlighting
-        # https://github.com/JoosepAlviste/nvim-ts-context-commentstring
       ];
       extraPackages = [
         nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
