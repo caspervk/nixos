@@ -110,6 +110,13 @@
           vim.keymap.set("v", "<", "<gv")
           vim.keymap.set("v", ">", ">gv")
 
+          -- Use ALT-{PY} to paste and yank from the system clipboard
+          vim.keymap.set({"n", "v"}, "<M-p>", "\"+p")
+          vim.keymap.set("n", "<M-P>", "\"+P")
+          vim.keymap.set({"n", "v"}, "<M-y>", "\"+y")
+          vim.keymap.set("n", "<M-Y>", "\"+y$")
+          vim.keymap.set("n", "<M-y><M-y>", "\"+yy")
+
           -- Use CTRL-{JK} to navigate dropdowns, like CTRL-{NP}, in insert and
           -- command mode.
           vim.keymap.set({"c", "i"}, "<C-j>",  "<C-n>")
