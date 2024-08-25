@@ -164,11 +164,20 @@
             */
             ''
               require("kanagawa").setup({
+                theme = "wave",
                 commentStyle = { italic = false },
                 keywordStyle = { italic = false },
+                statementStyle = { bold = false },
                 dimInactive = true,
                 colors = {
                   theme = {
+                    wave = {
+                      syn = {
+                        -- Make control flow keywords more pronounced.
+                        -- statement = colors.theme.syn.special2,
+                        keyword = "#E46876"  -- waveRed; same as syn.special2
+                      },
+                    },
                     all = {
                       ui = {
                         -- Don't use a special background for the gutter
@@ -177,9 +186,15 @@
                     },
                   },
                 },
+                -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/themes.lua
+                -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/highlights/syntax.lua
+                -- See `:h highlight-groups` and `:h group-name`.
                 overrides = function(colors)
                   local theme = colors.theme
                   return {
+                    -- Show booleans like other special symbols such as 'None'
+                    -- in Python.
+                    Boolean = { fg = theme.syn.special1, bold = false },
                     -- Transparent Floating Windows
                     NormalFloat = { bg = "none" },
                     FloatBorder = { bg = "none" },
@@ -194,7 +209,7 @@
                   }
                 end,
               })
-              vim.cmd("colorscheme kanagawa")
+              vim.cmd.colorscheme("kanagawa")
             '';
         }
 
