@@ -311,7 +311,10 @@
         # A completion engine plugin for neovim written in Lua. Completion
         # sources are installed from external repositories and "sourced".
         # https://github.com/hrsh7th/nvim-cmp
+        {plugin = cmp-buffer;}
+        {plugin = cmp-buffer;}
         {plugin = cmp-nvim-lsp;}
+        # {plugin = cmp-nvim-lsp-signature-help;}
         {
           plugin = nvim-cmp;
           type = "lua";
@@ -319,6 +322,36 @@
             # lua
             ''
               local cmp = require("cmp")
+              local compare = require("cmp.config.compare")
+              local lsp = require("cmp.types.lsp")
+              local kind = lsp.CompletionItemKind
+              local lsp_kind_priorities = {
+                [kind.Variable] = 1,
+                [kind.Value] = 2,
+                [kind.Field] = 3,
+                [kind.EnumMember] = 4,
+                [kind.Property] = 5,
+                [kind.TypeParameter] = 6,
+                [kind.Method] = 7,
+                [kind.Module] = 8,
+                [kind.Function] = 9,
+                [kind.Constructor] = 10,
+                [kind.Interface] = 11,
+                [kind.Class] = 12,
+                [kind.Struct] = 13,
+                [kind.Enum] = 14,
+                [kind.Constant] = 15,
+                [kind.Unit] = 16,
+                [kind.Keyword] = 17,
+                [kind.Snippet] = 18,
+                [kind.Color] = 19,
+                [kind.File] = 20,
+                [kind.Folder] = 21,
+                [kind.Event] = 22,
+                [kind.Operator] = 23,
+                [kind.Reference] = 24,
+                [kind.Text] = 25,
+              }
               cmp.setup({
                 experimental = {
                   ghost_text = true,
@@ -341,8 +374,54 @@
                   -- whenever it has completion options available.
                   ["<C-Space>"] = cmp.mapping.complete(),
                 }),
+                performance = {
+                  max_view_entries = 50,  -- default 200
+                },
+                sorting = {
+                  -- Comparators should return true when the first entry should
+                  -- come EARLIER than the second entry, or nil if no pairwise
+                  -- ordering preference from the comparator.
+                  comparators = {
+                    compare.offset,
+                    compare.exact,
+                    -- Put items that start with an underline last.
+                    -- https://github.com/lukas-reineke/cmp-under-comparator
+                    function(entry1, entry2)
+                      local _, entry1_under = entry1.completion_item.label:find "^_+"
+                      local _, entry2_under = entry2.completion_item.label:find "^_+"
+                      entry1_under = entry1_under or 0
+                      entry2_under = entry2_under or 0
+                      if entry1_under > entry2_under then
+                      return false
+                      elseif entry1_under < entry2_under then
+                        return true
+                      end
+                    end,
+                    -- Order by LSP kind. Inspired by `compare.kind`:
+                    -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
+                    function(entry1, entry2)
+                      local kind1 = entry1:get_kind()
+                      local kind2 = entry2:get_kind()
+                      kind1 = lsp_kind_priorities[kind1] or 100
+                      kind2 = lsp_kind_priorities[kind2] or 100
+                      if kind1 ~= kind2 then
+                        local diff = kind1 - kind2
+                        if diff < 0 then
+                          return true
+                        elseif diff > 0 then
+                          return false
+                        end
+                      end
+                      return nil
+                    end,
+                    compare.score,
+                  },
+                },
                 sources = cmp.config.sources({
+                  -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/35
+                  -- { name = "nvim_lsp_signature_help" },
                   { name = "nvim_lsp" },
+                  { name = "buffer", keyword_length = 4 }, -- don't complete from buffer right away
                 }),
                 window = {
                   completion = cmp.config.window.bordered(),
