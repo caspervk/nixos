@@ -159,9 +159,7 @@
           plugin = kanagawa-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("kanagawa").setup({
                 theme = "wave",
@@ -225,9 +223,7 @@
           plugin = winshift-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("winshift").setup({})
               vim.keymap.set("n", "<C-S-h>", function() vim.cmd.WinShift("left") end)
@@ -246,9 +242,7 @@
           plugin = nvim-treesitter.withAllGrammars;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-treesitter.configs").setup({
                 -- Consistent syntax highlighting
@@ -268,9 +262,7 @@
           plugin = nvim-treesitter-refactor;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-treesitter.configs").setup({
                 refactor = {
@@ -309,9 +301,7 @@
           plugin = nvim-treesitter-context;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("treesitter-context").setup({
                 -- Show one line of context at the top of the screen
@@ -330,9 +320,7 @@
           plugin = nvim-cmp;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local cmp = require("cmp")
               cmp.setup({
@@ -385,9 +373,7 @@
           plugin = nvim-lspconfig;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local ts = require("telescope.builtin")
 
@@ -486,9 +472,7 @@
           plugin = telescope-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local actions = require("telescope.actions")
               require("telescope").setup({
@@ -547,9 +531,7 @@
           plugin = telescope-fzf-native-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("telescope").load_extension("fzf")
             '';
@@ -562,9 +544,7 @@
           plugin = telescope-ui-select-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("telescope").load_extension("ui-select")
             '';
@@ -576,9 +556,7 @@
           plugin = telescope-undo-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               local telescope = require("telescope")
               telescope.load_extension("undo")
@@ -592,9 +570,7 @@
           plugin = bufferline-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("bufferline").setup({})
               -- Use <A-j> and <A-k> to go to previous/next buffer
@@ -622,9 +598,7 @@
           plugin = indent-blankline-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("ibl").setup({
                 indent = {
@@ -646,9 +620,7 @@
           plugin = guess-indent-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("guess-indent").setup({})
             '';
@@ -661,9 +633,7 @@
           plugin = nvim-autopairs;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-autopairs").setup({})
             '';
@@ -675,9 +645,7 @@
           plugin = nvim-surround;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-surround").setup({})
             '';
@@ -689,9 +657,7 @@
           plugin = nvim-ts-autotag;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("nvim-ts-autotag").setup({})
             '';
@@ -704,9 +670,7 @@
           plugin = neogit;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("neogit").setup({
                 graph_style = "unicode",
@@ -721,9 +685,7 @@
           plugin = gitsigns-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("gitsigns").setup({
                 -- https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#keymaps
@@ -782,9 +744,7 @@
           plugin = diffview-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("diffview").setup({
                 enhanced_diff_hl = true,
@@ -802,9 +762,7 @@
           plugin = lualine-nvim;
           type = "lua";
           config =
-            /*
-            lua
-            */
+            # lua
             ''
               require("lualine").setup({})
             '';
