@@ -508,6 +508,16 @@
                     },
                   },
                 },
+                extensions = {
+                  -- Use vertical layout to allow enough width for
+                  -- side-by-side diffs.
+                  undo = {
+                    layout_strategy = "vertical",
+                    layout_config = {
+                      preview_height = 0.8,
+                    },
+                  },
+                },
               })
 
               -- Keymaps mostly inspired by the popular distros.
@@ -557,6 +567,22 @@
             */
             ''
               require("telescope").load_extension("ui-select")
+            '';
+        }
+        # Visualize your undo tree and fuzzy-search changes in it. For those
+        # days where committing early and often doesn't work out.
+        # https://github.com/debugloop/telescope-undo.nvim
+        {
+          plugin = telescope-undo-nvim;
+          type = "lua";
+          config =
+            /*
+            lua
+            */
+            ''
+              local telescope = require("telescope")
+              telescope.load_extension("undo")
+              vim.keymap.set("n", "<Leader>fu", telescope.extensions.undo.undo)
             '';
         }
 
