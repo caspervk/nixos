@@ -29,6 +29,7 @@
     libqalculate
     libreoffice
     mpv
+    mumble
     spotify
     thunderbird
     tor-browser-bundle-bin
