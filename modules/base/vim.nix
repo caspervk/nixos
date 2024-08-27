@@ -544,6 +544,15 @@
                   },
                 },
               })
+
+              -- https://github.com/redhat-developer/yaml-language-server
+              lspconfig.yamlls.setup({
+                capabilities = capabilities,
+                settings = {
+                  yaml = {
+                  },
+                },
+              })
             '';
         }
 
@@ -874,6 +883,7 @@
       extraPackages = [
         nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
         pkgs.nixd
+        pkgs.yaml-language-server
       ];
       extraLuaPackages = ps: [];
       extraPython3Packages = ps: [];
