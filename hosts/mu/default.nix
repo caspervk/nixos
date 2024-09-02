@@ -6,7 +6,6 @@
     ./hardware.nix
     ./fan.nix
     ./fish.nix
-    ./git.nix
     ./hosts.nix
     ./programs.nix
     ./sway.nix
