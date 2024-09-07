@@ -74,7 +74,9 @@
           wireguardPeerConfig = {
             PublicKey = "AlphazUR/z+1DRCFSvxTeKPIJnyPQvYsDoSgESvqJhM=";
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            Endpoint = "alpha.caspervk.net:51820";
+            # Explicit IPv4 address of alpha.caspervk.net to avoid attempting
+            # to (re)connect through IPv6(??).
+            Endpoint = "116.203.179.206:51820";
             # Keep NAT mappings and stateful firewalls open at the ISP
             PersistentKeepalive = 25;
             # AllowedIPs is both an ACL for incoming traffic, as well as a
@@ -145,7 +147,9 @@
           wireguardPeerConfig = {
             PublicKey = "AlphazUR/z+1DRCFSvxTeKPIJnyPQvYsDoSgESvqJhM=";
             PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            Endpoint = "alpha.caspervk.net:51821";
+            # Explicit IPv4 address of alpha.caspervk.net to avoid attempting
+            # to (re)connect through IPv6(??).
+            Endpoint = "116.203.179.206:51821";
             PersistentKeepalive = 25;
             AllowedIPs = ["0.0.0.0/0"];
             RouteTable = "wg-sigma-p2p";
