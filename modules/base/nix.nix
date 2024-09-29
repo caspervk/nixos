@@ -50,6 +50,19 @@
     frequency = config.nix.gc.dates;
   };
 
+  # Nix uses /tmp/ (tmpfs) during builds by default. This may cause 'No space
+  # left on device' errors with limited system memory or during big builds. Set
+  # the Nix daemon to use /var/tmp/ instead. Note that /var/tmp/ should ideally
+  # be on the same filesystem as /nix/store/ for faster copying of files.
+  # https://github.com/NixOS/nixpkgs/issues/54707
+  #
+  # NOTE: This does not change the directory for builds during `nixos-rebuild`.
+  # See overlays/nixos-rebuild.nix for workaround.
+  # https://github.com/NixOS/nixpkgs/issues/293114
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
+
   # Run unpatched dynamic binaries on NixOS.
   # https://github.com/Mic92/nix-ld
   programs.nix-ld.enable = true;
