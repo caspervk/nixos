@@ -9,10 +9,10 @@
     imports = ["${home-manager-unstable}/modules/programs/neovim.nix"];
   };
   nixpkgs.overlays = [
-    (self: super: {
+    (final: prev: {
       # Home-manager uses the neovim-unwrapped package for the neovim module
-      neovim-unwrapped = nixpkgs-unstable.legacyPackages.${super.system}.neovim-unwrapped;
-      vimPlugins = nixpkgs-unstable.legacyPackages.${super.system}.vimPlugins;
+      neovim-unwrapped = nixpkgs-unstable.legacyPackages.${prev.system}.neovim-unwrapped;
+      vimPlugins = nixpkgs-unstable.legacyPackages.${prev.system}.vimPlugins;
     })
   ];
 }
