@@ -25,23 +25,19 @@
     # are available CPU threads.
     # https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html
     instances = 2;
-    # Explicitly listen to DNS/DoH/DoT on the external interface(s). This
-    # allows systemd-resolved to listen on localhost as on every other system.
-    listenPlain = [
-      "159.69.4.2:53"
-      "[2a01:4f8:1c0c:70d1::1]:53"
-    ];
-    listenTLS = [
-      "159.69.4.2:853"
-      "[2a01:4f8:1c0c:70d1::1]:853"
-    ];
-    listenDoH = [
-      "159.69.4.2:443"
-      "[2a01:4f8:1c0c:70d1::1]:443"
-    ];
     extraConfig =
       # lua
       ''
+        -- Explicitly listen to DNS/DoH/DoT on the external interface(s). This
+        -- allows systemd-resolved to listen on localhost as on every other system.
+        local ipv4 = "159.69.4.2"
+        local ipv6 ="2a01:4f8:1c0c:70d1::1"
+        net.listen(ipv4, 53, {kind = "dns"})
+        net.listen(ipv6, 53, {kind = "dns"})
+        net.listen(ipv4, 853, {kind = "tls"})
+        net.listen(ipv6, 853, {kind = "tls"})
+        net.listen(ipv4, 443, {kind = "doh2"})
+        net.listen(ipv6, 443, {kind = "doh2"})
         -- TLS certificate for DoT and DoH
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-net_tlssrv.html
         net.tls(
