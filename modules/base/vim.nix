@@ -211,6 +211,8 @@
                     -- Less pronounced indent lines
                     IblIndent = { fg = theme.ui.bg_p2 },
                     IblScope = { fg = theme.ui.whitespace },
+                    -- Don't overwrite syntax-highlighting on deleted lines
+                    DiffDelete = { fg = "none" },
                   }
                 end,
               })
