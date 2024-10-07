@@ -1,4 +1,11 @@
-{...}: {
+{lib, ...}: {
+  networking = {
+    # Use dns.caspervk.net IPv6 address ::2 for uncensored DNS
+    nameservers = lib.mkForce [
+      "2a01:4f8:1c0c:70d1::2#dns.caspervk.net"
+    ];
+  };
+
   systemd.network = {
     networks."10-lan" = {
       # IPv4 settings are from `sudo dhcpcd --test`.

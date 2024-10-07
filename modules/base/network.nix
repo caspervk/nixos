@@ -10,7 +10,10 @@
       # Do not spam dmesg/journalctl with refused connections
       logRefusedConnections = false;
     };
-    nameservers = ["159.69.4.2#dns.caspervk.net" "2a01:4f8:1c0c:70d1::1#dns.caspervk.net"];
+    nameservers = [
+      "159.69.4.2#dns.caspervk.net"
+      "2a01:4f8:1c0c:70d1::1#dns.caspervk.net"
+    ];
     search = ["caspervk.net"];
   };
 
