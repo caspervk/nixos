@@ -21,23 +21,52 @@
   # https://knot-resolver.readthedocs.io/en/stable/daemon-scripting.html
   services.kresd = {
     enable = true;
-    # For maximum performance, there should be as many kresd processes as there
+    # For maximum performance there should be as many kresd processes as there
     # are available CPU threads.
+    # We double it to account for the SYSTEMD_INSTANCE scheme below.
     # https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html
-    instances = 2;
+    instances = 4;
     extraConfig =
       # lua
       ''
-        -- Explicitly listen to DNS/DoH/DoT on the external interface(s). This
-        -- allows systemd-resolved to listen on localhost as on every other system.
+        -- Explicitly only listen on external addresses to allow
+        -- systemd-resolved to use localhost:53 as on every other system.
         local ipv4 = "159.69.4.2"
-        local ipv6 ="2a01:4f8:1c0c:70d1::1"
-        net.listen(ipv4, 53, {kind = "dns"})
-        net.listen(ipv6, 53, {kind = "dns"})
-        net.listen(ipv4, 853, {kind = "tls"})
-        net.listen(ipv6, 853, {kind = "tls"})
-        net.listen(ipv4, 443, {kind = "doh2"})
-        net.listen(ipv6, 443, {kind = "doh2"})
+        local ipv6_1 = "2a01:4f8:1c0c:70d1::1"
+        local ipv6_2 = "2a01:4f8:1c0c:70d1::2"
+        -- We want to apply different query policies based on the listening
+        -- address, but doing so is difficult. Instead, we define bind address
+        -- and query policies together based on the systemd instance number.
+        -- https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html#instance-specific-configuration
+        local systemd_instance = tonumber(os.getenv("SYSTEMD_INSTANCE"))
+        if systemd_instance % 2 == 0 then
+          -- IPv4 and IPv6-1: Block spam and advertising domains.
+          net.listen(ipv4, 53, {kind = "dns"})
+          net.listen(ipv6_1, 53, {kind = "dns"})
+          net.listen(ipv4, 853, {kind = "tls"})
+          net.listen(ipv6_1, 853, {kind = "tls"})
+          net.listen(ipv4, 443, {kind = "doh2"})
+          net.listen(ipv6_1, 443, {kind = "doh2"})
+          -- https://knot-resolver.readthedocs.io/en/stable/modules-policy.html#response-policy-zones
+          policy.add(
+            policy.rpz(
+              -- Beware that cache is shared by *all* requests. For example, it is
+              -- safe to refuse (policy.DENY) answer based on who asks the resolver,
+              -- but trying to serve different data to different clients (policy.ANSWER)
+              -- will result in unexpected behavior.
+              -- https://knot-resolver.readthedocs.io/en/stable/modules-view.html:
+              policy.DENY,
+              "${pkgs.runCommand "stevenblack-blocklist-rpz" {} ''grep '^0\.0\.0\.0' ${pkgs.stevenblack-blocklist}/hosts | awk '{print $2 " 600 IN CNAME .\n*." $2 " 600 IN CNAME ."}' > $out''}"
+            )
+          )
+        else
+          -- IPv6-2: Don't censor anything.
+          -- This is primarily for the tor exit relay, since not censoring
+          -- anything is kind of the whole point of tor.
+          net.listen(ipv6_2, 53, {kind = "dns"})
+          net.listen(ipv6_2, 853, {kind = "tls"})
+          net.listen(ipv6_2, 443, {kind = "doh2"})
+        end
         -- TLS certificate for DoT and DoH
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-net_tlssrv.html
         net.tls(
@@ -53,14 +82,6 @@
         -- expire, they get refreshed.
         -- https://knot-resolver.readthedocs.io/en/stable/modules-predict.html
         modules.load("predict")
-        -- Block spam and advertising domains
-        -- https://knot-resolver.readthedocs.io/en/stable/modules-policy.html#response-policy-zones
-        policy.add(
-          policy.rpz(
-            policy.ANSWER({ [kres.type.A] = {rdata=kres.str2ip("0.0.0.0"), ttl = 600} }),
-            "${pkgs.runCommand "stevenblack-blocklist-rpz" {} ''grep '^0\.0\.0\.0' ${pkgs.stevenblack-blocklist}/hosts | awk '{print $2 " 600 IN CNAME .\n*." $2 " 600 IN CNAME ."}' > $out''}"
-          )
-        )
         -- Test domain to verify DNS server is being used
         policy.add(
           policy.domains(
