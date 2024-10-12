@@ -55,9 +55,10 @@
           # Enable automatic DNSSEC signing on all zones. The KSK must be
           # configured in the parent zone. Use the following command to get the
           # required record(s):
-          # > nix shell nixpkgs#knot-dns -c sudo keymgr caspervk.net ds
+          # > sudo keymgr caspervk.net ds
           # [<zone> <record-type> <key-tag> <algorithm-type> <digest-type> <digest>]
           # https://knot.readthedocs.io/en/master/configuration.html#automatic-dnssec-signing
+          # DNSSEC can be validated using https://dnsviz.net.
           dnssec-signing = "on";
           dnssec-policy = "default";
           # Knot overwrites the zonefiles with auto-generated DNSSEC records by
