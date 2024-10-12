@@ -91,7 +91,13 @@
   };
 
   networking = {
-    firewall.allowedUDPPorts = [51820 51821];
+    firewall.allowedTCPPorts = [
+      25 # @sortseer.dk
+    ];
+    firewall.allowedUDPPorts = [
+      51820 # wg-sigma-public
+      51821 # wg-sigma-p2p
+    ];
   };
 
   age.secrets.wireguard-preshared-key-file = {
