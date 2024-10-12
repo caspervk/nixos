@@ -76,6 +76,10 @@
           file = "${secrets}/hosts/alpha/knot/caspervk.net.zone";
         }
         {
+          domain = "sortseer.dk";
+          file = "${secrets}/hosts/alpha/knot/sortseer.dk.zone";
+        }
+        {
           domain = "spervk.com";
           file = "${secrets}/hosts/alpha/knot/spervk.com.zone";
         }
