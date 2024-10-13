@@ -9,6 +9,7 @@
     ./knot-dns.nix
     ./mumble.nix
     ./network.nix
+    ./sortseer.nix
   ];
 
   networking.hostName = "alpha";

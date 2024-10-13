@@ -43,6 +43,10 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    sortseer = {
+      url = "git+https://git.caspervk.net/caspervk/sortseer.git";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+    };
   };
 
   outputs = {

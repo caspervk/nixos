@@ -91,9 +91,6 @@
   };
 
   networking = {
-    firewall.allowedTCPPorts = [
-      25 # @sortseer.dk
-    ];
     firewall.allowedUDPPorts = [
       51820 # wg-sigma-public
       51821 # wg-sigma-p2p
