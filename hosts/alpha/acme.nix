@@ -11,6 +11,12 @@
       # since we handle the group membership manually.
       group = lib.mkForce "acme";
     };
+    "sortseer.dk" = {
+      reloadServices = [
+        "caddy.service"
+      ];
+      group = lib.mkForce "acme";
+    };
   };
   users.groups.acme.members = [
     "caddy"

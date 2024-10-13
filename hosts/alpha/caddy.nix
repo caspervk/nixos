@@ -20,6 +20,12 @@
         useACMEHost = "caspervk.net";
         extraConfig = ipConfig;
       };
+      "sortseer.dk" = {
+        useACMEHost = "sortseer.dk";
+        extraConfig = ''
+          redir https://git.caspervk.net/caspervk/sortseer
+        '';
+      };
     };
   };
 }
