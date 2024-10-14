@@ -16,6 +16,7 @@
     ./matrix.nix
     ./memos.nix
     ./network.nix
+    ./ntfy.nix
     ./postgresql.nix
     ./samba.nix
     ./sonarr.nix
