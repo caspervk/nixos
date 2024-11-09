@@ -29,6 +29,7 @@
       ExitRelay = true;
       IPv6Exit = true;
       ExitPolicy = [
+        "reject *:22"
         "reject *:25"
         "accept *:*"
       ];
