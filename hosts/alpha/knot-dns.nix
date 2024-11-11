@@ -53,12 +53,22 @@
           # Enable ACME ACL on all zones
           acl = ["acme"];
           # Enable automatic DNSSEC signing on all zones. The KSK must be
-          # configured in the parent zone. Use the following command to get the
-          # required record(s):
+          # configured in the parent zone through the registrar. Either the
+          # DNSKEY or DS, depending on registrar:
+          #
+          # > sudo keymgr caspervk.net dnskey
+          # [<zone> <record-type> <key-type> <protocol> <algorithm-type> <public-key>]
+          #
+          # OR
+          #
           # > sudo keymgr caspervk.net ds
           # [<zone> <record-type> <key-tag> <algorithm-type> <digest-type> <digest>]
+          #
           # https://knot.readthedocs.io/en/master/configuration.html#automatic-dnssec-signing
-          # DNSSEC can be validated using https://dnsviz.net.
+          #
+          # DNSSEC can be validated using:
+          #  - https://dnssec-debugger.verisignlabs.com
+          #  - https://dnsviz.net
           dnssec-signing = "on";
           dnssec-policy = "default";
           # Knot overwrites the zonefiles with auto-generated DNSSEC records by
