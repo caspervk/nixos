@@ -12,10 +12,8 @@
 
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        device = "/dev/vda";
-      };
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
     };
     initrd.luks.devices.crypted.device = "/dev/disk/by-label/crypted";
   };

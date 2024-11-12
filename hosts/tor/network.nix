@@ -8,21 +8,19 @@
 
   systemd.network = {
     networks."10-lan" = {
-      # IPv4 settings are from `sudo dhcpcd --test`.
-      # IPv6 settings are from https://www.ssdvps.dk/knowledgebase/18/IPv6-Gateway.html.
-      matchConfig.Name = "ens3";
+      matchConfig.Name = "enp0s18";
       address = [
-        "91.210.59.57/25"
-        "2a12:bec4:11d3:de9f::1/64"
+        "185.231.102.51/24"
+        "2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b/64"
       ];
       routes = [
-        {routeConfig = {Gateway = "91.210.59.1";};}
-        {
-          routeConfig = {
-            Gateway = "2a12:bec4:11d3::1";
-            GatewayOnLink = true;
-          };
-        }
+        {routeConfig = {Gateway = "185.231.102.1";};}
+        # {
+        #   routeConfig = {
+        #     Gateway = "fe80::200:5eff:fe00:20c";
+        #     GatewayOnLink = true;
+        #   };
+        # }
       ];
     };
   };

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   services.tor = {
     enable = true;
     openFirewall = true;
@@ -15,11 +11,11 @@
       ContactInfo = "admin@caspervk.net";
       ORPort = [
         {
-          addr = "91.210.59.57";
+          addr = "185.231.102.51";
           port = 443;
         }
         {
-          addr = "[2a12:bec4:11d3:de9f::1]";
+          addr = "[2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b]";
           port = 443;
         }
       ];
