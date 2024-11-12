@@ -136,11 +136,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1731332224,
-        "narHash": "sha256-0ctfVp27ingWtY7dbP5+QpSQ98HaOZleU0teyHQUAw0=",
+        "lastModified": 1731403644,
+        "narHash": "sha256-T9V7CTucjRZ4Qc6pUEV/kpgNGzQbHWfGcfK6JJLfUeI=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "184687ae1a3139faa4746168baf071f60d0310c8",
+        "rev": "f6581f1c3b137086e42a08a906bdada63045f991",
         "type": "github"
       },
       "original": {
@@ -214,10 +214,10 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1731269025,
-        "narHash": "sha256-Vq3nNbn2mAO3Ma50leb+LIiFmdUZ1P73CfrT3Znr94g=",
+        "lastModified": 1731452589,
+        "narHash": "sha256-GpAaJ+WcJd1BMmQmO4QoCnvXz4s2WWl8AOyRMRRKa24=",
         "ref": "refs/heads/master",
-        "rev": "f2d6367a7320e3c597122869f073dc839e56abe9",
+        "rev": "a250fcf99ece2ae6e92713d9cf8b24c98a579320",
         "revCount": 47,
         "type": "git",
         "url": "ssh://git@git.caspervk.net/caspervk/nixos-secrets.git"
