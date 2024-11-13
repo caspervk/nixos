@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ./agenix.nix
-    ./docker.nix
     ./fish.nix
     ./git.nix
     ./hardware.nix
