@@ -8,11 +8,13 @@
   # Packages useful on a desktop computer which don't require their own module
 
   environment.systemPackages = with pkgs; [
+    ascii
     aspell
     aspellDicts.da
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+    black
     element-desktop
     firefox-wayland
     gimp
@@ -30,6 +32,8 @@
     libreoffice
     mpv
     mumble
+    postgresql
+    pwgen
     spotify
     thunderbird
     tor-browser-bundle-bin
