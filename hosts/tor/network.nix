@@ -6,6 +6,11 @@
     ];
   };
 
+  # The NixOS firewall enables stateful connection tracking by default, which
+  # can be bad for performance.
+  # https://github.com/NixOS/nixpkgs/blob/2e88dbad29664f78b4c7f89f9b54d2dd2faef8e6/nixos/modules/services/networking/firewall-iptables.nix#L139
+  networking.firewall.enable = false;
+
   systemd.network = {
     networks."10-lan" = {
       matchConfig.Name = "enp0s18";
@@ -15,12 +20,6 @@
       ];
       routes = [
         {routeConfig = {Gateway = "185.231.102.1";};}
-        # {
-        #   routeConfig = {
-        #     Gateway = "fe80::200:5eff:fe00:20c";
-        #     GatewayOnLink = true;
-        #   };
-        # }
       ];
     };
   };

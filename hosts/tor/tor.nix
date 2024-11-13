@@ -19,7 +19,7 @@
           port = 443;
         }
       ];
-      ControlPort = 9051; # for nyx
+      ControlPort = 9051; # for nyx, localhost only
       DirPort = 80;
       DirPortFrontPage = builtins.toFile "tor-exit-notice.html" (builtins.readFile ./tor-exit-notice.html);
       ExitRelay = true;
