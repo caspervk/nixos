@@ -256,10 +256,6 @@
                 highlight = {
                   enable = true,
                 },
-                -- Indentation based on treesitter
-                indent = {
-                  enable = true,
-                },
               })
             '';
         }
@@ -487,7 +483,7 @@
                   anchor_bias = "above",
                   -- Keep open until leaving insert mode.
                   -- Default: { CursorMoved, CursorMovedI, InsertCharPre }.
-                  close_events = { "CursorMoved", },
+                  close_events = {"CursorMoved"},
                   -- Make floating window unfocusable. Allows updating parameter
                   -- highlight with another <C-s> rather than focusing the window.
                   focusable = false,
@@ -502,7 +498,6 @@
               vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
               vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
               vim.keymap.set("n", "gI", ts.lsp_implementations)
-              vim.keymap.set("n", "<Leader>gq", vim.lsp.buf.format)
 
               -- TODO: This becomes default in newer neovim?
               vim.keymap.set("n", "gra", vim.lsp.buf.code_action)
@@ -525,13 +520,6 @@
               -- https://github.com/nix-community/nixd
               lspconfig.nixd.setup({
                 capabilities = capabilities,
-                settings = {
-                  nixd = {
-                    formatting = {
-                      command = {"${pkgs.alejandra}/bin/alejandra"},
-                    },
-                  },
-                },
               })
 
               -- https://docs.basedpyright.com
@@ -684,6 +672,40 @@
               vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end);
               -- Use <A-x> to close current buffer
               vim.keymap.set("n", "<A-x>", vim.cmd.bd);
+            '';
+        }
+
+        # Lightweight yet powerful formatter plugin for Neovim.
+        # https://github.com/stevearc/conform.nvim
+        {
+          plugin = conform-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              -- TODO: injected language formatting (treesitter code blocks)
+              local conform = require("conform")
+              conform.setup({
+                formatters_by_ft = {
+                  -- Use conform built-ins on all ("*") filetypes
+                  ["*"] = {"trim_newlines", "trim_whitespace"},
+                  css = {"prettier"},
+                  graphql = {"prettier"},
+                  html = {"prettier"},
+                  javascript = {"prettier"},
+                  json = {"prettier"},
+                  markdown = {"prettier"},
+                  nix = {"alejandra"},
+                  -- Ruff follows the project's pyproject.toml/ruff.toml
+                  python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
+                  terraform = {"tofu_fmt"},
+                  toml = {"taplo"},
+                  typescript = {"prettier"},
+                  yaml = {"prettier"},
+                },
+              })
+              vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+              vim.keymap.set("n", "<Leader>gq", conform.format)
             '';
         }
 
@@ -883,9 +905,14 @@
         }
       ];
       extraPackages = [
-        nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright
-        pkgs.nixd
-        pkgs.yaml-language-server
+        nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright # lsp
+        nixpkgs-unstable.legacyPackages.${pkgs.system}.ruff # lsp/conform
+        pkgs.alejandra # conform
+        pkgs.nixd # lsp
+        pkgs.nodePackages.prettier # conform
+        pkgs.opentofu # conform
+        pkgs.taplo # conform
+        pkgs.yaml-language-server # lsp
       ];
       extraLuaPackages = ps: [];
       extraPython3Packages = ps: [];

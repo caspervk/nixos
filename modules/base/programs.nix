@@ -34,6 +34,6 @@
     wget
     whois
     wireguard-tools
-    yq
+    yq-go
   ];
 }
