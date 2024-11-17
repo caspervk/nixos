@@ -1,7 +1,15 @@
-{pkgs, ...}: {
-  services.tor = {
+{
+  config,
+  pkgs,
+  secrets,
+  ...
+}: let
+  mkTorConfig = {
+    orPort,
+    controlPort,
+    dirPort,
+  }: {
     enable = true;
-    openFirewall = true;
     relay = {
       enable = true;
       role = "exit";
@@ -12,15 +20,15 @@
       ORPort = [
         {
           addr = "185.231.102.51";
-          port = 443;
+          port = orPort;
         }
         {
           addr = "[2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b]";
-          port = 443;
+          port = orPort;
         }
       ];
-      ControlPort = 9051; # for nyx, localhost only
-      DirPort = 80;
+      ControlPort = controlPort; # for nyx, localhost only
+      DirPort = dirPort;
       DirPortFrontPage = builtins.toFile "tor-exit-notice.html" (builtins.readFile ./tor-exit-notice.html);
       ExitRelay = true;
       IPv6Exit = true;
@@ -29,7 +37,48 @@
         "reject *:25"
         "accept *:*"
       ];
+      # https://support.torproject.org/relay-operators/multiple-relays/
+      MyFamily = builtins.concatStringsSep "," [
+        "1B9D2C9E0EFE2C6BD23D62B2FCD145886AD242D1" # instance 1
+      ];
     };
+  };
+in {
+  containers.tor-1 = {
+    autoStart = true;
+    # TODO: what does ephemeral mean?
+    ephemeral = true;
+    bindMounts = {
+      # https://support.torproject.org/relay-operators/upgrade-or-move/
+      "/var/lib/tor/keys/ed25519_master_id_secret_key".hostPath = config.age.secrets.tor-1-ed25519-master-id-secret-key.path;
+      "/var/lib/tor/keys/secret_id_key".hostPath = config.age.secrets.tor-1-secret-id-key.path;
+    };
+    config = {config, ...}: {
+      services.tor = mkTorConfig {
+        orPort = 443;
+        controlPort = 9051;
+        dirPort = 80;
+      };
+      system.stateVersion = config.system.stateVersion;
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    nyx # Command-line monitor for Tor
+  ];
+
+  age.secrets.tor-ed25519-master-id-secret-key = {
+    file = "${secrets}/secrets/tor-1-ed25519-master-id-secret-key.age";
+    mode = "400";
+    owner = "root";
+    group = "root";
+  };
+
+  age.secrets.tor-secret-id-key = {
+    file = "${secrets}/secrets/tor-1-secret-id-key.age";
+    mode = "400";
+    owner = "root";
+    group = "root";
   };
 
   # https://support.torproject.org/relay-operators/#relay-operators_relay-bridge-overloaded
@@ -91,20 +140,5 @@
     "net.ipv4.ip_local_port_range" = "1025 65530";
     # Disable RFC1323 timestamps (TODO: why?)
     "net.ipv4.tcp_timestamps" = 0;
-  };
-
-  environment.systemPackages = with pkgs; [
-    nyx # Command-line monitor for Tor
-  ];
-
-  environment.persistence."/nix/persist" = {
-    directories = [
-      {
-        directory = "/var/lib/tor";
-        user = "tor";
-        group = "tor";
-        mode = "0700";
-      }
-    ];
   };
 }
