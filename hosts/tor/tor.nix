@@ -1,36 +1,83 @@
-{pkgs, ...}: {
-  services.tor = {
-    enable = true;
-    openFirewall = true;
-    relay = {
-      enable = true;
-      role = "exit";
+{
+  config,
+  pkgs,
+  ...
+}: {
+  # TODO: Explain why we use containers (tor is bad: cpu)
+  # > sudo machinectl shell tor-1 /usr/bin/env systemctl status tor
+  # > sudo machinectl shell tor-1 /usr/bin/env journalctl -eu tor.service
+  containers = let
+    mkTorContainer = {
+      stateDir,
+      orPort,
+      controlPort,
+    }: {
+      autoStart = true;
+      ephemeral = true; # impermanence
+      bindMounts = {
+        "/var/lib/tor/" = {
+          hostPath = stateDir;
+          isReadOnly = false;
+        };
+      };
+      config = {...}: {
+        services.tor = {
+          enable = true;
+          relay = {
+            enable = true;
+            role = "exit";
+          };
+          # https://manpages.debian.org/testing/tor/torrc.5.en.html
+          settings = {
+            Nickname = "DXV7520";
+            ContactInfo = "admin@caspervk.net";
+            ORPort = [
+              {
+                addr = "185.231.102.51";
+                port = orPort;
+              }
+              {
+                addr = "[2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b]";
+                port = orPort;
+              }
+            ];
+            ControlPort = controlPort; # for nyx, localhost only
+            ExitRelay = true;
+            IPv6Exit = true;
+            ExitPolicy = [
+              "reject *:22"
+              "reject *:25"
+              "accept *:*"
+            ];
+            # https://support.torproject.org/relay-operators/multiple-relays/
+            MyFamily = builtins.concatStringsSep "," [
+              "1B9D2C9E0EFE2C6BD23D62B2FCD145886AD242D1" # tor-1
+              "293CE00D11B1D8B99AE8811CBDFDA3F353353710" # tor-2
+            ];
+          };
+        };
+        system.stateVersion = config.system.stateVersion;
+      };
     };
-    settings = {
-      Nickname = "DXV7520";
-      ContactInfo = "admin@caspervk.net";
-      ORPort = [
-        {
-          addr = "185.231.102.51";
-          port = 443;
-        }
-        {
-          addr = "[2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b]";
-          port = 443;
-        }
-      ];
-      ControlPort = 9051; # for nyx, localhost only
-      DirPort = 80;
-      DirPortFrontPage = builtins.toFile "tor-exit-notice.html" (builtins.readFile ./tor-exit-notice.html);
-      ExitRelay = true;
-      IPv6Exit = true;
-      ExitPolicy = [
-        "reject *:22"
-        "reject *:25"
-        "accept *:*"
-      ];
+  in {
+    tor-1 = mkTorContainer {
+      stateDir = "/var/lib/tor-1/";
+      orPort = 443;
+      controlPort = 9051;
+    };
+    tor-2 = mkTorContainer {
+      stateDir = "/var/lib/tor-2/";
+      orPort = 444;
+      controlPort = 9052;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    nyx # Command-line monitor for Tor
+  ];
+
+  # TODO: serve `builtins.toFile "tor-exit-notice.html" (builtins.readFile ./tor-exit-notice.html)` on HTTP
+  # Exit Notice HTML page (https://community.torproject.org/relay/setup/exit/)
 
   # https://support.torproject.org/relay-operators/#relay-operators_relay-bridge-overloaded
   # https://lists.torproject.org/pipermail/tor-talk/2012-August/025296.html
@@ -93,16 +140,21 @@
     "net.ipv4.tcp_timestamps" = 0;
   };
 
-  environment.systemPackages = with pkgs; [
-    nyx # Command-line monitor for Tor
-  ];
-
+  # Mounting /var/lib/tor/ relies on the 'tor' user having the same static
+  # uid/gid inside and outside the container. This might break if NixOS
+  # switches to a DynamicUser for the tor service.
   environment.persistence."/nix/persist" = {
     directories = [
       {
-        directory = "/var/lib/tor";
-        user = "tor";
-        group = "tor";
+        directory = "/var/lib/tor-1";
+        user = builtins.toString config.ids.uids.tor;
+        group = builtins.toString config.ids.gids.tor;
+        mode = "0700";
+      }
+      {
+        directory = "/var/lib/tor-2";
+        user = builtins.toString config.ids.uids.tor;
+        group = builtins.toString config.ids.gids.tor;
         mode = "0700";
       }
     ];
