@@ -76,8 +76,19 @@
     nyx # Command-line monitor for Tor
   ];
 
-  # TODO: serve `builtins.toFile "tor-exit-notice.html" (builtins.readFile ./tor-exit-notice.html)` on HTTP
-  # Exit Notice HTML page (https://community.torproject.org/relay/setup/exit/)
+  # Serve Exit Relay Notice HTML page
+  # https://community.torproject.org/relay/setup/exit/
+  services.caddy = {
+    enable = true;
+    virtualHosts = {
+      "http://" = {
+        extraConfig = ''
+          header Content-Type text/html
+          respond `${builtins.readFile ./tor-exit-notice.html}`
+        '';
+      };
+    };
+  };
 
   # https://support.torproject.org/relay-operators/#relay-operators_relay-bridge-overloaded
   # https://lists.torproject.org/pipermail/tor-talk/2012-August/025296.html
