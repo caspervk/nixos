@@ -20,6 +20,7 @@
       ];
       routes = [
         {routeConfig = {Gateway = "185.231.102.1";};}
+        {routeConfig = {Gateway = "fe80::200:5eff:fe00:20c";};}
       ];
     };
   };
