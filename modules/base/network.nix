@@ -22,6 +22,10 @@
   networking.useNetworkd = true;
   systemd.network.enable = true;
 
+  # Never use DHCP. Servers are configured with static addresses. On desktops,
+  # the NixOS network-manager module disables this option too.
+  networking.useDHCP = false;
+
   # The notion of "online" is a broken concept
   # https://github.com/nix-community/srvos/blob/main/nixos/common/networking.nix
   systemd.services.NetworkManager-wait-online.enable = false;
