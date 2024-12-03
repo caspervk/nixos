@@ -51,16 +51,6 @@
     };
   };
 
-  # https://github.com/matrix-org/sliding-sync
-  services.matrix-sliding-sync = {
-    # Unlike matrix-synapse, sliding-sync has createDatabase=true by default,
-    # which means we don't have to configure the database in the postgres
-    # service manually.
-    enable = true;
-    settings.SYNCV3_SERVER = config.services.matrix-synapse.settings.public_baseurl;
-    environmentFile = config.age.secrets.matrix-sliding-sync-environment-file.path;
-  };
-
   services.postgresql = {
     ensureDatabases = [
       # matrix-synapse expects the database to have the options `LC_COLLATE`
@@ -90,12 +80,5 @@
         mode = "0700";
       }
     ];
-  };
-
-  age.secrets.matrix-sliding-sync-environment-file = {
-    file = "${secrets}/secrets/matrix-sliding-sync-environment-file.age";
-    mode = "400";
-    owner = "root";
-    group = "root";
   };
 }

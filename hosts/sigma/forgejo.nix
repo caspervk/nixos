@@ -9,6 +9,8 @@
   # https://wiki.nixos.org/wiki/Forgejo
   services.forgejo = {
     enable = true;
+    # NixOS defaults to forgejo-lts
+    package = pkgs.forgejo;
     # Run Forgejo under git:git for better ssh clone urls.
     user = "git";
     group = "git";

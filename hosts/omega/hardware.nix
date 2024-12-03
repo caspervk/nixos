@@ -54,8 +54,12 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # GPU
-  hardware.amdgpu.amdvlk = {
-    enable = true;
-    support32Bit.enable = true;
+  hardware.amdgpu = {
+    amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+      supportExperimental.enable = true;
+    };
+    opencl.enable = true;
   };
 }

@@ -19,8 +19,8 @@
         "2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b/64"
       ];
       routes = [
-        {routeConfig = {Gateway = "185.231.102.1";};}
-        {routeConfig = {Gateway = "fe80::200:5eff:fe00:20c";};}
+        {Gateway = "185.231.102.1";}
+        {Gateway = "fe80::200:5eff:fe00:20c";}
       ];
     };
   };

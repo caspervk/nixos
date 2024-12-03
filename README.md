@@ -137,7 +137,7 @@ nixos-install --no-root-passwd --flake .#omega
 ### Upgrading
 Nixpkgs uses `stateVersion` so sparingly that auditing the entire nixpkgs repo
 is [easy
-enough](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+stateVersion+AND+24.05&patternType=keyword&sm=0).
+enough](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+stateVersion+AND+24.11&patternType=keyword&sm=0).
 Important changes to home-manager is available at
 <https://nix-community.github.io/home-manager/release-notes.xhtml> and
 <https://github.com/nix-community/home-manager/blob/master/modules/misc/news.nix>.

@@ -46,8 +46,8 @@
 
   # Only allow deluged internet access through wg-sigma-p2p. Note that this
   # does not tell it to use the correct routing table. For proper internet
-  # access, the correct routing table is also configured by
-  # routingPolicyRuleConfig in networking.nix.
+  # access, the correct routing table is also configured by routingPolicyRules
+  # in networking.nix.
   systemd.services.deluged = {
     serviceConfig = {
       RestrictNetworkInterfaces = "lo wg-sigma-p2p";

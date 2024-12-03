@@ -13,14 +13,12 @@
         "2a01:4f8:c2c:71c0::/64"
       ];
       routes = [
-        {routeConfig = {Destination = "172.31.1.1";};}
+        {Destination = "172.31.1.1";}
         {
-          routeConfig = {
-            Gateway = "172.31.1.1";
-            GatewayOnLink = true;
-          };
+          Gateway = "172.31.1.1";
+          GatewayOnLink = true;
         }
-        {routeConfig = {Gateway = "fe80::1";};}
+        {Gateway = "fe80::1";}
       ];
       # Enable proxy ARP to answer ARP requests for the floating IP addresses,
       # intended for the wireguard peers, from Hetzner's router. Without this,
@@ -42,14 +40,12 @@
       };
       wireguardPeers = [
         {
-          wireguardPeerConfig = {
-            PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
-            PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            # Add to the main routing table that traffic for the address should
-            # be sent to sigma.
-            AllowedIPs = ["49.13.33.75/32"];
-            RouteTable = "main";
-          };
+          PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
+          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          # Add to the main routing table that traffic for the address should
+          # be sent to sigma.
+          AllowedIPs = ["49.13.33.75/32"];
+          RouteTable = "main";
         }
       ];
     };
@@ -71,12 +67,10 @@
       };
       wireguardPeers = [
         {
-          wireguardPeerConfig = {
-            PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
-            PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-            AllowedIPs = ["${secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
-            RouteTable = "main";
-          };
+          PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
+          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          AllowedIPs = ["${secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
+          RouteTable = "main";
         }
       ];
     };

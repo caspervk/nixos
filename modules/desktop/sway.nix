@@ -1,5 +1,4 @@
 {
-  home-manager,
   lib,
   pkgs,
   ...

@@ -82,7 +82,7 @@
 
   # Only allow mail delivery through wg-sigma-public. Note that this does not
   # tell it to use the correct routing table. For proper internet access, the
-  # correct routing table is also configured by routingPolicyRuleConfig in
+  # correct routing table is also configured by routingPolicyRules in
   # networking.nix. lan0 is additionally allowed to enable mail submission from
   # lan hosts.
   systemd.services.postfix = {

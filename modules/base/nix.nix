@@ -28,7 +28,7 @@
       auto-optimise-store = true;
 
       # Enable flakes
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
+      experimental-features = ["nix-command" "flakes"];
 
       # Timeout connections to the binary cache instead of waiting forever
       connect-timeout = 5;

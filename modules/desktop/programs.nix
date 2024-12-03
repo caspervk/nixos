@@ -1,7 +1,5 @@
 {
-  home-manager,
   lib,
-  nixpkgs,
   pkgs,
   ...
 }: {
@@ -13,7 +11,6 @@
     aspellDicts.da
     aspellDicts.en
     aspellDicts.en-computers
-    aspellDicts.en-science
     black
     element-desktop
     firefox-wayland
@@ -50,16 +47,12 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steam-unwrapped"
       "terraform"
     ];
 
   home-manager.users.caspervk = {
     home.sessionVariables = {
-      # The firefox-wayland package works with wayland without any further
-      # configuration, but tor-browser doesn't.
-      # TODO: remove when tor browser is based on firefox v121.
-      # https://www.mozilla.org/en-US/firefox/121.0/releasenotes/
-      MOZ_ENABLE_WAYLAND = 1;
       # https://wiki.archlinux.org/title/Sway#Java_applications
       _JAVA_AWT_WM_NONREPARENTING = 1;
       # https://wiki.nixos.org/wiki/Wayland

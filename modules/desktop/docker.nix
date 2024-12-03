@@ -7,9 +7,6 @@
     enable = true;
     # Automatically `docker system prune` weekly
     autoPrune.enable = true;
-    # Fix waiting for docker containers to exit on shutdown/reboot
-    # https://discourse.nixos.org/t/docker-hanging-on-reboot/18270/4
-    liveRestore = false;
   };
 
   # Being a member of the docker group is effectively equivalent to being root,

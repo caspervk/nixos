@@ -24,26 +24,27 @@
     # Disable discovery: don't reply to NetBIOS over IP name service requests
     # or participate in the browsing protocols which make up the Windows
     # “Network Neighborhood” view.
-    enableNmbd = false;
+    nmbd.enable = false;
     # Disable Samba’s winbindd, which provides a number of services to the Name
     # Service Switch capability found in most modern C libraries, to arbitrary
     # applications via PAM and ntlm_auth and to Samba itself.
-    enableWinbindd = false;
+    winbindd.enable = false;
     # https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html
-    extraConfig = ''
-      # Only allow local access. This should also be enforced by the firewall.
-      hosts deny ALL
-      hosts allow = 192.168.0.0/16 127.0.0.1 localhost
-      # Use user and group information from TDB database.
-      # The age-encrypted database is created by setting in the config
-      # > passdb backend = passdb backend = tdbsam:/tmp/samba-password-database
-      # and running
-      # > sudo pdbedit --create --user=caspervk
-      passdb backend = tdbsam:${config.age.secrets.samba-password-database.path}
-      # Allow Windows clients to run .exe's
-      acl allow execute always = True
-    '';
-    shares = {
+    settings = {
+      global = {
+        # Only allow local access. This should also be enforced by the
+        # firewall.
+        "hosts deny" = "ALL";
+        "hosts allow" = "192.168.0.0/16 127.0.0.1 localhost";
+        # Use user and group information from TDB database.
+        # The age-encrypted database is created by setting in the config
+        # > passdb backend = passdb backend = tdbsam:/tmp/samba-password-database
+        # and running
+        # > sudo pdbedit --create --user=caspervk
+        "passdb backend" = "tdbsam:${config.age.secrets.samba-password-database.path}";
+        # Allow Windows clients to run .exes
+        "acl allow execute always" = true;
+      };
       downloads = {
         path = "/srv/torrents/downloads";
         # Use the 'torrent' group for access for all users connecting
