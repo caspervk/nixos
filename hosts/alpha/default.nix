@@ -10,6 +10,7 @@
     ./mumble.nix
     ./network.nix
     ./sortseer.nix
+    ./tor.nix
   ];
 
   networking.hostName = "alpha";

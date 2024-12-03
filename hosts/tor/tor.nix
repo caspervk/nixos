@@ -50,9 +50,11 @@
               "accept *:*"
             ];
             # https://support.torproject.org/relay-operators/multiple-relays/
+            # Note that bridges should not configure their own -- or be listed
+            # in other relay's -- MyFamily as per the torrc man page.
             MyFamily = builtins.concatStringsSep "," [
-              "1B9D2C9E0EFE2C6BD23D62B2FCD145886AD242D1" # tor-1
-              "293CE00D11B1D8B99AE8811CBDFDA3F353353710" # tor-2
+              "1B9D2C9E0EFE2C6BD23D62B2FCD145886AD242D1" # /var/lib/tor-1/fingerprint
+              "293CE00D11B1D8B99AE8811CBDFDA3F353353710" # /var/lib/tor-2/fingerprint
             ];
           };
         };
