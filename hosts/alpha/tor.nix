@@ -44,6 +44,10 @@ in {
           addr = "127.0.0.1";
           port = "auto";
         }
+        {
+          addr = "[::1]";
+          port = "auto";
+        }
       ];
       AssumeReachable = true;
       ServerTransportPlugin.transports = ["webtunnel"];
