@@ -82,7 +82,7 @@
           "XF86AudioPrev" = "exec 'playerctl previous'";
         };
         assigns = {
-          "9" = [{class = "Spotify";}];
+          "9" = [{app_id = "spotify";}];
         };
         floating = {
           criteria = [
