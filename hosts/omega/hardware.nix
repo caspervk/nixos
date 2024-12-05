@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   nixos-hardware,
   ...
@@ -55,11 +53,6 @@
 
   # GPU
   hardware.amdgpu = {
-    amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-      supportExperimental.enable = true;
-    };
     opencl.enable = true;
   };
 }
