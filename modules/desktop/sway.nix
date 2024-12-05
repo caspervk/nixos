@@ -87,7 +87,7 @@
         floating = {
           criteria = [
             {app_id = "org.keepassxc.KeePassXC";}
-            {app_id = "pavucontrol";}
+            {app_id = "com.saivert.pwvucontrol";}
             {app_id = "wdisplays";}
           ];
         };
@@ -149,7 +149,10 @@
         bar = lib.mkMerge [
           defaultConfig
           {
-            modules-right = lib.mkForce ["tray" "pulseaudio" "backlight" "network" "battery" "clock"];
+            modules-right = lib.mkForce ["tray" "wireplumber" "backlight" "network" "battery" "clock"];
+            wireplumber = {
+              on-click = "pwvucontrol";
+            };
             battery = {
               states = lib.mkForce {
                 warning = 15;
@@ -314,7 +317,8 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    pavucontrol # PulseAudio Volume Control gui
+    wireplumber # pipewire (wpctl)
+    pwvucontrol # pipewire volume control
     playerctl # media control cli for keybinds
     slurp # wayland region selector
     sway-contrib.grimshot # screenshot
