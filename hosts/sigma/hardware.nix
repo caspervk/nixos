@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   nixos-hardware,
   ...
@@ -29,6 +27,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+    options = ["umask=077"];
   };
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nix";
