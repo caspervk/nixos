@@ -6,6 +6,7 @@
     ./hardware.nix
     ./home-manager.nix
     ./impermanence.nix
+    ./jujutsu.nix
     ./locale.nix
     ./network.nix
     ./nix.nix
