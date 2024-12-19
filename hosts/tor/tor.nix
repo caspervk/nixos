@@ -101,20 +101,20 @@
     # to store received frames after removing them from the network adapter's
     # ring buffer. High speed adapters should use a high value to prevent the
     # queue from becoming full and dropping packets causing retransmits.
-    # "net.core.netdev_max_backlog" = 262144;
+    "net.core.netdev_max_backlog" = 262144;
     # Increase TCP read/write buffers to enable scaling to a larger window
     # size. Larger windows increase the amount of data to be transferred before
     # an acknowledgement (ACK) is required. This reduces overall latencies and
     # results in increased throughput.
-    # "net.core.rmem_max" = 33554432;
-    # "net.core.wmem_max" = 33554432;
-    # "net.ipv4.tcp_rmem" = "4096 131072 33554432";
-    # "net.ipv4.tcp_wmem" = "4096 65536 33554432";
+    "net.core.rmem_max" = 33554432;
+    "net.core.wmem_max" = 33554432;
+    "net.ipv4.tcp_rmem" = "4096 131072 33554432";
+    "net.ipv4.tcp_wmem" = "4096 65536 33554432";
     # Reduce the length of time an orphaned connection will wait before it is
     # aborted. For workloads or systems that generate or support high levels of
     # network traffic, it can be advantageous to more aggressively reclaim dead
     # or stale resources.
-    # "net.ipv4.tcp_fin_timeout" = 10;
+    "net.ipv4.tcp_fin_timeout" = 10;
     # Maximal number of TCP sockets not attached to any user file handle, held
     # by system. If this number is exceeded orphaned connections are reset
     # immediately and warning is printed. This limit exists only to prevent
@@ -124,33 +124,33 @@
     # and tune network services to linger and kill such states more
     # aggressively. Let me to remind again: each orphan eats up to ~64K of
     # unswappable memory.
-    # "net.ipv4.tcp_max_orphans" = 262144;
+    "net.ipv4.tcp_max_orphans" = 262144;
     # Maximal number of timewait sockets held by system simultaneously. If this
     # number is exceeded time-wait socket is immediately destroyed and warning
     # is printed. This limit exists only to prevent simple DoS attacks, you
     # _must_ not lower the limit artificially, but rather increase it
     # (probably, after increasing installed memory), if network conditions
     # require more than default value.
-    # "net.ipv4.tcp_max_tw_buckets" = 2097152;
+    "net.ipv4.tcp_max_tw_buckets" = 2097152;
     # In high traffic environments, sockets are created and destroyed at very
     # high rates. This parameter, when set, allows "no longer needed" and
     # "about to be destroyed" sockets to be used for new connections. When
     # enabled, this parameter can bypass the allocation and initialization
     # overhead normally associated with socket creation saving CPU cycles,
     # system load and time.
-    # "net.ipv4.tcp_tw_reuse" = 1;
+    "net.ipv4.tcp_tw_reuse" = 1;
     # Aggressivelly check for and close broken connections
-    # "net.ipv4.tcp_keepalive_time" = 60;
-    # "net.ipv4.tcp_keepalive_probes" = 3;
-    # "net.ipv4.tcp_keepalive_intvl" = 10;
+    "net.ipv4.tcp_keepalive_time" = 60;
+    "net.ipv4.tcp_keepalive_probes" = 3;
+    "net.ipv4.tcp_keepalive_intvl" = 10;
     # Increase the length of the SYN queue and socket listen() backlog to
     # accommodate more connections waiting to connect.
-    # "net.ipv4.tcp_max_syn_backlog" = 262144;
-    # "net.core.somaxconn" = 32768;
+    "net.ipv4.tcp_max_syn_backlog" = 262144;
+    "net.core.somaxconn" = 32768;
     # Expand local port range used for outgoing connections
     "net.ipv4.ip_local_port_range" = "1025 65530";
     # Disable RFC1323 timestamps (TODO: why?)
-    # "net.ipv4.tcp_timestamps" = 0;
+    "net.ipv4.tcp_timestamps" = 0;
   };
 
   # Mounting /var/lib/tor/ relies on the 'tor' user having the same static
