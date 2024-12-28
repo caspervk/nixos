@@ -4,8 +4,8 @@
   ...
 }: {
   # TODO: Explain why we use containers (tor is bad: cpu)
-  # > sudo machinectl shell tor-1 /usr/bin/env systemctl status tor
-  # > sudo machinectl shell tor-1 /usr/bin/env journalctl -eu tor.service
+  # > sudo systemctl -M tor-1 status tor
+  # > sudo journalctl -M tor-1 -eu tor.service
   containers = let
     mkTorContainer = {
       stateDir,
