@@ -55,6 +55,8 @@
             MyFamily = builtins.concatStringsSep "," [
               "1B9D2C9E0EFE2C6BD23D62B2FCD145886AD242D1" # /var/lib/tor-1/fingerprint
               "293CE00D11B1D8B99AE8811CBDFDA3F353353710" # /var/lib/tor-2/fingerprint
+              "27FF3E6979EF6570B9EB3B53B11964FE08F36F19" # /var/lib/tor-3/fingerprint
+              "C2041A1CE9FDFDB13572D946A3055310FD48A595" # /var/lib/tor-4/fingerprint
             ];
           };
         };
@@ -71,6 +73,16 @@
       stateDir = "/var/lib/tor-2/";
       orPort = 444;
       controlPort = 9052;
+    };
+    tor-3 = mkTorContainer {
+      stateDir = "/var/lib/tor-3/";
+      orPort = 445;
+      controlPort = 9053;
+    };
+    tor-4 = mkTorContainer {
+      stateDir = "/var/lib/tor-4/";
+      orPort = 446;
+      controlPort = 9054;
     };
   };
 
@@ -166,6 +178,18 @@
       }
       {
         directory = "/var/lib/tor-2";
+        user = builtins.toString config.ids.uids.tor;
+        group = builtins.toString config.ids.gids.tor;
+        mode = "0700";
+      }
+      {
+        directory = "/var/lib/tor-3";
+        user = builtins.toString config.ids.uids.tor;
+        group = builtins.toString config.ids.gids.tor;
+        mode = "0700";
+      }
+      {
+        directory = "/var/lib/tor-4";
         user = builtins.toString config.ids.uids.tor;
         group = builtins.toString config.ids.gids.tor;
         mode = "0700";
