@@ -103,7 +103,9 @@
       "! /home/*/Downloads"
       "! /home/*/GOG Games"
       "! /home/*/.local/share/containers/storage/overlay*"
-      "! /home/*/.steam"
+      "! /home/*/.local/share/lutris"
+      "! /home/*/.local/share/Steam"
+      "! /home/*/.wine"
     ];
 
     # Prune a repository by deleting all archives not matching any of the
