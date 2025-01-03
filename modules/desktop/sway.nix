@@ -22,7 +22,8 @@
           "type:keyboard" = {
             xkb_layout = "us";
             xkb_variant = "altgr-intl";
-            repeat_delay = "250";
+            repeat_delay = "200"; # default 250
+            repeat_rate = "50"; # default 25
           };
           "type:touchpad" = {
             tap = "enabled";
