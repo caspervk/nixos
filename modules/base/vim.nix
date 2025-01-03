@@ -308,7 +308,7 @@
             ''
               require("treesitter-context").setup({
                 -- Show one line of context at the top of the screen
-                max_lines = 1,
+                max_lines = 2,
               })
             '';
         }
