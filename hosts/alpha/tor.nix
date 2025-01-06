@@ -1,24 +1,9 @@
 {
+  nixpkgs-unstable,
   pkgs,
   secrets,
   ...
-}: let
-  # The websocket pluggable-transport isn't in nixpkgs yet.
-  # https://github.com/NixOS/nixpkgs/pull/277487
-  webtunnel = pkgs.buildGoModule {
-    pname = "webtunnel";
-    version = "main";
-    src = pkgs.fetchFromGitLab {
-      domain = "gitlab.torproject.org";
-      group = "tpo";
-      owner = "anti-censorship/pluggable-transports";
-      repo = "webtunnel";
-      rev = "e64b1b3562f3ab50d06141ecd513a21ec74fe8c6";
-      hash = "sha256-25ZtoCe1bcN6VrSzMfwzT8xSO3xw2qzE4Me3Gi4GbVs=";
-    };
-    vendorHash = "sha256-3AAPySLAoMimXUOiy8Ctl+ghG5q+3dWRNGXHpl9nfG0=";
-  };
-in {
+}: {
   # Bridges are Tor relays that help circumvent censorship. WebTunnel is a
   # censorship-resistant pluggable transport designed to mimic encrypted web
   # traffic (HTTPS). It works by wrapping the payload connection into a
@@ -51,7 +36,9 @@ in {
       ];
       AssumeReachable = true;
       ServerTransportPlugin.transports = ["webtunnel"];
-      ServerTransportPlugin.exec = "${webtunnel}/bin/server";
+      # TODO: The webtunnel package has only been released to unstable. Use
+      # package from stable in 25.05.
+      ServerTransportPlugin.exec = "${nixpkgs-unstable.legacyPackages.${pkgs.system}.webtunnel}/bin/server";
       ServerTransportListenAddr = "webtunnel 127.0.0.1:15000";
       ServerTransportOptions = "webtunnel url=${secrets.hosts.alpha.tor.webtunnel-host + secrets.hosts.alpha.tor.webtunnel-path}";
     };
