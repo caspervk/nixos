@@ -40,8 +40,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     simple-nixos-mailserver = {
-      # TODO: upgrade to 24.11
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.05";
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     sortseer = {
