@@ -1,7 +1,27 @@
-{home-manager, ...}: {
+{pkgs, ...}: {
   # https://wiki.nixos.org/wiki/Virt-manager
 
-  virtualisation.libvirtd.enable = true;
+  # Enable libvirtd service
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        # Enable TPM and secure boot for Windows 11 support
+        swtpm.enable = true;
+        ovmf = {
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            })
+            .fd
+          ];
+        };
+      };
+    };
+  };
+
+  # Enable Virtual Machine Manager GUI
   programs.virt-manager.enable = true;
 
   # Make virt-manager use QEMU/KVM by default
