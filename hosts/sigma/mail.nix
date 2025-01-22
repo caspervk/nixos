@@ -11,29 +11,56 @@
   # Simple NixOS Mailserver.
   # https://nixos-mailserver.readthedocs.io
   # https://wiki.nixos.org/wiki/Imapsync
+
+  # INCOMING mail is delegated to mail.caspervk.net by each domain, e.g.
+  # vkristensen.dk.
   #
-  # DNS
-  # Each domain delegates mail-handling to mail.caspervk.net using an MX
-  # record. mail.caspervk.net MUST be an A/AAAA record *NOT* CNAME. For spam
-  # purposes, the IP-addresses pointed to by mail.caspervk.net MUST point back
-  # to mail.caspervk.net using reverse-DNS.
-  # > dig mail.caspervk.net
-  # > dig -x 1.2.3.4
-  # Mail to e.g. vkristensen.dk should be delegated to mail.caspervk.net. Each
-  # domain's DKIM key in /var/dkim/ MUST be added to its DNS zone.
-  # > dig MX vkristensen.dk
-  # > dig TXT vkristensen.dk
-  # > dig TXT mail._domainkey.vkristensen.dk
-  # > dig TXT _dmarc.vkristensen.dk
+  # vkristensen.dk.zone:
   #
+  # @                         IN  MX    10 mail.caspervk.net.
+  #
+  # For anti-spam purposes, mail.caspervk.net MUST be an A/AAAA record (not
+  # CNAME) and the IP-addresses MUST point back to mail.caspervk.net using a
+  # reverse pointer record:
+  #
+  # caspervk.net.zone:
+  #
+  # mail                      IN  A     49.13.33.75
+  # 75.33.13.49.in-addr.arpa. IN  PTR   mail.caspervk.net.
+
+  # OUTGOING mail is sent through icloud because email is a racket where the
+  # big providers only accept mail from the other big providers. Perfect
+  # SPF/DKIM? Well fuck you. If you're lucky we'll send you to spam, otherwise
+  # it's straight to /dev/null. What happened to the decentralised internet!?
+  # At least give me a chance until you've actually seen me send spam??
+  # https://www.icloud.com/icloudplus/customdomain
+  #
+  # Anyway.. Each domain delegates SPF and DMARC to mail.caspervk.net so we
+  # only have to define the policies once, and adds icloud's dkim key:
+  #
+  # vkristensen.dk.zone:
+  #
+  # @                         IN  TXT   "v=spf1 redirect=mail.caspervk.net"
+  # _dmarc                    IN  CNAME _dmarc.mail.caspervk.net.
+  # sig1._domainkey           IN  CNAME sig1.dkim.caspervk.net.at.icloudmailadmin.com.
+  #
+  # The SPF and DMARC policies are defined centrally.
+  #
+  # caspervk.net.zone:
+  #
+  #  mail                     IN  TXT   "v=spf1 ..."
+  # _dmarc.mail               IN  TXT   "v=DMARC1; ..."
+
   # Online verification tools:
+  # https://dmarcchecker.app
   # https://www.mail-tester.com/
   # https://mxtoolbox.com/deliverability
-  #
+
   # Client Setup
   # Account: casper@vkristensen.dk
   # IMAP: mail.caspervk.net:993 (SSL/TLS)
-  # SMTP: mail.caspervk.net:465 (SSL/TLS)
+  # SMTP: mail.caspervk.net:465 (SSL/TLS) TODO!
+
   mailserver = {
     enable = true;
     # Firewall is handled manually in networking.nix
