@@ -329,6 +329,24 @@
     wtype # xdotool for wayland
   ];
 
+  # RealtimeKit is a D-Bus system service that allows user processes to gain
+  # realtime scheduling priority on request. It is intended to be used as a
+  # secure mechanism to allow real-time scheduling to be used by normal user
+  # processes.
+  security.rtkit.enable = true;
+  # NixOS automatically allows PipeWire real-time scheduling -- allow it for
+  # any user process as per the Sway wiki.
+  # https://github.com/NixOS/nixpkgs/blob/c45b06d8d908c243f28829998fa403fa501b855e/nixos/modules/services/desktops/pipewire/pipewire.nix#L436-L456
+  # https://wiki.nixos.org/wiki/Sway#Inferior_performance_compared_to_other_distributions
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      item = "rtprio";
+      type = "-";
+      value = 95;
+    }
+  ];
+
   # xdg portal allows applications secure access to resources outside their
   # sandbox through a D-Bus interface. In particular, this allows screen
   # sharing on Wayland via PipeWire and file open/save dialogues in Firefox.

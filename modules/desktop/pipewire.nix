@@ -13,10 +13,4 @@
     jack.enable = true;
     pulse.enable = true;
   };
-
-  # RealtimeKit is a D-Bus system service that allows user processes to gain
-  # realtime scheduling priority on request. It is intended to be used as a
-  # secure mechanism to allow real-time scheduling to be used by normal user
-  # processes.
-  security.rtkit.enable = true;
 }
