@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # https://wiki.nixos.org/wiki/Libvirt
   # https://wiki.nixos.org/wiki/Virt-manager
 
   # Enable libvirtd service
@@ -6,17 +7,9 @@
     libvirtd = {
       enable = true;
       qemu = {
-        # Enable TPM and secure boot for Windows 11 support
+        # Enable TPM and secure boot emulation, for Windows 11 support
         swtpm.enable = true;
-        ovmf = {
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            })
-            .fd
-          ];
-        };
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
   };
