@@ -29,6 +29,7 @@
     tmux
     traceroute
     tree
+    unar
     unzip
     usbutils
     wget
