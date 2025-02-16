@@ -5,8 +5,8 @@
   networking = {
     firewall = {
       # Allow some ports for ad-hoc use
-      allowedTCPPorts = [1234 1337 8000 8080];
-      allowedUDPPorts = [1234 1337 8000 8080];
+      allowedTCPPorts = [1234 1337];
+      allowedUDPPorts = [1234 1337];
       # Do not spam dmesg/journalctl with refused connections
       logRefusedConnections = false;
     };

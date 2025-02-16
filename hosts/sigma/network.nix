@@ -188,8 +188,6 @@
           993 # Mail IMAPS
           1234 # ad hoc
           1337 # ad hoc
-          8000 # ad hoc
-          8080 # ad hoc
           22000 # syncthing
         ];
         allowedUDPPorts = [
@@ -209,8 +207,6 @@
           993 # Mail IMAPS
           1234 # ad hoc
           1337 # ad hoc
-          8000 # ad hoc
-          8080 # ad hoc
           22000 # syncthing
         ];
         allowedUDPPorts = [
