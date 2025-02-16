@@ -17,7 +17,7 @@ jobs:
   update:
     runs-on: debian-latest
     container:
-      image: docker.io/nixos/nix:2.21.0
+      image: docker.io/nixos/nix:latest
     steps:
       - run: |
           # Configure SSH
