@@ -1,16 +1,18 @@
-name: Update flake.lock
-
 # PREREQUISITES:
 #  - Generate ssh key: `ssh-keygen -t ed25519 -f snowflake`.
 #  - Add private key to https://git.caspervk.net/caspervk/nixos/settings/actions/secrets as SNOWFLAKE_SSH_PRIVATE_KEY.
 #  - Add public key to https://git.caspervk.net/caspervk/nixos/settings/keys with WRITE access.
 #  - Add public key to https://git.caspervk.net/caspervk/nixos-secrets/settings/keys with READ access.
 
+# https://forgejo.org/docs/latest/user/actions/#on
 on:
-  # https://forgejo.org/docs/latest/user/actions/#onschedule
   schedule:
+    # At 17:23 on Monday
     - cron: "23 17 * * 1"
+  # Allow manual trigger
+  workflow_dispatch:
 
+# https://forgejo.org/docs/latest/user/actions/#jobs
 jobs:
   update:
     runs-on: debian-latest
@@ -33,4 +35,3 @@ jobs:
           git config user.name "snowflake"
           nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file
           git push
-
