@@ -7,6 +7,7 @@
   # Forgejo is a lightweight software forge (Git host), with a highlight on
   # being completely free software. It's a fork of Gitea.
   # https://wiki.nixos.org/wiki/Forgejo
+
   services.forgejo = {
     enable = true;
     # NixOS defaults to forgejo-lts
@@ -84,32 +85,39 @@
       enable = true;
       name = "default";
       url = "https://git.caspervk.net";
-      # From https://git.caspervk.net/admin/actions/runners/
+      # Token from https://git.caspervk.net/admin/actions/runners/
       tokenFile = config.age.secrets.forgejo-runner-token-file.path;
-      # The Forgejo runner relies on application containers (Docker, Podman,
-      # etc) to execute a workflow in an isolated environment. Labels are used
-      # to map jobs' `runs-on` to their runtime environment. Many common
-      # actions require bash, git and nodejs, as well as a filesystem that
-      # follows the filesystem hierarchy standard.
+      # Runner labels are used by workflows to define what type of environment
+      # they need to be executed in. Each runner declares a set of labels, and
+      # the Forgejo server will send it tasks accordingly.
+      #
+      # A label has the following structure:
+      #
+      #  <label-name>:<label-type>://<default-image>
+      #
+      # The label type determines what containerization system will be used to
+      # run the workflow. If a label specifies `docker` as its label type, the
+      # rest of it is interpreted as the default container image to use if no
+      # other is specified.
+      #
+      # The default container container image can be overridden by a workflow:
+      #
+      # runs-on: debian-latest
+      # container:
+      #   image: docker.io/library/alpine:3.20
+      #
+      # Many workflows designed for GitHub runners assume an image such as
+      # `node:20-bullseye`.
+      #
+      # https://forgejo.org/docs/next/admin/actions/#choosing-labels
       labels = [
-        "debian-latest:docker://docker.io/library/node:20-bullseye"
+        "debian-latest:docker://docker.io/library/debian:stable"
       ];
       # https://forgejo.org/docs/latest/admin/actions/#configuration
       settings = {
         runner = {
           # Default fetch interval is 2s -- no need to spam the server
           fetch_interval = "1m";
-        };
-        container = {
-          # TODO: host networking is required to allow contacting services
-          # running on the sigma-public address, such as git.caspervk.net.
-          # We don't need this if we replace Docker with Podman, since that has
-          # actual sane networking. Note, however, that the forgejo runner
-          # requires a Docker socket. Podman can emulate this, and the runner
-          # be configured to use it through
-          # `container.docker_host = "unix://podman.sock"`, but we need to figure
-          # out how to run a non-root Podman user socket easily in NixOS.
-          network = "host";
         };
       };
     };
