@@ -1,8 +1,12 @@
 {...}: {
+  # https://www.usememos.com/docs/install/self-hosting
+
   virtualisation.oci-containers.containers = {
     memos = {
-      # https://www.usememos.com/docs/install/self-hosting
       image = "docker.io/neosmemo/memos:stable";
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       environment = {
         # https://github.com/usememos/memos/issues/2433#issuecomment-1797316081
         MEMOS_METRIC = "false";

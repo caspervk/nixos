@@ -1,7 +1,8 @@
 {...}: {
+  # https://wiki.archiveteam.org/index.php?title=ArchiveTeam_Warrior#Advanced_usage_(container_only)
+
   virtualisation.oci-containers.containers = {
     archiveteam-warrior = {
-      # https://wiki.archiveteam.org/index.php?title=ArchiveTeam_Warrior#Advanced_usage_(container_only)
       image = "atdr.meo.ws/archiveteam/warrior-dockerfile:latest";
       labels = {
         "io.containers.autoupdate" = "registry";
