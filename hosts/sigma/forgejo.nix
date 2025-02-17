@@ -119,6 +119,11 @@
           # Default fetch interval is 2s -- no need to spam the server
           fetch_interval = "1m";
         };
+        container = {
+          # TODO: host networking is required to allow contacting services
+          # running on the sigma-public address, such as git.caspervk.net. Why?
+          network = "host";
+        };
       };
     };
   };
