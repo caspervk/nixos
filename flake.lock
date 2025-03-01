@@ -85,11 +85,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739802995,
-        "narHash": "sha256-kZv0upOigS/4sUEgZuZd6/uO6s8X8oYOLk9/sGMsl+c=",
+        "lastModified": 1740699498,
+        "narHash": "sha256-r9hkKzX99CGiP1ZqH0e+SWKK4CMsRNRLyotuwrUjhTI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9d0d48f4c3d2fb1a8c8607da143bb567a741d914",
+        "rev": "b71edac7a3167026aabea82a54d08b1794088c21",
         "type": "github"
       },
       "original": {
@@ -121,11 +121,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739676768,
-        "narHash": "sha256-U1HQ7nzhJyVVXUgjU028UCkbLQLEIkg42+G7iIiBmlU=",
+        "lastModified": 1740281615,
+        "narHash": "sha256-dZWcbAQ1sF8oVv+zjSKkPVY0ebwENQEkz5vc6muXbKY=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "ae15068e79e22b76c344f0d7f8aed1bb1c5b0b63",
+        "rev": "465792533d03e6bb9dc849d58ab9d5e31fac9023",
         "type": "github"
       },
       "original": {
@@ -136,11 +136,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1739798439,
-        "narHash": "sha256-GyipmjbbQEaosel/+wq1xihCKbv0/e1LU00x/8b/fP4=",
+        "lastModified": 1740646007,
+        "narHash": "sha256-dMReDQobS3kqoiUCQIYI9c0imPXRZnBubX20yX/G5LE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "3e2ea8a49d4d76276b0f4e2041df8ca5c0771371",
+        "rev": "009b764ac98a3602d41fc68072eeec5d24fc0e49",
         "type": "github"
       },
       "original": {
@@ -152,11 +152,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1739624908,
-        "narHash": "sha256-f84lBmLl4tkDp1ZU5LBTSFzlxXP4926DVW3KnXrke10=",
+        "lastModified": 1740603184,
+        "narHash": "sha256-t+VaahjQAWyA+Ctn2idyo1yxRIYpaDxMgHkgCNiMJa4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a60651b217d2e529729cbc7d989c19f3941b9250",
+        "rev": "f44bd8ca21e026135061a0a57dcf3d0775b67a49",
         "type": "github"
       },
       "original": {
@@ -183,11 +183,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1739736696,
-        "narHash": "sha256-zON2GNBkzsIyALlOCFiEBcIjI4w38GYOb+P+R4S8Jsw=",
+        "lastModified": 1740560979,
+        "narHash": "sha256-Vr3Qi346M+8CjedtbyUevIGDZW8LcA1fTG0ugPY/Hic=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d74a2335ac9c133d6bbec9fc98d91a77f1604c1f",
+        "rev": "5135c59491985879812717f4c9fea69604e7f26f",
         "type": "github"
       },
       "original": {
@@ -195,6 +195,26 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "quaylib": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740794793,
+        "narHash": "sha256-dARzr5rh0bQJh2Z4KdEVGnxBArjZW/KzbIZud6PgxoI=",
+        "ref": "refs/heads/master",
+        "rev": "551151df6e540417dec94304735a0a796ed06aea",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://git.caspervk.net/caspervk/quaylib.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.caspervk.net/caspervk/quaylib.git"
       }
     },
     "root": {
@@ -207,6 +227,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "quaylib": "quaylib",
         "secrets": "secrets",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "sortseer": "sortseer"
@@ -214,11 +235,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1739748783,
-        "narHash": "sha256-uN5mbyopg0SrRknuBHr72lSLwqEdJG7B31PiP3OBN/w=",
+        "lastModified": 1740792862,
+        "narHash": "sha256-fyyMAf/AC4clL9fv3odyTb/eF84PFE9x92RcYdl0HhY=",
         "ref": "refs/heads/master",
-        "rev": "c16aa3f6edab150d0419d6e8c66b97fdb0e2618e",
-        "revCount": 56,
+        "rev": "33c2847051b28c8e070368c8ea09deab3e221ece",
+        "revCount": 57,
         "type": "git",
         "url": "ssh://git@git.caspervk.net/caspervk/nixos-secrets.git"
       },

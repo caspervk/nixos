@@ -47,6 +47,10 @@
       url = "git+https://git.caspervk.net/caspervk/sortseer.git";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    quaylib = {
+      url = "git+https://git.caspervk.net/caspervk/quaylib.git";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+    };
   };
 
   outputs = {

@@ -9,6 +9,7 @@
     ./knot-dns.nix
     ./mumble.nix
     ./network.nix
+    ./quaylib.nix
     ./sortseer.nix
     ./tor.nix
   ];
