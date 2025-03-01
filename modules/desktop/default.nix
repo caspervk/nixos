@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ./clipman.nix
-    ./flatpak.nix
     ./foot.nix
     ./gammastep.nix
     ./network.nix
