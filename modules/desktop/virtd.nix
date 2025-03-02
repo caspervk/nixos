@@ -7,9 +7,10 @@
     libvirtd = {
       enable = true;
       qemu = {
-        # Enable TPM and secure boot emulation, for Windows 11 support
-        swtpm.enable = true;
+        # Enable UEFI support
         ovmf.packages = [pkgs.OVMFFull.fd];
+        # Enable TPM and secure boot emulation, for Windows 11
+        swtpm.enable = true;
       };
     };
   };
