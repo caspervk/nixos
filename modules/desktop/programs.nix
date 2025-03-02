@@ -11,7 +11,6 @@
     aspellDicts.da
     aspellDicts.en
     aspellDicts.en-computers
-    black
     element-desktop
     firefox-wayland
     gimp
@@ -21,19 +20,15 @@
     hunspellDicts.en-us
     jetbrains.pycharm-professional
     keepassxc
-    (kodi-wayland.withPackages (kodiPackages:
-      with kodiPackages; [
-        jellyfin
-      ]))
+    (kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
     libqalculate
     libreoffice
     mpv
     mumble
-    postgresql
     pwgen
     spotify
     thunderbird
-    tor-browser-bundle-bin
+    tor-browser
     ungoogled-chromium
     vlc
     xdg-utils
