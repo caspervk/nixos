@@ -15,7 +15,7 @@
     # Run Forgejo under git:git for better ssh clone urls.
     user = "git";
     group = "git";
-    # https://forgejo.org/docs/latest/admin/config-cheat-sheet/
+    # https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini
     settings = {
       DEFAULT = {
         # Application name, used in the page title.
@@ -26,6 +26,10 @@
         DEFAULT_BRANCH = "master";
         # Comma separated list of globally disabled repo units.
         DISABLED_REPO_UNITS = "repo.issues,repo.ext_issues,repo.pulls,repo.wiki,repo.ext_wiki,repo.projects,repo.packages";
+        # Disable stars feature.
+        DISABLE_STARS = true;
+        # Disable repository forking.
+        DISABLE_FORKS = true;
       };
       ui = {
         # Default theme.
