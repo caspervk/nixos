@@ -45,6 +45,7 @@
             ExitRelay = true;
             IPv6Exit = true;
             ExitPolicy = [
+              "reject 192.176.124.184/32:*" # secure.handelsbanken.se (TODO: remove)
               "reject *:22"
               "reject *:25"
               "accept *:*"
