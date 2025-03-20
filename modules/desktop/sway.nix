@@ -323,6 +323,7 @@
     playerctl # media control cli for keybinds
     slurp # wayland region selector
     sway-contrib.grimshot # screenshot
+    wf-recorder # screen record; wf-recorder -g (slurp) -f recording.mp4
     wdisplays # gui for ad-hoc display configuration
     wl-clipboard # wl-copy/wl-paste commands
     wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
