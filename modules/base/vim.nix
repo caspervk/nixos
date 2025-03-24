@@ -691,7 +691,23 @@
           config =
             # lua
             ''
-              require("nvim-surround").setup({})
+              require("nvim-surround").setup({
+                -- Change surround key from `ys` to `s` since substitute is a
+                -- useless bind anyway (just use `cl`).
+                keymaps = {
+                  insert = "<C-g>s",
+                  insert_line = "<C-g>S",
+                  normal = "s",
+                  normal_cur = "ss",
+                  normal_line = "S",
+                  normal_cur_line = "SS",
+                  visual = "s",
+                  visual_line = "gS",
+                  delete = "ds",
+                  change = "cs",
+                  change_line = "cS",
+                },
+              })
             '';
         }
 
