@@ -313,134 +313,56 @@
             '';
         }
 
-        # A completion engine plugin for neovim written in Lua. Completion
-        # sources are installed from external repositories and "sourced".
-        # https://github.com/hrsh7th/nvim-cmp
-        {plugin = cmp-buffer;}
-        {plugin = cmp-buffer;}
-        {plugin = cmp-nvim-lsp;}
-        # {plugin = cmp-nvim-lsp-signature-help;}
+        # Performant, batteries-included completion plugin for Neovim.
+        # https://github.com/Saghen/blink.cmp
+        # https://cmp.saghen.dev
         {
-          plugin = nvim-cmp;
+          plugin = blink-cmp;
           type = "lua";
           config =
             # lua
             ''
-              local cmp = require("cmp")
-              local compare = require("cmp.config.compare")
-              local lsp = require("cmp.types.lsp")
-              local kind = lsp.CompletionItemKind
-              local lsp_kind_priorities = {
-                [kind.Variable] = 1,
-                [kind.Value] = 2,
-                [kind.Field] = 3,
-                [kind.EnumMember] = 4,
-                [kind.Property] = 5,
-                [kind.TypeParameter] = 6,
-                [kind.Method] = 7,
-                [kind.Module] = 8,
-                [kind.Function] = 9,
-                [kind.Constructor] = 10,
-                [kind.Interface] = 11,
-                [kind.Class] = 12,
-                [kind.Struct] = 13,
-                [kind.Enum] = 14,
-                [kind.Constant] = 15,
-                [kind.Unit] = 16,
-                [kind.Keyword] = 17,
-                [kind.Snippet] = 18,
-                [kind.Color] = 19,
-                [kind.File] = 20,
-                [kind.Folder] = 21,
-                [kind.Event] = 22,
-                [kind.Operator] = 23,
-                [kind.Reference] = 24,
-                [kind.Text] = 25,
-              }
-              cmp.setup({
-                experimental = {
-                  ghost_text = true,
-                },
-                mapping = cmp.mapping.preset.insert({
-                  -- Use CTRL-{JK} to navigate and CTRL-L to confirm like
-                  -- telescope.
-                  ["<C-j>"] = cmp.mapping.select_next_item(),
-                  ["<C-k>"] = cmp.mapping.select_prev_item(),
-                  ["<C-l>"] = cmp.mapping.confirm({ select = true }),
-                  -- Also confirm with <Tab>
-                  ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                  -- Scroll documentation
-                  ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                  ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                  -- Close completion menu
-                  ["<C-e>"] = cmp.mapping.abort(),
-                  -- Manually trigger completion dropdown. This is not
-                  -- generally needed because nvim-cmp will display completions
-                  -- whenever it has completion options available.
-                  ["<C-Space>"] = cmp.mapping.complete(),
-                }),
-                performance = {
-                  max_view_entries = 50,  -- default 200
-                },
-                sorting = {
-                  -- Comparators should return true when the first entry should
-                  -- come EARLIER than the second entry, or nil if no pairwise
-                  -- ordering preference from the comparator.
-                  comparators = {
-                    compare.offset,
-                    compare.exact,
-                    -- Put items that start with an underline last.
-                    -- https://github.com/lukas-reineke/cmp-under-comparator
-                    function(entry1, entry2)
-                      local _, entry1_under = entry1.completion_item.label:find "^_+"
-                      local _, entry2_under = entry2.completion_item.label:find "^_+"
-                      entry1_under = entry1_under or 0
-                      entry2_under = entry2_under or 0
-                      if entry1_under > entry2_under then
-                      return false
-                      elseif entry1_under < entry2_under then
-                        return true
-                      end
+              require("blink.cmp").setup({
+                keymap = {
+                  -- Add telescope-like mappings in addition to the default
+                  -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
+                  preset = "super-tab",
+                  ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+                  ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+                  ["<C-l>"] = {
+                    function(cmp)
+                      if cmp.snippet_active() then return cmp.accept()
+                      else return cmp.select_and_accept() end
                     end,
-                    -- Order by LSP kind. Inspired by `compare.kind`:
-                    -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
-                    function(entry1, entry2)
-                      local kind1 = entry1:get_kind()
-                      local kind2 = entry2:get_kind()
-                      kind1 = lsp_kind_priorities[kind1] or 100
-                      kind2 = lsp_kind_priorities[kind2] or 100
-                      if kind1 ~= kind2 then
-                        local diff = kind1 - kind2
-                        if diff < 0 then
-                          return true
-                        elseif diff > 0 then
-                          return false
-                        end
-                      end
-                      return nil
-                    end,
-                    compare.score,
+                    "snippet_forward",
+                    "fallback"
+                  },
+                  ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+                  ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+                },
+                -- Automatically show documentation next to completions menu
+                completion = {
+                  documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 50,
+                  },
+                  -- Displays a preview of the selected item on the current line
+                  ghost_text = {
+                    enabled = true,
                   },
                 },
-                sources = cmp.config.sources({
-                  -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/35
-                  -- { name = "nvim_lsp_signature_help" },
-                  { name = "nvim_lsp" },
-                  { name = "buffer", keyword_length = 4 }, -- don't complete from buffer right away
-                }),
-                window = {
-                  completion = cmp.config.window.bordered(),
-                  documentation = cmp.config.window.bordered(),
+                -- Enable experimental signature help support
+                signature = {
+                  enabled = true
+                },
+                fuzzy = {
+                  -- Disable automatic download of prebuilt binaries from
+                  -- GitHub. It is already included in nixpkgs blink-cmp.
+                  prebuilt_binaries = {
+                    download = false,
+                  },
                 },
               })
-
-              -- Add parentheses after selecting function or method item (nvim-autopairs).
-              -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
-              local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-              cmp.event:on(
-                "confirm_done",
-                cmp_autopairs.on_confirm_done()
-              )
             '';
         }
 
@@ -508,12 +430,12 @@
 
               -- LSP servers and clients communicate what features they support.
               -- By default, neovim does not support everything in the LSP
-              -- specification. When we add plugins such as nvim-cmp, neovim now
+              -- specification. When we add plugins such as blink, neovim now
               -- has more capabilities, so we must add these to the capabilities
               -- that are broadcast to each server.
               -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
               local capabilities = vim.lsp.protocol.make_client_capabilities()
-              capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+              capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
 
               local lspconfig = require("lspconfig")
 
