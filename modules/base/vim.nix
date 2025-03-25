@@ -723,6 +723,13 @@
             '';
         }
 
+        # Better quickfix window in Neovim.
+        # https://github.com/kevinhwang91/nvim-bqf
+        {
+          plugin = nvim-bqf;
+          type = "lua";
+        }
+
         # An interactive and powerful Git interface for Neovim, inspired by
         # Magit.
         # https://github.com/NeogitOrg/neogit
