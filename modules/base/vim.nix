@@ -37,9 +37,8 @@
           -- Use <Space> as the leader key
           vim.g.mapleader = " "
 
-          -- Show (relative) line numbers
+          -- Show line numbers
           vim.opt.number = true
-          vim.opt.relativenumber = true
 
           -- Highlight the cursor line
           vim.opt.cursorline = true
@@ -683,6 +682,21 @@
             '';
         }
 
+        # Neovim's answer to the mouse 🦘
+        # https://github.com/ggandor/leap.nvim/
+        {
+          plugin = leap-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              require("leap").create_default_mappings()
+              -- Suggested additional tweak: Use the traversal keys to repeat
+              -- the previous motion without explicitly invoking Leap.
+              require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+            '';
+        }
+
         # Add/change/delete surrounding delimiter pairs with ease; cs, ds, ys.
         # https://github.com/kylechui/nvim-surround
         {
@@ -691,23 +705,7 @@
           config =
             # lua
             ''
-              require("nvim-surround").setup({
-                -- Change surround key from `ys` to `s` since substitute is a
-                -- useless bind anyway (just use `cl`).
-                keymaps = {
-                  insert = "<C-g>s",
-                  insert_line = "<C-g>S",
-                  normal = "s",
-                  normal_cur = "ss",
-                  normal_line = "S",
-                  normal_cur_line = "SS",
-                  visual = "s",
-                  visual_line = "gS",
-                  delete = "ds",
-                  change = "cs",
-                  change_line = "cS",
-                },
-              })
+              require("nvim-surround").setup({})
             '';
         }
 
