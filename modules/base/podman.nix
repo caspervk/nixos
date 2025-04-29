@@ -42,6 +42,14 @@
         # executes an external command.
         compose_warning_logs = false;
       };
+      network = {
+        # The default networking stack for rootless containers, pasta, doesn't
+        # seem to work properly. Test using:
+        # > podman run --rm -it --network=pasta quay.io/lib/debian:latest apt update
+        # vs
+        # > podman run --rm -it --network=slirp4netns quay.io/lib/debian:latest apt update
+        default_rootless_network_cmd = "slirp4netns";
+      };
     };
   };
 
