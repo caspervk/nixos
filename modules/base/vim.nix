@@ -674,7 +674,17 @@
           config =
             # lua
             ''
-              require("nvim-surround").setup({})
+              require("nvim-surround").setup({
+                keymaps = {
+                  -- nvim-surround uses upper-case S and gS for visual-mode
+                  -- surround by default, presumably to avoid clashing with
+                  -- s(substitute). We use s for leap -- which doesn't make sense
+                  -- from visual mode anyway -- so we might as well use lower-case
+                  -- s for visual-mode surround.
+                  visual = "s",
+                  visual_line = "gs",
+                },
+              })
             '';
         }
 
