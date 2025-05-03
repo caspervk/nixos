@@ -15,6 +15,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # https://wiki.nixos.org/wiki/Lutris
+    lutris
     # https://wiki.nixos.org/wiki/Wine
     wineWowPackages.waylandFull
     wineWowPackages.fonts
