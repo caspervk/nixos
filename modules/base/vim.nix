@@ -73,7 +73,7 @@
           vim.opt.listchars = { tab="▸ ", trail="·", nbsp="␣" }
 
           -- Better diffs
-          vim.opt.diffopt:append({"linematch:60", "algorithm:histogram", "indent-heuristic"})
+          vim.opt.diffopt:append({"algorithm:histogram", "indent-heuristic"})
           vim.opt.fillchars:append({ diff = "░" })
 
           -- Show search-replace preview live
@@ -275,15 +275,6 @@
                     -- Don't redraw (blink) highlight when moving cursor inside a word
                     clear_on_cursor_move = false,
                   },
-                  -- Renames the symbol under the cursor within the current scope
-                  -- (and current file).
-                  smart_rename = {
-                    enable = true,
-                    keymaps = {
-                      -- This keymap will be overwritten in LspAttach
-                      smart_rename = "grn",
-                    },
-                  },
                   -- Provides "go to definition" for the symbol under the cursor,
                   -- and lists the definitions from the current file.
                   navigation = {
@@ -352,7 +343,10 @@
                 },
                 -- Enable experimental signature help support
                 signature = {
-                  enabled = true
+                  enabled = true,
+                  window = {
+                    show_documentation = false,
+                  },
                 },
                 fuzzy = {
                   -- Disable automatic download of prebuilt binaries from
@@ -386,46 +380,21 @@
                   local client = vim.lsp.get_client_by_id(args.data.client_id)
                   local buf = args.buf
 
-                  -- Overwrite treesitter-refactor's basic go-to-definition and
-                  -- smart_rename keymaps if supported by the server.
+                  -- Overwrite treesitter-refactor's basic go-to-definition
+                  -- keymap if supported by the server.
                   if client.supports_method("textDocument/definition") then
                     vim.keymap.set("n", "gd", ts.lsp_definitions, { buffer = args.buf })
                   end
-                  if client.supports_method("textDocument/rename") then
-                    vim.keymap.set("n", "grn", vim.lsp.buf.rename, { buffer = args.buf })
-                  end
                 end,
               })
-
-              -- Overwrite signature help defaults
-              vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-                vim.lsp.handlers.signature_help, {
-                  -- Show window above cursor to avoid clipping completions menu
-                  anchor_bias = "above",
-                  -- Keep open until leaving insert mode.
-                  -- Default: { CursorMoved, CursorMovedI, InsertCharPre }.
-                  close_events = {"CursorMoved"},
-                  -- Make floating window unfocusable. Allows updating parameter
-                  -- highlight with another <C-s> rather than focusing the window.
-                  focusable = false,
-                }
-              )
 
               -- The following keymaps are defined irregardless of the LSP
               -- server's capabilities since we would rather receive an error
               -- that the action is unsupported by the LSP server instead of doing
               -- some other random action.
-              vim.keymap.set("n", "grr", ts.lsp_references)
               vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
               vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
               vim.keymap.set("n", "gI", ts.lsp_implementations)
-
-              -- TODO: This becomes default in newer neovim?
-              vim.keymap.set("n", "gra", vim.lsp.buf.code_action)
-
-              -- CTRL-S is mapped to signature help in insert mode by default.
-              -- Add it to normal mode as well.
-              vim.keymap.set({"i", "n"}, "<C-s>", vim.lsp.buf.signature_help)
 
               -- LSP servers and clients communicate what features they support.
               -- By default, neovim does not support everything in the LSP
