@@ -9,6 +9,7 @@
     ./rofi.nix
     ./ssh.nix
     ./sway.nix
+    ./thunar.nix
     ./virtd.nix
   ];
 }
