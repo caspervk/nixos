@@ -834,6 +834,18 @@
             # lua
             ''
               require("nvim-tree").setup({
+                renderer = {
+                  -- Append trailing slash to folders names
+                  add_trailing = true,
+                },
+                -- Focus the current buffer's file, un-collapsing folders recursively
+                update_focused_file = {
+                  enable = true,
+                  -- Update the root directory of the tree if the file is not
+                  -- under the current root directory. Useful to explore a library
+                  -- or package when using go-to-definition.
+                  update_root = true,
+                },
                 filters = {
                   custom = {
                     "^\\.git",
