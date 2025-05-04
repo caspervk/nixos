@@ -135,6 +135,9 @@
           -- CTRL-L, but we use that to navigate windows instead.
           vim.keymap.set("n", "<Esc>", vim.cmd.noh)
 
+          -- Show diagnostics as virtual text
+          vim.diagnostic.config({ virtual_text = true })
+
           -- Restore cursor position when opening a file
           -- https://github.com/neovim/neovim/issues/16339#issuecomment-1457394370
           vim.api.nvim_create_autocmd("BufRead", {
