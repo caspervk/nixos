@@ -85,6 +85,7 @@
       "! /sys"
       "! /tmp"
       "! /var/cache"
+      "! /var/lib/libvirt/images"
       "! /var/run"
       "! /var/tmp"
       "! /**/found.000/*"
@@ -101,6 +102,7 @@
 
       "! /home/*/Android/Sdk"
       "! /home/*/Downloads"
+      "! /home/*/Games"
       "! /home/*/GOG Games"
       "! /home/*/.local/share/containers/storage/overlay*"
       "! /home/*/.local/share/lutris"
@@ -113,11 +115,9 @@
     # options.
     # https://borgbackup.readthedocs.io/en/stable/usage/prune.html
     prune.keep = {
-      last = 10;
-      within = "1w"; # keep all archives created in the last week
       daily = 14;
       weekly = 6;
-      monthly = 12;
+      monthly = 24;
     };
   };
 
