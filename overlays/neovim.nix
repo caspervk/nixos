@@ -12,7 +12,9 @@
     (final: prev: {
       # Home-manager uses the neovim-unwrapped package for the neovim module
       neovim-unwrapped = nixpkgs-unstable.legacyPackages.${prev.system}.neovim-unwrapped;
+      neovimUtils = nixpkgs-unstable.legacyPackages.${prev.system}.neovimUtils;
       vimPlugins = nixpkgs-unstable.legacyPackages.${prev.system}.vimPlugins;
+      wrapNeovimUnstable = nixpkgs-unstable.legacyPackages.${prev.system}.wrapNeovimUnstable;
     })
   ];
 }
