@@ -37,7 +37,7 @@
     };
     home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; # use nixpkgs-unstable
     };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
