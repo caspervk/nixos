@@ -23,7 +23,9 @@
       "sortseer.dk" = {
         useACMEHost = "sortseer.dk";
         extraConfig = ''
-          redir https://git.caspervk.net/caspervk/sortseer
+          # sortseer.dk should lead to a place where you can post issues, so
+          # git.caspervk.net is not an option.
+          redir https://codeberg.org/caspervk/sortseer
         '';
       };
       # We do not need TLS since the webtunnel is proxied through NSA^W
