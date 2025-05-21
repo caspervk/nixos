@@ -77,6 +77,29 @@
     networks."50-wg-sigma-p2p" = {
       matchConfig.Name = "wg-sigma-p2p";
     };
+
+    # PiKVM
+    netdevs."50-wg-pikvm" = {
+      netdevConfig = {
+        Name = "wg-pikvm";
+        Kind = "wireguard";
+      };
+      wireguardConfig = {
+        ListenPort = 51822;
+        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-alpha.path;
+      };
+      wireguardPeers = [
+        {
+          PublicKey = "PIKVMXKx4LFrvMc2yED48paBR0kil1IgMbGwAdV/GRM=";
+          AllowedIPs = ["10.3.14.15/32"];
+          RouteTable = "main";
+        }
+      ];
+    };
+    networks."50-wg-pikvm" = {
+      matchConfig.Name = "wg-pikvm";
+      address = ["10.3.14.28/24"];
+    };
   };
 
   # Enable forwarding of packets
@@ -88,6 +111,7 @@
     firewall.allowedUDPPorts = [
       51820 # wg-sigma-public
       51821 # wg-sigma-p2p
+      51822 # wg-pikvm
     ];
   };
 
