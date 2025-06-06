@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   # Fish is a Unix shell with a focus on interactivity and usability. Fish is
   # designed to give the user features by default, rather than by
   # configuration.
@@ -7,22 +11,10 @@
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      "man" = lib.getExe pkgs.bat-extras.batman;
+    };
     interactiveShellInit = ''
-      # Allow jumping between prompts (ctrl+shift+z/x) in foot.
-      # https://codeberg.org/dnkl/foot/wiki#jumping-between-prompts
-      function mark_prompt_start --on-event fish_prompt
-        echo -en "\e]133;A\e\\"
-      end
-
-      # Allow piping last command's output (ctrl+shift+g) in foot.
-      # https://codeberg.org/dnkl/foot/wiki#piping-last-command-s-output
-      function foot_cmd_start --on-event fish_preexec
-        echo -en "\e]133;C\e\\"
-      end
-      function foot_cmd_end --on-event fish_postexec
-        echo -en "\e]133;D\e\\"
-      end
-
       # Allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
       function s --wraps 'nix shell'
         nix shell nixpkgs#$argv
@@ -35,9 +27,19 @@
 
   # Installing a fish plugin automatically enables it
   environment.systemPackages = with pkgs; [
-    fishPlugins.colored-man-pages
     fishPlugins.fzf-fish
-    fishPlugins.pure
+    # https://github.com/NixOS/nixpkgs/issues/393104
+    (fishPlugins.buildFishPlugin {
+      pname = "pure";
+      version = "4.11.3";
+
+      src = fetchFromGitHub {
+        owner = "pure-fish";
+        repo = "pure";
+        rev = "064934611306302f1d99c83212709d797a9b47e4";
+        hash = "sha256-rzsit+Z/OjkZ1gyZtMe0pqIPP2tSpG7sJIP4s7Q38s4=";
+      };
+    })
   ];
 
   # Set fish as the default shell system-wide

@@ -12,7 +12,7 @@
       LC_TELEPHONE = "en_DK.UTF-8";
       LC_TIME = "en_DK.UTF-8";
     };
-    supportedLocales = lib.mkOptionDefault [
+    extraLocales = [
       "da_DK.UTF-8/UTF-8"
     ];
   };

@@ -23,6 +23,7 @@
     python3
     python311
     python312
+    python313
     socat
     sqlite-interactive
     tcpdump
