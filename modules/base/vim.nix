@@ -850,9 +850,9 @@
                   update_root = true,
                 },
                 filters = {
-                  custom = {
-                    "^\\.git",
-                  },
+                  -- Don't hide gitignored files. Useful when exploring a
+                  -- library in a git-ignored venv.
+                  git_ignored = false,
                 },
               })
               vim.keymap.set("n", "<Leader>e", vim.cmd.NvimTreeToggle)
