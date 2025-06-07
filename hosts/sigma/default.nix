@@ -18,7 +18,6 @@
     ./network.nix
     ./ntfy.nix
     ./postgresql.nix
-    ./samba.nix
     ./sonarr.nix
     ./syncthing.nix
   ];

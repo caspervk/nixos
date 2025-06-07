@@ -181,9 +181,7 @@
           22 # SSH
           25 # Mail SMTP
           80 # Caddy
-          139 # Samba
           443 # Caddy
-          445 # Samba
           465 # Mail ESMTP
           993 # Mail IMAPS
           1234 # ad hoc
@@ -192,7 +190,6 @@
         ];
         allowedUDPPorts = [
           67 # DHCP server
-          445 # Samba
           21027 # syncthing
           22000 # syncthing
         ];
