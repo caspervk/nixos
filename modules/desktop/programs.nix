@@ -26,6 +26,9 @@
     mpv
     mumble
     pwgen
+    python311
+    python312
+    python313
     spotify
     thunderbird
     tor-browser

@@ -20,8 +20,6 @@
     pciutils
     progress
     python3
-    python311
-    python312
     socat
     sqlite-interactive
     tcpdump
