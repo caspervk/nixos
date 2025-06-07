@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./agenix.nix
+    ./bat.nix
     ./fish.nix
     ./git.nix
     ./hardware.nix

@@ -3,7 +3,6 @@
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/config/system-path.nix
   environment.systemPackages = with pkgs; [
     bandwhich
-    bat
     binutils
     dnsutils
     fd

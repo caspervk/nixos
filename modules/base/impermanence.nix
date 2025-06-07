@@ -43,7 +43,7 @@
       }
       # /var/tmp is meant for temporary files that are preserved across
       # reboots. Some programs might store files too big for in-memory /tmp
-      # there. Files older than 10 days are cleaned by systemd.
+      # there. Files are automatically cleaned by systemd.
       {
         directory = "/var/tmp";
         user = "root";

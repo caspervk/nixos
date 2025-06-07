@@ -118,10 +118,8 @@
     };
   };
 
-  # Disable rspamd filtering[1]. The rspamd service cannot be disabled
-  # completely due to [2].
-  # [1]: https://nixos-mailserver.readthedocs.io/en/latest/rspamd-tuning.html
-  # [2]: https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/merge_requests/249
+  # Disable rspamd filtering
+  # https://nixos-mailserver.readthedocs.io/en/latest/rspamd-tuning.html
   services.rspamd.extraConfig = ''
     actions {
       reject = null;

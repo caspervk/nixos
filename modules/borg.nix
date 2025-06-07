@@ -59,7 +59,7 @@
 
     # Allows seeing repo stats with:
     #   sudo systemctl status borgbackup-job-root.service
-    extraCreateArgs = "--stats --show-rc";
+    extraCreateArgs = ["--stats" "--show-rc"];
 
     # Trigger backup immediately if the last trigger was missed (e.g. if the
     # system was powered down).

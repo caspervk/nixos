@@ -273,9 +273,11 @@
     # https://github.com/emersion/mako
     services.mako = {
       enable = true;
-      backgroundColor = "#31447f";
-      borderColor = "#31447f";
-      progressColor = "#3bacf0";
+      settings = {
+        backgroundColor = "#31447f";
+        borderColor = "#31447f";
+        progressColor = "#3bacf0";
+      };
     };
 
     # https://wiki.nixos.org/wiki/Cursor_Themes
@@ -303,7 +305,7 @@
     packages = with pkgs; [
       font-awesome # waybar uses Font Awesome icons directly
       # Nerd Fonts patches glyph icons, such as from Font Awesome, into existing fonts
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-color-emoji
     ];

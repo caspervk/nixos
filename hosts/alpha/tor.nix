@@ -1,5 +1,4 @@
 {
-  nixpkgs-unstable,
   pkgs,
   secrets,
   ...
@@ -36,9 +35,7 @@
       ];
       AssumeReachable = true;
       ServerTransportPlugin.transports = ["webtunnel"];
-      # TODO: The webtunnel package has only been released to unstable. Use
-      # package from stable in 25.05.
-      ServerTransportPlugin.exec = "${nixpkgs-unstable.legacyPackages.${pkgs.system}.webtunnel}/bin/server";
+      ServerTransportPlugin.exec = "${pkgs.webtunnel}/bin/server";
       ServerTransportListenAddr = "webtunnel 127.0.0.1:15000";
       ServerTransportOptions = "webtunnel url=${secrets.hosts.alpha.tor.webtunnel-host + secrets.hosts.alpha.tor.webtunnel-path}";
     };

@@ -45,8 +45,7 @@
         # HOW is this not the default?
         scrollback-home = "Shift+Home";
         scrollback-end = "Shift+End";
-        # Pipe last command's output to the clipboard. Requires fish
-        # integration, configured in modules/base/fish.nix.
+        # Pipe last command's output to the clipboard
         pipe-command-output = "[wl-copy] Control+Shift+g";
       };
     };
