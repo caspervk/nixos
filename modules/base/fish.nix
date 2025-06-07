@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   # Fish is a Unix shell with a focus on interactivity and usability. Fish is
   # designed to give the user features by default, rather than by
   # configuration.
@@ -7,6 +11,11 @@
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      # Read system manual pages using bat as the manual page formatter
+      # https://github.com/eth-p/bat-extras/blob/master/doc/batman.md
+      "man" = lib.getExe pkgs.bat-extras.batman;
+    };
     interactiveShellInit = ''
       # Allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
       function s --wraps 'nix shell'
@@ -20,7 +29,6 @@
 
   # Installing a fish plugin automatically enables it
   environment.systemPackages = with pkgs; [
-    fishPlugins.colored-man-pages
     fishPlugins.fzf-fish
     # https://github.com/pure-fish/pure/pull/371
     (fishPlugins.buildFishPlugin {
