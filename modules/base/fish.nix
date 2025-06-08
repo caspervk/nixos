@@ -29,6 +29,7 @@
 
   # Installing a fish plugin automatically enables it
   environment.systemPackages = with pkgs; [
+    fishPlugins.autopair
     fishPlugins.fzf-fish
     # https://github.com/pure-fish/pure/pull/371
     (fishPlugins.buildFishPlugin {
