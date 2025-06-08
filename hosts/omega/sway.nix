@@ -5,7 +5,7 @@
         # swaymsg -t get_outputs
         output = {
           "ASUSTek COMPUTER INC ROG XG27AQ M3LMQS370969" = {
-            mode = "2560x1440@144.006Hz";
+            mode = "2560x1440@170.021Hz";
             position = "0,0";
           };
           "BNQ BenQ XL2411Z SCD06385SL0" = {
