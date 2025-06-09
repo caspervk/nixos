@@ -23,50 +23,39 @@
     enable = true;
     # For maximum performance there should be as many kresd processes as there
     # are available CPU threads.
-    # We double it to account for the SYSTEMD_INSTANCE scheme below.
     # https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html
-    instances = 4;
+    instances = 2;
     extraConfig =
       # lua
       ''
         -- Explicitly only listen on external addresses to allow
         -- systemd-resolved to use localhost:53 as on every other system.
-        local ipv4 = "159.69.4.2"
-        local ipv6_1 = "2a01:4f8:1c0c:70d1::1"
-        local ipv6_2 = "2a01:4f8:1c0c:70d1::2"
-        -- We want to apply different query policies based on the listening
-        -- address, but doing so is difficult. Instead, we define bind address
-        -- and query policies together based on the systemd instance number.
-        -- https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html#instance-specific-configuration
-        local systemd_instance = tonumber(os.getenv("SYSTEMD_INSTANCE"))
-        if systemd_instance % 2 == 0 then
-          -- IPv4 and IPv6-1: Block spam and advertising domains.
-          net.listen(ipv4, 53, {kind = "dns"})
-          net.listen(ipv6_1, 53, {kind = "dns"})
-          net.listen(ipv4, 853, {kind = "tls"})
-          net.listen(ipv6_1, 853, {kind = "tls"})
-          net.listen(ipv4, 443, {kind = "doh2"})
-          net.listen(ipv6_1, 443, {kind = "doh2"})
-          -- https://knot-resolver.readthedocs.io/en/stable/modules-policy.html#response-policy-zones
-          policy.add(
-            policy.rpz(
-              -- Beware that cache is shared by *all* requests. For example, it is
-              -- safe to refuse (policy.DENY) answer based on who asks the resolver,
-              -- but trying to serve different data to different clients (policy.ANSWER)
-              -- will result in unexpected behavior.
-              -- https://knot-resolver.readthedocs.io/en/stable/modules-view.html:
-              policy.DENY,
-              "${dns-blocklist}"
-            )
-          )
-        else
-          -- IPv6-2: Don't censor anything.
-          -- This is primarily for the tor exit relay, since not censoring
-          -- anything is kind of the whole point of tor.
-          net.listen(ipv6_2, 53, {kind = "dns"})
-          net.listen(ipv6_2, 853, {kind = "tls"})
-          net.listen(ipv6_2, 443, {kind = "doh2"})
+        local addresses = {
+          -- Blocks spam and advertising domains
+          ipv4_filtered = "159.69.4.2",
+          ipv6_filtered = "2a01:4f8:1c0c:70d1::1",
+          -- Don't censor anything. This is primarily for the tor exit relay,
+          -- since not censoring anything is kind of the whole point of tor.
+          ipv6_unfiltered = "2a01:4f8:1c0c:70d1::2",
+        }
+        for _, addr in pairs(addresses) do
+          net.listen(addr, 53, {kind = "dns"})
+          net.listen(addr, 853, {kind = "tls"})
+          net.listen(addr, 443, {kind = "doh2"})
         end
+
+        -- Beware that cache is shared by *all* requests. It is safe to refuse
+        -- (policy.DENY) answer based on who asks the resolver, but trying to
+        -- serve different data to different clients (policy.ANSWER) will result
+        -- in unexpected behavior.
+        -- https://knot-resolver.readthedocs.io/en/stable/modules-view.html
+        -- https://knot-resolver.readthedocs.io/en/stable/modules-policy.html#response-policy-zones
+        local blocklist = policy.rpz(policy.DENY, "${dns-blocklist}")
+        modules.load("view")
+        -- `true` means apply view based on query destination rather than source
+        view:addr(addresses.ipv4_filtered, blocklist, true)
+        view:addr(addresses.ipv6_filtered, blocklist, true)
+
         -- TLS certificate for DoT and DoH
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-net_tlssrv.html
         net.tls(
