@@ -44,6 +44,13 @@
           net.listen(addr, 443, {kind = "doh2"})
         end
 
+        -- TLS certificate for DoT and DoH
+        -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-net_tlssrv.html
+        net.tls(
+          "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem",
+          "${config.security.acme.certs."caspervk.net".directory}/key.pem"
+        )
+
         -- Beware that cache is shared by *all* requests. It is safe to refuse
         -- (policy.DENY) answer based on who asks the resolver, but trying to
         -- serve different data to different clients (policy.ANSWER) will result
@@ -56,21 +63,23 @@
         view:addr(addresses.ipv4_filtered, blocklist, true)
         view:addr(addresses.ipv6_filtered, blocklist, true)
 
-        -- TLS certificate for DoT and DoH
-        -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-net_tlssrv.html
-        net.tls(
-          "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem",
-          "${config.security.acme.certs."caspervk.net".directory}/key.pem"
-        )
         -- Cache is stored in /var/cache/knot-resolver, which is mounted as
         -- tmpfs. Allow using 75% of the partition for caching.
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-cache.html
         cache.size = math.floor(cache.fssize() * 0.75)
-        -- The predict module helps to keep the cache hot by prefetching
-        -- records. Any time the resolver answers with records that are about to
-        -- expire, they get refreshed.
+
+        -- The predict module helps to keep the cache hot by prefetching records.
+        -- It can utilize two independent mechanisms to select the records which
+        -- should be refreshed: expiring records and prediction.
+        -- The expiring records mechanism is always active and is not
+        -- configurable. Any time the resolver answers with records that are about
+        -- to expire, they get refreshed.
         -- https://knot-resolver.readthedocs.io/en/stable/modules-predict.html
         modules.load("predict")
+        -- The prediction mechanism is prototype and not recommended for use in
+        -- production. It is disabled by by configuring period=0.
+        predict.config({period = 0})
+
         -- Test domain to verify DNS server is being used
         policy.add(
           policy.domains(
