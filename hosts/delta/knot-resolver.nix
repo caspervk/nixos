@@ -1,6 +1,6 @@
 {
   config,
-  pkgs,
+  dns-blocklist,
   ...
 }: {
   # Knot Resolver is a minimalistic implementation of a caching validating DNS
@@ -56,7 +56,7 @@
               -- will result in unexpected behavior.
               -- https://knot-resolver.readthedocs.io/en/stable/modules-view.html:
               policy.DENY,
-              "${pkgs.runCommand "stevenblack-blocklist-rpz" {} ''grep '^0\.0\.0\.0' ${pkgs.stevenblack-blocklist}/hosts | awk '{print $2 " 600 IN CNAME .\n*." $2 " 600 IN CNAME ."}' > $out''}"
+              "${dns-blocklist}"
             )
           )
         else

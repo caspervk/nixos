@@ -51,6 +51,11 @@
       url = "git+https://git.caspervk.net/caspervk/quaylib.git";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    dns-blocklist = {
+      # Retrieving the one file is much, much faster than downloading the whole repo
+      url = "file+https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/rpz/pro.txt";
+      flake = false;
+    };
   };
 
   outputs = {
