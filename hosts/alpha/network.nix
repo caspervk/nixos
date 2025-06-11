@@ -91,14 +91,14 @@
       wireguardPeers = [
         {
           PublicKey = "PIKVMXKx4LFrvMc2yED48paBR0kil1IgMbGwAdV/GRM=";
-          AllowedIPs = ["10.3.14.15/32"];
+          AllowedIPs = ["fd15:474a:8c5a::3/128"];
           RouteTable = "main";
         }
       ];
     };
     networks."50-wg-pikvm" = {
       matchConfig.Name = "wg-pikvm";
-      address = ["10.3.14.28/24"];
+      address = ["fd15:474a:8c5a::a/64"];
     };
   };
 
