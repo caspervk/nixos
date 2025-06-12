@@ -513,8 +513,6 @@
               vim.keymap.set("n", "<Leader>fs", ts.lsp_dynamic_workspace_symbols)
               vim.keymap.set("n", "<Leader>f/", ts.current_buffer_fuzzy_find)
               vim.keymap.set("n", "<Leader>F", ts.resume)
-              vim.keymap.set("n", "<Leader>fW", function() ts.live_grep({additional_args={"--hidden", "--no-ignore"}}) end)
-              vim.keymap.set("n", "<Leader>fw", ts.live_grep)
             '';
         }
         # It's suggested to install one native sorter for telescope for better
@@ -540,6 +538,23 @@
             # lua
             ''
               require("telescope").load_extension("ui-select")
+            '';
+        }
+        # Enable passing arguments to the grep command.
+        # https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+        {
+          plugin = telescope-live-grep-args-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              local telescope = require("telescope")
+              telescope.load_extension("live_grep_args")
+
+              local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+              vim.keymap.set("n", "<Leader>fw", telescope.extensions.live_grep_args.live_grep_args)
+              vim.keymap.set("v", "<Leader>fw", live_grep_args_shortcuts.grep_visual_selection)
+              vim.keymap.set("n", "<Leader>fW", function() ts.live_grep({additional_args={"--hidden", "--no-ignore"}}) end)
             '';
         }
         # Visualize your undo tree and fuzzy-search changes in it. For those
