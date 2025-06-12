@@ -671,7 +671,7 @@
 
         # A super powerful autopair plugin for Neovim that supports multiple
         # characters; automatically closes brackets etc.
-        # https://github.com/windwp/nvim-ts-autotag
+        # https://github.com/windwp/nvim-autopairs
         {
           plugin = nvim-autopairs;
           type = "lua";
