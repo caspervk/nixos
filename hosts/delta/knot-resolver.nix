@@ -64,9 +64,9 @@
         view:addr(addresses.ipv6_filtered, blocklist, true)
 
         -- Cache is stored in /var/cache/knot-resolver, which is mounted as
-        -- tmpfs. Allow using 75% of the partition for caching.
+        -- tmpfs. The server has 4 GB ram.
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-cache.html
-        cache.size = math.floor(cache.fssize() * 0.75)
+        cache.size = 1536 * MB
 
         -- The predict module helps to keep the cache hot by prefetching records.
         -- It can utilize two independent mechanisms to select the records which
