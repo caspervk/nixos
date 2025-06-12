@@ -697,6 +697,21 @@
             '';
         }
 
+        # Library of 40+ independent Lua modules improving overall Neovim
+        # experience with minimal effort.
+        # https://github.com/echasnovski/mini.nvim
+        {
+          plugin = mini-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
+              -- Minimal and fast statusline module with opinionated default look
+              -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
+              require("mini.statusline").setup({})
+            '';
+        }
+
         # Add/change/delete surrounding delimiter pairs with ease; cs, ds, ys.
         # https://github.com/kylechui/nvim-surround
         {
@@ -825,21 +840,6 @@
                 enhanced_diff_hl = true,
               })
               vim.keymap.set("n", "<Leader>gd", vim.cmd.DiffviewOpen)
-            '';
-        }
-
-        # TODO
-        ########################
-
-        # A blazing fast and easy to configure statusline written in Lua.
-        # https://github.com/nvim-lualine/lualine.nvim
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config =
-            # lua
-            ''
-              require("lualine").setup({})
             '';
         }
 
