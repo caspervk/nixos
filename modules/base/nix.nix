@@ -45,6 +45,7 @@
     # when running commands such as `nix run nixpkgs#hello`. By default,
     # `nixpkgs` is an alias of the system's nixpkgs, but no such alias is made
     # for unstable.
+    # https://search.nixos.org/options?show=nixpkgs.flake.setFlakeRegistry
     registry = {
       nixpkgs-unstable.flake = nixpkgs-unstable;
     };
