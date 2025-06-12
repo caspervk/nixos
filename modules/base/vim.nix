@@ -709,6 +709,10 @@
               -- Minimal and fast statusline module with opinionated default look
               -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
               require("mini.statusline").setup({})
+
+              -- Enhance builtin textobjects like `a(`, `a)`, `a'`.
+              -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
+              require("mini.ai").setup({})
             '';
         }
 
