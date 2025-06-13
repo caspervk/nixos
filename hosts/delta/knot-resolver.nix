@@ -65,6 +65,7 @@
 
         -- Cache is stored in /var/cache/knot-resolver, which is mounted as
         -- tmpfs. The server has 4 GB ram.
+        -- >> cache.stats()["usage_percent"]
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-cache.html
         cache.size = 1536 * MB
 
