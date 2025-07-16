@@ -140,7 +140,7 @@
         src = "${pkgs.waybar}/etc/xdg/waybar";
         installPhase = ''
           # JSON isn't valid if it contains comments
-          sed 's#//.*##' config.jsonc | ${pkgs.jq}/bin/jq > $out
+          ${pkgs.python3Packages.json5}/bin/pyjson5 --as-json config.jsonc > $out
         '';
       };
       defaultConfig = builtins.fromJSON (lib.readFile "${mkDefaultConfig}");
