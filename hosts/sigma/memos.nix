@@ -3,7 +3,10 @@
 
   virtualisation.oci-containers.containers = {
     memos = {
-      image = "docker.io/neosmemo/memos:stable";
+      # Don't upgrade past v0.24, see:
+      # https://github.com/mudkipme/MoeMemosAndroid/issues/264
+      # https://github.com/usememos/memos/issues/4896
+      image = "docker.io/neosmemo/memos:0.24";
       labels = {
         "io.containers.autoupdate" = "registry";
       };
