@@ -44,10 +44,6 @@
       # apparently, the matrix protocol isn't distributed at all and nothing
       # works if you don't do this.
       # trusted_key_servers = [];
-      # The public URIs of the TURN server to give to clients.
-      # https://element-hq.github.io/synapse/latest/turn-howto.html
-      turn_uris = ["turn:turn.matrix.org?transport=udp" "turn:turn.matrix.org?transport=tcp"];
-      turn_shared_secret = "n0t4ctuAllymatr1Xd0TorgSshar3d5ecret4obvIousreAsons";
     };
   };
 
