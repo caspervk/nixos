@@ -24,6 +24,9 @@
             xkb_variant = "altgr-intl";
             repeat_delay = "200"; # default 250
             repeat_rate = "50"; # default 25
+            # Disable Caps Lock to make it useful for push-to-talk instead.
+            # https://git.caspervk.net/caspervk/wayland-push-to-talk
+            xkb_options = "caps:none";
           };
           "type:touchpad" = {
             tap = "enabled";
