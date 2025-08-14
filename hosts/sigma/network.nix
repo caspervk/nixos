@@ -186,6 +186,8 @@
           993 # Mail IMAPS
           1234 # ad hoc
           1337 # ad hoc
+          3724 # WoW realm
+          8085 # WoW world
           22000 # syncthing
         ];
         allowedUDPPorts = [
@@ -204,6 +206,8 @@
           993 # Mail IMAPS
           1234 # ad hoc
           1337 # ad hoc
+          3724 # WoW realm
+          8085 # WoW world
           22000 # syncthing
         ];
         allowedUDPPorts = [
