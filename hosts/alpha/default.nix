@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
+    ../../modules/archiveteam-warrior.nix
     ./acme.nix
     ./caddy.nix
     ./hardware.nix
