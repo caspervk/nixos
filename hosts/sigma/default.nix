@@ -3,8 +3,8 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
-    ../../modules/archiveteam-warrior.nix
     ./acme.nix
+    ./archiveteam-warrior.nix
     ./autosurfer.nix
     ./borg.nix
     ./caddy.nix

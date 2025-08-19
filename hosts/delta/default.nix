@@ -3,7 +3,6 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
-    ../../modules/archiveteam-warrior.nix
     ./acme.nix
     ./hardware.nix
     ./knot-resolver.nix
