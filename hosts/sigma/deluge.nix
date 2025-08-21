@@ -22,6 +22,9 @@
       outgoing_interface = "wg-sigma-p2p";
       random_port = false;
       listen_ports = [60881];
+      # disable DHT since every torrent in the DHT shows up as downloaded on
+      # iknowwhatyoudownload.com which hetzner hates.
+      dht = false;
       # no limits
       max_connections_global = -1;
       max_upload_slots_global = -1;
