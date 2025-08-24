@@ -410,11 +410,6 @@
 
               local lspconfig = require("lspconfig")
 
-              -- https://github.com/golang/tools/tree/master/gopls
-              lspconfig.gopls.setup({
-                capabilities = capabilities,
-              })
-
               -- https://github.com/nix-community/nixd
               lspconfig.nixd.setup({
                 capabilities = capabilities,
@@ -882,7 +877,6 @@
         nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright # lsp
         nixpkgs-unstable.legacyPackages.${pkgs.system}.ruff # lsp/conform
         pkgs.alejandra # conform
-        pkgs.gopls # lsp
         pkgs.nixd # lsp
         pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
