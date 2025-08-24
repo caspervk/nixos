@@ -428,18 +428,6 @@
                 },
               })
 
-              -- https://github.com/rust-lang/rust-analyzer
-              lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
-                settings = {
-                  ["rust-analyzer"] = {
-                    diagnostics = {
-                      enable = true;
-                    },
-                  },
-                },
-              })
-
               -- https://github.com/redhat-developer/yaml-language-server
               lspconfig.yamlls.setup({
                 capabilities = capabilities,
@@ -618,7 +606,6 @@
                   nix = {"alejandra"},
                   -- Ruff follows the project's pyproject.toml/ruff.toml
                   python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
-                  rust = {"rustfmt"},
                   terraform = {"tofu_fmt"},
                   toml = {"taplo"},
                   typescript = {"prettier"},
@@ -880,8 +867,6 @@
         pkgs.nixd # lsp
         pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
-        pkgs.rust-analyzer # lsp
-        pkgs.rustfmt # conform
         pkgs.taplo # conform
         pkgs.yaml-language-server # lsp
       ];
