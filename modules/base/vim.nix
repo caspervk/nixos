@@ -451,6 +451,11 @@
               local actions = require("telescope.actions")
               require("telescope").setup({
                 defaults = {
+                  cache_picker = {
+                    -- By default, only one picker is cached for the previous
+                    -- pickers list (<Leader>F).
+                    num_pickers = 10,
+                  },
                   mappings = {
                     i = {
                       -- Quit telescope directly from insert mode, instead of
@@ -488,14 +493,15 @@
               vim.keymap.set("n", "<Leader>fF", function() ts.find_files({hidden=true, no_ignore=true}) end)
               vim.keymap.set("n", "<Leader>ff", ts.find_files)
               vim.keymap.set("n", "<Leader>fh", ts.help_tags)
+              vim.keymap.set("n", "<Leader>fj", ts.jumplist)
               vim.keymap.set("n", "<Leader>fk", ts.keymaps)
               vim.keymap.set("n", "<Leader>fm", ts.marks)
               vim.keymap.set("n", "<Leader>fo", ts.oldfiles)
               vim.keymap.set("n", "<Leader>fq", ts.quickfix)
               vim.keymap.set("n", "<Leader>fr", ts.registers)
-              vim.keymap.set("n", "<Leader>fs", ts.lsp_dynamic_workspace_symbols)
+              vim.keymap.set("n", "<Leader>fs", ts.spell_suggest)
               vim.keymap.set("n", "<Leader>f/", ts.current_buffer_fuzzy_find)
-              vim.keymap.set("n", "<Leader>F", ts.resume)
+              vim.keymap.set("n", "<Leader>F", ts.pickers)
             '';
         }
         # It's suggested to install one native sorter for telescope for better
