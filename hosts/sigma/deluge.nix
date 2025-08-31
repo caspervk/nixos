@@ -15,13 +15,16 @@
     # Config defaults:
     # https://git.deluge-torrent.org/deluge/tree/deluge/core/preferencesmanager.py#n41
     declarative = true;
+    # WARNING: Deluge will not crash if it is unable to parse the config,
+    # choosing to ignore it instead(??). Use `systemctl status deluged.service`
+    # to ensure that the configuration is parsed and applied correctly.
     config = {
       download_location = "/srv/torrents/downloads/";
       # use the dedicated network interface and port
       listen_interface = secrets.hosts.sigma.sigma-p2p-ip-address;
       outgoing_interface = "wg-sigma-p2p";
       random_port = false;
-      listen_ports = [60881];
+      listen_ports = [60881 60881];
       # disable DHT since every torrent in the DHT shows up as downloaded on
       # iknowwhatyoudownload.com which hetzner hates.
       dht = false;
