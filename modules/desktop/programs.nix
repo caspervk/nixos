@@ -31,7 +31,7 @@
     python313
     spotify
     thunderbird
-    tor-browser
+    tor-browser # .tor\ project/Tor/torrc: ExitNodes {dk}
     ungoogled-chromium
     vlc
     xdg-utils
