@@ -33,11 +33,11 @@
             ContactInfo = "admin@caspervk.net";
             ORPort = [
               {
-                addr = "185.231.102.51";
+                addr = "31.133.0.235";
                 port = orPort;
               }
               {
-                addr = "[2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b]";
+                addr = "[2001:67c:2044:c141::1:6431:1]";
                 port = orPort;
               }
             ];

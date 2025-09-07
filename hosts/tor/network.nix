@@ -13,14 +13,14 @@
 
   systemd.network = {
     networks."10-lan" = {
-      matchConfig.Name = "enp0s18";
+      matchConfig.Name = "ens18";
       address = [
-        "185.231.102.51/24"
-        "2a0c:5700:3133:650:b0ea:eeff:fedb:1f7b/64"
+        "31.133.0.235/24"
+        "2001:67c:2044:c141::1:6431:1/64"
       ];
       routes = [
-        {Gateway = "185.231.102.1";}
-        {Gateway = "fe80::200:5eff:fe00:20c";}
+        {Gateway = "31.133.0.1";}
+        {Gateway = "2001:67c:2044:c141::1";}
       ];
     };
   };

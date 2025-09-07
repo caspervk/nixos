@@ -95,7 +95,7 @@ installation:
 ```fish
 mkdir -p /mnt/nix/persist/etc/ssh/
 ssh-keygen -A -f /mnt/nix/persist
-nc alpha.caspervk.net 1337 < /mnt/nix/persist/etc/ssh/ssh_host_ed25519.pub
+nc alpha.caspervk.net 1337 < /mnt/nix/persist/etc/ssh/ssh_host_ed25519_key.pub
 ```
 Then, on an existing system, add the new host's public key to `secrets.nix` in
 the `nixos-secrets` repo and **rekey** all secrets. When managing secrets, the

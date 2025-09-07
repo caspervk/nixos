@@ -12,8 +12,10 @@
 
   boot = {
     loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        device = "/dev/sda";
+      };
     };
     initrd.luks.devices.crypted.device = "/dev/disk/by-label/crypted";
   };
