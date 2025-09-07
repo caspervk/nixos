@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ../../modules/podman.nix
     ./borg.nix
     ./hardware.nix
     ./sway.nix

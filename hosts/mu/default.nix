@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ../../modules/podman.nix
     ./hardware.nix
     ./fan.nix
     ./fish.nix

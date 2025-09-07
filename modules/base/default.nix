@@ -11,7 +11,6 @@
     ./locale.nix
     ./network.nix
     ./nix.nix
-    ./podman.nix
     ./programs.nix
     ./ripgrep.nix
     ./ssh.nix

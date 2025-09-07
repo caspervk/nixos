@@ -4,6 +4,7 @@
     ../../modules/base
     ../../modules/desktop
     ../../modules/games.nix
+    ../../modules/podman.nix
     ./borg.nix
     ./hardware.nix
     ./sway.nix

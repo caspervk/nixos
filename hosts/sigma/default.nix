@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/server
+    ../../modules/podman.nix
     ./acme.nix
     ./archiveteam-warrior.nix
     ./autosurfer.nix
