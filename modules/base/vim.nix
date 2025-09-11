@@ -679,6 +679,14 @@
             # lua
             ''
               require("leap").create_default_mappings()
+              -- Suggested additional tweak: Don't show labels for
+              -- middle-of-word positions until after the second keypress.
+              require("leap").opts.preview_filter = function (ch0, ch1, ch2)
+                return not (
+                  ch1:match("%s") or
+                  ch0:match("%a") and ch1:match("%a") and ch2:match("%a")
+                )
+              end
               -- Suggested additional tweak: Use the traversal keys to repeat
               -- the previous motion without explicitly invoking Leap.
               require("leap.user").set_repeat_keys("<enter>", "<backspace>")
