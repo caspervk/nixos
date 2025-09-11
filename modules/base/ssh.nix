@@ -20,7 +20,7 @@
     "alpha".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOpQNEmmEe6jr7Mv37ozokvtTSd1I3SmUU1tpCSNTkc";
     "delta".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFe9RpnO1/QRU81kjtEsWN66xfP5Y/qf5EQZ6wdM/XCT";
     "sigma".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c";
-    "tor".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICoOCI5zBHYWCqAfXt6PFJmQk6MQNoC+pSqjiU1TvXMX";
+    "tor".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjmlrCSuBwpIUl4ic8Hq+CDlF4eXNVd1ejbY7Bdi9LC";
     "git.caspervk.net".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4Kvx/lcFRvl7KlxqqhrJ32h3FzuzyLA5BNB42+p92c";
   };
 
