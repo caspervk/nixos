@@ -1,8 +1,4 @@
-{
-  config,
-  secrets,
-  ...
-}: {
+{...}: {
   # https://element-hq.github.io/synapse/latest/
   # https://nixos.org/manual/nixos/stable/#module-services-matrix
   # https://wiki.nixos.org/wiki/Matrix
@@ -13,9 +9,9 @@
     settings = {
       # The server_name name appears at the end of usernames and room addresses
       # created on the server. It should NOT be a matrix-specific subdomain
-      # such as matrix.example.com.
-      # Caddy *does* however serve synapse on matrix.vkristensen.dk (rather
-      # than vkristensen.dk directly). This is done through /.well-known/matrix delegation:
+      # such as matrix.example.com. Caddy *does* however serve synapse on
+      # matrix.vkristensen.dk (rather than vkristensen.dk directly). This is
+      # done through /.well-known/matrix delegation.
       # https://element-hq.github.io/synapse/latest/delegate.html.
       server_name = "vkristensen.dk";
       # The public-facing base URL that clients use to access this Homeserver.
@@ -36,6 +32,10 @@
             }
           ];
         }
+      ];
+      # https://element-hq.github.io/synapse/latest/application_services.html
+      app_service_config_files = [
+        "/var/lib/heisenbridge/registration.yml"
       ];
       # Disable trusting signing keys from matrix.org (the default). If set to
       # the empty array, then Synapse will request the keys directly from the
@@ -65,6 +65,22 @@
         ensureDBOwnership = true;
       }
     ];
+  };
+
+  # IRC bridge
+  # https://github.com/hifi/heisenbridge
+  services.heisenbridge = {
+    enable = true;
+    homeserver = "http://localhost:8008";
+  };
+
+  # Only allow network through wg-sigma-public. Note that this does not tell it
+  # to use the correct routing table. For proper internet access, the correct
+  # routing table is also configured by routingPolicyRules in networking.nix.
+  systemd.services.heisenbridge = {
+    serviceConfig = {
+      RestrictNetworkInterfaces = "lo wg-sigma-public";
+    };
   };
 
   environment.persistence."/nix/persist" = {

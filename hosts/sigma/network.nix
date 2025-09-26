@@ -113,6 +113,12 @@
           Table = "wg-sigma-public";
         }
         {
+          # ditto for heisenbridge
+          Priority = 101;
+          User = config.systemd.services.heisenbridge.serviceConfig.User;
+          Table = "wg-sigma-public";
+        }
+        {
           # See the AllowedIPs comment above for why this is necessary
           Priority = 1000;
           From = "49.13.33.75/32";
