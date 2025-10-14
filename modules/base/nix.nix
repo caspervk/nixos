@@ -27,13 +27,6 @@
       # https://nixos.org/manual/nix/unstable/command-ref/nix-store/optimise.html
       auto-optimise-store = true;
 
-      # Nix uses /tmp/ (tmpfs) during builds by default. This may cause 'No
-      # space left on device' errors with limited system memory or during big
-      # builds. Use /var/tmp/, which is mounted to a physical disk, instead.
-      # Note that /var/tmp/ should ideally be on the same filesystem as
-      # /nix/store/ for faster copying of files.
-      build-dir = "/var/tmp";
-
       # Enable flakes
       experimental-features = ["nix-command" "flakes"];
 
