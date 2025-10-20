@@ -399,25 +399,11 @@
               vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
               vim.keymap.set("n", "gI", ts.lsp_implementations)
 
-              -- LSP servers and clients communicate what features they support.
-              -- By default, neovim does not support everything in the LSP
-              -- specification. When we add plugins such as blink, neovim now
-              -- has more capabilities, so we must add these to the capabilities
-              -- that are broadcast to each server.
-              -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
-              local capabilities = vim.lsp.protocol.make_client_capabilities()
-              capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
-
-              local lspconfig = require("lspconfig")
-
               -- https://github.com/nix-community/nixd
-              lspconfig.nixd.setup({
-                capabilities = capabilities,
-              })
+              vim.lsp.enable("nixd")
 
               -- https://docs.basedpyright.com
-              lspconfig.basedpyright.setup({
-                capabilities = capabilities,
+              vim.lsp.config["basedpyright"] = {
                 settings = {
                   basedpyright = {
                     analysis = {
@@ -426,16 +412,16 @@
                     },
                   },
                 },
-              })
+              }
+              vim.lsp.enable("basedpyright")
 
               -- https://github.com/redhat-developer/yaml-language-server
-              lspconfig.yamlls.setup({
-                capabilities = capabilities,
+              vim.lsp.config["yamlls"] = {
                 settings = {
-                  yaml = {
-                  },
+                  yaml = {},
                 },
-              })
+              }
+              vim.lsp.enable("yamlls")
             '';
         }
 
