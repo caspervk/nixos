@@ -30,6 +30,7 @@
     fsType = "ext4";
   };
 
+  # TODO: kill swap?
   swapDevices = [
     {
       device = "/nix/persist/swapfile";
