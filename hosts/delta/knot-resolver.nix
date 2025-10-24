@@ -63,11 +63,14 @@
         view:addr(addresses.ipv4_filtered, blocklist, true)
         view:addr(addresses.ipv6_filtered, blocklist, true)
 
-        -- Cache is stored in /var/cache/knot-resolver, which is mounted as
-        -- tmpfs. The server has 4 GB ram.
+        -- Cache is stored in /var/cache/knot-resolver, which is persisted to
+        -- disk. Choosing a cache size that can fit into RAM is important even
+        -- if the cache is stored on disk. Otherwise, the extra I/O caused by
+        -- disk access for missing pages can cause performance issues.
+        -- The server has 4 GB ram.
         -- >> cache.stats()["usage_percent"]
         -- https://knot-resolver.readthedocs.io/en/stable/daemon-bindings-cache.html
-        cache.size = 1536 * MB
+        cache.size = 2048 * MB
 
         -- The predict module helps to keep the cache hot by prefetching records.
         -- It can utilize two independent mechanisms to select the records which
@@ -94,5 +97,16 @@
   networking.firewall = {
     allowedTCPPorts = [443 853];
     allowedUDPPorts = [53];
+  };
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      {
+        directory = "/var/cache/knot-resolver";
+        user = "knot-resolver";
+        group = "knot-resolver";
+        mode = "0770";
+      }
+    ];
   };
 }
