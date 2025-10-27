@@ -175,7 +175,7 @@
                   months = "<span color='#35b9ab'><b>{}</b></span>";
                   weekdays = "<span color='#21a4df'><b>{}</b></span>";
                   # https://github.com/Alexays/Waybar/issues/2827
-                  weeks = "<span color='#73ba25'><b>{:%W}</b></span>";
+                  weeks = "<span color='#73ba25'><b>{:%V}</b></span>";
                   days = "<span color='#35b9ab'>{}</span>";
                   today = "<span color='#35b9ab' background='#173f4f'><b>{}</b></span>";
                 };
