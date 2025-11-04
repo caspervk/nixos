@@ -45,9 +45,9 @@
       network = {
         # The default networking stack for rootless containers, pasta, doesn't
         # seem to work properly. Test using:
-        # > podman run --rm -it --network=pasta quay.io/lib/debian:latest apt update
+        # > podman run --rm -it --network=pasta docker.io/library/debian:latest apt update
         # vs
-        # > podman run --rm -it --network=slirp4netns quay.io/lib/debian:latest apt update
+        # > podman run --rm -it --network=slirp4netns docker.io/library/debian:latest apt update
         default_rootless_network_cmd = "slirp4netns";
       };
     };
@@ -63,13 +63,7 @@
       # Unqualified images suck, but we'll do it for granddad
       unqualified-search-registries = ["docker.io"]
 
-      # Use Quay mirror of docker.io/library ("Docker Official") images
-      [[registry]]
-      location = "docker.io/library"
-      [[registry.mirror]]
-      location = "quay.io/lib"
-
-      # Use Google's Docker Hub mirror for everything else docker.io
+      # Use Google's Docker Hub mirror for everything docker.io
       # https://cloud.google.com/artifact-registry/docs/pull-cached-dockerhub-images
       [[registry]]
       location = "docker.io"

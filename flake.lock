@@ -44,7 +44,7 @@
     "dns-blocklist": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-FCiHX8bjgqhTo4+pyxXSJJq2oFrltR8pi2h+JHYsids=",
+        "narHash": "sha256-RulkW5osbIqaubRxzW7uJvqSvQuwSH9Sh6TpYeKFWmY=",
         "type": "file",
         "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/rpz/pro.txt"
       },
@@ -145,11 +145,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762183399,
-        "narHash": "sha256-vr2aL1QLfERYTfYBgK8cW3T9eSdSEThH462wKaGlmEU=",
+        "lastModified": 1762228452,
+        "narHash": "sha256-Y5950vzoyJ8+u4U6dlI/2VEbf3JQnIJsmRWWWcsgpRg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a5fee077929ae2f2800c3087dce5e1abb4edfbc6",
+        "rev": "aa6936bb637e46a49cf1292486200ba41dd4bcf7",
         "type": "github"
       },
       "original": {
@@ -196,11 +196,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1762179181,
-        "narHash": "sha256-T4+TNfXlF/gHbcNCC2HY7sMGBKgqNzyYeMBWmcbH7/o=",
+        "lastModified": 1762258759,
+        "narHash": "sha256-DdYgw7hLUFmcblLdKwNgH+5xfSI7US2lKG/h6CTUWPk=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "256770618502d2eda892af3ae91da5e386ce9586",
+        "rev": "bffe23e699d74af602ea5f3205a643282ab5a017",
         "type": "github"
       },
       "original": {
@@ -244,11 +244,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1761907660,
-        "narHash": "sha256-kJ8lIZsiPOmbkJypG+B5sReDXSD1KGu2VEPNqhRa/ew=",
+        "lastModified": 1762111121,
+        "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2fb006b87f04c4d3bdf08cfdbc7fab9c13d94a15",
+        "rev": "b3d51a0365f6695e7dd5cdf3e180604530ed33b4",
         "type": "github"
       },
       "original": {
@@ -256,26 +256,6 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "quaylib": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754691736,
-        "narHash": "sha256-Qs6m07kD5zBfNk9zmugX0IPztGz7ojDPB/0hCnbLm8I=",
-        "ref": "refs/heads/master",
-        "rev": "3310927184f9e970d885efd94e87291c2d4f6a8e",
-        "revCount": 3,
-        "type": "git",
-        "url": "https://git.caspervk.net/caspervk/quaylib.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.caspervk.net/caspervk/quaylib.git"
       }
     },
     "root": {
@@ -289,7 +269,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "quaylib": "quaylib",
         "secrets": "secrets",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "sortseer": "sortseer"
