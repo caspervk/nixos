@@ -159,6 +159,20 @@
               })
             end,
           })
+
+          -- Synchronise registers with system clipboard on focus gain/loss.
+          -- https://www.reddit.com/r/neovim/comments/1l4tubm/copy_last_yanked_text_to_clipboard_on_focuslost/
+          -- https://github.com/EtiamNullam/deferred-clipboard.nvim
+          vim.api.nvim_create_autocmd({"VimLeave", "FocusLost"}, {
+            callback = function()
+              vim.fn.setreg("+", vim.fn.getreg("0"))
+            end,
+          })
+          vim.api.nvim_create_autocmd({"VimEnter", "FocusGained"}, {
+            callback = function()
+              vim.fn.setreg('"', vim.fn.getreg("+"))
+            end,
+          })
         '';
       plugins = with pkgs.vimPlugins; [
         # NeoVim dark colorscheme inspired by the colors of the famous painting
