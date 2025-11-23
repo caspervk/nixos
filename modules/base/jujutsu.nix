@@ -17,5 +17,9 @@
         };
       };
     };
+    # TODO: enable in home-manager 25.11
+    # programs.jjui = {
+    #   enable = true;
+    # };
   };
 }
