@@ -678,7 +678,9 @@
           config =
             # lua
             ''
-              require("leap").create_default_mappings()
+              local leap = require("leap")
+              vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
+              vim.keymap.set("n", "S", function() leap.leap({ backward = true }) end)
               -- Suggested additional tweak: Don't show labels for
               -- middle-of-word positions until after the second keypress.
               require("leap").opts.preview_filter = function (ch0, ch1, ch2)
