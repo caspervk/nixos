@@ -616,6 +616,7 @@
                   toml = {"taplo"},
                   typescript = {"prettier"},
                   yaml = {"prettier"},
+                  xml = {"xmlstarlet"},
                 },
               })
               vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -884,6 +885,7 @@
         pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
         pkgs.taplo # conform
+        pkgs.xmlstarlet # conform
         pkgs.yaml-language-server # lsp
       ];
       extraLuaPackages = ps: [];
