@@ -1,6 +1,6 @@
 {
   config,
-  dns-blocklist,
+  pkgs,
   ...
 }: {
   # Knot Resolver is a minimalistic implementation of a caching validating DNS
@@ -21,6 +21,9 @@
   # https://knot-resolver.readthedocs.io/en/stable/daemon-scripting.html
   services.kresd = {
     enable = true;
+    # Extra features required for the lua cqueue library, which is required to
+    # watch for changes in rpz blocklist.
+    package = pkgs.knot-resolver.override {extraFeatures = true;};
     # For maximum performance there should be as many kresd processes as there
     # are available CPU threads.
     # https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html
@@ -57,7 +60,8 @@
         -- in unexpected behavior.
         -- https://knot-resolver.readthedocs.io/en/stable/modules-view.html
         -- https://knot-resolver.readthedocs.io/en/stable/modules-policy.html#response-policy-zones
-        local blocklist = policy.rpz(policy.DENY, "${dns-blocklist}")
+        -- `true` means watch file for changes
+        local blocklist = policy.rpz(policy.DENY, "/tmp/rpz-pro.txt", true)
         modules.load("view")
         -- `true` means apply view based on query destination rather than source
         view:addr(addresses.ipv4_filtered, blocklist, true)
@@ -92,6 +96,34 @@
           )
         )
       '';
+  };
+
+  # Ensure an empty blocklist exists so knot-resolver can start. We need
+  # working DNS to fetch the blocklist, so we must start knot-resolver first.
+  systemd.tmpfiles.rules = [
+    "f /tmp/rpz-pro.txt 0644 knot-resolver knot-resolver"
+  ];
+
+  # Update the blocklist after when knot-resolver starts, and then once per day
+  systemd.services.kresd-blocklist-updater = {
+    after = ["network.target" "kresd@.service"];
+    wants = ["kresd@.service"];
+    # requiredBy = ["kresd@.service"];
+    # before = ["kresd@.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.wget}/bin/wget --timestamping --output-document=/tmp/rpz-pro.txt https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/rpz/pro.txt";
+      User = "knot-resolver";
+      Group = "knot-resolver";
+    };
+  };
+  systemd.timers.kresd-blocklist-updater = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "24h";
+      Unit = "kresd-blocklist-updater.service";
+    };
   };
 
   networking.firewall = {
