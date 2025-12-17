@@ -298,11 +298,6 @@
     HandlePowerKey=ignore
   '';
 
-  # Connect swaylock to PAM. If this isn't done, swaylock needs the suid flag
-  security.pam.services.swaylock.text = ''
-    auth include login
-  '';
-
   # https://wiki.nixos.org/wiki/Fonts
   fonts = {
     packages = with pkgs; [
