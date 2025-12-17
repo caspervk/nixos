@@ -13,7 +13,6 @@
     poetry
     pre-commit
     sops
-    terraform
   ];
 
   # Allow port-forward to 443

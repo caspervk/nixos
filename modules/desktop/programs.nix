@@ -44,7 +44,6 @@
       "steam-original"
       "steam-run"
       "steam-unwrapped"
-      "terraform"
     ];
 
   home-manager.users.caspervk = {
