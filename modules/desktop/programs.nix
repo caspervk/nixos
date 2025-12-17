@@ -18,7 +18,7 @@
     hunspellDicts.da-dk
     hunspellDicts.en-gb-ise
     hunspellDicts.en-us
-    jetbrains.pycharm-professional
+    jetbrains.pycharm-community-src
     keepassxc
     (kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
     libqalculate
@@ -39,7 +39,6 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "pycharm-professional"
       "spotify"
       "steam"
       "steam-original"
