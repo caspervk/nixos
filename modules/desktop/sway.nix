@@ -10,9 +10,6 @@
     wrapperFeatures.gtk = true;
   };
 
-  # Polkit is required to configure sway with home-manager
-  security.polkit.enable = true;
-
   home-manager.users.caspervk = {
     wayland.windowManager.sway = {
       enable = true;
