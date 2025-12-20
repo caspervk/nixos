@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ../../overlays
     ../../modules/base
     ../../modules/server
     ../../modules/podman.nix

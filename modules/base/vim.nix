@@ -1,8 +1,4 @@
-{
-  nixpkgs-unstable,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # NixOS
   # https://wiki.nixos.org/wiki/Neovim
   # https://wiki.nixos.org/wiki/Vim
@@ -864,12 +860,12 @@
         }
       ];
       extraPackages = [
-        nixpkgs-unstable.legacyPackages.${pkgs.system}.basedpyright # lsp
-        nixpkgs-unstable.legacyPackages.${pkgs.system}.ruff # lsp/conform
         pkgs.alejandra # conform
+        pkgs.basedpyright # lsp
         pkgs.nixd # lsp
         pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
+        pkgs.ruff # lsp/conform
         pkgs.taplo # conform
         pkgs.xmlstarlet # conform
         pkgs.yaml-language-server # lsp

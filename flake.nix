@@ -35,10 +35,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable"; # use nixpkgs-unstable
-    };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
