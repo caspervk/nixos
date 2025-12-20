@@ -547,34 +547,6 @@
             '';
         }
 
-        # Buffer list that lives in the tabline.
-        # https://github.com/akinsho/bufferline.nvim
-        {
-          plugin = bufferline-nvim;
-          type = "lua";
-          config =
-            # lua
-            ''
-              require("bufferline").setup({})
-              -- Use <A-j> and <A-k> to go to previous/next buffer
-              vim.keymap.set("n", "<A-j>", vim.cmd.BufferLineCyclePrev);
-              vim.keymap.set("n", "<A-k>", vim.cmd.BufferLineCycleNext);
-              -- Use <A-[1-9]> to select a buffer. <A-9> selects the rightmost
-              -- buffer like tabs in Firefox.
-              vim.keymap.set("n", "<A-1>", function() vim.cmd.BufferLineGoToBuffer(1) end);
-              vim.keymap.set("n", "<A-2>", function() vim.cmd.BufferLineGoToBuffer(2) end);
-              vim.keymap.set("n", "<A-3>", function() vim.cmd.BufferLineGoToBuffer(3) end);
-              vim.keymap.set("n", "<A-4>", function() vim.cmd.BufferLineGoToBuffer(4) end);
-              vim.keymap.set("n", "<A-5>", function() vim.cmd.BufferLineGoToBuffer(5) end);
-              vim.keymap.set("n", "<A-6>", function() vim.cmd.BufferLineGoToBuffer(6) end);
-              vim.keymap.set("n", "<A-7>", function() vim.cmd.BufferLineGoToBuffer(7) end);
-              vim.keymap.set("n", "<A-8>", function() vim.cmd.BufferLineGoToBuffer(8) end);
-              vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end);
-              -- Use <A-x> to close current buffer
-              vim.keymap.set("n", "<A-x>", vim.cmd.bd);
-            '';
-        }
-
         # Lightweight yet powerful formatter plugin for Neovim.
         # https://github.com/stevearc/conform.nvim
         {
@@ -829,6 +801,18 @@
                 enhanced_diff_hl = true,
               })
               vim.keymap.set("n", "<Leader>gd", vim.cmd.DiffviewOpen)
+            '';
+        }
+
+        # Single tabpage interface for easily cycling through diffs for all
+        # modified files for any git rev.
+        # https://github.com/sindrets/diffview.nvim
+        {
+          plugin = rainbow-delimiters-nvim;
+          type = "lua";
+          config =
+            # lua
+            ''
             '';
         }
 

@@ -22,7 +22,7 @@
     };
     settings = {
       Nickname = "DXV7520WebTunnel";
-      ContactInfo = "admin@caspervk.net";
+      ContactInfo = "email:admin[]caspervk.net url:caspervk.net proof:dns-rsa ciissversion:2";
       ORPort = [
         {
           addr = "127.0.0.1";

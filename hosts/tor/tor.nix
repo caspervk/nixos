@@ -30,7 +30,7 @@
           # https://manpages.debian.org/testing/tor/torrc.5.en.html
           settings = {
             Nickname = "DXV7520";
-            ContactInfo = "admin@caspervk.net";
+            ContactInfo = "email:admin[]caspervk.net url:caspervk.net proof:dns-rsa ciissversion:2";
             ORPort = [
               {
                 addr = "31.133.0.235";
