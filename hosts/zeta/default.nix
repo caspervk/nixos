@@ -3,6 +3,7 @@
     ../../overlays
     ../../modules/base
     ../../modules/desktop
+    ../../modules/games.nix
     ../../modules/podman.nix
     ./bluetooth.nix
     ./borg.nix
