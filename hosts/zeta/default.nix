@@ -4,6 +4,7 @@
     ../../modules/base
     ../../modules/desktop
     ../../modules/podman.nix
+    ./bluetooth.nix
     ./borg.nix
     ./hardware.nix
     ./sway.nix
