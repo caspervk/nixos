@@ -17,34 +17,37 @@
 
   # Each module will configure the paths they need persisted. Here we define
   # some general system paths that don't really fit anywhere else.
+  # https://nixos.org/manual/nixos/stable/#sec-nixos-state
   environment.persistence."/nix/persist" = {
     hideMounts = true;
     directories = [
-      # The uid and gid maps for entities without a static id is saved in
-      # /var/lib/nixos. Persist to ensure they aren't changed between reboots.
       {
+        # /var/lib/nixos should persist: it holds state needed to generate
+        # stable uids and gids for declaratively-managed users and groups, etc.
         directory = "/var/lib/nixos";
         user = "root";
         group = "root";
         mode = "0755";
       }
-      # Save the last run time of persistent timers so systemd knows if they were missed
       {
-        directory = "/var/lib/systemd/timers";
+        # systemd expects its state directory to persist.
+        directory = "/var/lib/systemd";
         user = "root";
         group = "root";
         mode = "0755";
       }
       {
+        # If (locally) persisting the entire log is desired, it is recommended
+        # to make all of /var/log/journal persistent.
         directory = "/var/log";
         user = "root";
         group = "root";
         mode = "0755";
       }
-      # /var/tmp is meant for temporary files that are preserved across
-      # reboots. Some programs might store files too big for in-memory /tmp
-      # there. Files are automatically cleaned by systemd.
       {
+        # /var/tmp is meant for temporary files that are preserved across
+        # reboots. Some programs might store files too big for in-memory /tmp
+        # there. Files are automatically cleaned by systemd.
         directory = "/var/tmp";
         user = "root";
         group = "root";
@@ -52,7 +55,11 @@
       }
     ];
     files = [
-      "/etc/machine-id" # needed for /var/log
+      # systemd uses per-machine identifier which must be unique and
+      # persistent; otherwise, the system journal may fail to list earlier
+      # boots, etc. systemd generates a random machine-id during boot if it
+      # does not already exist, and persists it in /etc/machine-id.
+      "/etc/machine-id"
     ];
     users.caspervk = {
       directories = [
