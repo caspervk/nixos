@@ -162,16 +162,15 @@ nix shell --impure --expr 'with builtins.getFlake "nixpkgs"; with legacyPackages
 # load flake into repl
 nix repl . --override-input secrets ./../nixos-secrets/
 
-# print a configuration option
-:p nixosConfigurations.omega.options.services.openssh.ports.declarationPositions  # declaration
-:p nixosConfigurations.omega.options.services.openssh.ports.default  # declaration default
-:p nixosConfigurations.omega.options.services.openssh.ports.definitionsWithLocations  # overwrites
-:p nixosConfigurations.omega.options.services.openssh.ports.value  # current value
-# print derivation package names
-:p builtins.map (d: d.name) outputs.nixosConfigurations.omega.options.environment.systemPackages.value
+# inspect configuration
+:p nixosConfigurations.omega.options.services.openssh.ports.declarationPositions # nixpkgs file
+:p nixosConfigurations.omega.options.services.openssh.ports.default # nixpkgs default
+:p nixosConfigurations.omega.options.services.openssh.ports.value # current value
+:p nixosConfigurations.omega.options.services.openssh.ports.definitionsWithLocations # local config file
 
-# print version of package in nixpkgs
-:p inputs.nixpkgs.outputs.legacyPackages.${builtins.currentSystem}.openssh.version
+# inspect package
+:p nixosConfigurations.omega.pkgs.openssh.version # version
+:p nixosConfigurations.omega.pkgs.openssh.meta.position # nixpkgs file
 ```
 
 
