@@ -291,9 +291,9 @@
   };
 
   # Don't shut down the system when the power key is pressed
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+  };
 
   # https://wiki.nixos.org/wiki/Fonts
   fonts = {

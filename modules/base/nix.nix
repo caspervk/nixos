@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    nix-index-database.nixosModules.nix-index
+    nix-index-database.nixosModules.default
   ];
 
   nix = {
@@ -46,9 +46,8 @@
 
   # The system-wide garbage collection service configured above does not know
   # about our user profile.
-  home-manager.users.caspervk.nix.gc = {
-    inherit (config.nix.gc) automatic options;
-    frequency = config.nix.gc.dates;
+  home-manager.users.caspervk = {
+    nix.gc = config.nix.gc;
   };
 
   # Run unpatched dynamic binaries on NixOS.
@@ -61,5 +60,4 @@
   # really thinking about it.
   # https://github.com/nix-community/comma
   programs.nix-index-database.comma.enable = true;
-  programs.command-not-found.enable = false;
 }

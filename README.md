@@ -150,12 +150,13 @@ nixos-install --no-root-passwd --flake .#omega
 
 ### Upgrading
 
-Nixpkgs uses `stateVersion` so sparingly that auditing the entire nixpkgs repo
-is [easy
-enough](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+stateVersion+AND+25.05&patternType=keyword&sm=0).
-Important changes to home-manager is available at
-<https://nix-community.github.io/home-manager/release-notes.xhtml> and
-<https://github.com/nix-community/home-manager/blob/master/modules/misc/news.nix>.
+- [NixOS Release Notes](https://nixos.org/manual/nixos/stable/release-notes.html)
+- [`nixpkgs` Release Notes](https://nixos.org/manual/nixpkgs/stable/release-notes)
+- [GitHub Regressions Tracker](https://github.com/orgs/NixOS/projects?query=Regressions)
+- [Audit `nixpkgs` `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+-file:%5Enixos/tests+stateVersion+AND+25.11)
+- [Home Manager Release Notes](https://nix-community.github.io/home-manager/release-notes.xhtml)
+- [Home Manager News](https://github.com/nix-community/home-manager/tree/master/modules/misc/news) <!-- TODO: news.json? -->
+- [Audit Home Manger `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/nix-community/home-manager%24+-file:%5Etests/+lang:Nix+stateVersion+AND+25.11)
 
 ## Useful Commands
 

@@ -1,24 +1,16 @@
-{home-manager, ...}: {
+{...}: {
   # Git version control system.
   # https://wiki.nixos.org/wiki/Git
 
   home-manager.users.caspervk = {
     programs.git = {
       enable = true;
-      userName = "Casper V. Kristensen";
-      userEmail = "casper@vkristensen.dk";
-
-      # Delta is a syntax-highlighting pager for git, diff, and grep output
-      # https://github.com/dandavison/delta
-      delta = {
-        enable = true;
-        options = {
-          line-numbers = true;
-          side-by-side = true;
+      settings = {
+        user = {
+          name = "Casper V. Kristensen";
+          email = "casper@vkristensen.dk";
         };
-      };
 
-      extraConfig = {
         blame.coloring = "highlightRecent";
         color.blame.highlightRecent = builtins.concatStringsSep "," [
           # 28-step OKLAB gradient
@@ -58,11 +50,11 @@
         push.autoSetupRemote = true;
         rebase.autoSquash = true;
         rebase.autoStash = true;
-      };
 
-      aliases = {
-        # https://docs.gitlab.com/ee/user/project/push_options.html
-        mr = "push --push-option=merge_request.create --push-option=merge_request.assign='vk'";
+        alias = {
+          # https://docs.gitlab.com/ee/user/project/push_options.html
+          mr = "push --push-option=merge_request.create --push-option=merge_request.assign='vk'";
+        };
       };
     };
   };

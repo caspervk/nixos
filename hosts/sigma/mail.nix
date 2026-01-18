@@ -67,12 +67,6 @@
     openFirewall = false;
     # Don't run a local DNS resolver
     localDnsResolver = false;
-    # Disable opportunistic TLS encryption and force instead. This only applies
-    # to client connections from e.g. Thunderbird or K9. Submission from other
-    # mailservers is always opportunistic TLS as per RFC.
-    # https://docker-mailserver.github.io/docker-mailserver/latest/config/security/understanding-the-ports/
-    enableImap = false;
-    enableSubmission = false;
     # The fully qualified domain name of the mail server. Used for TLS and must
     # have a matching reverse-DNS record.
     fqdn = "mail.caspervk.net";
@@ -81,7 +75,7 @@
     certificateScheme = "manual";
     certificateFile = "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem";
     keyFile = "${config.security.acme.certs."caspervk.net".directory}/key.pem";
-    # Use more than 1024-bit DKIM keys
+    # Use more than 2048-bit DKIM keys
     dkimKeyBits = 4096;
     # Rewrite the MessageID's hostname-part of outgoing emails to the
     # mailserver's FQDN. Avoids leaking local hostnames.
@@ -105,6 +99,8 @@
         aliases = secrets.hosts.sigma.mail.aliases;
       };
     };
+    # https://nixos-mailserver.readthedocs.io/en/latest/migrations.html
+    stateVersion = 3;
   };
 
   # Only allow mail delivery through wg-sigma-public. Note that this does not

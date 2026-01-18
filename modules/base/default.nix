@@ -2,6 +2,7 @@
   imports = [
     ./agenix.nix
     ./bat.nix
+    ./delta.nix
     ./fish.nix
     ./git.nix
     ./hardware.nix

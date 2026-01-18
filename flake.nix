@@ -6,7 +6,8 @@
       url = "git+ssh://git@git.caspervk.net/caspervk/nixos-secrets.git";
     };
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-25.05";
+      # https://github.com/NixOS/nixpkgs/pull/472707
+      url = "github:caspervk/nixpkgs/nixos-25.11";
     };
     nixpkgs-unstable = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -32,11 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     sortseer = {

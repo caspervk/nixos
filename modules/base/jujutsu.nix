@@ -8,7 +8,7 @@
   home-manager.users.caspervk = {
     programs.jujutsu = {
       enable = true;
-      package = nixpkgs-unstable.legacyPackages.${pkgs.system}.jujutsu;
+      package = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.jujutsu;
       # https://martinvonz.github.io/jj/latest/config/
       settings = {
         user = {
@@ -17,9 +17,11 @@
         };
       };
     };
-    # TODO: enable in home-manager 25.11
-    # programs.jjui = {
-    #   enable = true;
-    # };
+
+    # Jujutsu TUI.
+    # https://github.com/idursun/jjui
+    programs.jjui = {
+      enable = true;
+    };
   };
 }

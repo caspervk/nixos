@@ -31,18 +31,7 @@
   environment.systemPackages = with pkgs; [
     fishPlugins.autopair
     fishPlugins.fzf-fish
-    # https://github.com/pure-fish/pure/pull/371
-    (fishPlugins.buildFishPlugin {
-      pname = "pure";
-      version = "4.11.3";
-
-      src = fetchFromGitHub {
-        owner = "pure-fish";
-        repo = "pure";
-        rev = "v4.11.3";
-        hash = "sha256-mMUFR/n4aLsmZNbVAYmx57AMXT6U2P+wTuuN3opCeqs=";
-      };
-    })
+    fishPlugins.pure
   ];
 
   # Set fish as the default shell system-wide

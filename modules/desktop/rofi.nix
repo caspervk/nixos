@@ -12,7 +12,6 @@
   home-manager.users.caspervk = {
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
       theme = "android_notification";
       extraConfig = {
         modes = "drun";

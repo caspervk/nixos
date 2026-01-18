@@ -12,13 +12,13 @@
     aspellDicts.en
     aspellDicts.en-computers
     element-desktop
-    firefox-wayland
+    firefox
     gimp
     hunspell
     hunspellDicts.da-dk
     hunspellDicts.en-gb-ise
     hunspellDicts.en-us
-    jetbrains.pycharm-community-src
+    jetbrains.pycharm-oss
     keepassxc
     (kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
     libqalculate

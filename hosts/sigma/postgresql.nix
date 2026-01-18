@@ -6,6 +6,7 @@
     enable = true;
     # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
     # https://wiki.nixos.org/wiki/PostgreSQL#Major_upgrades
+    # TODO: postgres 17
     package = pkgs.postgresql_16;
   };
 

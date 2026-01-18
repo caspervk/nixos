@@ -1,5 +1,4 @@
 {
-  nixpkgs-unstable,
   pkgs,
   secrets,
   ...
@@ -9,9 +8,6 @@
   # https://www.deluge-torrent.org/
   services.deluge = {
     enable = true;
-    # TODO: remove in Nixos 25.11
-    # https://github.com/deluge-torrent/deluge/pull/481#issuecomment-2987180682
-    package = nixpkgs-unstable.legacyPackages.${pkgs.system}.deluge;
     # Use the 'torrent' group to share files amongst downloaders, indexers etc.
     group = "torrent";
     web.enable = true;
