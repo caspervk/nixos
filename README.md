@@ -161,7 +161,7 @@ Important changes to home-manager is available at
 
 ```fish
 # development
-sudo nixos-rebuild switch --flake . --override-input secrets ./../nixos-secrets/
+nixos-rebuild --sudo switch --flake . --override-input secrets ./../nixos-secrets/
 
 # start build environment with user's default shell instead of bash
 nix develop --command $SHELL
