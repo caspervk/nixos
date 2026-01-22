@@ -29,6 +29,7 @@
             tap = "enabled";
             natural_scroll = "enable";
             dwt = "disabled"; # don't disable-while-typing
+            drag_lock = "disabled"; # don't require extra tap to stop dragging
           };
           "1133:50509:Logitech_USB_Receiver" = {
             accel_profile = "flat";
