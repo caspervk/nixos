@@ -188,46 +188,48 @@
       };
       # https://github.com/Alexays/Waybar/wiki/Styling
       # https://github.com/Alexays/Waybar/blob/master/resources/style.css
-      style = ''
-        window#waybar {
-          color: white;
-          background-color: rgba(0, 0, 0, 0.5);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-          transition-duration: 0s;
-        }
-        #workspaces button {
-          color: white;
-          box-shadow: inset 0 3px transparent;
-          border: none;
-          border-radius: 0;
-        }
-        #workspaces button.focused {
-          box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
-          background-color: transparent;
-        }
-        #workspaces button:hover {
-          /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-          background: rgba(0, 0, 0, 0.25);
-          text-shadow: inherit;
-        }
-        #mode {
-            background-color: rgba(255, 255, 255, 0.4);
+      style =
+        # css
+        ''
+          window#waybar {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            transition-duration: 0s;
+          }
+          #workspaces button {
+            color: white;
+            box-shadow: inset 0 3px transparent;
             border: none;
-        }
-        #tray, #pulseaudio, #backlight, #network, #battery, #clock {
-          background-color: transparent;
-          padding: 0 10px;
-        }
-        #battery.warning:not(.charging) {
-          color: #FF9E3B;  /* kanagawa roninYellow */
-        }
-        #battery.critical:not(.charging) {
-          color: #E82424;  /* kanagawa samuraiRed */
-        }
-        #network.disconnected {
-          color: #E82424;  /* kanagawa samuraiRed */
-        }
-      '';
+            border-radius: 0;
+          }
+          #workspaces button.focused {
+            box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
+            background-color: transparent;
+          }
+          #workspaces button:hover {
+            /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+            background: rgba(0, 0, 0, 0.25);
+            text-shadow: inherit;
+          }
+          #mode {
+              background-color: rgba(255, 255, 255, 0.4);
+              border: none;
+          }
+          #tray, #pulseaudio, #backlight, #network, #battery, #clock {
+            background-color: transparent;
+            padding: 0 10px;
+          }
+          #battery.warning:not(.charging) {
+            color: #FF9E3B;  /* kanagawa roninYellow */
+          }
+          #battery.critical:not(.charging) {
+            color: #E82424;  /* kanagawa samuraiRed */
+          }
+          #network.disconnected {
+            color: #E82424;  /* kanagawa samuraiRed */
+          }
+        '';
     };
 
     # https://github.com/swaywm/swaylock

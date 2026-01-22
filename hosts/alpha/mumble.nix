@@ -25,11 +25,13 @@
     registerPassword = "$REGISTER_PASSWORD";
     registerUrl = "https://mumble.caspervk.net";
     registerHostname = "mumble.caspervk.net";
-    extraConfig = ''
-      # Connect clients to the lobby instead of the root channel the first time
-      # they connect.
-      defaultchannel=1
-    '';
+    extraConfig =
+      # ini
+      ''
+        # Connect clients to the lobby instead of the root channel the first time
+        # they connect.
+        defaultchannel=1
+      '';
     environmentFile = config.age.secrets.mumble-environment-file.path;
   };
 

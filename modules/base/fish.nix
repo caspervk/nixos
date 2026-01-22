@@ -16,15 +16,17 @@
       # https://github.com/eth-p/bat-extras/blob/master/doc/batman.md
       "man" = lib.getExe pkgs.bat-extras.batman;
     };
-    interactiveShellInit = ''
-      # Allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
-      function s --wraps 'nix shell'
-        nix shell nixpkgs#$argv
-      end
+    interactiveShellInit =
+      # fish
+      ''
+        # Allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
+        function s --wraps 'nix shell'
+          nix shell nixpkgs#$argv
+        end
 
-      # fzf: use ctrl+f to list files
-      fzf_configure_bindings --directory=\cf
-    '';
+        # fzf: use ctrl+f to list files
+        fzf_configure_bindings --directory=\cf
+      '';
   };
 
   # Installing a fish plugin automatically enables it
