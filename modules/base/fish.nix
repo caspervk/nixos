@@ -26,6 +26,18 @@
 
         # fzf: use ctrl+f to list files
         fzf_configure_bindings --directory=\cf
+
+        # Fish v4.1.0 changed the default keybinds, swapping the behaviour of
+        # alt+{left,right,backspace} with ctrl. Change them back.
+        # `git diff 4.0.9..4.1.0 share/functions/fish_default_key_bindings.fish share/functions/__fish_shared_key_bindings.fish`
+        # https://github.com/fish-shell/fish-shell/issues/12122
+        bind ctrl-right forward-word
+        bind ctrl-left backward-word
+        bind alt-right nextd-or-forward-word
+        bind alt-left prevd-or-backward-word
+        bind alt-backspace backward-kill-word
+        bind ctrl-alt-h backward-kill-word
+        bind alt-delete kill-word
       '';
   };
 
