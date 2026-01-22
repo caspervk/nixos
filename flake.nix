@@ -6,8 +6,7 @@
       url = "git+ssh://git@git.caspervk.net/caspervk/nixos-secrets.git";
     };
     nixpkgs = {
-      # https://github.com/NixOS/nixpkgs/pull/472707
-      url = "github:caspervk/nixpkgs/nixos-25.11";
+      url = "github:NixOS/nixpkgs/nixos-25.11";
     };
     nixpkgs-unstable = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
