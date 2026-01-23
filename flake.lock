@@ -236,11 +236,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1768940263,
-        "narHash": "sha256-sJERJIYTKPFXkoz/gBaBtRKke82h4DkX3BBSsKbfbvI=",
+        "lastModified": 1769089682,
+        "narHash": "sha256-9yA/LIuAVQq0lXelrZPjLuLVuZdm03p8tfmHhnDIkms=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3ceaaa8bc963ced4d830e06ea2d0863b6490ff03",
+        "rev": "078d69f03934859a181e81ba987c2bb033eebfc5",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755916106,
-        "narHash": "sha256-Ghn57JJt/jAlWnRcu/oEmkBWCB9oR6uDPyMiH/hupcw=",
+        "lastModified": 1769196315,
+        "narHash": "sha256-wXnecr+PFjwWgHhamXOVMaA2vJ9U12fMeh0BBU310do=",
         "ref": "refs/heads/master",
-        "rev": "839754671b8dcf5c66a6d02eca2cf11875b3cbee",
-        "revCount": 7,
+        "rev": "930fe9f634967ecc28064a3c3c71d80b688c72a2",
+        "revCount": 9,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/sortseer.git"
       },
