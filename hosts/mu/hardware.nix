@@ -34,6 +34,13 @@
     fsType = "ext4";
   };
 
+  swapDevices = [
+    {
+      device = "/nix/persist/swapfile";
+      size = 32 * 1024; # 32 GiB
+    }
+  ];
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 }
