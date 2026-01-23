@@ -39,7 +39,7 @@
   swapDevices = [
     {
       device = "/nix/persist/swapfile";
-      size = 16 * 1024; # 16 GiB
+      size = 32 * 1024; # 32 GiB
     }
   ];
 
