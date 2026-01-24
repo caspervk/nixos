@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   # https://wiki.nixos.org/wiki/Libvirt
   # https://wiki.nixos.org/wiki/Virt-manager
 
