@@ -1,8 +1,14 @@
 {...}: {
-  # https://element-hq.github.io/synapse/latest/
-  # https://nixos.org/manual/nixos/stable/#module-services-matrix
-  # https://wiki.nixos.org/wiki/Matrix
-  # https://federationtester.matrix.org
+  # Synapse is the reference homeserver implementation of Matrix from the core
+  # development team at matrix.org.
+  #
+  # NOTE: Before deploying synapse server, a postgresql database must be set
+  # up. See the NixOS manual[1].
+  #
+  # [0] https://element-hq.github.io/synapse/latest/
+  # [1] https://nixos.org/manual/nixos/stable/#module-services-matrix
+  # [2] https://wiki.nixos.org/wiki/Matrix
+  # [3] https://federationtester.matrix.org
   services.matrix-synapse = {
     enable = true;
     # https://element-hq.github.io/synapse/latest/usage/configuration/index.html
@@ -45,26 +51,6 @@
       # works if you don't do this.
       # trusted_key_servers = [];
     };
-  };
-
-  services.postgresql = {
-    ensureDatabases = [
-      # matrix-synapse expects the database to have the options `LC_COLLATE`
-      # and `LC_CTYPE` set to `C`, which basically instructs postgres to
-      # ignore any locale-based preferences. Do this manually.
-      # https://github.com/NixOS/nixpkgs/commit/8be61f7a36f403c15e1a242e129be7375aafaa85
-      "matrix-synapse"
-    ];
-    ensureUsers = [
-      # If the database user name equals the connecting system user name,
-      # postgres by default will accept a passwordless connection via unix
-      # domain socket. This makes it possible to run many postgres-backed
-      # services without creating any database secrets at all.
-      {
-        name = "matrix-synapse";
-        ensureDBOwnership = true;
-      }
-    ];
   };
 
   # IRC bridge
