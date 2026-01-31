@@ -18,4 +18,16 @@
   };
   # Bluetooth GUI
   services.blueman.enable = true;
+
+  # Persist paired devices
+  environment.persistence."/nix/persist" = {
+    directories = [
+      {
+        directory = "/var/lib/bluetooth";
+        user = "root";
+        group = "root";
+        mode = "0700";
+      }
+    ];
+  };
 }
