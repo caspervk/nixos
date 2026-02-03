@@ -10,6 +10,7 @@
     ./caddy.nix
     ./deluge.nix
     ./forgejo.nix
+    ./git-syndicate.nix
     ./hardware.nix
     ./jellyfin.nix
     ./mail.nix

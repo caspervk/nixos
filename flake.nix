@@ -39,6 +39,10 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    git-syndicate = {
+      url = "git+https://git.caspervk.net/caspervk/git-syndicate.git";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+    };
     sortseer = {
       url = "git+https://git.caspervk.net/caspervk/sortseer.git";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
