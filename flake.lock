@@ -12,11 +12,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1762618334,
-        "narHash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ=",
+        "lastModified": 1770165109,
+        "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "fcdea223397448d35d9b31f798479227e80183f6",
+        "rev": "b027ee29d959fda4b60b57566d64c98a202e0feb",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770083198,
-        "narHash": "sha256-JsrhyPRyl6hNx06r6msb0LDbuN9l6p1AqSQIMDnEsxI=",
+        "lastModified": 1770166861,
+        "narHash": "sha256-cAZzb0YebuED6jl4yPLvHwv3XQCtKDYL3oBUrLr2s0Q=",
         "ref": "refs/heads/master",
-        "rev": "5caa26c8fe920657196cef648f7e6c6b5bac47c4",
-        "revCount": 2,
+        "rev": "c8feac04b096c1865b03732c8fd8deb8a62e2b5c",
+        "revCount": 3,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/git-syndicate.git"
       },
@@ -240,11 +240,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1770019141,
-        "narHash": "sha256-VKS4ZLNx4PNrABoB0L8KUpc1fE7CLpQXQs985tGfaCU=",
+        "lastModified": 1770115704,
+        "narHash": "sha256-KHFT9UWOF2yRPlAnSXQJh6uVcgNcWlFqqiAZ7OVlHNc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cb369ef2efd432b3cdf8622b0ffc0a97a02f3137",
+        "rev": "e6eae2ee2110f3d31110d5c222cd395303343b08",
         "type": "github"
       },
       "original": {
@@ -256,11 +256,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1769900590,
-        "narHash": "sha256-I7Lmgj3owOTBGuauy9FL6qdpeK2umDoe07lM4V+PnyA=",
+        "lastModified": 1770136044,
+        "narHash": "sha256-tlFqNG/uzz2++aAmn4v8J0vAkV3z7XngeIIB3rM3650=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "41e216c0ca66c83b12ab7a98cc326b5db01db646",
+        "rev": "e576e3c9cf9bad747afcddd9e34f51d18c855b4e",
         "type": "github"
       },
       "original": {
@@ -332,9 +332,9 @@
       },
       "locked": {
         "lastModified": 1769196315,
-        "narHash": "sha256-wXnecr+PFjwWgHhamXOVMaA2vJ9U12fMeh0BBU310do=",
+        "narHash": "sha256-FWyNvdNKla8H6+zQuE58Hz0o3EWyMxf9c536AB+Swc4=",
         "ref": "refs/heads/master",
-        "rev": "930fe9f634967ecc28064a3c3c71d80b688c72a2",
+        "rev": "dcb70ff9f3f10e4803d2d870676e564a67a61b0a",
         "revCount": 9,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/sortseer.git"
