@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770166861,
-        "narHash": "sha256-cAZzb0YebuED6jl4yPLvHwv3XQCtKDYL3oBUrLr2s0Q=",
+        "lastModified": 1770167408,
+        "narHash": "sha256-eFBIKwY362bsZAeRY8QTYakmzO70KJGaTHnbfPp1sZo=",
         "ref": "refs/heads/master",
-        "rev": "c8feac04b096c1865b03732c8fd8deb8a62e2b5c",
-        "revCount": 3,
+        "rev": "ea0d5e38f511502d5c1c5e22e3e79f1ff1ad4705",
+        "revCount": 4,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/git-syndicate.git"
       },
