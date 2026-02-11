@@ -31,10 +31,6 @@
         # Disable repository forking.
         DISABLE_FORKS = true;
       };
-      ui = {
-        # Default theme.
-        DEFAULT_THEME = "gitea-light";
-      };
       server = {
         # Listen address. Defaults to '0.0.0.0'.
         HTTP_ADDR = "localhost";
