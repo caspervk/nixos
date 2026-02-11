@@ -55,10 +55,6 @@
         DISABLE_REGISTRATION = true;
       };
       session = {
-        # Marks session cookies as “secure” as a hint for browsers to only send
-        # them via HTTPS. This option is recommend, if Forgejo is being served
-        # over HTTPS.
-        COOKIE_SECURE = true;
         # Session engine provider.
         PROVIDER = "db";
       };
