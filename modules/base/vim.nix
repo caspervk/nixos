@@ -824,7 +824,6 @@
               require("diffview").setup({
                 enhanced_diff_hl = true,
               })
-              vim.keymap.set("n", "<Leader>gd", vim.cmd.DiffviewOpen)
             '';
         }
 
