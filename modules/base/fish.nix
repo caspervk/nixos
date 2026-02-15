@@ -42,17 +42,17 @@
   };
 
   # Installing a fish plugin automatically enables it
-  environment.systemPackages = with pkgs; [
-    fishPlugins.autopair
-    fishPlugins.fzf-fish
-    fishPlugins.pure
+  environment.systemPackages = [
+    pkgs.fishPlugins.autopair
+    pkgs.fishPlugins.fzf-fish
+    pkgs.fishPlugins.pure
   ];
 
   # Set fish as the default shell system-wide
   users.defaultUserShell = pkgs.fish;
 
   # Add fish to the list of permissible login shells for user accounts
-  environment.shells = with pkgs; [fish];
+  environment.shells = [pkgs.fish];
 
   # Enabling fish in both NixOS and home manager is required to pick up
   # completions and environment variables set by NixOS nixpkgs _and_ home

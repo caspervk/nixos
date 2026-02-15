@@ -5,36 +5,36 @@
 }: {
   # Packages useful on a desktop computer which don't require their own module
 
-  environment.systemPackages = with pkgs; [
-    ascii
-    aspell
-    aspellDicts.da
-    aspellDicts.en
-    aspellDicts.en-computers
-    element-desktop
-    firefox
-    gimp
-    hunspell
-    hunspellDicts.da-dk
-    hunspellDicts.en-gb-ise
-    hunspellDicts.en-us
-    jetbrains.pycharm-oss
-    keepassxc
-    (kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
-    libqalculate
-    libreoffice
-    mpv
-    mumble
-    pwgen
-    python311
-    python312
-    python313
-    spotify
-    thunderbird
-    tor-browser # .tor\ project/Tor/torrc: ExitNodes {dk}
-    ungoogled-chromium
-    vlc
-    xdg-utils
+  environment.systemPackages = [
+    pkgs.ascii
+    pkgs.aspell
+    pkgs.aspellDicts.da
+    pkgs.aspellDicts.en
+    pkgs.aspellDicts.en-computers
+    pkgs.element-desktop
+    pkgs.firefox
+    pkgs.gimp
+    pkgs.hunspell
+    pkgs.hunspellDicts.da-dk
+    pkgs.hunspellDicts.en-gb-ise
+    pkgs.hunspellDicts.en-us
+    pkgs.jetbrains.pycharm-oss
+    pkgs.keepassxc
+    (pkgs.kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
+    pkgs.libqalculate
+    pkgs.libreoffice
+    pkgs.mpv
+    pkgs.mumble
+    pkgs.pwgen
+    pkgs.python311
+    pkgs.python312
+    pkgs.python313
+    pkgs.spotify
+    pkgs.thunderbird
+    pkgs.tor-browser # .tor\ project/Tor/torrc: ExitNodes {dk}
+    pkgs.ungoogled-chromium
+    pkgs.vlc
+    pkgs.xdg-utils
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

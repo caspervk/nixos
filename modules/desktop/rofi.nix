@@ -17,7 +17,7 @@
   };
 
   # rofimoji is keybound in sway.nix
-  environment.systemPackages = with pkgs; [
-    rofimoji
+  environment.systemPackages = [
+    pkgs.rofimoji
   ];
 }

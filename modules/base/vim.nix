@@ -156,12 +156,12 @@
             end,
           })
         '';
-      plugins = with pkgs.vimPlugins; [
+      plugins = [
         # NeoVim dark colorscheme inspired by the colors of the famous painting
         # by Katsushika Hokusai.
         # https://github.com/rebelot/kanagawa.nvim
         {
-          plugin = kanagawa-nvim;
+          plugin = pkgs.vimPlugins.kanagawa-nvim;
           type = "lua";
           config =
             # lua
@@ -220,12 +220,12 @@
 
         # Adds file type icons to Vim plugins.
         # https://github.com/nvim-tree/nvim-web-devicons
-        {plugin = nvim-web-devicons;}
+        {plugin = pkgs.vimPlugins.nvim-web-devicons;}
 
         # Rearrange window layout using sway-like <Ctrl-Shift-{hjkl}> bindings.
         # https://github.com/sindrets/winshift.nvim
         {
-          plugin = winshift-nvim;
+          plugin = pkgs.vimPlugins.winshift-nvim;
           type = "lua";
           config =
             # lua
@@ -244,7 +244,7 @@
         # https://github.com/nvim-treesitter/nvim-treesitter
         # https://github.com/nvim-treesitter/nvim-treesitter/wiki/Extra-modules-and-plugins
         {
-          plugin = nvim-treesitter.withAllGrammars;
+          plugin = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
           type = "lua";
           config =
             # lua
@@ -260,7 +260,7 @@
         # Refactor module for nvim-treesitter.
         # https://github.com/nvim-treesitter/nvim-treesitter-refactor
         {
-          plugin = nvim-treesitter-refactor;
+          plugin = pkgs.vimPlugins.nvim-treesitter-refactor;
           type = "lua";
           config =
             # lua
@@ -290,7 +290,7 @@
         # Code context module for nvim-treesitter.
         # https://github.com/nvim-treesitter/nvim-treesitter-context
         {
-          plugin = nvim-treesitter-context;
+          plugin = pkgs.vimPlugins.nvim-treesitter-context;
           type = "lua";
           config =
             # lua
@@ -306,7 +306,7 @@
         # https://github.com/Saghen/blink.cmp
         # https://cmp.saghen.dev
         {
-          plugin = blink-cmp;
+          plugin = pkgs.vimPlugins.blink-cmp;
           type = "lua";
           config =
             # lua
@@ -364,7 +364,7 @@
         # > :checkhealth lsp
         # https://github.com/neovim/nvim-lspconfig
         {
-          plugin = nvim-lspconfig;
+          plugin = pkgs.vimPlugins.nvim-lspconfig;
           type = "lua";
           config =
             # lua
@@ -425,7 +425,7 @@
         # https://github.com/nvim-telescope/telescope.nvim
         # https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions
         {
-          plugin = telescope-nvim;
+          plugin = pkgs.vimPlugins.telescope-nvim;
           type = "lua";
           config =
             # lua
@@ -490,7 +490,7 @@
         # performance.
         # https://github.com/nvim-telescope/telescope-fzf-native.nvim
         {
-          plugin = telescope-fzf-native-nvim;
+          plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
           type = "lua";
           config =
             # lua
@@ -503,7 +503,7 @@
         # `vim.lsp.buf.code_action()`.
         # https://github.com/nvim-telescope/telescope-ui-select.nvim
         {
-          plugin = telescope-ui-select-nvim;
+          plugin = pkgs.vimPlugins.telescope-ui-select-nvim;
           type = "lua";
           config =
             # lua
@@ -514,7 +514,7 @@
         # Enable passing arguments to the grep command.
         # https://github.com/nvim-telescope/telescope-live-grep-args.nvim
         {
-          plugin = telescope-live-grep-args-nvim;
+          plugin = pkgs.vimPlugins.telescope-live-grep-args-nvim;
           type = "lua";
           config =
             # lua
@@ -532,7 +532,7 @@
         # days where committing early and often doesn't work out.
         # https://github.com/debugloop/telescope-undo.nvim
         {
-          plugin = telescope-undo-nvim;
+          plugin = pkgs.vimPlugins.telescope-undo-nvim;
           type = "lua";
           config =
             # lua
@@ -546,7 +546,7 @@
         # Buffer list that lives in the tabline.
         # https://github.com/akinsho/bufferline.nvim
         {
-          plugin = bufferline-nvim;
+          plugin = pkgs.vimPlugins.bufferline-nvim;
           type = "lua";
           config =
             # lua
@@ -574,7 +574,7 @@
         # Lightweight yet powerful formatter plugin for Neovim.
         # https://github.com/stevearc/conform.nvim
         {
-          plugin = conform-nvim;
+          plugin = pkgs.vimPlugins.conform-nvim;
           type = "lua";
           config =
             # lua
@@ -609,7 +609,7 @@
         # Indentation guides.
         # https://github.com/lukas-reineke/indent-blankline.nvim
         {
-          plugin = indent-blankline-nvim;
+          plugin = pkgs.vimPlugins.indent-blankline-nvim;
           type = "lua";
           config =
             # lua
@@ -631,7 +631,7 @@
         # Automatic indentation style detection for Neovim.
         # https://github.com/NMAC427/guess-indent.nvim
         {
-          plugin = guess-indent-nvim;
+          plugin = pkgs.vimPlugins.guess-indent-nvim;
           type = "lua";
           config =
             # lua
@@ -644,7 +644,7 @@
         # characters; automatically closes brackets etc.
         # https://github.com/windwp/nvim-autopairs
         {
-          plugin = nvim-autopairs;
+          plugin = pkgs.vimPlugins.nvim-autopairs;
           type = "lua";
           config =
             # lua
@@ -656,7 +656,7 @@
         # Neovim's answer to the mouse 🦘
         # https://github.com/ggandor/leap.nvim/
         {
-          plugin = leap-nvim;
+          plugin = pkgs.vimPlugins.leap-nvim;
           type = "lua";
           config =
             # lua
@@ -682,7 +682,7 @@
         # experience with minimal effort.
         # https://github.com/echasnovski/mini.nvim
         {
-          plugin = mini-nvim;
+          plugin = pkgs.vimPlugins.mini-nvim;
           type = "lua";
           config =
             # lua
@@ -700,7 +700,7 @@
         # Add/change/delete surrounding delimiter pairs with ease; cs, ds, ys.
         # https://github.com/kylechui/nvim-surround
         {
-          plugin = nvim-surround;
+          plugin = pkgs.vimPlugins.nvim-surround;
           type = "lua";
           config =
             # lua
@@ -722,7 +722,7 @@
         # Use treesitter to autoclose and autorename html tags.
         # https://github.com/windwp/nvim-ts-autotag
         {
-          plugin = nvim-ts-autotag;
+          plugin = pkgs.vimPlugins.nvim-ts-autotag;
           type = "lua";
           config =
             # lua
@@ -734,7 +734,7 @@
         # Better quickfix window in Neovim.
         # https://github.com/kevinhwang91/nvim-bqf
         {
-          plugin = nvim-bqf;
+          plugin = pkgs.vimPlugins.nvim-bqf;
           type = "lua";
         }
 
@@ -742,7 +742,7 @@
         # Magit.
         # https://github.com/NeogitOrg/neogit
         {
-          plugin = neogit;
+          plugin = pkgs.vimPlugins.neogit;
           type = "lua";
           config =
             # lua
@@ -757,7 +757,7 @@
         # Git integration for buffers.
         # https://github.com/lewis6991/gitsigns.nvim
         {
-          plugin = gitsigns-nvim;
+          plugin = pkgs.vimPlugins.gitsigns-nvim;
           type = "lua";
           config =
             # lua
@@ -816,7 +816,7 @@
         # modified files for any git rev.
         # https://github.com/sindrets/diffview.nvim
         {
-          plugin = diffview-nvim;
+          plugin = pkgs.vimPlugins.diffview-nvim;
           type = "lua";
           config =
             # lua
@@ -830,7 +830,7 @@
         # A File Explorer For Neovim Written In Lua.
         # https://github.com/nvim-tree/nvim-tree.lua
         {
-          plugin = nvim-tree-lua;
+          plugin = pkgs.vimPlugins.nvim-tree-lua;
           type = "lua";
           config =
             # lua

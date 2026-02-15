@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   secrets,
   ...
 }: {
@@ -22,7 +21,7 @@
           # TODO: systemd-journal, audio, input, power, nix ?
         ];
         uid = 1000;
-        packages = with pkgs; [];
+        packages = [];
       };
     };
   };

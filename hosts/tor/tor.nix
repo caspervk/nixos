@@ -86,8 +86,8 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    nyx # Command-line monitor for Tor
+  environment.systemPackages = [
+    pkgs.nyx # Command-line monitor for Tor
   ];
 
   # Serve Exit Relay Notice HTML page

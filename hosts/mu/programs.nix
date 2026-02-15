@@ -1,18 +1,18 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    azure-cli
-    bitwarden-cli
-    fluxcd
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
+  environment.systemPackages = [
+    pkgs.azure-cli
+    pkgs.bitwarden-cli
+    pkgs.fluxcd
+    (pkgs.google-cloud-sdk.withExtraComponents [
+      pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
-    k9s
-    kubectl
-    kubernetes-helm
-    kustomize
-    poetry
-    pre-commit
-    sops
+    pkgs.k9s
+    pkgs.kubectl
+    pkgs.kubernetes-helm
+    pkgs.kustomize
+    pkgs.poetry
+    pkgs.pre-commit
+    pkgs.sops
   ];
 
   # Allow port-forward to 443

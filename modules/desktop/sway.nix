@@ -300,12 +300,12 @@
 
   # https://wiki.nixos.org/wiki/Fonts
   fonts = {
-    packages = with pkgs; [
-      font-awesome # waybar uses Font Awesome icons directly
+    packages = [
+      pkgs.font-awesome # waybar uses Font Awesome icons directly
       # Nerd Fonts patches glyph icons, such as from Font Awesome, into existing fonts
-      nerd-fonts.jetbrains-mono
-      noto-fonts
-      noto-fonts-color-emoji
+      pkgs.nerd-fonts.jetbrains-mono
+      pkgs.noto-fonts
+      pkgs.noto-fonts-color-emoji
     ];
     fontconfig.defaultFonts = {
       emoji = ["Noto Color Emoji"];
@@ -316,18 +316,18 @@
     fontDir.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    brightnessctl
-    wireplumber # pipewire (wpctl)
-    pwvucontrol # pipewire volume control
-    playerctl # media control cli for keybinds
-    slurp # wayland region selector
-    sway-contrib.grimshot # screenshot
-    wl-screenrec # screen record; wl-screenrec -g "$(slurp)" -f screenrecord.mp4
-    wdisplays # gui for ad-hoc display configuration
-    wl-clipboard # wl-copy/wl-paste commands
-    wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
-    wtype # xdotool for wayland
+  environment.systemPackages = [
+    pkgs.brightnessctl
+    pkgs.wireplumber # pipewire (wpctl)
+    pkgs.pwvucontrol # pipewire volume control
+    pkgs.playerctl # media control cli for keybinds
+    pkgs.slurp # wayland region selector
+    pkgs.sway-contrib.grimshot # screenshot
+    pkgs.wl-screenrec # screen record; wl-screenrec -g "$(slurp)" -f screenrecord.mp4
+    pkgs.wdisplays # gui for ad-hoc display configuration
+    pkgs.wl-clipboard # wl-copy/wl-paste commands
+    pkgs.wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
+    pkgs.wtype # xdotool for wayland
   ];
 
   # RealtimeKit is a D-Bus system service that allows user processes to gain
@@ -358,9 +358,9 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 }
