@@ -293,6 +293,20 @@
     };
   };
 
+  # Automatically log in on the first tty once per boot. This is okay since we
+  # use Full Disk Encryption.
+  services.getty = {
+    autologinUser = "caspervk";
+    autologinOnce = true;
+  };
+  programs.fish.loginShellInit =
+    # fish
+    ''
+      if test (tty) = "/dev/tty1"
+          exec sway
+      end
+    '';
+
   # Don't shut down the system when the power key is pressed
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
