@@ -45,6 +45,7 @@
   environment.systemPackages = [
     pkgs.fishPlugins.autopair
     pkgs.fishPlugins.fzf-fish
+    pkgs.fishPlugins.puffer
     pkgs.fishPlugins.pure
   ];
 
