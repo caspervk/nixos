@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777413139,
-        "narHash": "sha256-KsfBU+s0bKJY8cLD2JKbCSRLxoMNTKoihkxBAnSzG/0=",
+        "lastModified": 1777417525,
+        "narHash": "sha256-qKOA2XK4EywvXAAoBOAuSb6Dfr/CaZg7thuZm81szh8=",
         "owner": "magenta-aps",
         "repo": "clank",
-        "rev": "03899fe2737415c85d08c008bfe0fb4e2e7ec72c",
+        "rev": "66672039e12f37b7214e0c16ccde979df980d6eb",
         "type": "github"
       },
       "original": {
