@@ -41,6 +41,26 @@
         "type": "gitlab"
       }
     },
+    "clank": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777293405,
+        "narHash": "sha256-GzqZEfk4ylzGt6Y2OEu+H092kx19QQNsN3+7rp4SFIs=",
+        "owner": "magenta-aps",
+        "repo": "clank",
+        "rev": "8d3a398060062e800904b43ba51aa21fd4ff897b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "magenta-aps",
+        "repo": "clank",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -273,6 +293,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "clank": "clank",
         "git-syndicate": "git-syndicate",
         "home-manager": "home-manager",
         "impermanence": "impermanence",

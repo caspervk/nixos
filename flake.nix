@@ -47,6 +47,10 @@
       url = "git+https://git.caspervk.net/caspervk/sortseer.git";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
+    clank = {
+      url = "github:magenta-aps/clank";
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; # use unstable to get latest harnesses
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {
