@@ -53,10 +53,11 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
-    # https://kamadorueda.com/alejandra/
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
+  outputs = {nixpkgs, ...} @ inputs: let
+    forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+  in {
+    # `nix fmt`
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     nixosConfigurations = {
       # Hetzner VPS
