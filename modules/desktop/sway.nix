@@ -130,62 +130,68 @@
     };
 
     # https://github.com/Alexays/Waybar/wiki/Configuration
-    # https://github.com/Alexays/Waybar/blob/master/resources/config
+    # https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc
+    # https://github.com/Alexays/Waybar/wiki
     programs.waybar = let
-      # It isn't possible to extend the default Waybar config in Home
-      # Manager; as soon as any setting is defined it overwrites the entire
-      # default configuration. To combat  this, we parse the default config
-      # into Nix and merge it with our changes.
-      mkDefaultConfig = pkgs.stdenv.mkDerivation {
-        name = "waybarDefaultConfig";
-        src = "${pkgs.waybar}/etc/xdg/waybar";
-        installPhase = ''
-          # JSON isn't valid if it contains comments
-          ${pkgs.python3Packages.json5}/bin/pyjson5 --as-json config.jsonc > $out
-        '';
-      };
-      defaultConfig = builtins.fromJSON (lib.readFile "${mkDefaultConfig}");
     in {
       enable = true;
       settings = {
-        bar = lib.mkMerge [
-          defaultConfig
-          {
-            modules-right = lib.mkForce ["tray" "wireplumber" "backlight" "network" "battery" "clock"];
-            wireplumber = {
-              on-click = "pwvucontrol";
+        bar = {
+          modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad"];
+          modules-center = ["sway/window"];
+          modules-right = ["tray" "wireplumber" "backlight" "network" "battery" "clock"];
+          backlight = {
+            format = "{percent}% {icon}";
+            format-icons = ["" "" "" "" "" "" "" "" ""];
+          };
+          battery = {
+            states = {
+              warning = 15;
+              critical = 5;
             };
-            battery = {
-              states = lib.mkForce {
-                warning = 15;
-                critical = 5;
+            format = "{capacity}% {icon}";
+            format-full = "{capacity}% {icon}";
+            format-charging = "{capacity}% 󰃨";
+            format-plugged = "{capacity}% ";
+            format-alt = "{time} {icon}";
+            format-icons = ["" "" "" "" ""];
+          };
+          clock = {
+            interval = 5;
+            locale = "da_DK.UTF-8";
+            format = "{:%a %e. %b  %H:%M}";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            calendar = {
+              mode = "year";
+              mode-mon-col = 3;
+              weeks-pos = "left";
+              format = {
+                months = "<span color='#35b9ab'><b>{}</b></span>";
+                weekdays = "<span color='#21a4df'><b>{}</b></span>";
+                # https://github.com/Alexays/Waybar/issues/2827
+                weeks = "<span color='#73ba25'><b>{:%V}</b></span>";
+                days = "<span color='#35b9ab'>{}</span>";
+                today = "<span color='#ffffff' background='#ca4654'>{}</span>";
               };
             };
-            clock = {
-              interval = 5;
-              locale = "da_DK.UTF-8";
-              format = "{:%a %e. %b  %H:%M}";
-              calendar = {
-                mode = "year";
-                mode-mon-col = 3;
-                weeks-pos = "left";
-                format = {
-                  months = "<span color='#35b9ab'><b>{}</b></span>";
-                  weekdays = "<span color='#21a4df'><b>{}</b></span>";
-                  # https://github.com/Alexays/Waybar/issues/2827
-                  weeks = "<span color='#73ba25'><b>{:%V}</b></span>";
-                  days = "<span color='#35b9ab'>{}</span>";
-                  today = "<span color='#35b9ab' background='#173f4f'><b>{}</b></span>";
-                };
-              };
-              actions = {
-                on-click-right = "mode";
-                on-scroll-up = "shift_down";
-                on-scroll-down = "shift_up";
-              };
+            actions = {
+              on-scroll-up = "shift_down";
+              on-scroll-down = "shift_up";
             };
-          }
-        ];
+          };
+          network = {
+            format-wifi = "{essid} ({signalStrength}%) ";
+            format-ethernet = "{ifname}";
+            tooltip-format = "{ipaddr}";
+            format-disconnected = "Disconnected ⚠";
+          };
+          tray = {
+            spacing = 10;
+          };
+          wireplumber = {
+            on-click = "pwvucontrol";
+          };
+        };
       };
       # https://github.com/Alexays/Waybar/wiki/Styling
       # https://github.com/Alexays/Waybar/blob/master/resources/style.css
