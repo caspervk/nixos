@@ -34,6 +34,9 @@
       connect-timeout = 5;
     };
 
+    # Disable channels
+    channel.enable = false;
+
     # The nix registry is used to refer to flakes using symbolic identifiers
     # when running commands such as `nix run nixpkgs#hello`. By default,
     # `nixpkgs` is an alias of the system's nixpkgs, but no such alias is made

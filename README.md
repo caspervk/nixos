@@ -192,4 +192,4 @@ nix repl . --override-input secrets ./../nixos-secrets/
 
 ## References
 
-- https://github.com/nix-community/srvos/tree/29a48ae201fbd69b6b71acdae5e19fa2ceaa8181
+- https://github.com/nix-community/srvos/tree/9e2d48327b65b4020fd07acbd26b43ed9215c9ce
