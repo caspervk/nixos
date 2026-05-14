@@ -11,6 +11,11 @@
     pkgs.aspellDicts.da
     pkgs.aspellDicts.en
     pkgs.aspellDicts.en-computers
+    (pkgs.makeDesktopItem {
+      name = "deezer";
+      desktopName = "Deezer";
+      exec = "${pkgs.ungoogled-chromium}/bin/chromium --app=https://www.deezer.com";
+    })
     pkgs.element-desktop
     pkgs.firefox
     pkgs.gimp
@@ -29,7 +34,6 @@
     pkgs.python311
     pkgs.python312
     pkgs.python313
-    pkgs.spotify
     pkgs.thunderbird
     pkgs.tor-browser # .tor\ project/Tor/torrc: ExitNodes {dk}
     pkgs.ungoogled-chromium
@@ -39,7 +43,6 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "spotify"
       "steam"
       "steam-original"
       "steam-run"
