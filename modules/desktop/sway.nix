@@ -333,7 +333,6 @@
       sansSerif = ["Noto Sans"];
       serif = ["Noto Serif"];
     };
-    fontDir.enable = true;
   };
 
   environment.systemPackages = [
