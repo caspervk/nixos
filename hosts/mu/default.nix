@@ -3,10 +3,10 @@
     ../../modules/base
     ../../modules/desktop
     ../../modules/podman.nix
+    ../../modules/work.nix
     ./hardware.nix
     ./fan.nix
     ./fish.nix
-    ./programs.nix
     ./sway.nix
   ];
 
