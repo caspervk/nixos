@@ -1,10 +1,5 @@
-{
-  clank,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = [
-    clank.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.azure-cli
     pkgs.bitwarden-cli
     pkgs.fluxcd

@@ -1,4 +1,5 @@
 {
+  clank,
   lib,
   pkgs,
   ...
@@ -11,6 +12,7 @@
     pkgs.aspellDicts.da
     pkgs.aspellDicts.en
     pkgs.aspellDicts.en-computers
+    clank.packages.${pkgs.stdenv.hostPlatform.system}.default
     (pkgs.makeDesktopItem {
       name = "deezer";
       desktopName = "Deezer";
