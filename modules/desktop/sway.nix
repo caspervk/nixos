@@ -8,6 +8,19 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraPackages = [
+      pkgs.brightnessctl
+      pkgs.wireplumber # pipewire (wpctl)
+      pkgs.pwvucontrol # pipewire volume control
+      pkgs.playerctl # media control cli for keybinds
+      pkgs.slurp # wayland region selector
+      pkgs.sway-contrib.grimshot # screenshot
+      pkgs.wl-screenrec # screen record; wl-screenrec -g "$(slurp)" -f screenrecord.mp4
+      pkgs.wdisplays # gui for ad-hoc display configuration
+      pkgs.wl-clipboard # wl-copy/wl-paste commands
+      pkgs.wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
+      pkgs.wtype # xdotool for wayland
+    ];
   };
 
   home-manager.users.caspervk = {
@@ -334,20 +347,6 @@
       serif = ["Noto Serif"];
     };
   };
-
-  environment.systemPackages = [
-    pkgs.brightnessctl
-    pkgs.wireplumber # pipewire (wpctl)
-    pkgs.pwvucontrol # pipewire volume control
-    pkgs.playerctl # media control cli for keybinds
-    pkgs.slurp # wayland region selector
-    pkgs.sway-contrib.grimshot # screenshot
-    pkgs.wl-screenrec # screen record; wl-screenrec -g "$(slurp)" -f screenrecord.mp4
-    pkgs.wdisplays # gui for ad-hoc display configuration
-    pkgs.wl-clipboard # wl-copy/wl-paste commands
-    pkgs.wl-mirror # screen mirroing; wl-mirror (slurp -f%o -o)
-    pkgs.wtype # xdotool for wayland
-  ];
 
   # RealtimeKit is a D-Bus system service that allows user processes to gain
   # realtime scheduling priority on request. It is intended to be used as a
