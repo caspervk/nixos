@@ -1,16 +1,8 @@
-{
-  nixpkgs-unstable,
-  pkgs,
-  ...
-}: {
+{...}: {
   # Terminal emulator
   # https://codeberg.org/dnkl/foot
   programs.foot = {
     enable = true;
-    # TODO: remove override in NixOS 26.05
-    # https://codeberg.org/dnkl/foot/issues/2335
-    # https://codeberg.org/dnkl/foot/pulls/2336
-    package = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.foot;
     # https://man.archlinux.org/man/foot.ini.5.en
     settings = {
       main = {
