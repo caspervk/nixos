@@ -6,12 +6,12 @@
     programs.git = {
       enable = true;
       settings = {
-        user = {
-          name = "Casper V. Kristensen";
-          email = "casper@vkristensen.dk";
+        alias = {
+          # https://docs.gitlab.com/ee/user/project/push_options.html
+          mr = "push --push-option=merge_request.create --push-option=merge_request.assign='vk'";
         };
-
         blame.coloring = "highlightRecent";
+        branch.autoSetupMerge = "simple";
         color.blame.highlightRecent = builtins.concatStringsSep "," [
           # 28-step OKLAB gradient
           "#37474f"
@@ -50,10 +50,9 @@
         push.autoSetupRemote = true;
         rebase.autoSquash = true;
         rebase.autoStash = true;
-
-        alias = {
-          # https://docs.gitlab.com/ee/user/project/push_options.html
-          mr = "push --push-option=merge_request.create --push-option=merge_request.assign='vk'";
+        user = {
+          name = "Casper V. Kristensen";
+          email = "casper@vkristensen.dk";
         };
       };
     };
