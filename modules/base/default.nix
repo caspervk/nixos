@@ -9,6 +9,7 @@
     ./home-manager.nix
     ./impermanence.nix
     ./jujutsu.nix
+    ./linux.nix
     ./locale.nix
     ./network.nix
     ./nix.nix
