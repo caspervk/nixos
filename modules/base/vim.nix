@@ -662,6 +662,9 @@
             # lua
             ''
               local leap = require("leap")
+              -- Default safe labels are 'sfnut/SFNLHMUGTZ?' which means we
+              -- have to press shift a lot.
+              leap.opts.safe_labels = "sfnut"
               vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
               vim.keymap.set("n", "S", function() leap.leap({ backward = true }) end)
               -- Suggested additional tweak: Don't show labels for
