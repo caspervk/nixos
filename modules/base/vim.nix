@@ -129,7 +129,10 @@
 
           -- Use <Escape> to clear search highlight. This is normally bound to
           -- CTRL-L, but we use that to navigate windows instead.
-          vim.keymap.set("n", "<Esc>", vim.cmd.noh)
+          vim.keymap.set("n", "<Esc>", function()
+            MiniMap.refresh()
+            vim.cmd.noh()
+          end)
 
           -- Show diagnostics as virtual text
           vim.diagnostic.config({ virtual_text = true })
@@ -697,6 +700,27 @@
               -- Enhance builtin textobjects like `a(`, `a)`, `a'`.
               -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
               require("mini.ai").setup({})
+
+              -- Window with buffer text overview, scrollbar, and highlights
+              -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-map.md
+              local map = require("mini.map")
+              map.setup({
+                integrations = {
+                  map.gen_integration.builtin_search(),
+                  map.gen_integration.diagnostic(),
+                  map.gen_integration.gitsigns(),
+                },
+                window = {
+                  show_integration_count = false;
+                  zindex = 21;  -- treesitter context line is 20
+                },
+              })
+              vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function(args)
+                  MiniMap.open()
+                end,
+              })
+              vim.keymap.set("n", "<Leader>m", MiniMap.toggle)
             '';
         }
 
