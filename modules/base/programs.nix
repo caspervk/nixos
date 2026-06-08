@@ -15,7 +15,6 @@
     pkgs.lsof
     pkgs.mtr
     pkgs.ncdu
-    pkgs.ntp
     pkgs.openssl
     pkgs.pciutils
     pkgs.progress
