@@ -17,9 +17,8 @@
     search = ["caspervk.net"];
   };
 
-  # TODO: these systemd networkd settings will be the default once
-  # https://github.com/NixOS/nixpkgs/pull/264967 is merged.
-  networking.useNetworkd = true;
+  # Use systemd networkd
+  # https://wiki.nixos.org/wiki/Systemd/networkd
   systemd.network.enable = true;
 
   # Never use DHCP. Servers are configured with static addresses. On desktops,
