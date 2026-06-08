@@ -914,9 +914,6 @@
         pkgs.xmlstarlet # conform
         pkgs.yaml-language-server # lsp
       ];
-      extraLuaPackages = ps: [];
-      extraPython3Packages = ps: [];
-      # withNodeJs = true;
     };
 
     # https://wiki.nixos.org/wiki/Vim#Vim_Spell_Files

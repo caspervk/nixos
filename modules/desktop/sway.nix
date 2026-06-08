@@ -145,8 +145,7 @@
     # https://github.com/Alexays/Waybar/wiki/Configuration
     # https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc
     # https://github.com/Alexays/Waybar/wiki
-    programs.waybar = let
-    in {
+    programs.waybar = {
       enable = true;
       settings = {
         bar = {

@@ -23,7 +23,7 @@ The following is based on the [tmpfs as
 root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) blogpost, the NixOS
 manual's
 [partitioning](https://nixos.org/manual/nixos/stable/index.html#sec-installation-manual-partitioning),
-[formatting](https://nixos.orgmanual/nixos/stable/index.html#sec-installation-manual-partitioning-formatting)
+[formatting](https://nixos.org/manual/nixos/stable/index.html#sec-installation-manual-partitioning-formatting)
 and [LUKS-Encrypted File
 Systems](https://nixos.org/manual/nixos/stable/index.html#sec-luks-file-systems)
 sections, ArchWiki's [LVM on

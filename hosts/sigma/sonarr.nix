@@ -8,7 +8,7 @@
   # everything will work. Other configuration:
   # * Media Management/Root Folder: /srv/torrents/tv/.
   # * Indexers: Add as needed.
-  # * Download Clients: 'qBittorrent'. Host: 'localhost'. Category: 'tv'. Disable 'Remove Completed'.
+  # * Download Clients: 'Deluge'. Host: 'localhost'. Category: 'tv'. Disable 'Remove Completed'.
   # * Metadata/Kodi: Enable.
   # * General/Analytics: Disable.
   # * UI: Fix retarded date formats.
