@@ -49,8 +49,8 @@
     pkgs.fishPlugins.pure
   ];
 
-  # Set fish as the default shell system-wide
-  users.defaultUserShell = pkgs.fish;
+  # Set fish as the default shell for caspervk
+  users.users.caspervk.shell = pkgs.fish;
 
   # Enabling fish in both NixOS and home manager is required to pick up
   # completions and environment variables set by NixOS nixpkgs _and_ home
