@@ -24,28 +24,28 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
-      inputs.home-manager.follows = "home-manager"; # use the same home-manager as the system
+      inputs.home-manager.follows = "home-manager";
       inputs.darwin.follows = ""; # don't download dawrin dependencies
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     git-syndicate = {
       url = "git+https://git.caspervk.net/caspervk/git-syndicate.git";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     sortseer = {
       url = "git+https://git.caspervk.net/caspervk/sortseer.git";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     clank = {
       url = "github:magenta-aps/clank";
@@ -67,32 +67,32 @@
       };
       # Hetzner VPS
       delta = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/delta];
       };
       # Work laptop
       mu = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/mu];
       };
       # Home desktop
       omega = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/omega];
       };
       # Home Server
       sigma = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/sigma];
       };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/tor];
       };
       # Laptop
       zeta = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = inputs;
         modules = [./hosts/zeta];
       };
     };
