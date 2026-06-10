@@ -268,16 +268,10 @@
       suspend = "${pkgs.systemd}/bin/systemctl suspend";
     in {
       enable = true;
-      events = [
-        {
-          event = "lock";
-          command = lock;
-        }
-        {
-          event = "before-sleep";
-          command = lock;
-        }
-      ];
+      events = {
+        "lock" = lock;
+        "before-sleep" = lock;
+      };
       timeouts = [
         {
           timeout = 60 * 60 * 1;

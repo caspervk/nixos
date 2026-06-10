@@ -17,9 +17,7 @@
     # Explicitly bind on addresses to ensure UDP doesn't break with multiple
     # interfaces.
     hostName = "116.203.179.206 2a01:4f8:c2c:71c0::";
-    # https://wiki.mumble.info/wiki/Obtaining_a_Let's_Encrypt_Murmur_Certificate
-    sslCert = "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem";
-    sslKey = "${config.security.acme.certs."caspervk.net".directory}/key.pem";
+    tls.useACMEHost = "caspervk.net";
     # Register server in the public server registry
     registerName = "Caspervk's Public Mumble";
     registerPassword = "$REGISTER_PASSWORD";

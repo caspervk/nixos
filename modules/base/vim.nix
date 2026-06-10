@@ -25,7 +25,7 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraLuaConfig =
+      initLua =
         /*
         lua
         */
@@ -247,7 +247,8 @@
         # https://github.com/nvim-treesitter/nvim-treesitter
         # https://github.com/nvim-treesitter/nvim-treesitter/wiki/Extra-modules-and-plugins
         {
-          plugin = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          # TODO
+          plugin = pkgs.vimPlugins.nvim-treesitter-legacy.withAllGrammars;
           type = "lua";
           config =
             # lua
@@ -904,8 +905,8 @@
         pkgs.cargo # lsp
         pkgs.clippy # lsp
         pkgs.nixd # lsp
-        pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
+        pkgs.prettier # conform
         pkgs.ruff # lsp/conform
         pkgs.rust-analyzer # lsp
         pkgs.rustc # lsp

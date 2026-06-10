@@ -153,10 +153,10 @@ nixos-install --no-root-passwd --flake .#omega
 - [NixOS Release Notes](https://nixos.org/manual/nixos/stable/release-notes.html)
 - [`nixpkgs` Release Notes](https://nixos.org/manual/nixpkgs/stable/release-notes)
 - [GitHub Regressions Tracker](https://github.com/orgs/NixOS/projects?query=Regressions)
-- [Audit `nixpkgs` `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+-file:%5Enixos/tests+stateVersion+AND+25.11)
+- [Audit `nixpkgs` `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/NixOS/nixpkgs%24+lang:Nix+-file:%5Enixos/tests+stateVersion+AND+26.05)
 - [Home Manager Release Notes](https://nix-community.github.io/home-manager/release-notes.xhtml)
 - [Home Manager News](https://github.com/nix-community/home-manager/tree/master/modules/misc/news) <!-- TODO: news.json? -->
-- [Audit Home Manger `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/nix-community/home-manager%24+-file:%5Etests/+lang:Nix+stateVersion+AND+25.11)
+- [Audit Home Manger `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/nix-community/home-manager%24+-file:%5Etests/+lang:Nix+stateVersion+AND+26.05)
 
 ## Useful Commands
 

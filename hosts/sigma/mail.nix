@@ -71,10 +71,7 @@
     # have a matching reverse-DNS record.
     fqdn = "mail.caspervk.net";
     # TLS Certificate
-    # https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/merge_requests/303
-    certificateScheme = "manual";
-    certificateFile = "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem";
-    keyFile = "${config.security.acme.certs."caspervk.net".directory}/key.pem";
+    x509.useACMEHost = "caspervk.net";
     # Use more than 2048-bit DKIM keys
     dkimKeyBits = 4096;
     # Rewrite the MessageID's hostname-part of outgoing emails to the

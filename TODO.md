@@ -1,0 +1,2 @@
+knot-resolver v6
+

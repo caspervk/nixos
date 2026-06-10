@@ -11,10 +11,7 @@ lib.mkIf (config.services.caddy.virtualHosts != {}) {
   # https://wiki.nixos.org/wiki/Caddy
   services.caddy = {
     enable = true;
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [80 443];
+    openFirewall = true;
   };
 
   environment.persistence."/nix/persist" = {
