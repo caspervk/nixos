@@ -12,7 +12,55 @@
     pkgs.aspellDicts.da
     pkgs.aspellDicts.en
     pkgs.aspellDicts.en-computers
-    clank.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (clank.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      extraModules = [
+        ({...}: {
+          home-manager.users.root = {
+            programs.opencode = {
+              settings = {
+                provider = {
+                  deepseek = {
+                    options = {
+                      baseURL = "http://clank-proxy:1600";
+                    };
+                  };
+                  google = {
+                    options = {
+                      apiKey = "dummy";
+                      baseURL = "http://clank-proxy:1601/v1beta";
+                    };
+                  };
+                  mistral = {
+                    options = {
+                      apiKey = "dummy";
+                      baseURL = "http://clank-proxy:1602/v1";
+                    };
+                  };
+                  scaleway = {
+                    options = {
+                      baseURL = "http://clank-proxy:1603/v1";
+                    };
+                  };
+                  zai = {
+                    options = {
+                      baseURL = "http://clank-proxy:1604/api/paas/v4";
+                    };
+                  };
+                };
+              };
+            };
+            programs.claude-code = {
+              settings = {
+                env = {
+                  CLAUDE_CODE_OAUTH_TOKEN = "dummy";
+                  ANTHROPIC_BASE_URL = "http://clank-proxy:1666";
+                };
+              };
+            };
+          };
+        })
+      ];
+    })
     (pkgs.makeDesktopItem {
       name = "deezer";
       desktopName = "Deezer";

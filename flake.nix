@@ -52,7 +52,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     clank = {
-      url = "github:magenta-aps/clank";
+      url = "git+https://git.caspervk.net/caspervk/clank.git?ref=dev"; # TODO
       inputs.nixpkgs.follows = "nixpkgs-unstable"; # use unstable to get latest harnesses
     };
   };

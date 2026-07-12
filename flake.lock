@@ -43,23 +43,39 @@
     },
     "clank": {
       "inputs": {
+        "config": "config",
+        "home-manager": "home-manager",
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1781131280,
-        "narHash": "sha256-8uSSYRt1xk8WnNIFTaFMIciVV+SwYbDc0AWYbikHf20=",
-        "owner": "magenta-aps",
-        "repo": "clank",
-        "rev": "5a22e053c20bba40856d75a9be402977617394e4",
-        "type": "github"
+        "lastModified": 1783782333,
+        "narHash": "sha256-nZsej55ppmdXrqH5h8NGNROqWzISIrW6MRPgPp0sfAk=",
+        "ref": "dev",
+        "rev": "0351ee79e8939228816e6dd7bafe730b58c5d717",
+        "revCount": 119,
+        "type": "git",
+        "url": "https://git.caspervk.net/caspervk/clank.git"
       },
       "original": {
-        "owner": "magenta-aps",
-        "repo": "clank",
-        "type": "github"
+        "ref": "dev",
+        "type": "git",
+        "url": "https://git.caspervk.net/caspervk/clank.git"
       }
+    },
+    "config": {
+      "locked": {
+        "path": "./empty",
+        "type": "path"
+      },
+      "original": {
+        "path": "./empty",
+        "type": "path"
+      },
+      "parent": [
+        "clank"
+      ]
     },
     "flake-compat": {
       "flake": false,
@@ -146,6 +162,27 @@
       }
     },
     "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "clank",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783744526,
+        "narHash": "sha256-yYVxW+uIbCx0Nt870fbErQbz+b2+3Gwpppe+JbIU+Co=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2afec152df4e284d264f8489d16004c264aebf4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -267,7 +304,7 @@
         "agenix": "agenix",
         "clank": "clank",
         "git-syndicate": "git-syndicate",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
