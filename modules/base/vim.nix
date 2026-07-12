@@ -26,9 +26,7 @@
       vimAlias = true;
       vimdiffAlias = true;
       initLua =
-        /*
-        lua
-        */
+        # lua
         ''
           -- Use <Space> as the leader key
           vim.g.mapleader = " "
@@ -166,59 +164,57 @@
         {
           plugin = pkgs.vimPlugins.kanagawa-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("kanagawa").setup({
-                theme = "wave",
-                commentStyle = { italic = false },
-                keywordStyle = { italic = false },
-                statementStyle = { bold = false },
-                dimInactive = true,
-                colors = {
-                  theme = {
-                    wave = {
-                      syn = {
-                        -- Make control flow keywords more pronounced.
-                        -- statement = colors.theme.syn.special2,
-                        keyword = "#E46876"  -- waveRed; same as syn.special2
-                      },
+          config = ''
+            require("kanagawa").setup({
+              theme = "wave",
+              commentStyle = { italic = false },
+              keywordStyle = { italic = false },
+              statementStyle = { bold = false },
+              dimInactive = true,
+              colors = {
+                theme = {
+                  wave = {
+                    syn = {
+                      -- Make control flow keywords more pronounced.
+                      -- statement = colors.theme.syn.special2,
+                      keyword = "#E46876"  -- waveRed; same as syn.special2
                     },
-                    all = {
-                      ui = {
-                        -- Don't use a special background for the gutter
-                        bg_gutter = "none",
-                      },
+                  },
+                  all = {
+                    ui = {
+                      -- Don't use a special background for the gutter
+                      bg_gutter = "none",
                     },
                   },
                 },
-                -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/themes.lua
-                -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/highlights/syntax.lua
-                -- See `:h highlight-groups` and `:h group-name`.
-                overrides = function(colors)
-                  local theme = colors.theme
-                  return {
-                    -- Show booleans like other special symbols such as 'None'
-                    -- in Python.
-                    Boolean = { fg = theme.syn.special1, bold = false },
-                    -- Transparent Floating Windows
-                    NormalFloat = { bg = "none" },
-                    FloatBorder = { bg = "none" },
-                    FloatTitle = { bg = "none" },
-                    -- Less pronounced cursorline
-                    CursorLine = { bg = theme.ui.bg_p1 },
-                    -- More pronounced window borders
-                    WinSeparator = { fg = theme.ui.nontext },
-                    -- Less pronounced indent lines
-                    IblIndent = { fg = theme.ui.bg_p2 },
-                    IblScope = { fg = theme.ui.whitespace },
-                    -- Don't overwrite syntax-highlighting on deleted lines
-                    DiffDelete = { fg = "none" },
-                  }
-                end,
-              })
-              vim.cmd.colorscheme("kanagawa")
-            '';
+              },
+              -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/themes.lua
+              -- https://github.com/rebelot/kanagawa.nvim/blob/master/lua/kanagawa/highlights/syntax.lua
+              -- See `:h highlight-groups` and `:h group-name`.
+              overrides = function(colors)
+                local theme = colors.theme
+                return {
+                  -- Show booleans like other special symbols such as 'None'
+                  -- in Python.
+                  Boolean = { fg = theme.syn.special1, bold = false },
+                  -- Transparent Floating Windows
+                  NormalFloat = { bg = "none" },
+                  FloatBorder = { bg = "none" },
+                  FloatTitle = { bg = "none" },
+                  -- Less pronounced cursorline
+                  CursorLine = { bg = theme.ui.bg_p1 },
+                  -- More pronounced window borders
+                  WinSeparator = { fg = theme.ui.nontext },
+                  -- Less pronounced indent lines
+                  IblIndent = { fg = theme.ui.bg_p2 },
+                  IblScope = { fg = theme.ui.whitespace },
+                  -- Don't overwrite syntax-highlighting on deleted lines
+                  DiffDelete = { fg = "none" },
+                }
+              end,
+            })
+            vim.cmd.colorscheme("kanagawa")
+          '';
         }
 
         # Adds file type icons to Vim plugins.
@@ -230,15 +226,13 @@
         {
           plugin = pkgs.vimPlugins.winshift-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("winshift").setup({})
-              vim.keymap.set("n", "<C-S-h>", function() vim.cmd.WinShift("left") end)
-              vim.keymap.set("n", "<C-S-j>", function() vim.cmd.WinShift("down") end)
-              vim.keymap.set("n", "<C-S-k>", function() vim.cmd.WinShift("up") end)
-              vim.keymap.set("n", "<C-S-l>", function() vim.cmd.WinShift("right") end)
-            '';
+          config = ''
+            require("winshift").setup({})
+            vim.keymap.set("n", "<C-S-h>", function() vim.cmd.WinShift("left") end)
+            vim.keymap.set("n", "<C-S-j>", function() vim.cmd.WinShift("down") end)
+            vim.keymap.set("n", "<C-S-k>", function() vim.cmd.WinShift("up") end)
+            vim.keymap.set("n", "<C-S-l>", function() vim.cmd.WinShift("right") end)
+          '';
         }
 
         # Tree sitter is a parsing system that provides improved syntax
@@ -249,29 +243,25 @@
         {
           plugin = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
           type = "lua";
-          config =
-            # lua
-            ''
-              vim.api.nvim_create_autocmd("FileType", {
-                callback = function()
-                  pcall(vim.treesitter.start)
-                end,
-              })
-            '';
+          config = ''
+            vim.api.nvim_create_autocmd("FileType", {
+              callback = function()
+                pcall(vim.treesitter.start)
+              end,
+            })
+          '';
         }
         # Code context module for nvim-treesitter.
         # https://github.com/nvim-treesitter/nvim-treesitter-context
         {
           plugin = pkgs.vimPlugins.nvim-treesitter-context;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("treesitter-context").setup({
-                -- Show one line of context at the top of the screen
-                max_lines = 2,
-              })
-            '';
+          config = ''
+            require("treesitter-context").setup({
+              -- Show one line of context at the top of the screen
+              max_lines = 2,
+            })
+          '';
         }
 
         # Performant, batteries-included completion plugin for Neovim.
@@ -280,54 +270,52 @@
         {
           plugin = pkgs.vimPlugins.blink-cmp;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("blink.cmp").setup({
-                keymap = {
-                  -- Add telescope-like mappings in addition to the default
-                  -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
-                  preset = "super-tab",
-                  ["<C-j>"] = { "select_next", "fallback_to_mappings" },
-                  ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
-                  ["<C-l>"] = {
-                    function(cmp)
-                      if cmp.snippet_active() then return cmp.accept()
-                      else return cmp.select_and_accept() end
-                    end,
-                    "snippet_forward",
-                    "fallback"
-                  },
-                  ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-                  ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+          config = ''
+            require("blink.cmp").setup({
+              keymap = {
+                -- Add telescope-like mappings in addition to the default
+                -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
+                preset = "super-tab",
+                ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+                ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+                ["<C-l>"] = {
+                  function(cmp)
+                    if cmp.snippet_active() then return cmp.accept()
+                    else return cmp.select_and_accept() end
+                  end,
+                  "snippet_forward",
+                  "fallback"
                 },
-                -- Automatically show documentation next to completions menu
-                completion = {
-                  documentation = {
-                    auto_show = true,
-                    auto_show_delay_ms = 50,
-                  },
-                  -- Displays a preview of the selected item on the current line
-                  ghost_text = {
-                    enabled = true,
-                  },
+                ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+              },
+              -- Automatically show documentation next to completions menu
+              completion = {
+                documentation = {
+                  auto_show = true,
+                  auto_show_delay_ms = 50,
                 },
-                -- Enable experimental signature help support
-                signature = {
+                -- Displays a preview of the selected item on the current line
+                ghost_text = {
                   enabled = true,
-                  window = {
-                    show_documentation = false,
-                  },
                 },
-                fuzzy = {
-                  -- Disable automatic download of prebuilt binaries from
-                  -- GitHub. It is already included in nixpkgs blink-cmp.
-                  prebuilt_binaries = {
-                    download = false,
-                  },
+              },
+              -- Enable experimental signature help support
+              signature = {
+                enabled = true,
+                window = {
+                  show_documentation = false,
                 },
-              })
-            '';
+              },
+              fuzzy = {
+                -- Disable automatic download of prebuilt binaries from
+                -- GitHub. It is already included in nixpkgs blink-cmp.
+                prebuilt_binaries = {
+                  download = false,
+                },
+              },
+            })
+          '';
         }
 
         # Language Server Protocol (LSP). LSP facilitates features like
@@ -338,71 +326,69 @@
         {
           plugin = pkgs.vimPlugins.nvim-lspconfig;
           type = "lua";
-          config =
-            # lua
-            ''
-              local ts = require("telescope.builtin")
+          config = ''
+            local ts = require("telescope.builtin")
 
-              -- The LspAttach event is fired after an LSP client attaches to a buffer.
-              -- https://neovim.io/doc/user/lsp.html
-              -- https://microsoft.github.io/language-server-protocol/specifications/specification-current
-              vim.api.nvim_create_autocmd("LspAttach", {
-                callback = function(args)
-                  local client = vim.lsp.get_client_by_id(args.data.client_id)
-                  local buf = args.buf
+            -- The LspAttach event is fired after an LSP client attaches to a buffer.
+            -- https://neovim.io/doc/user/lsp.html
+            -- https://microsoft.github.io/language-server-protocol/specifications/specification-current
+            vim.api.nvim_create_autocmd("LspAttach", {
+              callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                local buf = args.buf
 
-                  -- Overwrite treesitter-refactor's basic go-to-definition
-                  -- keymap if supported by the server.
-                  if client.supports_method("textDocument/definition") then
-                    vim.keymap.set("n", "gd", ts.lsp_definitions, { buffer = args.buf })
-                  end
-                end,
-              })
+                -- Overwrite treesitter-refactor's basic go-to-definition
+                -- keymap if supported by the server.
+                if client.supports_method("textDocument/definition") then
+                  vim.keymap.set("n", "gd", ts.lsp_definitions, { buffer = args.buf })
+                end
+              end,
+            })
 
-              -- The following keymaps are defined irregardless of the LSP
-              -- server's capabilities since we would rather receive an error
-              -- that the action is unsupported by the LSP server instead of doing
-              -- some other random action.
-              vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
-              vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
-              vim.keymap.set("n", "gI", ts.lsp_implementations)
+            -- The following keymaps are defined irregardless of the LSP
+            -- server's capabilities since we would rather receive an error
+            -- that the action is unsupported by the LSP server instead of doing
+            -- some other random action.
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+            vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
+            vim.keymap.set("n", "gI", ts.lsp_implementations)
 
-              -- https://github.com/nix-community/nixd
-              vim.lsp.enable("nixd")
+            -- https://github.com/nix-community/nixd
+            vim.lsp.enable("nixd")
 
-              -- https://github.com/rust-lang/rust-analyzer
-              vim.lsp.config("rust_analyzer", {
-                settings = {
-                  ["rust-analyzer"] = {
-                    check = {
-                      command = "clippy",
-                    }
+            -- https://github.com/rust-lang/rust-analyzer
+            vim.lsp.config("rust_analyzer", {
+              settings = {
+                ["rust-analyzer"] = {
+                  check = {
+                    command = "clippy",
                   }
                 }
-              })
-              vim.lsp.enable("rust_analyzer")
+              }
+            })
+            vim.lsp.enable("rust_analyzer")
 
-              -- https://docs.basedpyright.com
-              vim.lsp.config["basedpyright"] = {
-                settings = {
-                  basedpyright = {
-                    analysis = {
-                      -- https://docs.basedpyright.com/#/configuration?id=diagnostic-settings-defaults
-                      typeCheckingMode = "standard",
-                    },
+            -- https://docs.basedpyright.com
+            vim.lsp.config["basedpyright"] = {
+              settings = {
+                basedpyright = {
+                  analysis = {
+                    -- https://docs.basedpyright.com/#/configuration?id=diagnostic-settings-defaults
+                    typeCheckingMode = "standard",
                   },
                 },
-              }
-              vim.lsp.enable("basedpyright")
+              },
+            }
+            vim.lsp.enable("basedpyright")
 
-              -- https://github.com/redhat-developer/yaml-language-server
-              vim.lsp.config["yamlls"] = {
-                settings = {
-                  yaml = {},
-                },
-              }
-              vim.lsp.enable("yamlls")
-            '';
+            -- https://github.com/redhat-developer/yaml-language-server
+            vim.lsp.config["yamlls"] = {
+              settings = {
+                yaml = {},
+              },
+            }
+            vim.lsp.enable("yamlls")
+          '';
         }
 
         # Telescope is a highly extendable fuzzy finder.
@@ -411,64 +397,62 @@
         {
           plugin = pkgs.vimPlugins.telescope-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              local actions = require("telescope.actions")
-              require("telescope").setup({
-                defaults = {
-                  cache_picker = {
-                    -- By default, only one picker is cached for the previous
-                    -- pickers list (<Leader>F).
-                    num_pickers = 10,
-                  },
-                  mappings = {
-                    i = {
-                      -- Quit telescope directly from insert mode, instead of
-                      -- entering normal mode.
-                      -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
-                      ["<Esc>"] = actions.close,
+          config = ''
+            local actions = require("telescope.actions")
+            require("telescope").setup({
+              defaults = {
+                cache_picker = {
+                  -- By default, only one picker is cached for the previous
+                  -- pickers list (<Leader>F).
+                  num_pickers = 10,
+                },
+                mappings = {
+                  i = {
+                    -- Quit telescope directly from insert mode, instead of
+                    -- entering normal mode.
+                    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
+                    ["<Esc>"] = actions.close,
 
-                      -- Use CTRL-{JK} to navigate dropdowns like CTRL-{NP}
-                      ["<C-j>"] = actions.move_selection_next,
-                      ["<C-k>"] = actions.move_selection_previous,
-                      -- Use CTRL-L to confirm selection
-                      ["<C-l>"] = actions.select_default,
-                    },
+                    -- Use CTRL-{JK} to navigate dropdowns like CTRL-{NP}
+                    ["<C-j>"] = actions.move_selection_next,
+                    ["<C-k>"] = actions.move_selection_previous,
+                    -- Use CTRL-L to confirm selection
+                    ["<C-l>"] = actions.select_default,
                   },
                 },
-                extensions = {
-                  -- Use vertical layout to allow enough width for
-                  -- side-by-side diffs.
-                  undo = {
-                    layout_strategy = "vertical",
-                    layout_config = {
-                      preview_height = 0.8,
-                    },
+              },
+              extensions = {
+                -- Use vertical layout to allow enough width for
+                -- side-by-side diffs.
+                undo = {
+                  layout_strategy = "vertical",
+                  layout_config = {
+                    preview_height = 0.8,
                   },
                 },
-              })
+              },
+            })
 
-              -- Keymaps mostly inspired by the popular distros.
-              -- NOTE: Some mappings are done conditionally on LspAttach.
-              -- https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#vim-pickers
-              local ts = require("telescope.builtin")
-              vim.keymap.set("n", "<Leader>fb", ts.buffers)
-              vim.keymap.set("n", "<Leader>fc", ts.commands)
-              vim.keymap.set("n", "<Leader>fd", ts.diagnostics)
-              vim.keymap.set("n", "<Leader>fF", function() ts.find_files({hidden=true, no_ignore=true}) end)
-              vim.keymap.set("n", "<Leader>ff", ts.find_files)
-              vim.keymap.set("n", "<Leader>fh", ts.help_tags)
-              vim.keymap.set("n", "<Leader>fj", ts.jumplist)
-              vim.keymap.set("n", "<Leader>fk", ts.keymaps)
-              vim.keymap.set("n", "<Leader>fm", ts.marks)
-              vim.keymap.set("n", "<Leader>fo", ts.oldfiles)
-              vim.keymap.set("n", "<Leader>fq", ts.quickfix)
-              vim.keymap.set("n", "<Leader>fr", ts.registers)
-              vim.keymap.set("n", "<Leader>fs", ts.spell_suggest)
-              vim.keymap.set("n", "<Leader>f/", ts.current_buffer_fuzzy_find)
-              vim.keymap.set("n", "<Leader>F", ts.pickers)
-            '';
+            -- Keymaps mostly inspired by the popular distros.
+            -- NOTE: Some mappings are done conditionally on LspAttach.
+            -- https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#vim-pickers
+            local ts = require("telescope.builtin")
+            vim.keymap.set("n", "<Leader>fb", ts.buffers)
+            vim.keymap.set("n", "<Leader>fc", ts.commands)
+            vim.keymap.set("n", "<Leader>fd", ts.diagnostics)
+            vim.keymap.set("n", "<Leader>fF", function() ts.find_files({hidden=true, no_ignore=true}) end)
+            vim.keymap.set("n", "<Leader>ff", ts.find_files)
+            vim.keymap.set("n", "<Leader>fh", ts.help_tags)
+            vim.keymap.set("n", "<Leader>fj", ts.jumplist)
+            vim.keymap.set("n", "<Leader>fk", ts.keymaps)
+            vim.keymap.set("n", "<Leader>fm", ts.marks)
+            vim.keymap.set("n", "<Leader>fo", ts.oldfiles)
+            vim.keymap.set("n", "<Leader>fq", ts.quickfix)
+            vim.keymap.set("n", "<Leader>fr", ts.registers)
+            vim.keymap.set("n", "<Leader>fs", ts.spell_suggest)
+            vim.keymap.set("n", "<Leader>f/", ts.current_buffer_fuzzy_find)
+            vim.keymap.set("n", "<Leader>F", ts.pickers)
+          '';
         }
         # It's suggested to install one native sorter for telescope for better
         # performance.
@@ -476,11 +460,9 @@
         {
           plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("telescope").load_extension("fzf")
-            '';
+          config = ''
+            require("telescope").load_extension("fzf")
+          '';
         }
         # Replace `vim.ui.select` to Telescope. That means for example that
         # neovim core stuff can fill the telescope picker. Example would be lua
@@ -489,28 +471,24 @@
         {
           plugin = pkgs.vimPlugins.telescope-ui-select-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("telescope").load_extension("ui-select")
-            '';
+          config = ''
+            require("telescope").load_extension("ui-select")
+          '';
         }
         # Enable passing arguments to the grep command.
         # https://github.com/nvim-telescope/telescope-live-grep-args.nvim
         {
           plugin = pkgs.vimPlugins.telescope-live-grep-args-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              local telescope = require("telescope")
-              telescope.load_extension("live_grep_args")
+          config = ''
+            local telescope = require("telescope")
+            telescope.load_extension("live_grep_args")
 
-              local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-              vim.keymap.set("n", "<Leader>fw", telescope.extensions.live_grep_args.live_grep_args)
-              vim.keymap.set("v", "<Leader>fw", live_grep_args_shortcuts.grep_visual_selection)
-              vim.keymap.set("n", "<Leader>fW", function() ts.live_grep({additional_args={"--hidden", "--no-ignore"}}) end)
-            '';
+            local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+            vim.keymap.set("n", "<Leader>fw", telescope.extensions.live_grep_args.live_grep_args)
+            vim.keymap.set("v", "<Leader>fw", live_grep_args_shortcuts.grep_visual_selection)
+            vim.keymap.set("n", "<Leader>fW", function() ts.live_grep({additional_args={"--hidden", "--no-ignore"}}) end)
+          '';
         }
         # Visualize your undo tree and fuzzy-search changes in it. For those
         # days where committing early and often doesn't work out.
@@ -518,13 +496,11 @@
         {
           plugin = pkgs.vimPlugins.telescope-undo-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              local telescope = require("telescope")
-              telescope.load_extension("undo")
-              vim.keymap.set("n", "<Leader>fu", telescope.extensions.undo.undo)
-            '';
+          config = ''
+            local telescope = require("telescope")
+            telescope.load_extension("undo")
+            vim.keymap.set("n", "<Leader>fu", telescope.extensions.undo.undo)
+          '';
         }
 
         # Buffer list that lives in the tabline.
@@ -532,27 +508,25 @@
         {
           plugin = pkgs.vimPlugins.bufferline-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("bufferline").setup({})
-              -- Use <A-j> and <A-k> to go to previous/next buffer
-              vim.keymap.set("n", "<A-j>", vim.cmd.BufferLineCyclePrev);
-              vim.keymap.set("n", "<A-k>", vim.cmd.BufferLineCycleNext);
-              -- Use <A-[1-9]> to select a buffer. <A-9> selects the rightmost
-              -- buffer like tabs in Firefox.
-              vim.keymap.set("n", "<A-1>", function() vim.cmd.BufferLineGoToBuffer(1) end);
-              vim.keymap.set("n", "<A-2>", function() vim.cmd.BufferLineGoToBuffer(2) end);
-              vim.keymap.set("n", "<A-3>", function() vim.cmd.BufferLineGoToBuffer(3) end);
-              vim.keymap.set("n", "<A-4>", function() vim.cmd.BufferLineGoToBuffer(4) end);
-              vim.keymap.set("n", "<A-5>", function() vim.cmd.BufferLineGoToBuffer(5) end);
-              vim.keymap.set("n", "<A-6>", function() vim.cmd.BufferLineGoToBuffer(6) end);
-              vim.keymap.set("n", "<A-7>", function() vim.cmd.BufferLineGoToBuffer(7) end);
-              vim.keymap.set("n", "<A-8>", function() vim.cmd.BufferLineGoToBuffer(8) end);
-              vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end);
-              -- Use <A-x> to close current buffer
-              vim.keymap.set("n", "<A-x>", vim.cmd.bd);
-            '';
+          config = ''
+            require("bufferline").setup({})
+            -- Use <A-j> and <A-k> to go to previous/next buffer
+            vim.keymap.set("n", "<A-j>", vim.cmd.BufferLineCyclePrev);
+            vim.keymap.set("n", "<A-k>", vim.cmd.BufferLineCycleNext);
+            -- Use <A-[1-9]> to select a buffer. <A-9> selects the rightmost
+            -- buffer like tabs in Firefox.
+            vim.keymap.set("n", "<A-1>", function() vim.cmd.BufferLineGoToBuffer(1) end);
+            vim.keymap.set("n", "<A-2>", function() vim.cmd.BufferLineGoToBuffer(2) end);
+            vim.keymap.set("n", "<A-3>", function() vim.cmd.BufferLineGoToBuffer(3) end);
+            vim.keymap.set("n", "<A-4>", function() vim.cmd.BufferLineGoToBuffer(4) end);
+            vim.keymap.set("n", "<A-5>", function() vim.cmd.BufferLineGoToBuffer(5) end);
+            vim.keymap.set("n", "<A-6>", function() vim.cmd.BufferLineGoToBuffer(6) end);
+            vim.keymap.set("n", "<A-7>", function() vim.cmd.BufferLineGoToBuffer(7) end);
+            vim.keymap.set("n", "<A-8>", function() vim.cmd.BufferLineGoToBuffer(8) end);
+            vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end);
+            -- Use <A-x> to close current buffer
+            vim.keymap.set("n", "<A-x>", vim.cmd.bd);
+          '';
         }
 
         # Lightweight yet powerful formatter plugin for Neovim.
@@ -560,35 +534,33 @@
         {
           plugin = pkgs.vimPlugins.conform-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              -- TODO: injected language formatting (treesitter code blocks)
-              local conform = require("conform")
-              conform.setup({
-                formatters_by_ft = {
-                  -- Use conform built-ins on all ("*") filetypes
-                  ["*"] = {"trim_newlines", "trim_whitespace"},
-                  css = {"prettier"},
-                  graphql = {"prettier"},
-                  html = {"prettier"},
-                  javascript = {"prettier"},
-                  json = {"prettier"},
-                  markdown = {"prettier"},
-                  nix = {"alejandra"},
-                  -- Ruff follows the project's pyproject.toml/ruff.toml
-                  python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
-                  rust = {"rustfmt"},
-                  terraform = {"tofu_fmt"},
-                  toml = {"taplo"},
-                  typescript = {"prettier"},
-                  yaml = {"prettier"},
-                  xml = {"xmlstarlet"},
-                },
-              })
-              vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-              vim.keymap.set("n", "<Leader>gq", conform.format)
-            '';
+          config = ''
+            -- TODO: injected language formatting (treesitter code blocks)
+            local conform = require("conform")
+            conform.setup({
+              formatters_by_ft = {
+                -- Use conform built-ins on all ("*") filetypes
+                ["*"] = {"trim_newlines", "trim_whitespace"},
+                css = {"prettier"},
+                graphql = {"prettier"},
+                html = {"prettier"},
+                javascript = {"prettier"},
+                json = {"prettier"},
+                markdown = {"prettier"},
+                nix = {"alejandra"},
+                -- Ruff follows the project's pyproject.toml/ruff.toml
+                python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
+                rust = {"rustfmt"},
+                terraform = {"tofu_fmt"},
+                toml = {"taplo"},
+                typescript = {"prettier"},
+                yaml = {"prettier"},
+                xml = {"xmlstarlet"},
+              },
+            })
+            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            vim.keymap.set("n", "<Leader>gq", conform.format)
+          '';
         }
 
         # Indentation guides.
@@ -596,21 +568,19 @@
         {
           plugin = pkgs.vimPlugins.indent-blankline-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("ibl").setup({
-                indent = {
-                  -- Thinner indent line
-                  char = "▏",
-                },
-                scope = {
-                  -- Don't show start/end of scope horizontal lines
-                  show_start = false,
-                  show_end = false,
-                },
-              })
-            '';
+          config = ''
+            require("ibl").setup({
+              indent = {
+                -- Thinner indent line
+                char = "▏",
+              },
+              scope = {
+                -- Don't show start/end of scope horizontal lines
+                show_start = false,
+                show_end = false,
+              },
+            })
+          '';
         }
 
         # Automatic indentation style detection for Neovim.
@@ -618,11 +588,9 @@
         {
           plugin = pkgs.vimPlugins.guess-indent-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("guess-indent").setup({})
-            '';
+          config = ''
+            require("guess-indent").setup({})
+          '';
         }
 
         # A super powerful autopair plugin for Neovim that supports multiple
@@ -631,11 +599,9 @@
         {
           plugin = pkgs.vimPlugins.nvim-autopairs;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("nvim-autopairs").setup({})
-            '';
+          config = ''
+            require("nvim-autopairs").setup({})
+          '';
         }
 
         # Neovim's answer to the mouse 🦘
@@ -643,27 +609,25 @@
         {
           plugin = pkgs.vimPlugins.leap-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              local leap = require("leap")
-              -- Default safe labels are 'sfnut/SFNLHMUGTZ?' which means we
-              -- have to press shift a lot.
-              leap.opts.safe_labels = "sfnut"
-              vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
-              vim.keymap.set("n", "S", function() leap.leap({ backward = true }) end)
-              -- Suggested additional tweak: Don't show labels for
-              -- middle-of-word positions until after the second keypress.
-              require("leap").opts.preview_filter = function (ch0, ch1, ch2)
-                return not (
-                  ch1:match("%s") or
-                  ch0:match("%a") and ch1:match("%a") and ch2:match("%a")
-                )
-              end
-              -- Suggested additional tweak: Use the traversal keys to repeat
-              -- the previous motion without explicitly invoking Leap.
-              require("leap.user").set_repeat_keys("<enter>", "<backspace>")
-            '';
+          config = ''
+            local leap = require("leap")
+            -- Default safe labels are 'sfnut/SFNLHMUGTZ?' which means we
+            -- have to press shift a lot.
+            leap.opts.safe_labels = "sfnut"
+            vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
+            vim.keymap.set("n", "S", function() leap.leap({ backward = true }) end)
+            -- Suggested additional tweak: Don't show labels for
+            -- middle-of-word positions until after the second keypress.
+            require("leap").opts.preview_filter = function (ch0, ch1, ch2)
+              return not (
+                ch1:match("%s") or
+                ch0:match("%a") and ch1:match("%a") and ch2:match("%a")
+              )
+            end
+            -- Suggested additional tweak: Use the traversal keys to repeat
+            -- the previous motion without explicitly invoking Leap.
+            require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+          '';
         }
 
         # Library of 40+ independent Lua modules improving overall Neovim
@@ -672,38 +636,36 @@
         {
           plugin = pkgs.vimPlugins.mini-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              -- Minimal and fast statusline module with opinionated default look
-              -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
-              require("mini.statusline").setup({})
+          config = ''
+            -- Minimal and fast statusline module with opinionated default look
+            -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
+            require("mini.statusline").setup({})
 
-              -- Enhance builtin textobjects like `a(`, `a)`, `a'`.
-              -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
-              require("mini.ai").setup({})
+            -- Enhance builtin textobjects like `a(`, `a)`, `a'`.
+            -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
+            require("mini.ai").setup({})
 
-              -- Window with buffer text overview, scrollbar, and highlights
-              -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-map.md
-              local map = require("mini.map")
-              map.setup({
-                integrations = {
-                  map.gen_integration.builtin_search(),
-                  map.gen_integration.diagnostic(),
-                  map.gen_integration.gitsigns(),
-                },
-                window = {
-                  show_integration_count = false;
-                  zindex = 21;  -- treesitter context line is 20
-                },
-              })
-              vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function(args)
-                  MiniMap.open()
-                end,
-              })
-              vim.keymap.set("n", "<Leader>m", MiniMap.toggle)
-            '';
+            -- Window with buffer text overview, scrollbar, and highlights
+            -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-map.md
+            local map = require("mini.map")
+            map.setup({
+              integrations = {
+                map.gen_integration.builtin_search(),
+                map.gen_integration.diagnostic(),
+                map.gen_integration.gitsigns(),
+              },
+              window = {
+                show_integration_count = false;
+                zindex = 21;  -- treesitter context line is 20
+              },
+            })
+            vim.api.nvim_create_autocmd("VimEnter", {
+              callback = function(args)
+                MiniMap.open()
+              end,
+            })
+            vim.keymap.set("n", "<Leader>m", MiniMap.toggle)
+          '';
         }
 
         # Add/change/delete surrounding delimiter pairs with ease; cs, ds, ys.
@@ -711,17 +673,15 @@
         {
           plugin = pkgs.vimPlugins.nvim-surround;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("nvim-surround").setup()
-              -- nvim-surround uses upper-case S and gS for visual-mode
-              -- surround by default, presumably to avoid clashing with s
-              -- (substitute). We use s for leap - which doesn't make sense
-              -- from visual mode anyway - so we might as well use lower-case
-              -- s for visual-mode surround.
-              vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)")
-            '';
+          config = ''
+            require("nvim-surround").setup()
+            -- nvim-surround uses upper-case S and gS for visual-mode
+            -- surround by default, presumably to avoid clashing with s
+            -- (substitute). We use s for leap - which doesn't make sense
+            -- from visual mode anyway - so we might as well use lower-case
+            -- s for visual-mode surround.
+            vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)")
+          '';
         }
 
         # Use treesitter to autoclose and autorename html tags.
@@ -729,11 +689,9 @@
         {
           plugin = pkgs.vimPlugins.nvim-ts-autotag;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("nvim-ts-autotag").setup({})
-            '';
+          config = ''
+            require("nvim-ts-autotag").setup({})
+          '';
         }
 
         # Better quickfix window in Neovim.
@@ -749,14 +707,12 @@
         {
           plugin = pkgs.vimPlugins.neogit;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("neogit").setup({
-                graph_style = "unicode",
-              })
-              vim.keymap.set("n", "<Leader>gg", vim.cmd.Neogit)
-            '';
+          config = ''
+            require("neogit").setup({
+              graph_style = "unicode",
+            })
+            vim.keymap.set("n", "<Leader>gg", vim.cmd.Neogit)
+          '';
         }
 
         # Git integration for buffers.
@@ -764,57 +720,55 @@
         {
           plugin = pkgs.vimPlugins.gitsigns-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("gitsigns").setup({
-                -- https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#keymaps
-                on_attach = function(bufnr)
-                  local gitsigns = require("gitsigns")
+          config = ''
+            require("gitsigns").setup({
+              -- https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#keymaps
+              on_attach = function(bufnr)
+                local gitsigns = require("gitsigns")
 
-                  local function map(mode, l, r, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, l, r, opts)
-                  end
-
-                  -- Navigation
-                  map("n", "]c", function()
-                    if vim.wo.diff then
-                      vim.cmd.normal({"]c", bang = true})
-                    else
-                      gitsigns.nav_hunk("next")
-                    end
-                  end)
-
-                  map("n", "[c", function()
-                    if vim.wo.diff then
-                      vim.cmd.normal({"[c", bang = true})
-                    else
-                      gitsigns.nav_hunk("prev")
-                    end
-                  end)
-
-                  -- Actions
-                  map("n", "<leader>hs", gitsigns.stage_hunk)
-                  map("n", "<leader>hr", gitsigns.reset_hunk)
-                  map("v", "<leader>hs", function() gitsigns.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end)
-                  map("v", "<leader>hr", function() gitsigns.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
-                  map("n", "<leader>hS", gitsigns.stage_buffer)
-                  map("n", "<leader>hu", gitsigns.undo_stage_hunk)
-                  map("n", "<leader>hR", gitsigns.reset_buffer)
-                  map("n", "<leader>hp", gitsigns.preview_hunk)
-                  map("n", "<leader>hb", function() gitsigns.blame_line{full=true} end)
-                  map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-                  map("n", "<leader>hd", gitsigns.diffthis)
-                  map("n", "<leader>hD", function() gitsigns.diffthis("~") end)
-                  map("n", "<leader>td", gitsigns.toggle_deleted)
-
-                  -- Text object
-                  map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+                local function map(mode, l, r, opts)
+                  opts = opts or {}
+                  opts.buffer = bufnr
+                  vim.keymap.set(mode, l, r, opts)
                 end
-              })
-            '';
+
+                -- Navigation
+                map("n", "]c", function()
+                  if vim.wo.diff then
+                    vim.cmd.normal({"]c", bang = true})
+                  else
+                    gitsigns.nav_hunk("next")
+                  end
+                end)
+
+                map("n", "[c", function()
+                  if vim.wo.diff then
+                    vim.cmd.normal({"[c", bang = true})
+                  else
+                    gitsigns.nav_hunk("prev")
+                  end
+                end)
+
+                -- Actions
+                map("n", "<leader>hs", gitsigns.stage_hunk)
+                map("n", "<leader>hr", gitsigns.reset_hunk)
+                map("v", "<leader>hs", function() gitsigns.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+                map("v", "<leader>hr", function() gitsigns.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+                map("n", "<leader>hS", gitsigns.stage_buffer)
+                map("n", "<leader>hu", gitsigns.undo_stage_hunk)
+                map("n", "<leader>hR", gitsigns.reset_buffer)
+                map("n", "<leader>hp", gitsigns.preview_hunk)
+                map("n", "<leader>hb", function() gitsigns.blame_line{full=true} end)
+                map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+                map("n", "<leader>hd", gitsigns.diffthis)
+                map("n", "<leader>hD", function() gitsigns.diffthis("~") end)
+                map("n", "<leader>td", gitsigns.toggle_deleted)
+
+                -- Text object
+                map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+              end
+            })
+          '';
         }
 
         # Single tabpage interface for easily cycling through diffs for all
@@ -823,13 +777,11 @@
         {
           plugin = pkgs.vimPlugins.diffview-nvim;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("diffview").setup({
-                enhanced_diff_hl = true,
-              })
-            '';
+          config = ''
+            require("diffview").setup({
+              enhanced_diff_hl = true,
+            })
+          '';
         }
 
         # A File Explorer For Neovim Written In Lua.
@@ -837,30 +789,28 @@
         {
           plugin = pkgs.vimPlugins.nvim-tree-lua;
           type = "lua";
-          config =
-            # lua
-            ''
-              require("nvim-tree").setup({
-                renderer = {
-                  -- Append trailing slash to folders names
-                  add_trailing = true,
-                },
-                -- Focus the current buffer's file, un-collapsing folders recursively
-                update_focused_file = {
-                  enable = true,
-                  -- Update the root directory of the tree if the file is not
-                  -- under the current root directory. Useful to explore a library
-                  -- or package when using go-to-definition.
-                  update_root = true,
-                },
-                filters = {
-                  -- Don't hide gitignored files. Useful when exploring a
-                  -- library in a git-ignored venv.
-                  git_ignored = false,
-                },
-              })
-              vim.keymap.set("n", "<Leader>e", vim.cmd.NvimTreeToggle)
-            '';
+          config = ''
+            require("nvim-tree").setup({
+              renderer = {
+                -- Append trailing slash to folders names
+                add_trailing = true,
+              },
+              -- Focus the current buffer's file, un-collapsing folders recursively
+              update_focused_file = {
+                enable = true,
+                -- Update the root directory of the tree if the file is not
+                -- under the current root directory. Useful to explore a library
+                -- or package when using go-to-definition.
+                update_root = true,
+              },
+              filters = {
+                -- Don't hide gitignored files. Useful when exploring a
+                -- library in a git-ignored venv.
+                git_ignored = false,
+              },
+            })
+            vim.keymap.set("n", "<Leader>e", vim.cmd.NvimTreeToggle)
+          '';
         }
       ];
       extraPackages = [
