@@ -1,6 +1,7 @@
 {
   description = "NixOS system";
 
+  # Use `grep _2 flake.lock` to find missing inputs.follows
   inputs = {
     secrets = {
       url = "git+ssh://git@git.caspervk.net/caspervk/nixos-secrets.git";
@@ -17,13 +18,16 @@
       # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix for
       # a list of available modules.
       url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
     };
     impermanence = {
       url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs"; # use the same nixpkgs as the system
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.darwin.follows = ""; # don't download dawrin dependencies
     };
