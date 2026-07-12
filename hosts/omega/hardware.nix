@@ -47,8 +47,8 @@
   # Windows
   fileSystems."/mnt/C" = {
     device = "/dev/disk/by-label/C";
-    fsType = "ntfs-3g";
-    options = ["rw" "uid=1000"];
+    fsType = "ntfs3";
+    options = ["rw" "uid=1000" "gid=100" "dmask=022" "fmask=133"];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
