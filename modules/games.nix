@@ -12,8 +12,8 @@
         # seems. I guess `winePackages` is useful if you need multiple
         # different Wine versions.
         # https://wiki.nixos.org/wiki/Wine
-        pkgs.wineWowPackages.fonts
-        pkgs.wineWowPackages.waylandFull
+        pkgs.wineWow64Packages.fonts
+        pkgs.wineWow64Packages.waylandFull
       ];
       # Register proton as a Wine runner. It *is* possible to define
       # `defaultWinePackage`, but that makes home-manager write to the same

@@ -28,6 +28,7 @@
     device = "/dev/disk/by-label/nix";
     neededForBoot = true;
     fsType = "ext4";
+    options = ["x-systemd.device-timeout=infinity"]; # wait indefinitely for unlock
   };
 
   swapDevices = [

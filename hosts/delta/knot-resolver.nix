@@ -23,7 +23,8 @@
     enable = true;
     # Extra features required for the lua cqueue library, which is required to
     # watch for changes in rpz blocklist.
-    package = pkgs.knot-resolver.override {extraFeatures = true;};
+    # TODO: upgrade do knot-resolver v6
+    package = pkgs.knot-resolver_5.override {extraFeatures = true;};
     # For maximum performance there should be as many kresd processes as there
     # are available CPU threads.
     # https://knot-resolver.readthedocs.io/en/stable/systemd-multiinst.html

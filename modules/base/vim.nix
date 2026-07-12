@@ -25,7 +25,7 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraLuaConfig =
+      initLua =
         /*
         lua
         */
@@ -252,41 +252,10 @@
           config =
             # lua
             ''
-              require("nvim-treesitter.configs").setup({
-                -- Consistent syntax highlighting
-                highlight = {
-                  enable = true,
-                },
-              })
-            '';
-        }
-        # Refactor module for nvim-treesitter.
-        # https://github.com/nvim-treesitter/nvim-treesitter-refactor
-        {
-          plugin = pkgs.vimPlugins.nvim-treesitter-refactor;
-          type = "lua";
-          config =
-            # lua
-            ''
-              require("nvim-treesitter.configs").setup({
-                refactor = {
-                  -- Highlight definition and usages of the current symbol under
-                  -- the cursor.
-                  highlight_definitions = {
-                    enable = true,
-                    -- Don't redraw (blink) highlight when moving cursor inside a word
-                    clear_on_cursor_move = false,
-                  },
-                  -- Provides "go to definition" for the symbol under the cursor,
-                  -- and lists the definitions from the current file.
-                  navigation = {
-                    enable = true,
-                    keymaps = {
-                      -- This keymap will be overwritten in LspAttach
-                      goto_definition = "gd",
-                    },
-                  },
-                },
+              vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                  pcall(vim.treesitter.start)
+                end,
               })
             '';
         }
@@ -745,17 +714,13 @@
           config =
             # lua
             ''
-              require("nvim-surround").setup({
-                keymaps = {
-                  -- nvim-surround uses upper-case S and gS for visual-mode
-                  -- surround by default, presumably to avoid clashing with
-                  -- s(substitute). We use s for leap -- which doesn't make sense
-                  -- from visual mode anyway -- so we might as well use lower-case
-                  -- s for visual-mode surround.
-                  visual = "s",
-                  visual_line = "gs",
-                },
-              })
+              require("nvim-surround").setup()
+              -- nvim-surround uses upper-case S and gS for visual-mode
+              -- surround by default, presumably to avoid clashing with s
+              -- (substitute). We use s for leap - which doesn't make sense
+              -- from visual mode anyway - so we might as well use lower-case
+              -- s for visual-mode surround.
+              vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)")
             '';
         }
 
@@ -904,8 +869,8 @@
         pkgs.cargo # lsp
         pkgs.clippy # lsp
         pkgs.nixd # lsp
-        pkgs.nodePackages.prettier # conform
         pkgs.opentofu # conform
+        pkgs.prettier # conform
         pkgs.ruff # lsp/conform
         pkgs.rust-analyzer # lsp
         pkgs.rustc # lsp

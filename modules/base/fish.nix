@@ -19,6 +19,9 @@
     interactiveShellInit =
       # fish
       ''
+        # Disable greeting
+        set fish_greeting
+
         # Allows 's foo bar' for 'nix shell nixpkgs#foo nixpkgs#bar'
         function s --wraps 'nix shell'
           nix shell nixpkgs#$argv

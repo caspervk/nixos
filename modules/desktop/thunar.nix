@@ -3,9 +3,9 @@
   programs.thunar = {
     enable = true;
     plugins = [
-      pkgs.xfce.thunar-archive-plugin
-      pkgs.xfce.thunar-media-tags-plugin
-      pkgs.xfce.thunar-volman
+      pkgs.thunar-archive-plugin
+      pkgs.thunar-media-tags-plugin
+      pkgs.thunar-volman
     ];
   };
 
