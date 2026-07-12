@@ -1,8 +1,4 @@
-{
-  config,
-  home-manager,
-  ...
-}: {
+{home-manager, ...}: {
   # Like NixOS manages the system configuration, Home Manager manages the user
   # environment.
   #
@@ -27,13 +23,5 @@
     # According to the Home Manager documentation, this option may become the
     # default in the future, so it's probably a good idea.
     useUserPackages = true;
-
-    # Define the user and path Home Manager should manage
-    users.caspervk = {
-      home = {
-        username = config.users.users.caspervk.name;
-        homeDirectory = config.users.users.caspervk.home;
-      };
-    };
   };
 }
