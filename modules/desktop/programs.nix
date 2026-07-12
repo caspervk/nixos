@@ -33,9 +33,6 @@
     pkgs.mpv
     pkgs.mumble
     pkgs.pwgen
-    pkgs.python311
-    pkgs.python312
-    pkgs.python313
     pkgs.thunderbird
     pkgs.tor-browser # .tor\ project/Tor/torrc: ExitNodes {dk}
     pkgs.ungoogled-chromium

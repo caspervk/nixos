@@ -11,6 +11,8 @@
     pkgs.kustomize
     pkgs.poetry
     pkgs.pre-commit
+    # Hydra doesn't build docs for old versions
+    (builtins.removeAttrs pkgs.python311 ["doc"])
     pkgs.sops
   ];
 }
