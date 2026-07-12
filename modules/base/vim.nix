@@ -833,13 +833,13 @@
 
     # https://wiki.nixos.org/wiki/Vim#Vim_Spell_Files
     # Default neovim URL: `:let g:spellfile_URL`.
-    home.file.".config/nvim/spell/da.utf-8.spl".source = builtins.fetchurl {
+    home.file.".config/nvim/spell/da.utf-8.spl".source = pkgs.fetchurl {
       url = "https://ftp.nluug.nl/pub/vim/runtime/spell/da.utf-8.spl";
-      sha256 = "0cl9q1ln7y4ihbpgawl3rc86zw8xynq9hg4hl8913dbmpcl2nslj";
+      sha256 = "926a2b28bb75b51112a2903c98b0f51df16f10cb8372f5ee8291f86369c08932";
     };
-    home.file.".config/nvim/spell/da.utf-8.sug".source = builtins.fetchurl {
+    home.file.".config/nvim/spell/da.utf-8.sug".source = pkgs.fetchurl {
       url = "https://ftp.nluug.nl/pub/vim/runtime/spell/da.utf-8.sug";
-      sha256 = "1pdnp0hq3yll65z6rlmq0l6axvn5450jw5y081vyb4x5850czdxm";
+      sha256 = "b5b7cf4041a593e57740c0172e4121c5eeae0c05b8d26c7e3194fa8121b8b6dd";
     };
   };
 }
