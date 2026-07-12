@@ -235,7 +235,7 @@
               background-color: rgba(255, 255, 255, 0.4);
               border: none;
           }
-          #tray, #pulseaudio, #backlight, #network, #battery, #clock {
+          #tray, #wireplumber, #backlight, #network, #battery, #clock {
             background-color: transparent;
             padding: 0 10px;
           }
