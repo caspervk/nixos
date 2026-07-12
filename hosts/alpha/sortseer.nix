@@ -1,6 +1,6 @@
-{sortseer, ...}: {
+{inputs, ...}: {
   imports = [
-    sortseer.nixosModules.default
+    inputs.sortseer.nixosModules.default
   ];
 
   # https://git.caspervk.net/caspervk/sortseer

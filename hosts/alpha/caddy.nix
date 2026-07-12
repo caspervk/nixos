@@ -1,4 +1,4 @@
-{secrets, ...}: {
+{inputs, ...}: {
   # See modules/server/caddy.nix
   services.caddy = {
     # Wildcard certificates are used whenever possible to avoid leaking domains
@@ -30,10 +30,10 @@
       # Cloudflare. This is normally bad, but it's hard for freedom haters to
       # block 1/3rd of the internet, so it's actually good.
       # https://community.torproject.org/relay/setup/webtunnel/
-      "${secrets.hosts.alpha.tor.webtunnel-host}" = {
+      "${inputs.secrets.hosts.alpha.tor.webtunnel-host}" = {
         extraConfig = ''
           tls internal
-          reverse_proxy ${secrets.hosts.alpha.tor.webtunnel-path} localhost:15000
+          reverse_proxy ${inputs.secrets.hosts.alpha.tor.webtunnel-path} localhost:15000
         '';
       };
     };

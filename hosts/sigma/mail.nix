@@ -1,11 +1,10 @@
 {
   config,
-  secrets,
-  simple-nixos-mailserver,
+  inputs,
   ...
 }: {
   imports = [
-    simple-nixos-mailserver.nixosModule
+    inputs.simple-nixos-mailserver.nixosModule
   ];
 
   # Simple NixOS Mailserver.
@@ -93,7 +92,7 @@
     accounts = {
       "casper@vkristensen.dk" = {
         hashedPasswordFile = config.age.secrets.mail-hashed-password-file.path;
-        aliases = secrets.hosts.sigma.mail.aliases;
+        aliases = inputs.secrets.hosts.sigma.mail.aliases;
       };
     };
     # https://nixos-mailserver.readthedocs.io/en/latest/migrations.html
@@ -141,7 +140,7 @@
   };
 
   age.secrets.mail-hashed-password-file = {
-    file = "${secrets}/secrets/mail-hashed-password-file.age";
+    file = "${inputs.secrets}/secrets/mail-hashed-password-file.age";
     mode = "400";
     owner = "root";
     group = "root";

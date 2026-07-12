@@ -1,11 +1,10 @@
 {
   config,
-  git-syndicate,
-  secrets,
+  inputs,
   ...
 }: {
   imports = [
-    git-syndicate.nixosModules.default
+    inputs.git-syndicate.nixosModules.default
   ];
 
   # https://git.caspervk.net/caspervk/git-syndicate
@@ -15,7 +14,7 @@
   };
 
   age.secrets.git-syndicate-environment-file = {
-    file = "${secrets}/secrets/git-syndicate-environment-file.age";
+    file = "${inputs.secrets}/secrets/git-syndicate-environment-file.age";
     mode = "400";
     owner = "root";
     group = "root";

@@ -66,37 +66,37 @@
     nixosConfigurations = {
       # Hetzner VPS
       alpha = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs; # pass flake inputs to modules
+        specialArgs = {inherit inputs;}; # pass flake inputs to modules
         modules = [./hosts/alpha];
       };
       # Hetzner VPS
       delta = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/delta];
       };
       # Work laptop
       mu = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/mu];
       };
       # Home desktop
       omega = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/omega];
       };
       # Home Server
       sigma = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/sigma];
       };
       # Tor relay
       tor = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/tor];
       };
       # Laptop
       zeta = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/zeta];
       };
     };

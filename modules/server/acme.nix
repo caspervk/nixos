@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   lib,
-  secrets,
   ...
 }:
 # Only enable module if certificates are configured so we don't try to decrypt
@@ -40,7 +40,7 @@ lib.mkIf (config.security.acme.certs != {}) {
   };
 
   age.secrets.acme-lego-environment-file = {
-    file = "${secrets}/secrets/acme-lego-environment-file.age";
+    file = "${inputs.secrets}/secrets/acme-lego-environment-file.age";
     mode = "400";
     owner = "root";
     group = "root";

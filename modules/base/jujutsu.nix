@@ -1,5 +1,5 @@
 {
-  nixpkgs-unstable,
+  inputs,
   pkgs,
   ...
 }: {
@@ -8,7 +8,7 @@
   home-manager.users.caspervk = {
     programs.jujutsu = {
       enable = true;
-      package = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.jujutsu;
+      package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.jujutsu;
       # https://martinvonz.github.io/jj/latest/config/
       settings = {
         user = {

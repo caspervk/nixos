@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   systemd.network = {
@@ -69,7 +69,7 @@
         {
           PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
           PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
-          AllowedIPs = ["${secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
+          AllowedIPs = ["${inputs.secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
           RouteTable = "main";
         }
       ];
@@ -116,14 +116,14 @@
   };
 
   age.secrets.wireguard-preshared-key-file = {
-    file = "${secrets}/secrets/wireguard-preshared-key-file.age";
+    file = "${inputs.secrets}/secrets/wireguard-preshared-key-file.age";
     mode = "440";
     owner = "root";
     group = "systemd-network";
   };
 
   age.secrets.wireguard-private-key-file-alpha = {
-    file = "${secrets}/secrets/wireguard-private-key-file-alpha.age";
+    file = "${inputs.secrets}/secrets/wireguard-private-key-file-alpha.age";
     mode = "440";
     owner = "root";
     group = "systemd-network";

@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   lib,
-  secrets,
   ...
 }: {
   systemd.network = {
@@ -154,7 +154,7 @@
     };
     networks."50-wg-sigma-p2p" = {
       matchConfig.Name = "wg-sigma-p2p";
-      address = ["${secrets.hosts.sigma.sigma-p2p-ip-address}/32"];
+      address = ["${inputs.secrets.hosts.sigma.sigma-p2p-ip-address}/32"];
       routingPolicyRules = [
         {
           # The deluge systemd service has
@@ -167,7 +167,7 @@
         }
         {
           Priority = 1000;
-          From = "${secrets.hosts.sigma.sigma-p2p-ip-address}/32";
+          From = "${inputs.secrets.hosts.sigma.sigma-p2p-ip-address}/32";
           Table = "wg-sigma-p2p";
         }
       ];
@@ -238,14 +238,14 @@
   };
 
   age.secrets.wireguard-preshared-key-file = {
-    file = "${secrets}/secrets/wireguard-preshared-key-file.age";
+    file = "${inputs.secrets}/secrets/wireguard-preshared-key-file.age";
     mode = "440";
     owner = "root";
     group = "systemd-network";
   };
 
   age.secrets.wireguard-private-key-file-sigma = {
-    file = "${secrets}/secrets/wireguard-private-key-file-sigma.age";
+    file = "${inputs.secrets}/secrets/wireguard-private-key-file-sigma.age";
     mode = "440";
     owner = "root";
     group = "systemd-network";

@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   users = {
@@ -27,7 +27,7 @@
   };
 
   age.secrets.users-hashed-password-file = {
-    file = "${secrets}/secrets/users-hashed-password-file.age";
+    file = "${inputs.secrets}/secrets/users-hashed-password-file.age";
     mode = "400";
     owner = "root";
     group = "root";

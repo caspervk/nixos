@@ -1,16 +1,16 @@
 {
+  inputs,
   lib,
   modulesPath,
-  nixos-hardware,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-cpu-amd-pstate
-    nixos-hardware.nixosModules.common-gpu-amd
-    nixos-hardware.nixosModules.common-pc
-    nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];

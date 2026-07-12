@@ -1,4 +1,4 @@
-{impermanence, ...}: {
+{inputs, ...}: {
   # Impermanence in NixOS is where the root directory isn't permanent, but gets
   # wiped every reboot (such as by mounting it as tmpfs). Such a setup is
   # possible because NixOS only needs /boot and /nix in order to boot, all
@@ -12,7 +12,7 @@
   # https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
 
   imports = [
-    impermanence.nixosModules.impermanence
+    inputs.impermanence.nixosModules.impermanence
   ];
 
   # Each module will configure the paths they need persisted. Here we define

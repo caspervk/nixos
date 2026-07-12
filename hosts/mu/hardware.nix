@@ -1,15 +1,15 @@
 {
+  inputs,
   lib,
   modulesPath,
-  nixos-hardware,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc
-    nixos-hardware.nixosModules.common-pc-laptop
-    nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "sdhci_pci"];

@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   pkgs,
-  secrets,
   ...
 }: {
   # Forgejo is a lightweight software forge (Git host), with a highlight on
@@ -136,7 +136,7 @@
   };
 
   age.secrets.forgejo-runner-token-file = {
-    file = "${secrets}/secrets/forgejo-runner-token-file.age";
+    file = "${inputs.secrets}/secrets/forgejo-runner-token-file.age";
     mode = "400";
     owner = "root";
     group = "root";

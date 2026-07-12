@@ -1,5 +1,5 @@
 {
-  agenix,
+  inputs,
   pkgs,
   ...
 }: {
@@ -9,7 +9,7 @@
   # https://wiki.nixos.org/wiki/Comparison_of_secret_managing_schemes
 
   imports = [
-    agenix.nixosModules.default
+    inputs.agenix.nixosModules.default
   ];
 
   # Agenix attempts to decrypt secrets before impermanence symlinks the ssh
@@ -20,6 +20,6 @@
 
   # `agenix` cli tool
   environment.systemPackages = [
-    agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

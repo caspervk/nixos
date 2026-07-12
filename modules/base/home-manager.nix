@@ -1,4 +1,4 @@
-{home-manager, ...}: {
+{inputs, ...}: {
   # Like NixOS manages the system configuration, Home Manager manages the user
   # environment.
   #
@@ -12,7 +12,7 @@
 
   # Import Home Manager to make it part of the NixOS configuration
   imports = [
-    home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   home-manager = {

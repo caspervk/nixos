@@ -1,6 +1,6 @@
 {
   pkgs,
-  secrets,
+  inputs,
   ...
 }: {
   # Bridges are Tor relays that help circumvent censorship. WebTunnel is a
@@ -37,7 +37,7 @@
       ServerTransportPlugin.transports = ["webtunnel"];
       ServerTransportPlugin.exec = "${pkgs.webtunnel}/bin/server";
       ServerTransportListenAddr = "webtunnel 127.0.0.1:15000";
-      ServerTransportOptions = "webtunnel url=${secrets.hosts.alpha.tor.webtunnel-host + secrets.hosts.alpha.tor.webtunnel-path}";
+      ServerTransportOptions = "webtunnel url=${inputs.secrets.hosts.alpha.tor.webtunnel-host + inputs.secrets.hosts.alpha.tor.webtunnel-path}";
     };
   };
 

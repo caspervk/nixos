@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   # NOTE: General syncthing configuration is in modules/base/syncthing.nix.
@@ -10,20 +10,20 @@
     cert = config.age.secrets.syncthing-omega-cert.path;
     key = config.age.secrets.syncthing-omega-key.path;
     settings = {
-      devices = secrets.modules.syncthing.omega.devices;
-      folders = secrets.modules.syncthing.omega.folders;
+      devices = inputs.secrets.modules.syncthing.omega.devices;
+      folders = inputs.secrets.modules.syncthing.omega.folders;
     };
   };
 
   age.secrets.syncthing-omega-cert = {
-    file = "${secrets}/secrets/syncthing-omega-cert.age";
+    file = "${inputs.secrets}/secrets/syncthing-omega-cert.age";
     mode = "400";
     owner = "caspervk";
     group = "syncthing";
   };
 
   age.secrets.syncthing-omega-key = {
-    file = "${secrets}/secrets/syncthing-omega-key.age";
+    file = "${inputs.secrets}/secrets/syncthing-omega-key.age";
     mode = "400";
     owner = "caspervk";
     group = "syncthing";

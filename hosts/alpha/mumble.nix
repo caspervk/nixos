@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   # Mumble is a free, open source, low latency, high quality voice chat
@@ -46,7 +46,7 @@
   };
 
   age.secrets.mumble-environment-file = {
-    file = "${secrets}/secrets/mumble-environment-file.age";
+    file = "${inputs.secrets}/secrets/mumble-environment-file.age";
     mode = "400";
     owner = "root";
     group = "root";

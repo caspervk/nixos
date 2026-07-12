@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   # Automatically `nixos-rebuild switch` daily with the latest configuration
@@ -26,7 +26,7 @@
   };
 
   age.secrets.autoupgrade-deploy-key = {
-    file = "${secrets}/secrets/autoupgrade-deploy-key.age";
+    file = "${inputs.secrets}/secrets/autoupgrade-deploy-key.age";
     mode = "400";
     owner = "root";
     group = "root";

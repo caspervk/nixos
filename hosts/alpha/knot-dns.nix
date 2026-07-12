@@ -1,6 +1,6 @@
 {
   config,
-  secrets,
+  inputs,
   ...
 }: {
   # Knot DNS is a high-performance authoritative-only DNS server which supports
@@ -84,23 +84,23 @@
       zone = [
         {
           domain = "caspervk.net";
-          file = "${secrets}/hosts/alpha/knot/caspervk.net.zone";
+          file = "${inputs.secrets}/hosts/alpha/knot/caspervk.net.zone";
         }
         {
           domain = "sortseer.dk";
-          file = "${secrets}/hosts/alpha/knot/sortseer.dk.zone";
+          file = "${inputs.secrets}/hosts/alpha/knot/sortseer.dk.zone";
         }
         {
           domain = "spervk.com";
-          file = "${secrets}/hosts/alpha/knot/spervk.com.zone";
+          file = "${inputs.secrets}/hosts/alpha/knot/spervk.com.zone";
         }
         {
           domain = "sudomail.org";
-          file = "${secrets}/hosts/alpha/knot/sudomail.org.zone";
+          file = "${inputs.secrets}/hosts/alpha/knot/sudomail.org.zone";
         }
         {
           domain = "vkristensen.dk";
-          file = "${secrets}/hosts/alpha/knot/vkristensen.dk.zone";
+          file = "${inputs.secrets}/hosts/alpha/knot/vkristensen.dk.zone";
         }
       ];
     };
@@ -124,7 +124,7 @@
   };
 
   age.secrets.acme-knot-key-file = {
-    file = "${secrets}/secrets/acme-knot-key-file.age";
+    file = "${inputs.secrets}/secrets/acme-knot-key-file.age";
     mode = "400";
     owner = "knot";
     group = "knot";

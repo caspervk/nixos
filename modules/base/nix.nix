@@ -1,11 +1,10 @@
 {
   config,
-  nix-index-database,
-  nixpkgs-unstable,
+  inputs,
   ...
 }: {
   imports = [
-    nix-index-database.nixosModules.default
+    inputs.nix-index-database.nixosModules.default
   ];
 
   nix = {
@@ -43,7 +42,7 @@
     # for unstable.
     # https://search.nixos.org/options?show=nixpkgs.flake.setFlakeRegistry
     registry = {
-      nixpkgs-unstable.flake = nixpkgs-unstable;
+      nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
     };
   };
 

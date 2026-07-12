@@ -1,5 +1,5 @@
 {
-  clank,
+  inputs,
   lib,
   pkgs,
   ...
@@ -12,7 +12,7 @@
     pkgs.aspellDicts.da
     pkgs.aspellDicts.en
     pkgs.aspellDicts.en-computers
-    (clank.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+    (inputs.clank.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraModules = [
         ({...}: {
           home-manager.users.root = {
