@@ -34,6 +34,7 @@
         # alt+{left,right,backspace} with ctrl. Change them back.
         # `git diff 4.0.9..4.1.0 share/functions/fish_default_key_bindings.fish share/functions/__fish_shared_key_bindings.fish`
         # https://github.com/fish-shell/fish-shell/issues/12122
+        # TODO: Remove this with Fish v4.9: https://github.com/fish-shell/fish-shell/pull/12540
         bind ctrl-right forward-word
         bind ctrl-left backward-word
         bind alt-right nextd-or-forward-word
