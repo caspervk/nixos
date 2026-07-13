@@ -842,4 +842,11 @@
       sha256 = "b5b7cf4041a593e57740c0172e4121c5eeae0c05b8d26c7e3194fa8121b8b6dd";
     };
   };
+
+  # TODO: Remove once pnpm_10 fix reaches nixos-26.05 channel:
+  # https://github.com/NixOS/nixpkgs/issues/529285
+  # https://github.com/NixOS/nixpkgs/pull/529344
+  # https://github.com/NixOS/nixpkgs/pull/540892
+  # https://nixpk.gs/pr-tracker.html?pr=540892
+  nixpkgs.config.permittedInsecurePackages = ["pnpm-9.15.9"];
 }
