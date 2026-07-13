@@ -365,7 +365,6 @@
   # https://nixos.org/manual/nixos/stable/index.html#sec-wayland
   # https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # https://mozilla.github.io/webrtc-landing/gum_test.html
-  services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
