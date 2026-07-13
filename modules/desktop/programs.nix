@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -87,14 +86,6 @@
     pkgs.vlc
     pkgs.xdg-utils
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
-      "steam-unwrapped"
-    ];
 
   home-manager.users.caspervk = {
     home.sessionVariables = {
