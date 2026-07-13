@@ -18,7 +18,6 @@
         extraGroups = [
           "wheel" # allows sudo
           "video" # allows controlling brightness
-          # TODO: systemd-journal, audio, input, power, nix ?
         ];
         uid = 1000;
         packages = [];
