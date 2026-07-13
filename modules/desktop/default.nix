@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./clank.nix
     ./clipman.nix
     ./foot.nix
     ./gammastep.nix
