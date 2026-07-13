@@ -7,10 +7,10 @@
       url = "git+ssh://git@git.caspervk.net/caspervk/nixos-secrets.git";
     };
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-26.05";
+      url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     };
     nixpkgs-unstable = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     };
     nixos-hardware = {
       # nixos-hardware is a collection of NixOS modules covering hardware
