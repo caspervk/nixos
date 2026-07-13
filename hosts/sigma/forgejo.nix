@@ -30,6 +30,9 @@
         DISABLE_STARS = true;
         # Disable repository forking.
         DISABLE_FORKS = true;
+        # Bots spam-download archive files (.zip, .tar.gz, etc), which is
+        # really heavy on server resources.
+        DISABLE_DOWNLOAD_SOURCE_ARCHIVES = true;
       };
       server = {
         # Listen address. Defaults to '0.0.0.0'.
