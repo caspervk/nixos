@@ -61,7 +61,7 @@
         # Resolved falls back to DNS servers operated by American internet
         # surveillance and adtech companies by default. No thanks, I'd rather have
         # no DNS at all.
-        FallbackDNS = [];
+        FallbackDNS = "";
       };
     };
   };
