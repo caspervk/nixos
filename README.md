@@ -158,6 +158,14 @@ nixos-install --no-root-passwd --flake .#omega
 - [Home Manager News](https://github.com/nix-community/home-manager/tree/master/modules/misc/news) <!-- TODO: news.json? -->
 - [Audit Home Manger `stateVersion`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/nix-community/home-manager%24+-file:%5Etests/+lang:Nix+stateVersion+AND+26.05)
 
+Diff the current working tree with the latest commit:
+
+```fish
+nix store diff-closures \
+    .?ref=HEAD#nixosConfigurations.omega.config.system.build.toplevel \
+    .#nixosConfigurations.omega.config.system.build.toplevel
+```
+
 ## Useful Commands
 
 ```fish
