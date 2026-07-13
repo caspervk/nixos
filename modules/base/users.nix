@@ -20,7 +20,6 @@
           "video" # allows controlling brightness
         ];
         uid = 1000;
-        packages = [];
       };
     };
   };
