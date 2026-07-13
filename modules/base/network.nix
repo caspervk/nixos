@@ -45,7 +45,10 @@
     settings = {
       Resolve = {
         DNSOverTLS = true;
-        DNSSEC = true;
+        # TODO: DNSSEC support in systemd-resolved is considered experimental and
+        # incomplete. Upstream will validate for us anyway, and we trust it.
+        # https://wiki.archlinux.org/title/systemd-resolved#DNSSEC
+        DNSSEC = false;
         # 'Domains' is used for two distinct purposes; first, any domains *not*
         # prefixed with '~' are used as search suffixes when resolving single-label
         # hostnames into FQDNs. The NixOS default is to set this to
