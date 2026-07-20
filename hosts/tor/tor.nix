@@ -49,6 +49,8 @@
               "reject *:25"
               "accept *:*"
             ];
+            # https://community.torproject.org/relay/setup/post-install/family-ids/
+            FamilyId = "2KNVE7dHXshhscLKk3sZ1Dj19XV+NUHjE568YqwRHtg";
             # https://support.torproject.org/relay-operators/multiple-relays/
             # Note that bridges should not configure their own -- or be listed
             # in other relay's -- MyFamily as per the torrc man page.
@@ -172,26 +174,26 @@
     directories = [
       {
         directory = "/var/lib/tor-1";
-        user = builtins.toString config.ids.uids.tor;
-        group = builtins.toString config.ids.gids.tor;
+        user = toString config.ids.uids.tor;
+        group = toString config.ids.gids.tor;
         mode = "0700";
       }
       {
         directory = "/var/lib/tor-2";
-        user = builtins.toString config.ids.uids.tor;
-        group = builtins.toString config.ids.gids.tor;
+        user = toString config.ids.uids.tor;
+        group = toString config.ids.gids.tor;
         mode = "0700";
       }
       {
         directory = "/var/lib/tor-3";
-        user = builtins.toString config.ids.uids.tor;
-        group = builtins.toString config.ids.gids.tor;
+        user = toString config.ids.uids.tor;
+        group = toString config.ids.gids.tor;
         mode = "0700";
       }
       {
         directory = "/var/lib/tor-4";
-        user = builtins.toString config.ids.uids.tor;
-        group = builtins.toString config.ids.gids.tor;
+        user = toString config.ids.uids.tor;
+        group = toString config.ids.gids.tor;
         mode = "0700";
       }
     ];
