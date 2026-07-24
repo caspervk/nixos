@@ -161,7 +161,7 @@ nixos-install --no-root-passwd --flake .#omega
 Diff the current working tree with the latest commit:
 
 ```fish
-nix store diff-closures \
+nix run github:Mic92/nix-diff-rs \
     .?ref=HEAD#nixosConfigurations.omega.config.system.build.toplevel \
     .#nixosConfigurations.omega.config.system.build.toplevel
 ```
