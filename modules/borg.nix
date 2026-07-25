@@ -22,11 +22,11 @@
   #  cat /etc/ssh/ssh_host_ed25519_key.pub | ssh u394155-subX@u394155.your-storagebox.de -p 23 install-ssh-key
   #
   # Generate passphrase for host's repository (`pwgen 64 1`) and save to
-  # `secrets/borg-passphrase-file-<host>.age`.
+  # `secrets/borg-passphrase-file-<host>.enc`.
   #
   # Set attributes:
   #   services.borgbackup.jobs.root.repo
-  #   age.secrets.borg-passphrase-file.file
+  #   sops.secrets.borg-passphrase-file.sopsFile
   #
   # [1] https://docs.hetzner.com/robot/storage-box/backup-space-ssh-keys/
 
@@ -43,7 +43,7 @@
     encryption = {
       # https://borgbackup.readthedocs.io/en/stable/usage/init.html
       mode = "repokey-blake2";
-      passCommand = "cat ${config.age.secrets.borg-passphrase-file.path}";
+      passCommand = "cat ${config.sops.secrets.borg-passphrase-file.path}";
     };
 
     environment = {

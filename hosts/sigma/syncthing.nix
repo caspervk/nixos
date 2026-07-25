@@ -7,23 +7,23 @@
   services.syncthing = {
     enable = true;
     # https://wiki.nixos.org/wiki/Syncthing#Declarative_node_IDs
-    cert = config.age.secrets.syncthing-sigma-cert.path;
-    key = config.age.secrets.syncthing-sigma-key.path;
+    cert = config.sops.secrets.syncthing-sigma-cert.path;
+    key = config.sops.secrets.syncthing-sigma-key.path;
     settings = {
       devices = inputs.secrets.modules.syncthing.sigma.devices;
       folders = inputs.secrets.modules.syncthing.sigma.folders;
     };
   };
 
-  age.secrets.syncthing-sigma-cert = {
-    file = "${inputs.secrets}/secrets/syncthing-sigma-cert.age";
+  sops.secrets.syncthing-sigma-cert = {
+    sopsFile = "${inputs.secrets}/secrets/syncthing-sigma-cert.enc";
     mode = "400";
     owner = "caspervk";
     group = "syncthing";
   };
 
-  age.secrets.syncthing-sigma-key = {
-    file = "${inputs.secrets}/secrets/syncthing-sigma-key.age";
+  sops.secrets.syncthing-sigma-key = {
+    sopsFile = "${inputs.secrets}/secrets/syncthing-sigma-key.enc";
     mode = "400";
     owner = "caspervk";
     group = "syncthing";

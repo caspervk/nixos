@@ -91,7 +91,7 @@
     # configured aliases. To generate a password use 'mkpasswd -sm bcrypt'.
     accounts = {
       "casper@vkristensen.dk" = {
-        hashedPasswordFile = config.age.secrets.mail-hashed-password-file.path;
+        hashedPasswordFile = config.sops.secrets.mail-hashed-password-file.path;
         aliases = inputs.secrets.hosts.sigma.mail.aliases;
       };
     };
@@ -139,8 +139,8 @@
     ];
   };
 
-  age.secrets.mail-hashed-password-file = {
-    file = "${inputs.secrets}/secrets/mail-hashed-password-file.age";
+  sops.secrets.mail-hashed-password-file = {
+    sopsFile = "${inputs.secrets}/secrets/mail-hashed-password-file.enc";
     mode = "400";
     owner = "root";
     group = "root";

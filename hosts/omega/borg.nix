@@ -5,8 +5,8 @@
 
   services.borgbackup.jobs.root.repo = "ssh://u394155-sub1@u394155.your-storagebox.de:23/./root";
 
-  age.secrets.borg-passphrase-file = {
-    file = "${inputs.secrets}/secrets/borg-passphrase-file-omega.age";
+  sops.secrets.borg-passphrase-file = {
+    sopsFile = "${inputs.secrets}/secrets/borg-passphrase-file-omega.enc";
     mode = "400";
     owner = "root";
     group = "root";

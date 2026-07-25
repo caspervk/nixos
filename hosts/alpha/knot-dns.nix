@@ -10,7 +10,7 @@
   services.knot = {
     enable = true;
     keyFiles = [
-      config.age.secrets.acme-knot-key-file.path
+      config.sops.secrets.acme-knot-key-file.path
     ];
     settings = {
       server = {
@@ -123,8 +123,8 @@
     ];
   };
 
-  age.secrets.acme-knot-key-file = {
-    file = "${inputs.secrets}/secrets/acme-knot-key-file.age";
+  sops.secrets.acme-knot-key-file = {
+    sopsFile = "${inputs.secrets}/secrets/acme-knot-key-file.enc";
     mode = "400";
     owner = "knot";
     group = "knot";

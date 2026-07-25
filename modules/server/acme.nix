@@ -5,7 +5,7 @@
   ...
 }:
 # Only enable module if certificates are configured so we don't try to decrypt
-# acme-lego-environment-file.age on servers that aren't allowed to.
+# acme-lego-environment-file.enc on servers that aren't allowed to.
 lib.mkIf (config.security.acme.certs != {}) {
   # Instead of managing certificates in each individual service, NixOS supports
   # automatic certificate retrieval and renewal using
@@ -23,7 +23,7 @@ lib.mkIf (config.security.acme.certs != {}) {
       # zone on the authoritative DNS server (Knot).
       # https://go-acme.github.io/lego/dns/rfc2136/
       dnsProvider = "rfc2136";
-      environmentFile = config.age.secrets.acme-lego-environment-file.path;
+      environmentFile = config.sops.secrets.acme-lego-environment-file.path;
     };
   };
 
@@ -39,8 +39,8 @@ lib.mkIf (config.security.acme.certs != {}) {
     ];
   };
 
-  age.secrets.acme-lego-environment-file = {
-    file = "${inputs.secrets}/secrets/acme-lego-environment-file.age";
+  sops.secrets.acme-lego-environment-file = {
+    sopsFile = "${inputs.secrets}/secrets/acme-lego-environment-file.enc";
     mode = "400";
     owner = "root";
     group = "root";

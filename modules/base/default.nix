@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./agenix.nix
     ./bat.nix
     ./delta.nix
     ./fish.nix
@@ -15,6 +14,7 @@
     ./nix.nix
     ./programs.nix
     ./ripgrep.nix
+    ./sops-nix.nix
     ./ssh.nix
     ./sudo.nix
     ./syncthing.nix

@@ -36,12 +36,12 @@
       };
       wireguardConfig = {
         ListenPort = 51820;
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-alpha.path;
+        PrivateKeyFile = config.sops.secrets.wireguard-private-key-file-alpha.path;
       };
       wireguardPeers = [
         {
           PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
-          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          PresharedKeyFile = config.sops.secrets.wireguard-preshared-key-file.path;
           # Add to the main routing table that traffic for the address should
           # be sent to sigma.
           AllowedIPs = ["49.13.33.75/32"];
@@ -63,12 +63,12 @@
       };
       wireguardConfig = {
         ListenPort = 51821;
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-alpha.path;
+        PrivateKeyFile = config.sops.secrets.wireguard-private-key-file-alpha.path;
       };
       wireguardPeers = [
         {
           PublicKey = "sigmaH/DKSU8KWyrPtucYmS2ewUvDvCNLxd/qYEo0n0=";
-          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          PresharedKeyFile = config.sops.secrets.wireguard-preshared-key-file.path;
           AllowedIPs = ["${inputs.secrets.hosts.alpha.sigma-p2p-ip-address}/32"];
           RouteTable = "main";
         }
@@ -86,7 +86,7 @@
       };
       wireguardConfig = {
         ListenPort = 51822;
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-alpha.path;
+        PrivateKeyFile = config.sops.secrets.wireguard-private-key-file-alpha.path;
       };
       wireguardPeers = [
         {
@@ -115,15 +115,15 @@
     ];
   };
 
-  age.secrets.wireguard-preshared-key-file = {
-    file = "${inputs.secrets}/secrets/wireguard-preshared-key-file.age";
+  sops.secrets.wireguard-preshared-key-file = {
+    sopsFile = "${inputs.secrets}/secrets/wireguard-preshared-key-file.enc";
     mode = "440";
     owner = "root";
     group = "systemd-network";
   };
 
-  age.secrets.wireguard-private-key-file-alpha = {
-    file = "${inputs.secrets}/secrets/wireguard-private-key-file-alpha.age";
+  sops.secrets.wireguard-private-key-file-alpha = {
+    sopsFile = "${inputs.secrets}/secrets/wireguard-private-key-file-alpha.enc";
     mode = "440";
     owner = "root";
     group = "systemd-network";

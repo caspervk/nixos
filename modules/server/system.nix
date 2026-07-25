@@ -22,11 +22,11 @@
     unitConfig.StartLimitIntervalSec = "5min";
     unitConfig.StartLimitBurst = 3;
     # The `nixos-secrets` flake input requires authentication
-    environment.GIT_SSH_COMMAND = "ssh -i ${config.age.secrets.autoupgrade-deploy-key.path}";
+    environment.GIT_SSH_COMMAND = "ssh -i ${config.sops.secrets.autoupgrade-deploy-key.path}";
   };
 
-  age.secrets.autoupgrade-deploy-key = {
-    file = "${inputs.secrets}/secrets/autoupgrade-deploy-key.age";
+  sops.secrets.autoupgrade-deploy-key = {
+    sopsFile = "${inputs.secrets}/secrets/autoupgrade-deploy-key.enc";
     mode = "400";
     owner = "root";
     group = "root";

@@ -67,12 +67,12 @@
         Kind = "wireguard";
       };
       wireguardConfig = {
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-sigma.path;
+        PrivateKeyFile = config.sops.secrets.wireguard-private-key-file-sigma.path;
       };
       wireguardPeers = [
         {
           PublicKey = "AlphazUR/z+1DRCFSvxTeKPIJnyPQvYsDoSgESvqJhM=";
-          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          PresharedKeyFile = config.sops.secrets.wireguard-preshared-key-file.path;
           # Explicit IPv4 address of alpha.caspervk.net to avoid attempting to
           # (re)connect through IPv6(??).
           Endpoint = "116.203.179.206:51820";
@@ -137,12 +137,12 @@
         Kind = "wireguard";
       };
       wireguardConfig = {
-        PrivateKeyFile = config.age.secrets.wireguard-private-key-file-sigma.path;
+        PrivateKeyFile = config.sops.secrets.wireguard-private-key-file-sigma.path;
       };
       wireguardPeers = [
         {
           PublicKey = "AlphazUR/z+1DRCFSvxTeKPIJnyPQvYsDoSgESvqJhM=";
-          PresharedKeyFile = config.age.secrets.wireguard-preshared-key-file.path;
+          PresharedKeyFile = config.sops.secrets.wireguard-preshared-key-file.path;
           # Explicit IPv4 address of alpha.caspervk.net to avoid attempting to
           # (re)connect through IPv6(??).
           Endpoint = "116.203.179.206:51821";
@@ -237,15 +237,15 @@
     "net.ipv4.conf.all.forwarding" = true;
   };
 
-  age.secrets.wireguard-preshared-key-file = {
-    file = "${inputs.secrets}/secrets/wireguard-preshared-key-file.age";
+  sops.secrets.wireguard-preshared-key-file = {
+    sopsFile = "${inputs.secrets}/secrets/wireguard-preshared-key-file.enc";
     mode = "440";
     owner = "root";
     group = "systemd-network";
   };
 
-  age.secrets.wireguard-private-key-file-sigma = {
-    file = "${inputs.secrets}/secrets/wireguard-private-key-file-sigma.age";
+  sops.secrets.wireguard-private-key-file-sigma = {
+    sopsFile = "${inputs.secrets}/secrets/wireguard-private-key-file-sigma.enc";
     mode = "440";
     owner = "root";
     group = "systemd-network";

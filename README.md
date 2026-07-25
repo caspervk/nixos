@@ -89,30 +89,34 @@ mkdir -p /mnt/nix/persist/
 
 All files in the Nix store are world-readable, so it is not a suitable place
 for including cleartext secrets, even if we had a scheme to securely transfer
-them to each system. [Agenix](https://github.com/ryantm/agenix) solves this
+them to each system. [sops-nix](https://github.com/Mic92/sops-nix) solves this
 issue by encrypting the secrets using
 [age](https://github.com/FiloSottile/age), and then decrypting and symlinking
-them using the system's SSH host key during system activation.
+them during system activation.
 
 All secrets, and other private configuration such as DNS zonefiles, are stored
 in a separate, private [repo](https://git.caspervk.net/caspervk/nixos-secrets).
-To bootstrap a new system, we must generate a host key manually during
-installation:
+To bootstrap a new system, we must generate an age key during installation:
 
 ```fish
-mkdir -p /mnt/nix/persist/etc/ssh/
-ssh-keygen -A -f /mnt/nix/persist
-nc alpha.caspervk.net 1337 < /mnt/nix/persist/etc/ssh/ssh_host_ed25519_key.pub
+age-keygen -pq --output /mnt/nix/sops-key.txt
+age-keygen -y /mnt/nix/sops-key.txt | nc alpha.caspervk.net 1337
 ```
 
-Then, on an existing system, add the new host's public key to `secrets.nix` in
-the `nixos-secrets` repo and **rekey** all secrets. When managing secrets, the
-Keepass recovery key is used like so:
+Then, on an existing system, add the new host's public key to `.sops.yaml` in
+the `nixos-secrets` repo and `updatekeys` + `rotate` all secrets. When managing
+secrets, the Keepass recovery key is used like so:
 
 ```fish
-set AGE_KEY_FILE (mktemp); read -s > $AGE_KEY_FILE
-agenix -i $AGE_KEY_FILE --rekey
-agenix -i $AGE_KEY_FILE -e foo.age
+# Use Keepass recovery key
+read --export --silent SOPS_AGE_KEY
+
+sops edit foo.enc
+
+# Rotate keys
+# https://getsops.io/docs/usage/key-management/
+find secrets/ -type f -execdir sops updatekeys --yes '{}' ';'
+find secrets/ -type f -execdir sops rotate --in-place '{}' ';'
 ```
 
 The new system needs to be able to pull the `nixos-secrets` repo temporarily

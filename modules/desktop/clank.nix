@@ -61,11 +61,11 @@
     osConfig,
     ...
   }: {
-    home.file.".config/clank/Caddyfile".source = config.lib.file.mkOutOfStoreSymlink osConfig.age.secrets.clank-caddyfile.path;
+    home.file.".config/clank/Caddyfile".source = config.lib.file.mkOutOfStoreSymlink osConfig.sops.secrets.clank-caddyfile.path;
   };
 
-  age.secrets.clank-caddyfile = {
-    file = "${inputs.secrets}/secrets/clank-caddyfile.age";
+  sops.secrets.clank-caddyfile = {
+    sopsFile = "${inputs.secrets}/secrets/clank-caddyfile.enc";
     mode = "400";
     owner = "caspervk";
     group = "users";

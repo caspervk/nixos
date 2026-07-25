@@ -30,7 +30,7 @@
         # they connect.
         defaultchannel=1
       '';
-    environmentFile = config.age.secrets.mumble-environment-file.path;
+    environmentFile = config.sops.secrets.mumble-environment-file.path;
   };
 
   # Persist database
@@ -45,8 +45,8 @@
     ];
   };
 
-  age.secrets.mumble-environment-file = {
-    file = "${inputs.secrets}/secrets/mumble-environment-file.age";
+  sops.secrets.mumble-environment-file = {
+    sopsFile = "${inputs.secrets}/secrets/mumble-environment-file.enc";
     mode = "400";
     owner = "root";
     group = "root";

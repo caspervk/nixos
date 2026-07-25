@@ -9,12 +9,12 @@
 
     users = {
       root = {
-        hashedPasswordFile = config.age.secrets.users-hashed-password-file.path;
+        hashedPasswordFile = config.sops.secrets.users-hashed-password-file.path;
       };
       caspervk = {
         isNormalUser = true;
         description = "Casper V. Kristensen";
-        hashedPasswordFile = config.age.secrets.users-hashed-password-file.path;
+        hashedPasswordFile = config.sops.secrets.users-hashed-password-file.path;
         extraGroups = [
           "wheel" # allows sudo
           "video" # allows controlling brightness
@@ -24,10 +24,12 @@
     };
   };
 
-  age.secrets.users-hashed-password-file = {
-    file = "${inputs.secrets}/secrets/users-hashed-password-file.age";
+  sops.secrets.users-hashed-password-file = {
+    sopsFile = "${inputs.secrets}/secrets/users-hashed-password-file.enc";
     mode = "400";
     owner = "root";
     group = "root";
+    # https://github.com/Mic92/sops-nix#setting-a-users-password
+    neededForUsers = true;
   };
 }

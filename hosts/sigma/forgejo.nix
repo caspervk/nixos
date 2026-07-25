@@ -85,7 +85,7 @@
       name = "default";
       url = "https://git.caspervk.net";
       # Token from https://git.caspervk.net/admin/actions/runners/
-      tokenFile = config.age.secrets.forgejo-runner-token-file.path;
+      tokenFile = config.sops.secrets.forgejo-runner-token-file.path;
       # Runner labels are used by workflows to define what type of environment
       # they need to be executed in. Each runner declares a set of labels, and
       # the Forgejo server will send it tasks accordingly.
@@ -138,8 +138,8 @@
     ];
   };
 
-  age.secrets.forgejo-runner-token-file = {
-    file = "${inputs.secrets}/secrets/forgejo-runner-token-file.age";
+  sops.secrets.forgejo-runner-token-file = {
+    sopsFile = "${inputs.secrets}/secrets/forgejo-runner-token-file.enc";
     mode = "400";
     owner = "root";
     group = "root";
