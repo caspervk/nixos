@@ -18,14 +18,14 @@
   sops.secrets.syncthing-omega-cert = {
     sopsFile = "${inputs.secrets}/secrets/syncthing-omega-cert.enc";
     mode = "400";
-    owner = "caspervk";
-    group = "syncthing";
+    owner = config.users.users.caspervk.name;
+    group = config.users.groups.syncthing.name;
   };
 
   sops.secrets.syncthing-omega-key = {
     sopsFile = "${inputs.secrets}/secrets/syncthing-omega-key.enc";
     mode = "400";
-    owner = "caspervk";
-    group = "syncthing";
+    owner = config.users.users.caspervk.name;
+    group = config.users.groups.syncthing.name;
   };
 }

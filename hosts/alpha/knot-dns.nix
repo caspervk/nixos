@@ -126,7 +126,7 @@
   sops.secrets.acme-knot-key-file = {
     sopsFile = "${inputs.secrets}/secrets/acme-knot-key-file.enc";
     mode = "400";
-    owner = "knot";
-    group = "knot";
+    owner = config.users.users.knot.name;
+    group = config.users.users.knot.group;
   };
 }

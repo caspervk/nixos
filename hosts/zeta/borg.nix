@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   imports = [
     ../../modules/borg.nix
   ];
@@ -7,7 +11,7 @@
   sops.secrets.borg-passphrase-file = {
     sopsFile = "${inputs.secrets}/secrets/borg-passphrase-file-zeta.enc";
     mode = "400";
-    owner = "root";
-    group = "root";
+    owner = config.users.users.root.name;
+    group = config.users.users.root.group;
   };
 }

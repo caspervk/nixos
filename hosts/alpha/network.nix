@@ -118,14 +118,14 @@
   sops.secrets.wireguard-preshared-key-file = {
     sopsFile = "${inputs.secrets}/secrets/wireguard-preshared-key-file.enc";
     mode = "440";
-    owner = "root";
-    group = "systemd-network";
+    owner = config.users.users.root.name;
+    group = config.users.groups.systemd-network.name;
   };
 
   sops.secrets.wireguard-private-key-file-alpha = {
     sopsFile = "${inputs.secrets}/secrets/wireguard-private-key-file-alpha.enc";
     mode = "440";
-    owner = "root";
-    group = "systemd-network";
+    owner = config.users.users.root.name;
+    group = config.users.groups.systemd-network.name;
   };
 }

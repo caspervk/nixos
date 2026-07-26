@@ -142,7 +142,7 @@
   sops.secrets.mail-hashed-password-file = {
     sopsFile = "${inputs.secrets}/secrets/mail-hashed-password-file.enc";
     mode = "400";
-    owner = "root";
-    group = "root";
+    owner = config.users.users.root.name;
+    group = config.users.users.root.group;
   };
 }

@@ -28,7 +28,7 @@
   sops.secrets.autoupgrade-deploy-key = {
     sopsFile = "${inputs.secrets}/secrets/autoupgrade-deploy-key.enc";
     mode = "400";
-    owner = "root";
-    group = "root";
+    owner = config.users.users.root.name;
+    group = config.users.users.root.group;
   };
 }
