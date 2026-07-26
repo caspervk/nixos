@@ -10,7 +10,7 @@
 
   sops.secrets.caddy-auth-sigma = {
     sopsFile = "${inputs.secrets}/secrets/caddy-auth-sigma.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.caddy.name;
     group = config.users.users.caddy.group;
   };

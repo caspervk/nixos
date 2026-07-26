@@ -67,7 +67,7 @@
 
   sops.secrets.clank-caddyfile = {
     sopsFile = "${inputs.secrets}/secrets/clank-caddyfile.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.caspervk.name;
     group = config.users.users.caspervk.group;
   };

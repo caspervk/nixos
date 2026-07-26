@@ -41,7 +41,7 @@ lib.mkIf (config.security.acme.certs != {}) {
 
   sops.secrets.acme-lego-environment-file = {
     sopsFile = "${inputs.secrets}/secrets/acme-lego-environment-file.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
   };

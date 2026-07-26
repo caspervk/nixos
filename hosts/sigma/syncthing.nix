@@ -17,14 +17,14 @@
 
   sops.secrets.syncthing-sigma-cert = {
     sopsFile = "${inputs.secrets}/secrets/syncthing-sigma-cert.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.caspervk.name;
     group = config.users.groups.syncthing.name;
   };
 
   sops.secrets.syncthing-sigma-key = {
     sopsFile = "${inputs.secrets}/secrets/syncthing-sigma-key.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.caspervk.name;
     group = config.users.groups.syncthing.name;
   };

@@ -26,7 +26,7 @@
 
   sops.secrets.users-hashed-password-file = {
     sopsFile = "${inputs.secrets}/secrets/users-hashed-password-file.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
     # https://github.com/Mic92/sops-nix#setting-a-users-password

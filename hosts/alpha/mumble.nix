@@ -47,7 +47,7 @@
 
   sops.secrets.mumble-environment-file = {
     sopsFile = "${inputs.secrets}/secrets/mumble-environment-file.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
   };

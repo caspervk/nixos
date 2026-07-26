@@ -11,7 +11,7 @@
 
   sops.secrets.borg-passphrase-file = {
     sopsFile = "${inputs.secrets}/secrets/borg-passphrase-file-sigma.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
   };

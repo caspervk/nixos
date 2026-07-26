@@ -15,7 +15,7 @@
 
   sops.secrets.git-syndicate-environment-file = {
     sopsFile = "${inputs.secrets}/secrets/git-syndicate-environment-file.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
   };

@@ -140,7 +140,7 @@
 
   sops.secrets.forgejo-runner-token-file = {
     sopsFile = "${inputs.secrets}/secrets/forgejo-runner-token-file.enc";
-    mode = "400";
+    mode = "0400";
     owner = config.users.users.root.name;
     group = config.users.users.root.group;
   };
