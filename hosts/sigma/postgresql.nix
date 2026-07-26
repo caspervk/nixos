@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # https://nixos.org/manual/nixos/stable/#module-postgresql
   # https://wiki.nixos.org/wiki/PostgreSQL
   # > sudo -u postgres psql
@@ -17,14 +21,14 @@
     directories = [
       {
         directory = "/var/lib/postgresql";
-        user = "postgres";
-        group = "postgres";
+        user = config.users.users.postgres.name;
+        group = config.users.users.postgres.group;
         mode = "0750";
       }
       {
         directory = "/var/backup/postgresql";
-        user = "postgres";
-        group = "root";
+        user = config.users.users.postgres.name;
+        group = config.users.groups.root.name;
         mode = "0700";
       }
     ];

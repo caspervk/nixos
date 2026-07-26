@@ -1,6 +1,7 @@
 {
-  pkgs,
+  config,
   inputs,
+  pkgs,
   ...
 }: {
   # Bridges are Tor relays that help circumvent censorship. WebTunnel is a
@@ -45,8 +46,8 @@
     directories = [
       {
         directory = "/var/lib/tor";
-        user = "tor";
-        group = "tor";
+        user = config.users.users.tor.name;
+        group = config.users.users.tor.group;
         mode = "0700";
       }
     ];

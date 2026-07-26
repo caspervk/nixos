@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # Synapse is the reference homeserver implementation of Matrix from the core
   # development team at matrix.org.
   #
@@ -73,8 +73,8 @@
     directories = [
       {
         directory = "/var/lib/matrix-synapse";
-        user = "matrix-synapse";
-        group = "matrix-synapse";
+        user = config.users.users.matrix-synapse.name;
+        group = config.users.users.matrix-synapse.group;
         mode = "0700";
       }
     ];

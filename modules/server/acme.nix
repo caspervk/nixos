@@ -32,8 +32,8 @@ lib.mkIf (config.security.acme.certs != {}) {
     directories = [
       {
         directory = "/var/lib/acme";
-        user = "acme";
-        group = "acme";
+        user = config.users.users.acme.name;
+        group = config.users.users.acme.group;
         mode = "0755";
       }
     ];

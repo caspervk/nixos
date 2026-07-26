@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   networking = {
     # It's a little too much to define every WiFi network declaratively.
     # Instead, we enable NetworkManager and the nmtui interface.
@@ -16,8 +20,8 @@
     directories = [
       {
         directory = "/etc/NetworkManager/system-connections";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0700";
       }
     ];

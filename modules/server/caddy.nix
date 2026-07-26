@@ -18,8 +18,8 @@ lib.mkIf (config.services.caddy.virtualHosts != {}) {
     directories = [
       {
         directory = "/var/www/html";
-        user = "caddy";
-        group = "caddy";
+        user = config.users.users.caddy.name;
+        group = config.users.users.caddy.group;
         mode = "0755";
       }
     ];

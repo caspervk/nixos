@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # https://wiki.nixos.org/wiki/Libvirt
   # https://wiki.nixos.org/wiki/Virt-manager
 
@@ -32,8 +32,8 @@
     directories = [
       {
         directory = "/var/lib/libvirt";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0755";
       }
     ];

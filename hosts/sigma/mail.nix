@@ -126,14 +126,14 @@
       # and therefore need to be persisted.
       {
         directory = "/var/dkim";
-        user = "opendkim";
-        group = "opendkim";
+        user = config.users.users.rspamd.name;
+        group = config.users.users.rspamd.group;
         mode = "0755";
       }
       {
         directory = "/var/vmail";
-        user = "virtualMail";
-        group = "virtualMail";
+        user = config.users.users.virtualMail.name;
+        group = config.users.users.virtualMail.group;
         mode = "2770";
       }
     ];

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # Open-source, self-hosted note-taking tool built for quick capture.
   # Markdown-native, lightweight, and fully yours.
   # https://usememos.com/
@@ -31,8 +35,8 @@
     directories = [
       {
         directory = "/var/lib/memos";
-        user = "memos";
-        group = "memos";
+        user = config.users.users.memos.name;
+        group = config.users.users.memos.group;
         mode = "0750";
       }
     ];

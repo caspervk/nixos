@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -83,8 +84,8 @@
     directories = [
       {
         directory = "/var/lib/containers";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0700";
       }
     ];

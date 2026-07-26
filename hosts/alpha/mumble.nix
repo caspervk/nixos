@@ -38,8 +38,8 @@
     directories = [
       {
         directory = "/var/lib/murmur";
-        user = "murmur";
-        group = "murmur";
+        user = config.users.users.murmur.name;
+        group = config.users.users.murmur.group;
         mode = "0700";
       }
     ];

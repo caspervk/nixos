@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # Sonarr is an internet PVR for Usenet and Torrents.
   # https://sonarr.tv/
   #
@@ -22,8 +22,8 @@
     directories = [
       {
         directory = "/var/lib/sonarr";
-        user = "sonarr";
-        group = "torrent";
+        user = config.users.users.sonarr.name;
+        group = config.users.users.sonarr.group;
         mode = "0750";
       }
     ];

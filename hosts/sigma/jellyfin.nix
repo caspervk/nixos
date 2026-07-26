@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # Jellyfin is a free and open-source media server and suite of multimedia
   # applications designed to organize, manage, and share digital media files to
   # networked devices.
@@ -21,8 +21,8 @@
     directories = [
       {
         directory = "/var/lib/jellyfin";
-        user = "jellyfin";
-        group = "torrent";
+        user = config.users.users.jellyfin.name;
+        group = config.users.users.jellyfin.group;
         mode = "0700";
       }
     ];

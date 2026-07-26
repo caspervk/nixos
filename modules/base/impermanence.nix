@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   # Impermanence in NixOS is where the root directory isn't permanent, but gets
   # wiped every reboot (such as by mounting it as tmpfs). Such a setup is
   # possible because NixOS only needs /boot and /nix in order to boot, all
@@ -25,23 +29,23 @@
         # /var/lib/nixos should persist: it holds state needed to generate
         # stable uids and gids for declaratively-managed users and groups, etc.
         directory = "/var/lib/nixos";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0755";
       }
       {
         # systemd expects its state directory to persist.
         directory = "/var/lib/systemd";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0755";
       }
       {
         # If (locally) persisting the entire log is desired, it is recommended
         # to make all of /var/log/journal persistent.
         directory = "/var/log";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0755";
       }
       {
@@ -49,8 +53,8 @@
         # reboots. Some programs might store files too big for in-memory /tmp
         # there. Files are automatically cleaned by systemd.
         directory = "/var/tmp";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "1777";
       }
     ];

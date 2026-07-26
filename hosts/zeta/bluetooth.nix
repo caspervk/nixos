@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # https://wiki.nixos.org/wiki/Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -24,8 +24,8 @@
     directories = [
       {
         directory = "/var/lib/bluetooth";
-        user = "root";
-        group = "root";
+        user = config.users.users.root.name;
+        group = config.users.users.root.group;
         mode = "0700";
       }
     ];

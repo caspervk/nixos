@@ -1,6 +1,7 @@
 {
-  pkgs,
+  config,
   inputs,
+  pkgs,
   ...
 }: {
   # Deluge BitTorrent Client is a free and open-source, cross-platform
@@ -69,8 +70,8 @@
       # Deluge data directory. This is *NOT* where the downloads are saved
       {
         directory = "/var/lib/deluge";
-        user = "deluge";
-        group = "torrent";
+        user = config.users.users.deluge.name;
+        group = config.users.users.deluge.group;
         mode = "0770";
       }
       # Since Sonarr insists on using hardlinks to manage media files, its
@@ -80,8 +81,8 @@
       # /srv/torrents/downloads/movies/ and /srv/torrents/tv/.
       {
         directory = "/srv/torrents";
-        user = "deluge";
-        group = "torrent";
+        user = config.users.users.deluge.name;
+        group = config.users.users.deluge.group;
         mode = "0770";
       }
     ];
