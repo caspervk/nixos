@@ -21,15 +21,15 @@
     directories = [
       {
         directory = "/var/lib/postgresql";
+        mode = "0750";
         user = config.users.users.postgres.name;
         group = config.users.users.postgres.group;
-        mode = "0750";
       }
       {
         directory = "/var/backup/postgresql";
+        mode = "0700";
         user = config.users.users.postgres.name;
         group = config.users.groups.root.name;
-        mode = "0700";
       }
     ];
   };

@@ -24,9 +24,9 @@
     directories = [
       {
         directory = "/var/lib/bluetooth";
+        mode = "0700";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "0700";
       }
     ];
   };

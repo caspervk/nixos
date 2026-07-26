@@ -38,9 +38,9 @@
     directories = [
       {
         directory = "/var/lib/murmur";
+        mode = "0700";
         user = config.users.users.murmur.name;
         group = config.users.users.murmur.group;
-        mode = "0700";
       }
     ];
   };

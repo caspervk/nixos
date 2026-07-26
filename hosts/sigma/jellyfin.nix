@@ -21,9 +21,9 @@
     directories = [
       {
         directory = "/var/lib/jellyfin";
+        mode = "0700";
         user = config.users.users.jellyfin.name;
         group = config.users.users.jellyfin.group;
-        mode = "0700";
       }
     ];
   };

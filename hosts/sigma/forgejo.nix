@@ -131,9 +131,9 @@
     directories = [
       {
         directory = "/var/lib/forgejo";
+        mode = "0750";
         user = config.users.users.git.name;
         group = config.users.users.git.group;
-        mode = "0750";
       }
     ];
   };

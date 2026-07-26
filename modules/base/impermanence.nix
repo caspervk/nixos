@@ -29,33 +29,33 @@
         # /var/lib/nixos should persist: it holds state needed to generate
         # stable uids and gids for declaratively-managed users and groups, etc.
         directory = "/var/lib/nixos";
+        mode = "0755";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "0755";
       }
       {
         # systemd expects its state directory to persist.
         directory = "/var/lib/systemd";
+        mode = "0755";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "0755";
       }
       {
         # If (locally) persisting the entire log is desired, it is recommended
         # to make all of /var/log/journal persistent.
         directory = "/var/log";
+        mode = "0755";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "0755";
       }
       {
         # /var/tmp is meant for temporary files that are preserved across
         # reboots. Some programs might store files too big for in-memory /tmp
         # there. Files are automatically cleaned by systemd.
         directory = "/var/tmp";
+        mode = "1777";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "1777";
       }
     ];
     files = [

@@ -70,9 +70,9 @@
       # Deluge data directory. This is *NOT* where the downloads are saved
       {
         directory = "/var/lib/deluge";
+        mode = "0770";
         user = config.users.users.deluge.name;
         group = config.users.users.deluge.group;
-        mode = "0770";
       }
       # Since Sonarr insists on using hardlinks to manage media files, its
       # media library must be on the same volume as Deluge stores its
@@ -81,9 +81,9 @@
       # /srv/torrents/downloads/movies/ and /srv/torrents/tv/.
       {
         directory = "/srv/torrents";
+        mode = "0770";
         user = config.users.users.deluge.name;
         group = config.users.users.deluge.group;
-        mode = "0770";
       }
     ];
   };

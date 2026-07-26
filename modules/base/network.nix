@@ -78,9 +78,9 @@
     directories = [
       {
         directory = "/var/lib/vnstat";
+        mode = "0755";
         user = config.users.users.root.name;
         group = config.users.users.root.group;
-        mode = "0755";
       }
     ];
   };

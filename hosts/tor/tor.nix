@@ -174,27 +174,27 @@
     directories = [
       {
         directory = "/var/lib/tor-1";
+        mode = "0700";
         user = toString config.ids.uids.tor;
         group = toString config.ids.gids.tor;
-        mode = "0700";
       }
       {
         directory = "/var/lib/tor-2";
+        mode = "0700";
         user = toString config.ids.uids.tor;
         group = toString config.ids.gids.tor;
-        mode = "0700";
       }
       {
         directory = "/var/lib/tor-3";
+        mode = "0700";
         user = toString config.ids.uids.tor;
         group = toString config.ids.gids.tor;
-        mode = "0700";
       }
       {
         directory = "/var/lib/tor-4";
+        mode = "0700";
         user = toString config.ids.uids.tor;
         group = toString config.ids.gids.tor;
-        mode = "0700";
       }
     ];
   };

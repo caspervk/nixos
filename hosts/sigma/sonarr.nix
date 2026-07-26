@@ -22,9 +22,9 @@
     directories = [
       {
         directory = "/var/lib/sonarr";
+        mode = "0750";
         user = config.users.users.sonarr.name;
         group = config.users.users.sonarr.group;
-        mode = "0750";
       }
     ];
   };

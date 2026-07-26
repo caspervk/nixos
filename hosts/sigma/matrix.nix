@@ -73,9 +73,9 @@
     directories = [
       {
         directory = "/var/lib/matrix-synapse";
+        mode = "0700";
         user = config.users.users.matrix-synapse.name;
         group = config.users.users.matrix-synapse.group;
-        mode = "0700";
       }
     ];
   };

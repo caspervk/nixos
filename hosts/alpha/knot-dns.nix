@@ -116,9 +116,9 @@
     directories = [
       {
         directory = "/var/lib/knot";
+        mode = "0700";
         user = config.users.users.knot.name;
         group = config.users.users.knot.group;
-        mode = "0700";
       }
     ];
   };

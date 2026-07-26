@@ -35,9 +35,9 @@
     directories = [
       {
         directory = "/var/lib/memos";
+        mode = "0750";
         user = config.users.users.memos.name;
         group = config.users.users.memos.group;
-        mode = "0750";
       }
     ];
   };

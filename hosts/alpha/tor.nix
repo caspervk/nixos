@@ -46,9 +46,9 @@
     directories = [
       {
         directory = "/var/lib/tor";
+        mode = "0700";
         user = config.users.users.tor.name;
         group = config.users.users.tor.group;
-        mode = "0700";
       }
     ];
   };
