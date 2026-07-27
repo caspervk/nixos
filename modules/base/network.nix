@@ -74,6 +74,9 @@
 
   # vnStat keeps a log of hourly, daily and monthly network traffic
   services.vnstat.enable = true;
+  environment.etc."vnstat.conf".text = ''
+    AlwaysAddNewInterfaces 1
+  '';
   environment.persistence."/nix/persist" = {
     directories = [
       {
