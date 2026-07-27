@@ -373,4 +373,8 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  # NixOS enables the speech-dispatcher speech synthesizer daemon for graphical
+  # desktops by default.
+  services.speechd.enable = false;
 }
