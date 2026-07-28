@@ -368,6 +368,11 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    # https://github.com/NixOS/nixpkgs/issues/471244
+    wlr.settings.screencast = {
+      chooser_type = "simple";
+      chooser_cmd = "${pkgs.slurp}/bin/slurp -f 'Monitor: %o' -or";
+    };
     extraPortals = [
       pkgs.xdg-desktop-portal-wlr
       pkgs.xdg-desktop-portal-gtk
