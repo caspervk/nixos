@@ -13,25 +13,25 @@
             programs.opencode = {
               settings = {
                 provider = {
+                  berget = {
+                    options = {
+                      baseURL = "http://clank-proxy:1600/v1";
+                    };
+                  };
                   deepseek = {
                     options = {
-                      baseURL = "http://clank-proxy:1600";
+                      baseURL = "http://clank-proxy:1601";
                     };
                   };
                   google = {
                     options = {
                       apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1601/v1beta";
+                      baseURL = "http://clank-proxy:1602/v1beta";
                     };
                   };
                   mistral = {
                     options = {
                       apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1602/v1";
-                    };
-                  };
-                  scaleway = {
-                    options = {
                       baseURL = "http://clank-proxy:1603/v1";
                     };
                   };
