@@ -82,7 +82,6 @@ as root_ blogpost and mount `/mnt` as `tmpfs`:
 mount -t tmpfs none /mnt
 mount --mkdir /dev/disk/by-label/BOOT /mnt/boot
 mount --mkdir /dev/disk/by-label/nix /mnt/nix
-mkdir -p /mnt/nix/persist/
 ```
 
 ### Secrets
@@ -145,6 +144,7 @@ cd nixos/
 nixos-generate-config --root /mnt --show-hardware-config
 vim hosts/omega/hardware.nix
 git add .  # nix sometimes ignores files outside version control
+nix-shell -p git
 nixos-install --no-root-passwd --flake .#omega
 ```
 
