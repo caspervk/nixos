@@ -19,7 +19,6 @@
     pkgs.hunspellDicts.da-dk
     pkgs.hunspellDicts.en-gb-ise
     pkgs.hunspellDicts.en-us
-    pkgs.jetbrains.pycharm-oss
     pkgs.keepassxc
     (pkgs.kodi-wayland.withPackages (kodiPackages: [kodiPackages.jellyfin]))
     pkgs.libqalculate
