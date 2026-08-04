@@ -62,7 +62,10 @@
     osConfig,
     ...
   }: {
-    home.file.".config/clank/Caddyfile".source = config.lib.file.mkOutOfStoreSymlink osConfig.sops.secrets.clank-caddyfile.path;
+    home.file.".config/clank/Caddyfile" = {
+      source = config.lib.file.mkOutOfStoreSymlink osConfig.sops.secrets.clank-caddyfile.path;
+      force = true;
+    };
   };
 
   sops.secrets.clank-caddyfile = {
