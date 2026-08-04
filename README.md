@@ -99,6 +99,7 @@ in a separate, private [repo](https://git.caspervk.net/caspervk/nixos-secrets).
 To bootstrap a new system, we must generate an age key during installation:
 
 ```fish
+nix --experimental-features 'nix-command flakes' shell nixpkgs#age
 age-keygen -pq --output /mnt/nix/sops-key.txt
 age-keygen -y /mnt/nix/sops-key.txt | nc alpha.caspervk.net 1337
 ```
