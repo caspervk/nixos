@@ -37,6 +37,10 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +56,7 @@
     clank = {
       url = "git+https://git.caspervk.net/caspervk/clank.git?ref=dev"; # TODO
       inputs.nixpkgs.follows = "nixpkgs-unstable"; # use unstable to get latest harnesses
+      inputs.home-manager.follows = "home-manager-unstable";
     };
   };
 

@@ -12,5 +12,6 @@
     ./sway.nix
     ./thunar.nix
     ./virtd.nix
+    ./voxtype.nix
   ];
 }
