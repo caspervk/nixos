@@ -11,10 +11,16 @@
   # Test resolver:
   #
   #   nix shell nixpkgs#knot-dns
+  #
   #   kdig -d @dns.caspervk.net example.com
   #   kdig -d +https @dns.caspervk.net example.com
   #   kdig -d +tls @dns.caspervk.net example.com
   #   kdig -d +quic @dns.caspervk.net example.com
+  #
+  #   kdig -d @159.69.4.2 example.com
+  #   kdig -d +https @159.69.4.2 example.com
+  #   kdig -d +tls @159.69.4.2 example.com
+  #   kdig -d +quic @159.69.4.2 example.com
   #
   # Clear cache:
   #
@@ -62,8 +68,8 @@
           }
         ];
         tls = {
-          cert-file = "${config.security.acme.certs."caspervk.net".directory}/fullchain.pem";
-          key-file = "${config.security.acme.certs."caspervk.net".directory}/key.pem";
+          cert-file = "${config.security.acme.certs."dns.caspervk.net".directory}/fullchain.pem";
+          key-file = "${config.security.acme.certs."dns.caspervk.net".directory}/key.pem";
         };
       };
       cache = {
@@ -106,6 +112,13 @@
         };
       };
     };
+  };
+
+  # Don't start until certificate is ready. Mirrors how modules with
+  # useACMEHost do it (e.g. Caddy).
+  systemd.services.knot-resolver = {
+    after = ["acme-dns.caspervk.net.service"];
+    wants = ["acme-dns.caspervk.net.service"];
   };
 
   networking.firewall = {
