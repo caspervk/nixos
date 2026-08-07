@@ -3,8 +3,7 @@
     "caspervk.net" = {
       extraDomainNames = ["*.caspervk.net"];
       reloadServices = [
-        "kresd@1.service"
-        "kresd@2.service"
+        "knot-resolver.service"
       ];
     };
   };
