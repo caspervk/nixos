@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -94,7 +95,7 @@
         rpz = [
           {
             file = pkgs.runCommand "stevenblack-blocklist-rpz" {} ''
-              ${pkgs.hosts-bl}/bin/Hosts-BL -i ${pkgs.stevenblack-blocklist}/hosts -f rpz -o $out
+              ${pkgs.hosts-bl}/bin/Hosts-BL -i ${inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.stevenblack-blocklist}/hosts -f rpz -o $out
             '';
             tags = ["blocklist"];
           }
