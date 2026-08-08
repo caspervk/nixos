@@ -22,6 +22,8 @@
   #   kdig -d +tls @159.69.4.2 example.com
   #   kdig -d +quic @159.69.4.2 example.com
   #
+  #   kdig -d @159.69.4.2 _dns.resolver.arpa SVCB
+  #
   # Clear cache:
   #
   #   sudo kresctl cache clear example.com.
@@ -98,6 +100,25 @@
         }
       ];
       local-data = {
+        # Discovery of Designated Resolvers (DDR) lets clients discover a DNS
+        # resolver's encrypted DNS configuration, allowing it to move from
+        # unencrypted to encrypted DNS. When only the resolver's IP address is
+        # known, the client can query the resolver for SVCB records at the
+        # special domain _dns.resolver.arpa., basically:
+        #
+        #   dig SVCB @159.69.4.2 _dns.resolver.arpa.
+        #
+        # https://www.rfc-editor.org/info/rfc9462/ (4. Discovery Using Resolver IP Addresses)
+        rules = [
+          {
+            records = ''
+              _dns.resolver.arpa. 3600 IN SVCB 1 dns.caspervk.net. alpn=doq ipv4hint=159.69.4.2 ipv6hint=2a01:4f8:1c0c:70d1::1
+              _dns.resolver.arpa. 3600 IN SVCB 2 dns.caspervk.net. alpn=dot ipv4hint=159.69.4.2 ipv6hint=2a01:4f8:1c0c:70d1::1
+              _dns.resolver.arpa. 3600 IN SVCB 3 dns.caspervk.net. alpn=h2 ipv4hint=159.69.4.2 ipv6hint=2a01:4f8:1c0c:70d1::1 dohpath=/dns-query{?dns}
+            '';
+            tags = ["blocklist"];
+          }
+        ];
         rpz = [
           {
             file = pkgs.runCommand "stevenblack-blocklist-rpz" {} ''
