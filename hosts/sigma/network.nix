@@ -95,15 +95,18 @@
     networks."50-wg-sigma-public" = {
       matchConfig.Name = "wg-sigma-public";
       address = ["49.13.33.75/32"];
-      routingPolicyRules = [
+      routes = [
         {
           # Allow hosts on the local network to contact us directly on the
-          # public address instead of routing the packet through Wireguard and
-          # back again.
-          Table = "main";
-          Priority = 10;
-          To = "192.168.0.0/24";
+          # public address instead of routing through alpha and back. This
+          # route takes priority since it is more specific than the default
+          # route from AllowedIPs.
+          Table = "wg-sigma-public";
+          Destination = "192.168.0.0/24";
+          Type = "throw"; # terminate lookup in this table
         }
+      ];
+      routingPolicyRules = [
         {
           # The postfix systemd service has
           # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
