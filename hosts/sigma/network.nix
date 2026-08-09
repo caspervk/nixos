@@ -78,14 +78,15 @@
           Endpoint = "116.203.179.206:51820";
           # Keep NAT mappings and stateful firewalls open at the ISP
           PersistentKeepalive = 25;
-          # AllowedIPs is both an ACL for incoming traffic, as well as a
-          # routing table specifying to which peer outgoing traffic should be
-          # sent. We want to allow incoming traffic from any address on the
-          # internet (routed through alpha), but only replies to this should be
-          # routed back over wireguard. Unlike if we had used NAT, IP routes
-          # are stateless, so we have no notion of "replies". Instead, we add
-          # these routes to a specific routing table and configure a routing
-          # policy rule to only use it for packets being sent as the public IP.
+          # AllowedIPs is both an ACL for incoming traffic, as well as a route
+          # (as long as RouteTable is set) specifying to which peer outgoing
+          # traffic should be sent. We want to allow incoming traffic from any
+          # address on the internet (routed through alpha), but only replies to
+          # this should be routed back over wireguard. Unlike if we had used
+          # NAT, IP routes are stateless, so we have no notion of "replies".
+          # Instead, we add these routes to a specific routing table and
+          # configure a routing policy rule to only use it for packets being
+          # sent as the public IP.
           AllowedIPs = ["0.0.0.0/0"];
           RouteTable = "wg-sigma-public";
         }
@@ -99,30 +100,30 @@
           # Allow hosts on the local network to contact us directly on the
           # public address instead of routing the packet through Wireguard and
           # back again.
+          Table = "main";
           Priority = 10;
           To = "192.168.0.0/24";
-          Table = "main";
         }
         {
           # The postfix systemd service has
           # RestrictNetworkInterfaces=wg-sigma-public, but that does not tell
           # it to use the correct routing table. You can check that this works
           # as expected using `sudo -u postfix curl ip.caspervk.net`.
+          Table = "wg-sigma-public";
           Priority = 100;
           User = config.services.postfix.user;
-          Table = "wg-sigma-public";
         }
         {
           # ditto for heisenbridge
+          Table = "wg-sigma-public";
           Priority = 101;
           User = config.systemd.services.heisenbridge.serviceConfig.User;
-          Table = "wg-sigma-public";
         }
         {
           # See the AllowedIPs comment above for why this is necessary
+          Table = "wg-sigma-public";
           Priority = 1000;
           From = "49.13.33.75/32";
-          Table = "wg-sigma-public";
         }
       ];
     };
@@ -161,14 +162,14 @@
           # RestrictNetworkInterfaces=wg-sigma-p2p, but that does not tell it
           # to use the correct routing table. You can check that this works as
           # expected using `sudo -u deluge curl ip.caspervk.net`.
+          Table = "wg-sigma-p2p";
           Priority = 100;
           User = config.services.deluge.user;
-          Table = "wg-sigma-p2p";
         }
         {
+          Table = "wg-sigma-p2p";
           Priority = 1000;
           From = "${inputs.secrets.hosts.sigma.sigma-p2p-ip-address}/32";
-          Table = "wg-sigma-p2p";
         }
       ];
     };
