@@ -99,6 +99,11 @@
           -- gg, etc.
           vim.opt.startofline = true
 
+          -- Use SHIFT-{HL} to go to start and end of lines. Easier to reach
+          -- than ^ and $.
+          vim.keymap.set({"n", "v"}, "H", "^")
+          vim.keymap.set({"n", "v"}, "L", "$")
+
           -- Keep visual selection after indenting
           vim.keymap.set("v", "<", "<gv")
           vim.keymap.set("v", ">", ">gv")
