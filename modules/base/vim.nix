@@ -358,18 +358,6 @@
             -- https://github.com/nix-community/nixd
             vim.lsp.enable("nixd")
 
-            -- https://github.com/rust-lang/rust-analyzer
-            vim.lsp.config("rust_analyzer", {
-              settings = {
-                ["rust-analyzer"] = {
-                  check = {
-                    command = "clippy",
-                  }
-                }
-              }
-            })
-            vim.lsp.enable("rust_analyzer")
-
             -- https://docs.basedpyright.com
             vim.lsp.config["basedpyright"] = {
               settings = {
@@ -552,7 +540,6 @@
                 nix = {"alejandra"},
                 -- Ruff follows the project's pyproject.toml/ruff.toml
                 python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
-                rust = {"rustfmt"},
                 terraform = {"tofu_fmt"},
                 toml = {"taplo"},
                 typescript = {"prettier"},
@@ -803,9 +790,6 @@
         pkgs.opentofu # conform
         pkgs.prettier # conform
         pkgs.ruff # lsp/conform
-        pkgs.rust-analyzer # lsp
-        pkgs.rustc # lsp
-        pkgs.rustfmt # conform
         pkgs.taplo # conform
         pkgs.xmlstarlet # conform
         pkgs.yaml-language-server # lsp
