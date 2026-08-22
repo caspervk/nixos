@@ -5,7 +5,6 @@
     ../../modules/podman.nix
     ../../modules/work.nix
     ./hardware.nix
-    ./fish.nix
     ./sway.nix
   ];
 
