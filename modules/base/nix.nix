@@ -15,7 +15,7 @@
       # https://nixos.org/manual/nix/stable/package-management/garbage-collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 14d";
     };
 
     # https://nix.dev/manual/nix/2.24/command-ref/conf-file.html
