@@ -15,29 +15,29 @@
                 provider = {
                   berget = {
                     options = {
-                      baseURL = "http://clank-proxy:1600/v1";
+                      baseURL = "http://clank-proxy:1657/v1";
                     };
                   };
                   deepseek = {
                     options = {
-                      baseURL = "http://clank-proxy:1601";
+                      baseURL = "http://clank-proxy:1634";
                     };
                   };
                   google = {
                     options = {
                       apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1602/v1beta";
+                      baseURL = "http://clank-proxy:1681/v1beta";
                     };
                   };
                   mistral = {
                     options = {
                       apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1603/v1";
+                      baseURL = "http://clank-proxy:1643/v1";
                     };
                   };
                   zai = {
                     options = {
-                      baseURL = "http://clank-proxy:1604/api/paas/v4";
+                      baseURL = "http://clank-proxy:1684/api/paas/v4";
                     };
                   };
                 };
