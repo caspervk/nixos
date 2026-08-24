@@ -9,6 +9,11 @@
     (inputs.clank.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraModules = [
         ({...}: {
+          imports = [
+            "${inputs.clank}/magenta/modules/gitlab.nix"
+            "${inputs.clank}/magenta/modules/grafana-logs.nix"
+            "${inputs.clank}/magenta/modules/kagi.nix"
+          ];
           home-manager.users.root = {
             programs.opencode = {
               settings = {
