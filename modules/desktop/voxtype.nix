@@ -22,6 +22,7 @@ in {
       loadModels = [
         "parakeet-tdt-0.6b-v3"
       ];
+      wayland.display = "wayland-1";
       settings = {
         engine = "parakeet";
         parakeet = {
