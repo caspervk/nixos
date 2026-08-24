@@ -18,7 +18,6 @@
     },
     "clank": {
       "inputs": {
-        "config": "config",
         "home-manager": [
           "home-manager-unstable"
         ],
@@ -27,10 +26,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787519940,
-        "narHash": "sha256-DCf4m6U1daWGcL8EEKjaXwnLYLSIw17GpmuL3KlVEfI=",
+        "lastModified": 1787529807,
+        "narHash": "sha256-GPHvG9Ed03Yrzvld8Vmgg6pwOR3qIA+ijPX+iGMKQJs=",
         "ref": "dev",
-        "rev": "dbf2fc9e8de6dd62400292f96bdfe6fa4ab3fc35",
+        "rev": "b3a2cff15f45d36b7cc657766c3bf7d856ecc1a6",
         "revCount": 125,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/clank.git"
@@ -40,20 +39,6 @@
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/clank.git"
       }
-    },
-    "config": {
-      "flake": false,
-      "locked": {
-        "path": "./empty.nix",
-        "type": "path"
-      },
-      "original": {
-        "path": "./empty.nix",
-        "type": "path"
-      },
-      "parent": [
-        "clank"
-      ]
     },
     "flake-compat": {
       "flake": false,
