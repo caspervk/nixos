@@ -36,8 +36,6 @@
       max_active_seeding = -1;
       max_active_downloading = -1;
       max_active_limit = -1;
-      # except upload speed, cause coax is literally trash
-      max_upload_speed = 5000; # KiB/s
       # caching
       cache_size = 65536; # 65536 x 16KiB = 1GiB
       # enable label plugin, primarily for sonarr
