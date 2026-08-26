@@ -11,12 +11,6 @@
 
   virtualisation.podman = {
     enable = true;
-    defaultNetwork.settings = {
-      # DNS is required for containers under podman-compose to be able to talk
-      # to each other.
-      dns_enabled = true;
-      ipv6_enabled = true;
-    };
     # Automatically `podman system prune -f` weekly
     autoPrune.enable = true;
     # Create an alias mapping `docker` to `podman`. This does *not* enable the
