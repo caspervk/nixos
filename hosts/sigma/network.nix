@@ -15,8 +15,8 @@
     # Rename network interfaces. The PermanentMACAddress is found using
     # `ethtool -P enp5s0`.
     links."10-wan0" = {
-      # Realtek motherboard port
-      matchConfig.PermanentMACAddress = "9c:6b:00:27:00:89";
+      # Intel pci port (left)
+      matchConfig.PermanentMACAddress = "00:15:17:a6:ee:a1";
       linkConfig.Name = "wan0";
     };
     links."11-lan0" = {
