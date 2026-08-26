@@ -4,7 +4,6 @@
       config = {
         # swaymsg -t get_outputs
         output = {
-          # TODO
           "eDP-1" = {
             mode = "2560x1600@300.000Hz";
             position = "0,0";
@@ -21,18 +20,23 @@
         workspaceOutputAssign = [
           {
             workspace = "10";
-            output = "eDP-1";
+            output = "eDP-2";
           }
           {
             workspace = "1";
-            output = "eDP-7";
+            output = "DP-1";
           }
           {
             workspace = "4";
-            output = "eDP-6";
+            output = "HDMI-A-1";
           }
         ];
       };
     };
+  };
+
+  # Nvidia cringe
+  environment.sessionVariables = {
+    SWAY_UNSUPPORTED_GPU = "true";
   };
 }

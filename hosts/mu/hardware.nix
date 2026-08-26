@@ -8,8 +8,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     (inputs.nixos-hardware + "/common/gpu/nvidia/blackwell")
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -51,10 +51,12 @@
   # GPU
   # https://wiki.nixos.org/wiki/NVIDIA
   hardware.nvidia = {
-    prime = {
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+    # TODO: https://github.com/NixOS/nixpkgs/issues/554125
+    package =
+      (import inputs.nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfreePackages = ["nvidia-x11" "nvidia-settings"];
+      }).linuxPackages_latest.nvidiaPackages.latest;
   };
   # Allow cringe proprietary userspace packages
   nixpkgs.config.allowUnfreePackages = ["nvidia-x11" "nvidia-settings"];
