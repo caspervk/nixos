@@ -28,18 +28,6 @@
                       baseURL = "http://clank-proxy:1634";
                     };
                   };
-                  google = {
-                    options = {
-                      apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1681/v1beta";
-                    };
-                  };
-                  mistral = {
-                    options = {
-                      apiKey = "dummy";
-                      baseURL = "http://clank-proxy:1643/v1";
-                    };
-                  };
                   zai = {
                     options = {
                       baseURL = "http://clank-proxy:1684/api/paas/v4";
