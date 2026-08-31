@@ -13,6 +13,32 @@
 
   networking.hostName = "omega";
 
+  # TODO: Baldur's Gate 3
+  networking.firewall = {
+    allowedUDPPorts = [
+      23243
+      23244
+      23245
+      23246
+      23247
+      23248
+      23249
+      23250
+      23251
+      23252
+      23253
+      23254
+      23255
+      23256
+      23257
+      23258
+      23259
+      23260
+      23261
+      23262
+    ];
+  };
+
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;

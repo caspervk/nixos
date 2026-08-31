@@ -223,6 +223,30 @@
         allowedUDPPorts = [
           21027 # syncthing
           22000 # syncthing
+          # TODO: Baldur's Gate 3
+          # for port in (seq 23243 23262)
+          #   socat UDP4-LISTEN:$port,fork,reuseaddr UDP4:192.168.0.91:$port &
+          # end
+          23243
+          23244
+          23245
+          23246
+          23247
+          23248
+          23249
+          23250
+          23251
+          23252
+          23253
+          23254
+          23255
+          23256
+          23257
+          23258
+          23259
+          23260
+          23261
+          23262
         ];
       };
       "wg-sigma-p2p" = {
