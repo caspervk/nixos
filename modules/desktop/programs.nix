@@ -13,7 +13,6 @@
       exec = "${pkgs.ungoogled-chromium}/bin/chromium --app=https://www.deezer.com";
     })
     pkgs.element-desktop
-    pkgs.firefox
     pkgs.gimp
     pkgs.hunspell
     pkgs.hunspellDicts.da-dk

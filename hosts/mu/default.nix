@@ -5,6 +5,7 @@
     ../../modules/podman.nix
     ../../modules/work.nix
     ./hardware.nix
+    ./firefox.nix
     ./sway.nix
   ];
 

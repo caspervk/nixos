@@ -2,6 +2,7 @@
   imports = [
     ./clank.nix
     ./clipman.nix
+    ./firefox.nix
     ./foot.nix
     ./gammastep.nix
     ./network.nix
