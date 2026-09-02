@@ -18,14 +18,14 @@
             programs.opencode = {
               settings = {
                 provider = {
-                  berget = {
-                    options = {
-                      baseURL = "http://clank-proxy:1657/v1";
-                    };
-                  };
                   deepseek = {
                     options = {
                       baseURL = "http://clank-proxy:1634";
+                    };
+                  };
+                  greenpt = {
+                    options = {
+                      baseURL = "http://clank-proxy:1689/v1";
                     };
                   };
                   zai = {
