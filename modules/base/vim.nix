@@ -127,8 +127,8 @@
           vim.keymap.set("n", "<C-l>",  "<C-w><C-l>")
 
           -- Use ALT-{HL} to navigate tabs
-          vim.keymap.set("n", "<A-h>", "gT");
-          vim.keymap.set("n", "<A-l>", "gt");
+          vim.keymap.set("n", "<A-h>", "gT")
+          vim.keymap.set("n", "<A-l>", "gt")
 
           -- Use <Escape> to clear search highlight. This is normally bound to
           -- CTRL-L, but we use that to navigate windows instead.
@@ -179,7 +179,7 @@
                     syn = {
                       -- Make control flow keywords more pronounced.
                       -- statement = colors.theme.syn.special2,
-                      keyword = "#E46876"  -- waveRed; same as syn.special2
+                      keyword = "#E46876",  -- waveRed; same as syn.special2
                     },
                   },
                   all = {
@@ -286,7 +286,7 @@
                     else return cmp.select_and_accept() end
                   end,
                   "snippet_forward",
-                  "fallback"
+                  "fallback",
                 },
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
@@ -501,19 +501,19 @@
           config = ''
             require("bufferline").setup({})
             -- Use <A-j> and <A-k> to go to previous/next buffer
-            vim.keymap.set("n", "<A-j>", vim.cmd.BufferLineCyclePrev);
-            vim.keymap.set("n", "<A-k>", vim.cmd.BufferLineCycleNext);
+            vim.keymap.set("n", "<A-j>", vim.cmd.BufferLineCyclePrev)
+            vim.keymap.set("n", "<A-k>", vim.cmd.BufferLineCycleNext)
             -- Use <A-[1-9]> to select a buffer. <A-9> selects the rightmost
             -- buffer like tabs in Firefox.
-            vim.keymap.set("n", "<A-1>", function() vim.cmd.BufferLineGoToBuffer(1) end);
-            vim.keymap.set("n", "<A-2>", function() vim.cmd.BufferLineGoToBuffer(2) end);
-            vim.keymap.set("n", "<A-3>", function() vim.cmd.BufferLineGoToBuffer(3) end);
-            vim.keymap.set("n", "<A-4>", function() vim.cmd.BufferLineGoToBuffer(4) end);
-            vim.keymap.set("n", "<A-5>", function() vim.cmd.BufferLineGoToBuffer(5) end);
-            vim.keymap.set("n", "<A-6>", function() vim.cmd.BufferLineGoToBuffer(6) end);
-            vim.keymap.set("n", "<A-7>", function() vim.cmd.BufferLineGoToBuffer(7) end);
-            vim.keymap.set("n", "<A-8>", function() vim.cmd.BufferLineGoToBuffer(8) end);
-            vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end);
+            vim.keymap.set("n", "<A-1>", function() vim.cmd.BufferLineGoToBuffer(1) end)
+            vim.keymap.set("n", "<A-2>", function() vim.cmd.BufferLineGoToBuffer(2) end)
+            vim.keymap.set("n", "<A-3>", function() vim.cmd.BufferLineGoToBuffer(3) end)
+            vim.keymap.set("n", "<A-4>", function() vim.cmd.BufferLineGoToBuffer(4) end)
+            vim.keymap.set("n", "<A-5>", function() vim.cmd.BufferLineGoToBuffer(5) end)
+            vim.keymap.set("n", "<A-6>", function() vim.cmd.BufferLineGoToBuffer(6) end)
+            vim.keymap.set("n", "<A-7>", function() vim.cmd.BufferLineGoToBuffer(7) end)
+            vim.keymap.set("n", "<A-8>", function() vim.cmd.BufferLineGoToBuffer(8) end)
+            vim.keymap.set("n", "<A-9>", function() vim.cmd.BufferLineGoToBuffer(-1) end)
             -- Use <A-x> to close current buffer
             vim.keymap.set("n", "<A-x>", vim.cmd.bd);
           '';
