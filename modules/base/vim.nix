@@ -525,7 +525,6 @@
           plugin = pkgs.vimPlugins.conform-nvim;
           type = "lua";
           config = ''
-            -- TODO: injected language formatting (treesitter code blocks)
             local conform = require("conform")
             conform.setup({
               formatters_by_ft = {
@@ -536,8 +535,8 @@
                 html = {"prettier"},
                 javascript = {"prettier"},
                 json = {"prettier"},
-                markdown = {"prettier"},
-                nix = {"alejandra"},
+                markdown = {"prettier", "injected"},
+                nix = {"alejandra", "injected"},
                 -- Ruff follows the project's pyproject.toml/ruff.toml
                 python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
                 terraform = {"tofu_fmt"},
