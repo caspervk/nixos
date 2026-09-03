@@ -245,11 +245,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1788179007,
-        "narHash": "sha256-maQBa7XmWJ+a6te4QwF++R1FIXUrjvki0AtGOOhyZn0=",
-        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
+        "lastModified": 1788316716,
+        "narHash": "sha256-7VBL4mi5M72FJtZOQt7SbCGWpGbsuH1ga6Zeu8bjtWk=",
+        "rev": "3ed67ec0a4d3c7ab4ae1f04f8ee8df07bfa506a2",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1066106.3ed67ec0a4d3/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -275,11 +275,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1788366161,
-        "narHash": "sha256-rUoXMPrjwz4NusxWw3gLZV9tbR7rfpOzrKxAVPIZ0tk=",
+        "lastModified": 1788435455,
+        "narHash": "sha256-hJ8kPOJW6w5BkuUcqlAsLP/zH294plD2/BCP0kvOBzw=",
         "ref": "refs/heads/master",
-        "rev": "68c3f41151cbaa816e99feaf5ef77bdcc41ee1ae",
-        "revCount": 84,
+        "rev": "ba0e379719432f04cc38dc83079b37f8d6021bf5",
+        "revCount": 85,
         "type": "git",
         "url": "ssh://git@git.caspervk.net/caspervk/nixos-secrets.git"
       },
