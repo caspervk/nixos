@@ -85,7 +85,6 @@
         Cookies = true;
         Exceptions = inputs.secrets.modules.firefox.SanitizeOnShutdown.Exceptions;
         Sessions = true;
-        SiteSettings = true;
       };
       SearchEngines = {
         Add = [
