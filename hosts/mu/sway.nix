@@ -20,7 +20,7 @@
         workspaceOutputAssign = [
           {
             workspace = "10";
-            output = "eDP-2";
+            output = "eDP-1";
           }
           {
             workspace = "1";
