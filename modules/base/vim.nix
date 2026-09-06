@@ -783,8 +783,6 @@
       extraPackages = [
         pkgs.alejandra # conform
         pkgs.basedpyright # lsp
-        pkgs.cargo # lsp
-        pkgs.clippy # lsp
         pkgs.nixd # lsp
         pkgs.opentofu # conform
         pkgs.prettier # conform
