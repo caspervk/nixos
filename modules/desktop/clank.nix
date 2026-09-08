@@ -38,6 +38,7 @@
             };
             programs.claude-code = {
               settings = {
+                autoMemoryEnabled = false;
                 env = {
                   CLAUDE_CODE_OAUTH_TOKEN = "dummy";
                   ANTHROPIC_BASE_URL = "http://clank-proxy:1666";
