@@ -4,9 +4,9 @@
       config = {
         # swaymsg -t get_outputs
         output = {
-          "eDP-1" = {
+          "BOE NE160QDM-NZL Unknown" = {
             mode = "2560x1600@300.000Hz";
-            position = "0,0";
+            position = "0,100";
           };
           "AOC Q27T1G5 0x000007C8" = {
             mode = "2560x1440@74.968Hz";
@@ -20,15 +20,15 @@
         workspaceOutputAssign = [
           {
             workspace = "10";
-            output = "eDP-1";
+            output = "BOE NE160QDM-NZL Unknown";
           }
           {
             workspace = "1";
-            output = "DP-1";
+            output = "AOC Q27T1G5 0x000007C8";
           }
           {
             workspace = "4";
-            output = "HDMI-A-1";
+            output = "2560x1440@74.968Hz";
           }
         ];
       };
