@@ -190,8 +190,8 @@
         allowedTCPPorts = [
           22 # SSH
           25 # Mail SMTP
-          80 # Caddy
-          443 # Caddy
+          80 # Caddy HTTP
+          443 # Caddy HTTPS
           465 # Mail ESMTP
           993 # Mail IMAPS
           1234 # ad hoc
@@ -201,6 +201,7 @@
           22000 # syncthing
         ];
         allowedUDPPorts = [
+          443 # Caddy QUIC
           67 # DHCP server
           21027 # syncthing
           22000 # syncthing
@@ -210,8 +211,8 @@
         allowedTCPPorts = [
           22 # SSH
           25 # Mail SMTP
-          80 # Caddy
-          443 # Caddy
+          80 # Caddy HTTP
+          443 # Caddy HTTPS
           465 # Mail ESMTP
           993 # Mail IMAPS
           1234 # ad hoc
@@ -221,6 +222,7 @@
           22000 # syncthing
         ];
         allowedUDPPorts = [
+          443 # Caddy QUIC
           21027 # syncthing
           22000 # syncthing
           # TODO: Baldur's Gate 3
