@@ -47,14 +47,42 @@
       "git.caspervk.net" = {
         useACMEHost = "caspervk.net";
         extraConfig = ''
-          # Meta's bot is spamming so much
+          header +Set-Cookie "human=yes; Path=/"
+
           @bots {
-            header User-Agent *facebook*
+            not header Cookie *human=yes*
+            # From /robots.txt
+            path \
+              */src/* \
+              */blame/* \
+              */commit/* \
+              */commits/* \
+              */raw/* \
+              */media/* \
+              */tags* \
+              */graph* \
+              */branches* \
+              */compare* \
+              */lastcommit/* \
+              */rss/branch/* \
+              */atom/branch/*
           }
           handle @bots {
-            header Retry-After 2629800
-            respond 429
+            header Content-Type text/html
+            respond <<HTML
+              <!DOCTYPE html>
+              <html>
+                <head>
+                  <meta name="color-scheme" content="light dark">
+                  <meta http-equiv="refresh" content="0">
+                </head>
+                <body>
+                  Refreshing...
+                </body>
+              </html>
+            HTML 429
           }
+
           reverse_proxy localhost:3000
         '';
       };
