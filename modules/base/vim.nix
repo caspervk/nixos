@@ -539,11 +539,18 @@
                 nix = {"alejandra", "injected"},
                 -- Ruff follows the project's pyproject.toml/ruff.toml
                 python = {"ruff_fix", "ruff_organize_imports", "ruff_format"},
+                sql = {"sqlfluff"},
                 terraform = {"tofu_fmt"},
                 toml = {"taplo"},
                 typescript = {"prettier"},
-                yaml = {"prettier"},
                 xml = {"xmlstarlet"},
+                yaml = {"prettier"},
+              },
+              formatters = {
+                sqlfluff = {
+                  append_args = {"--dialect", "postgres", "--rules=core"},
+                  require_cwd = false,
+                },
               },
             })
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -787,6 +794,7 @@
         pkgs.opentofu # conform
         pkgs.prettier # conform
         pkgs.ruff # lsp/conform
+        pkgs.sqlfluff # conform
         pkgs.taplo # conform
         pkgs.xmlstarlet # conform
         pkgs.yaml-language-server # lsp
