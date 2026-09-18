@@ -15,13 +15,6 @@
         pkgs.wineWow64Packages.fonts
         pkgs.wineWow64Packages.waylandFull
       ];
-      # Register proton as a Wine runner. It *is* possible to define
-      # `defaultWinePackage`, but that makes home-manager write to the same
-      # file as Lutris does when changing settings in the GUI, and so system
-      # activation can fail with a 'would be clobbered'-error.
-      protonPackages = [
-        pkgs.proton-ge-bin
-      ];
     };
   };
 
