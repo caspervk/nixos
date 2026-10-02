@@ -11,7 +11,8 @@
           # single network connection. When enabled, additional sessions to the
           # same host will reuse the master session's connection rather than
           # initiating a new one. This is especially useful when using SCP.
-          ControlMaster = "yes";
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%C";
           # ISPs in Denmark prefer the simplicity of CG-NAT and stateful
           # firewalls to the mess that is IPv6. Force keepalive packets to
           # avoid sessions dying. See
