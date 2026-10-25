@@ -4,6 +4,7 @@
     ../../modules/server
     ./hardware.nix
     ./network.nix
+    ./nix.nix
     ./tor.nix
   ];
 
