@@ -17,19 +17,20 @@
           home-manager.users.root = {
             programs.opencode = {
               settings = {
-                provider = {
+                providers = {
                   deepseek = {
-                    options = {
+                    settings = {
                       baseURL = "http://clank-proxy:1634";
                     };
                   };
                   greenpt = {
-                    options = {
+                    settings = {
                       baseURL = "http://clank-proxy:1689/v1";
                     };
                   };
                   zai = {
-                    options = {
+                    settings = {
+                      apiKey = "dummy";
                       baseURL = "http://clank-proxy:1684/api/paas/v4";
                     };
                   };
