@@ -223,7 +223,7 @@
             border-radius: 0;
           }
           #workspaces button.focused {
-            box-shadow: inset 0 3px #FF9E3B;  /* kanagawa roninYellow */
+            box-shadow: inset 0 3px #ff9e3b; /* kanagawa roninYellow */
             background-color: transparent;
           }
           #workspaces button:hover {
@@ -232,21 +232,26 @@
             text-shadow: inherit;
           }
           #mode {
-              background-color: rgba(255, 255, 255, 0.4);
-              border: none;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: none;
           }
-          #tray, #wireplumber, #backlight, #network, #battery, #clock {
+          #tray,
+          #wireplumber,
+          #backlight,
+          #network,
+          #battery,
+          #clock {
             background-color: transparent;
             padding: 0 10px;
           }
           #battery.warning:not(.charging) {
-            color: #FF9E3B;  /* kanagawa roninYellow */
+            color: #ff9e3b; /* kanagawa roninYellow */
           }
           #battery.critical:not(.charging) {
-            color: #E82424;  /* kanagawa samuraiRed */
+            color: #e82424; /* kanagawa samuraiRed */
           }
           #network.disconnected {
-            color: #E82424;  /* kanagawa samuraiRed */
+            color: #e82424; /* kanagawa samuraiRed */
           }
         '';
     };
