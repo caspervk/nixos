@@ -101,9 +101,10 @@
         };
         floating = {
           criteria = [
-            {app_id = "org.keepassxc.KeePassXC";}
             {app_id = "com.saivert.pwvucontrol";}
+            {app_id = "org.keepassxc.KeePassXC";}
             {app_id = "wdisplays";}
+            {title = "Battle.net";}
           ];
         };
         focus = {
