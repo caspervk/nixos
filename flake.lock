@@ -26,10 +26,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793640346,
-        "narHash": "sha256-CFzYoEGnS5xtOWNVRJciocmbGrYFpu7hNR5elpEYEP0=",
+        "lastModified": 1793719596,
+        "narHash": "sha256-PUDJnjeakwVLRo2i9XGOL7S7iJYpDPwTOm4Y2j1uziE=",
         "ref": "refs/heads/main",
-        "rev": "e9b940fad18fcabd077150d64961496cee5bb9a7",
+        "rev": "9c7d62e828ef34edbb2d15c14abdc5901435f70d",
         "revCount": 135,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/clank.git"
