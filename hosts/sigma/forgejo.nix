@@ -56,6 +56,8 @@
       session = {
         # Session engine provider.
         PROVIDER = "db";
+        # TODO: https://github.com/NixOS/nixpkgs/pull/582518
+        COOKIE_SECURE = true;
       };
     };
   };
