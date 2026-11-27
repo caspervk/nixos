@@ -26,11 +26,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794487425,
-        "narHash": "sha256-QGKguq3js8wybo8VpLZV1G6ZIlrpT/gJQtqNlxRBt1M=",
+        "lastModified": 1795809592,
+        "narHash": "sha256-L5PFHRv/gdIBEzeISm06V/DzKP9F1iMBMvpaaGyDFhw=",
         "ref": "refs/heads/main",
-        "rev": "26d37ce934473bf6ae018bbfbfd4fcdc5b7c4ed0",
-        "revCount": 140,
+        "rev": "eefa5140ac6b4fb19dd1a53fc96f64cfbd92426a",
+        "revCount": 141,
         "type": "git",
         "url": "https://git.caspervk.net/caspervk/clank.git"
       },
