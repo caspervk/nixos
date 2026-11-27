@@ -17,6 +17,7 @@
           ];
           home-manager.users.root = {
             programs.opencode = {
+              cli.session.sidebar = "hide";
               settings = {
                 providers = {
                   deepseek = {
