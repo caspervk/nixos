@@ -13,6 +13,7 @@
             "${inputs.clank}/magenta/modules/gitlab.nix"
             "${inputs.clank}/magenta/modules/grafana-logs.nix"
             "${inputs.clank}/magenta/modules/kagi.nix"
+            "${inputs.clank}/magenta/modules/redmine.nix"
           ];
           home-manager.users.root = {
             programs.opencode = {
