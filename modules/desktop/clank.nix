@@ -29,6 +29,40 @@
                     settings = {
                       baseURL = "http://clank-proxy:1689/v1";
                     };
+                    models = {
+                      "kimi-k3.1-pro" = {
+                        name = "Kimi K3.1 Pro";
+                        capabilities = {
+                          tools = true;
+                          input = [
+                            "text"
+                            "image/jpeg"
+                            "image/png"
+                            "image/gif"
+                            "image/webp"
+                            "image/bmp"
+                            "image/tiff"
+                          ];
+                          output = ["text"];
+                          reasoning = {
+                            supported = true;
+                            effort = [
+                              "none"
+                              "minimal"
+                              "low"
+                              "medium"
+                              "high"
+                            ];
+                          };
+                          structured_output = true;
+                          cache.implicit = true;
+                        };
+                        limit = {
+                          context = 1048576;
+                          output = 1045000;
+                        };
+                      };
+                    };
                   };
                   zai = {
                     settings = {
